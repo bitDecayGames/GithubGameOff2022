@@ -1,10 +1,10 @@
 {
 	"analytics": {
-		"name": "::simple_game_name::",
+		"name": "githubgameoff2022",
 		"influx": {
 			"api": "https://us-west-2-1.aws.cloud2.influxdata.com/api/v2/write",
 			"org": "13ecc65d2303c6d7",
-			"bucket": "::influx_bucket_id::",
+			"bucket": "ed3bb5c4ec8ea5d0",
 			"token": "token loaded from the '-D API_KEY=<key>' compile flag so it is not committed to source control"
 		}
 	},
