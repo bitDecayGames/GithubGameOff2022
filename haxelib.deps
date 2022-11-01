@@ -1,0 +1,15 @@
+# Main build deps
+flixel 4.9.0
+flixel-addons 2.10.0
+flixel-ui 2.3.3
+openfl 9.1.0
+
+# bitDecayGames deps
+bitdecaybtree git https://github.com/bitDecayGames/BehaviorTree.git
+bitlytics git https://github.com/bitDecayGames/Bitlytics.git
+flixelutils git https://github.com/bitDecayGames/flixel-utils.git
+textpop git https://github.com/bitDecayGames/text-pop.git
+
+# misc deps
+dialog-manager git https://github.com/Tanz0rz/haxe-dialog-manager.git
+haxefmod git https://github.com/Tanz0rz/haxe-fmod.git

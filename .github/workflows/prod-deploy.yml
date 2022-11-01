@@ -1,0 +1,32 @@
+name: AutoDeploy-Prod
+on:
+  release:
+    types:
+      - published
+jobs:
+  publish-html5-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Make html5 build
+        uses: bitDecayGames/lime-build-action@v0.0.37
+        with:
+          buildArgs: -final -D API_KEY=${{ secrets.ANALYTICS_TOKEN }}
+
+      - name: Upload html5 zip artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: html5-build
+          path: export/html5.zip
+          retention-days: 7
+
+      - name: Publish html5 build to itch.io
+        uses: bitDecayGames/butler-deploy-action@v0.0.2
+        with:
+          dir: export/html5.zip
+          itchUserName: bitdecaygames
+          itchGameName: ::game_name::
+          itchChannel: web-release
+          butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
