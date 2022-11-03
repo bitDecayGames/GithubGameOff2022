@@ -15,7 +15,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="640" height="480" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window width="520" height="488" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -48,12 +48,13 @@
 	<haxelib name="dialog-manager" />
 	<haxelib name="haxefmod" />
 	<haxelib name="textpop" />
+	<haxelib name="ldtk-haxe-api" />
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
-	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+	<!-- <haxedef name="NAPE_RELEASE_BUILD" unless="debug" /> -->
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

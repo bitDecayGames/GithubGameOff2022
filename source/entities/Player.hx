@@ -14,7 +14,7 @@ class Player extends FlxSprite {
 
 	public function new() {
 		super();
-		makeGraphic(20, 20, FlxColor.WHITE);
+		makeGraphic(16, 16, FlxColor.WHITE);
 		color = FlxColor.BLUE;
 	}
 

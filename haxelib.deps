@@ -9,6 +9,7 @@ bitdecaybtree git https://github.com/bitDecayGames/BehaviorTree.git
 bitlytics git https://github.com/bitDecayGames/Bitlytics.git
 flixelutils git https://github.com/bitDecayGames/flixel-utils.git
 textpop git https://github.com/bitDecayGames/text-pop.git
+ldtk-haxe-api
 
 # misc deps
 dialog-manager git https://github.com/Tanz0rz/haxe-dialog-manager.git
