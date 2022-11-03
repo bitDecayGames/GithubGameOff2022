@@ -1,5 +1,9 @@
 package states;
 
+import flixel.math.FlxVector;
+import flixel.math.FlxPoint;
+import flixel.util.FlxStringUtil;
+import entities.Door;
 import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import achievements.Achievements;
@@ -13,52 +17,102 @@ import bitdecay.flixel.debug.DebugDraw;
 using states.FlxStateExt;
 
 class PlayState extends FlxTransitionableState {
+	public static var ME:PlayState;
+
 	var player:FlxSprite;
 
+	var entities:FlxTypedGroup<FlxSprite>;
+	var doors:FlxTypedGroup<Door>;
 	var collisions:FlxTypedGroup<FlxSprite>;
 
 	override public function create() {
 		super.create();
+		ME = this;
 		camera.bgColor = FlxColor.PINK;
+		FlxG.camera.pixelPerfectRender = true;
 
-		var test = new LDTKProject();
+		Lifecycle.startup.dispatch();
 
-		var level = test.getLevel(0);
-		trace(level.l_Entities.all_PlayerSpawn[0].f_ThisIsForJake);
-		trace(level.bgImageInfos);
-		// var terrainGroup = level.l_Terrain.render();
-		// add(terrainGroup);
+		collisions = new FlxTypedGroup<FlxSprite>();
+		entities = new FlxTypedGroup<FlxSprite>();
+		doors = new FlxTypedGroup<Door>();
+		add(collisions);
+		add(entities);
+		add(doors);
+
+		loadLevel(0);
+		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
+	}
+
+	// loads the level with the given id, optionally spawning the player at the provided doorID
+	// Can provide either the uid int, or the iid string, but not both
+	function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
+		// clean up current level;
+		player = null;
+		doors.forEach((d) -> {
+			d.destroy();
+		});
+		doors.clear();
+		entities.forEach((e) -> {
+			e.destroy();
+		});
+		entities.clear();
+		collisions.forEach((c) -> {
+			c.destroy();
+		});
+		collisions.clear();
+
+		// We might be able to just have this be a nice static thing
+		var project = new LDTKProject();
+
+		var level = project.getLevel(uid, id);
+		if (level == null) {
+			for (pl in project.levels) {
+				if (pl.iid == id) {
+					level = pl;
+					break;
+				}
+			}
+		}
 
 		var collisionLayer = level.l_Collisions;
 		FlxG.worldBounds.set(0, 0, collisionLayer.cWid * collisionLayer.gridSize, collisionLayer.cHei * collisionLayer.gridSize );
 		trace(FlxG.worldBounds);
-		collisions = new FlxTypedGroup<FlxSprite>();
 		collisionLayer.render().forEach((s) -> {
 			s.immovable = true;
 			s.updateHitbox();
 			collisions.add(s);
 		});
 
-		trace(collisions.members.length);
-		add(collisions);
-
-		Lifecycle.startup.dispatch();
-
-		FlxG.camera.pixelPerfectRender = true;
+		for (eDoor in level.l_Entities.all_Door) {
+			var door = new Door(eDoor);
+			doors.add(door);
+		}
 
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
 			throw ('level ${level.identifier} has multiple spawns');
 		}
 
-		var spawnData = level.l_Entities.all_PlayerSpawn[0];
-		player = new Player();
-		player.setPosition(spawnData.cx * 16, spawnData.cy * 16);
-		add(player);
+		var playerStart = FlxPoint.get();
+		if (FlxStringUtil.isNullOrEmpty(doorID)) {
+			var spawnData = level.l_Entities.all_PlayerSpawn[0];
+			playerStart.set(spawnData.cx * 16, spawnData.cy * 16);
+		} else {
+			var matches = doors.members.filter((d) -> d.iid == doorID);
+			if (matches.length != 1) {
+				throw 'expected door in level ${level.identifier} with iid ${doorID}, but got ${matches.length} matches';
+			}
+			playerStart.set(matches[0].x, matches[0].y);
+			var tmp = FlxVector.get();
+			// TODO: Likely will want to tween the player into the stage
+			playerStart.addPoint(matches[0].accessDir.asVector(tmp).scale(17));
+			tmp.put();
+
+			playerStart.put();
+		}
+		player = new Player(playerStart.x, playerStart.y);
+		entities.add(player);
 		camera.follow(player);
-
-
-
-		add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
 	}
 
 	override public function update(elapsed:Float) {
@@ -67,7 +121,12 @@ class PlayState extends FlxTransitionableState {
 		var cam = FlxG.camera;
 		DebugDraw.ME.drawCameraRect(cam.width/2 - 5, cam.height/2 - 5, 10, 10);
 
+		FlxG.overlap(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
+	}
+
+	function playerTouchDoor(d:Door, p:Player) {
+		loadLevel(d.destinationLevel, d.destinationDoorID);
 	}
 
 	override public function onFocusLost() {
