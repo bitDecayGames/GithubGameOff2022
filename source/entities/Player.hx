@@ -51,7 +51,9 @@ class Player extends FlxSprite {
 	}
 
 	function playerInteracts(i:Interactable, box:FlxObject) {
+		// TODO: This is triggering twice for some reason
 		trace('interaction beginneth!');
+		PlayState.ME.startEncounter();
 	}
 
 	#if FLX_DEBUG

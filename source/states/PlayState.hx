@@ -1,5 +1,6 @@
 package states;
 
+import states.battles.EncounterBaseState;
 import flixel.group.FlxSpriteGroup;
 import entities.Interactable;
 import entities.NPC;
@@ -37,6 +38,8 @@ class PlayState extends FlxTransitionableState {
 		FlxG.camera.pixelPerfectRender = true;
 
 		Lifecycle.startup.dispatch();
+
+		persistentUpdate = true;
 
 		terrain = new FlxSpriteGroup();
 		collisions = new FlxTypedGroup<FlxSprite>();
@@ -144,7 +147,8 @@ class PlayState extends FlxTransitionableState {
 		super.update(elapsed);
 
 		var cam = FlxG.camera;
-		DebugDraw.ME.drawCameraRect(cam.width/2 - 5, cam.height/2 - 5, 10, 10);
+		// DebugDraw.ME.drawCameraRect(cam.width/2 - 5, cam.height/2 - 5, 10, 10);
+		DebugDraw.ME.drawWorldRect(-5, -5, 10, 10);
 
 		FlxG.overlap(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
@@ -152,6 +156,10 @@ class PlayState extends FlxTransitionableState {
 
 	function playerTouchDoor(d:Door, p:Player) {
 		loadLevel(d.destinationLevel, d.destinationDoorID);
+	}
+
+	public function startEncounter() {
+		openSubState(new EncounterBaseState());
 	}
 
 	override public function onFocusLost() {
