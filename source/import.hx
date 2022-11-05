@@ -15,4 +15,6 @@ using bitdecay.flixel.extensions.FlxPointExt;
 
 // our level data!
 import levels.ldtk.LDTKProject;
+
+import helpers.Constants;
 #end

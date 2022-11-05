@@ -1,5 +1,9 @@
 package states;
 
+import states.battles.EncounterBaseState;
+import flixel.group.FlxSpriteGroup;
+import entities.Interactable;
+import entities.NPC;
 import flixel.math.FlxVector;
 import flixel.math.FlxPoint;
 import flixel.util.FlxStringUtil;
@@ -19,11 +23,13 @@ using states.FlxStateExt;
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
-	var player:FlxSprite;
+	public var player:FlxSprite;
 
-	var entities:FlxTypedGroup<FlxSprite>;
-	var doors:FlxTypedGroup<Door>;
-	var collisions:FlxTypedGroup<FlxSprite>;
+	public var terrain:FlxSpriteGroup;
+	public var entities:FlxTypedGroup<FlxSprite>;
+	public var doors:FlxTypedGroup<Door>;
+	public var interactables:FlxTypedGroup<FlxSprite>;
+	public var collisions:FlxTypedGroup<FlxSprite>;
 
 	override public function create() {
 		super.create();
@@ -33,11 +39,17 @@ class PlayState extends FlxTransitionableState {
 
 		Lifecycle.startup.dispatch();
 
+		persistentUpdate = true;
+
+		terrain = new FlxSpriteGroup();
 		collisions = new FlxTypedGroup<FlxSprite>();
 		entities = new FlxTypedGroup<FlxSprite>();
+		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
+		add(terrain);
 		add(collisions);
 		add(entities);
+		add(interactables);
 		add(doors);
 
 		loadLevel(0);
@@ -53,6 +65,10 @@ class PlayState extends FlxTransitionableState {
 			d.destroy();
 		});
 		doors.clear();
+		terrain.forEach((e) -> {
+			e.destroy();
+		});
+		terrain.clear();
 		entities.forEach((e) -> {
 			e.destroy();
 		});
@@ -84,9 +100,21 @@ class PlayState extends FlxTransitionableState {
 			collisions.add(s);
 		});
 
+		level.l_Terrain.render(terrain);
+
 		for (eDoor in level.l_Entities.all_Door) {
 			var door = new Door(eDoor);
 			doors.add(door);
+		}
+
+		for (eNPC in level.l_Entities.all_NPC) {
+			var npc = new NPC(eNPC);
+			entities.add(npc);
+		}
+
+		for (eInteract in level.l_Entities.all_Interactable) {
+			var interact = new Interactable(eInteract);
+			interactables.add(interact);
 		}
 
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
@@ -119,7 +147,8 @@ class PlayState extends FlxTransitionableState {
 		super.update(elapsed);
 
 		var cam = FlxG.camera;
-		DebugDraw.ME.drawCameraRect(cam.width/2 - 5, cam.height/2 - 5, 10, 10);
+		// DebugDraw.ME.drawCameraRect(cam.width/2 - 5, cam.height/2 - 5, 10, 10);
+		DebugDraw.ME.drawWorldRect(-5, -5, 10, 10);
 
 		FlxG.overlap(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
@@ -127,6 +156,10 @@ class PlayState extends FlxTransitionableState {
 
 	function playerTouchDoor(d:Door, p:Player) {
 		loadLevel(d.destinationLevel, d.destinationDoorID);
+	}
+
+	public function startEncounter() {
+		openSubState(new EncounterBaseState());
 	}
 
 	override public function onFocusLost() {

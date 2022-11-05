@@ -1,5 +1,6 @@
 package;
 
+import com.bitdecay.lucidtext.effect.EffectRegistry;
 import flixel.system.debug.log.LogStyle;
 import haxe.Timer;
 import audio.FmodPlugin;
@@ -62,6 +63,8 @@ class Main extends Sprite {
 		FlxG.plugins.add(new FmodPlugin());
 
 		configureLogging();
+
+		EffectRegistry.dumpToConsole();
 	}
 
 	private function configureLogging() {
