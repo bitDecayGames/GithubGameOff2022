@@ -1,5 +1,7 @@
 package;
 
+import flixel.math.FlxPoint;
+import com.bitdecay.lucidtext.TextGroup;
 import com.bitdecay.lucidtext.effect.EffectRegistry;
 import flixel.system.debug.log.LogStyle;
 import haxe.Timer;
@@ -64,6 +66,7 @@ class Main extends Sprite {
 
 		configureLogging();
 
+		TextGroup.defaultScrollFactor = FlxPoint.get();
 		EffectRegistry.dumpToConsole();
 	}
 
