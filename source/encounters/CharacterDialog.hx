@@ -22,6 +22,7 @@ class CharacterDialog extends FlxGroup {
 		};
 		options.nextIconMaker = () -> {
 			var nextIcon = new FlxSprite();
+			nextIcon.scrollFactor.set();
 			nextIcon.loadGraphic(AssetPaths.crap_nexticon__png, true, 10, 10);
 			nextIcon.animation.add('spin', [0,1,2,3], 8);
 			nextIcon.animation.play('spin');
@@ -33,8 +34,9 @@ class CharacterDialog extends FlxGroup {
 			initialText,
 			options
 		);
+		textGroup.scrollFactor.set();
 
-		var portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
+		portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
 		portrait.scrollFactor.set();
 		portrait.loadGraphic(profileAsset, true, 50, 50);
 		portrait.animation.frameIndex = 0;
@@ -45,5 +47,10 @@ class CharacterDialog extends FlxGroup {
 
 	public function loadDialogLine(text:String) {
 		textGroup.loadText(text);
+	}
+	public function resetLastLine() {
+		// TODO: Obviously not efficient, but works for now
+		textGroup.loadText(textGroup.rawText);
+		textGroup.update(0.001);
 	}
 }

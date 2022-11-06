@@ -1,5 +1,6 @@
 package states;
 
+import encounters.CharacterDialog;
 import characters.BasicPot;
 import states.battles.PotBattleState;
 import states.battles.EncounterBaseState;
@@ -32,6 +33,10 @@ class PlayState extends FlxTransitionableState {
 	public var doors:FlxTypedGroup<Door>;
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
+	public var dialogs:FlxGroup;
+	var dialogCount = 0;
+
+	public var playerActive:Bool = true;
 
 	override public function create() {
 		super.create();
@@ -46,11 +51,13 @@ class PlayState extends FlxTransitionableState {
 		entities = new FlxTypedGroup<FlxSprite>();
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
+		dialogs = new FlxGroup();
 		add(terrain);
 		add(collisions);
 		add(entities);
 		add(interactables);
 		add(doors);
+		add(dialogs);
 
 		loadLevel(0);
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
@@ -113,11 +120,12 @@ class PlayState extends FlxTransitionableState {
 
 		for (eNPC in level.l_Entities.all_NPC) {
 			var npc = new NPC(eNPC);
-			entities.add(npc);
+			interactables.add(npc);
 		}
 
 		for (eInteract in level.l_Entities.all_Interactable) {
-			var interact = new Interactable(eInteract);
+			// TODO: need to come up with a proper way to parse out unique interactables
+			var interact = new Interactable(eInteract.cx * Constants.TILE_SIZE, eInteract.cy * Constants.TILE_SIZE);
 			interactables.add(interact);
 		}
 
@@ -148,6 +156,10 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	override public function update(elapsed:Float) {
+		// TODO: probably a better way of handling this
+		// dialogs.mem
+		playerActive = dialogCount == 0;
+
 		super.update(elapsed);
 
 		var cam = FlxG.camera;
@@ -170,6 +182,19 @@ class PlayState extends FlxTransitionableState {
 
 	public function startEncounter() {
 		openSubState(new PotBattleState(new BasicPot()));
+	}
+
+	public function openDialog(dialog:CharacterDialog) {
+		// TODO: need to figure out how to clear this stuff out
+		dialogs.add(dialog);
+		dialogCount++;
+	}
+
+	public function closeDialog(dialog:CharacterDialog) {
+		// TODO: need to figure out how to clear this stuff out
+		if (dialogs.remove(dialog) != null) {
+			dialogCount--;
+		}
 	}
 
 	override public function onFocusLost() {

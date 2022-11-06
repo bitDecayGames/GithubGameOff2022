@@ -68,14 +68,20 @@ class Player extends FlxSprite {
 	}
 
 	override public function update(delta:Float) {
-		var inputDir = InputCalcuator.getInputCardinal(playerNum);
-		if (inputDir != NONE) {
-			inputDir.asVector(velocity).scale(speed);
-			facing = inputDir.asFacing();
+		if (PlayState.ME.playerActive) {
+			// Only check input direction if the game wants us to move
+			var inputDir = InputCalcuator.getInputCardinal(playerNum);
+			if (inputDir != NONE) {
+				inputDir.asVector(velocity).scale(speed);
+				facing = inputDir.asFacing();
+			} else {
+				velocity.set();
+			}
 		} else {
 			velocity.set();
 		}
 
+		// do the influence outside of the other check to allow us to do some sort of cutscenes and such
 		velocity.copyFrom(directionInfluence.normalize().scale(speed).addPoint(velocity).normalize().scale(speed));
 		directionInfluence.set();
 
@@ -84,7 +90,7 @@ class Player extends FlxSprite {
 		CardinalExt.fromFacing(facing).asVector(tmp).scale(Constants.TILE_SIZE).add(x, y).add(width/2, height/2);
 		interactionBox.setPositionMidpoint(tmp.x, tmp.y);
 
-		if (SimpleController.just_pressed(Button.A, playerNum)) {
+		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
 			// This seems wrong... not sure why, but it overlaps erroneously when the interaction box is to the right,
 			// or below the interactable
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
@@ -117,10 +123,9 @@ class Player extends FlxSprite {
 		FlxG.watch.addQuick('player set anim: ', animation.curAnim.name);
 	}
 
-	function playerInteracts(i:Interactable, box:FlxObject) {
+	function playerInteracts(i:Interactable, other:FlxObject) {
 		// TODO: This is triggering twice for some reason
-		trace('interaction beginneth!');
-		PlayState.ME.startEncounter();
+		i.interact();
 	}
 
 	#if FLX_DEBUG

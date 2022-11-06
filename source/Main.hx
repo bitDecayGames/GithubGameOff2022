@@ -69,7 +69,6 @@ class Main extends Sprite {
 		configureLogging();
 
 		TextGroup.defaultScrollFactor = FlxPoint.get();
-		EffectRegistry.dumpToConsole();
 	}
 
 	private function configureLogging() {
