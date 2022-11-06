@@ -1,5 +1,6 @@
 package states;
 
+import characters.BasicPot;
 import states.battles.PotBattleState;
 import states.battles.EncounterBaseState;
 import flixel.group.FlxSpriteGroup;
@@ -91,7 +92,11 @@ class PlayState extends FlxTransitionableState {
 		}
 
 		var collisionLayer = level.l_Collisions;
-		FlxG.worldBounds.set(0, 0, collisionLayer.cWid * collisionLayer.gridSize, collisionLayer.cHei * collisionLayer.gridSize );
+		// NOTE: We do stuff in screen space, so we need to make sure at least our raw screen coords are within
+		// the world bounds
+		var boundsWidth = Math.max(FlxG.width, collisionLayer.cWid * collisionLayer.gridSize);
+		var boundsHeight = Math.max(FlxG.height, collisionLayer.cHei * collisionLayer.gridSize);
+		FlxG.worldBounds.set(0, 0, boundsWidth, boundsHeight);
 		trace(FlxG.worldBounds);
 		collisionLayer.render().forEach((s) -> {
 			s.immovable = true;
@@ -164,7 +169,7 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	public function startEncounter() {
-		openSubState(new PotBattleState());
+		openSubState(new PotBattleState(new BasicPot()));
 	}
 
 	override public function onFocusLost() {

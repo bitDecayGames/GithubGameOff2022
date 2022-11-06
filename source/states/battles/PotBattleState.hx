@@ -1,16 +1,17 @@
 package states.battles;
 
-import flixel.util.FlxTimer;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.group.FlxGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.group.FlxGroup;
-import input.SimpleController;
-import flixel.math.FlxMath;
-import flixel.FlxG;
-import flixel.math.FlxPoint;
 import flixel.util.FlxSpriteUtil;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
+import flixel.util.FlxTimer;
+
+import encounters.CharacterDialog;
+import input.SimpleController;
+
 
 using zero.flixel.extensions.FlxPointExt;
 
@@ -27,14 +28,21 @@ class PotBattleState extends EncounterBaseState {
 
 	var attackLimit = 5;
 
-	var attackGroup = new FlxGroup();
+	var weakPointsGroup = new FlxTypedGroup<FlxSprite>();
+	var attackGroup = new FlxTypedGroup<FlxSprite>();
 
-	public function new() {
+	var dialog:CharacterDialog;
+	var fightGroup:FlxGroup;
+
+	public function new(foe:CharacterDialog) {
 		super();
+		dialog = foe;
 	}
 
 	override function create() {
 		super.create();
+
+		fightGroup = new FlxGroup();
 
 		ring = new FlxSprite();
 		ring.scrollFactor.set();
@@ -44,7 +52,6 @@ class PotBattleState extends EncounterBaseState {
 		FlxSpriteUtil.drawCircle(ring, -1, -1, 49, FlxColor.BLACK);
 
 		ring.screenCenter();
-		battleGroup.add(ring);
 
 		randomizeAimPoints(4);
 
@@ -65,13 +72,24 @@ class PotBattleState extends EncounterBaseState {
 		point.put();
 
 		// make sure our attacks are under our cursor
-		battleGroup.add(attackGroup);
-		battleGroup.add(cursor);
+		fightGroup.add(ring);
+		fightGroup.add(weakPointsGroup);
+		fightGroup.add(attackGroup);
+		fightGroup.add(cursor);
 
-		new FlxTimer().start(1, (t) -> {
-			acceptInput = true;
-			FlxTween.tween(this, { spinSpeed: maxSpinSpeed }, { ease: FlxEase.sineIn });
-		});
+		battleGroup.add(fightGroup);
+		fightGroup.active = false;
+		battleGroup.add(dialog);
+
+		dialog.textGroup.finishCallback = () -> {
+			dialog.kill();
+			fightGroup.active = true;
+
+			new FlxTimer().start(1, (t) -> {
+				acceptInput = true;
+				FlxTween.tween(this, { spinSpeed: maxSpinSpeed }, { ease: FlxEase.sineIn });
+			});
+		};
 	}
 
 	var placed:Array<Int> = [];
@@ -88,7 +106,7 @@ class PotBattleState extends EncounterBaseState {
 			aim.setPositionMidpoint(point.x, point.y);
 			point.put();
 
-			battleGroup.add(aim);
+			weakPointsGroup.add(aim);
 		}
 	}
 
@@ -101,8 +119,33 @@ class PotBattleState extends EncounterBaseState {
 		cursor.setPositionMidpoint(point.x, point.y);
 		point.put();
 
-		if (acceptInput && SimpleController.just_pressed(A) && attackGroup.length < attackLimit) {
+		if (!acceptInput) {
+			return;
+		}
+
+		if (SimpleController.just_pressed(A) && attackGroup.length < attackLimit) {
 			createAttack();
+		}
+
+		if (checkSuccess()) {
+			// TODO: success end sequence start
+			transitionOut();
+		} else if (attackGroup.length == attackLimit) {
+			// failure
+			acceptInput = false;
+			new FlxTimer().start(1, (t) -> {
+				FlxTween.tween(this, { spinSpeed: 0 }, 2,
+					{
+						ease: FlxEase.sineOut,
+						onComplete: (t) -> {
+							dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
+							dialog.textGroup.finishCallback = () -> {
+								transitionOut();
+							};
+							dialog.revive();
+						}
+					});
+			});
 		}
 	}
 
@@ -119,5 +162,18 @@ class PotBattleState extends EncounterBaseState {
 		point.put();
 
 		attackGroup.add(attack);
+	}
+
+	function checkSuccess():Bool {
+		var success = true;
+		weakPointsGroup.forEach((weakness) -> {
+			if (!FlxG.overlap(weakness, attackGroup)) {
+				// found one that doesn't align
+				trace(FlxG.worldBounds);
+				success = false;
+			}
+		});
+
+		return success;
 	}
 }

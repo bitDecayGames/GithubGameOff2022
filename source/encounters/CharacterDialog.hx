@@ -1,7 +1,6 @@
 package encounters;
 
 import input.SimpleController;
-import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.FlxG;
 import flixel.math.FlxRect;
 import flixel.FlxSprite;
@@ -39,16 +38,6 @@ class CharacterDialog extends FlxGroup {
 		portrait.scrollFactor.set();
 		portrait.loadGraphic(profileAsset, true, 50, 50);
 		portrait.animation.frameIndex = 0;
-
-		textGroup.tagCallback = (tag:TagLocation) -> {
-			if (tag.tag == "cb") {
-				if (tag.parsedOptions.val == "camred") {
-					portrait.animation.frameIndex = 1;
-				} else if (tag.parsedOptions.val == "camgrey") {
-					portrait.animation.frameIndex = 0;
-				}
-			}
-		};
 
 		add(textGroup);
 		add(portrait);

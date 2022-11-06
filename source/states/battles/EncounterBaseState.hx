@@ -12,7 +12,6 @@ class EncounterBaseState extends FlxSubState {
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();
 	var transition:FlxSprite;
-	// var dialogTest:CharacterDialog;
 
 	public function new() {
 		super();
@@ -32,14 +31,6 @@ class EncounterBaseState extends FlxSubState {
 		bgImg.screenCenter();
 		battleGroup.add(bgImg);
 
-		// dialogTest = new CharacterDialog(AssetPaths.crappot__png, "It is a pot.");
-		// dialogTest.textGroup.finishCallback = dialogComplete;
-
-		// battleGroup.add(dialogTest);
-
-		battleGroup.visible = false;
-		battleGroup.active = false;
-
 		transition = new FlxSprite();
 		transition.makeGraphic(1,1, FlxColor.BLUE);
 		transition.alpha = 0;
@@ -51,12 +42,35 @@ class EncounterBaseState extends FlxSubState {
 		add(battleGroup);
 		add(transition);
 
+		transitionIn();
+	}
+
+	public function transitionIn(onDone:()->Void = null) {
+		battleGroup.visible = false;
+		battleGroup.active = false;
+
 		FlxTween.tween(transition, { alpha: 1 }, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
 				FlxTween.tween(transition, { alpha: 0}, {
 					onComplete: (t) -> {
 						battleGroup.active = true;
+						if (onDone != null) onDone();
+					}
+				});
+			}
+		});
+	}
+
+	public function transitionOut(onDone:()->Void = null) {
+		FlxTween.tween(transition, { alpha: 1 }, {
+			onComplete: (t) -> {
+				battleGroup.visible = false;
+				battleGroup.active = false;
+				FlxTween.tween(transition, { alpha: 0}, {
+					onComplete: (t) -> {
+						close();
+						if (onDone != null) onDone();
 					}
 				});
 			}
