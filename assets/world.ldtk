@@ -1615,13 +1615,13 @@
 		},
 		{
 			"__cWid": 8,
-			"__cHei": 9,
+			"__cHei": 10,
 			"identifier": "ExteriorTiles",
 			"uid": 35,
 			"relPath": "images/tilesets/exteriorTiles.png",
 			"embedAtlas": null,
 			"pxWid": 128,
-			"pxHei": 144,
+			"pxHei": 160,
 			"tileGridSize": 16,
 			"spacing": 0,
 			"padding": 0,
@@ -1631,8 +1631,8 @@
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
-				"opaqueTiles": "011110110111111101111111001110110011111100111111001110100011100001111000",
-				"averageColors": "0000fcf9fee9fee9fee90000fee9fee90000fcf8fee9ffe9fee9fee9ffe9fee90000fcf8fee9fee9fee9fee9fee9fee900000000f999f999f9990000f999faaa00000000f999f999f999faaaf999faaa00000000faaafaa9faaafabafaaafaaa00000000faddfaddfaddc751f751c75100000000fbeefceefbee0000000000000000fb91fbddfbeefbdd000000000000"
+				"opaqueTiles": "01111011011111110111111100111011001111110011111100111111001111110111111100000000",
+				"averageColors": "0000fcf9fee9fee9fee90000fee9fee90000fcf8fee9ffe9fee9fee9ffe9fee90000fcf8fee9fee9fee9fee9fee9fee900000000f999f999f9990000f999faaa00000000f999f999f999faaaf999faaa00000000faaafaa9faaafabafaaafaaa00000000f9ddfaddf9ddf741f841f74100000000fbeefceefbeef841f940f8410000fb91fbdefbeefbdef751f751f75100000000000000000000000000000000"
 			}
 		}
 	], "enums": [{ "identifier": "Direction", "uid": 31, "values": [
@@ -1732,7 +1732,7 @@
 									"entityIid": "a4623a70-5110-11ed-885d-537022919835",
 									"layerIid": "9e0a1531-5110-11ed-885d-a379c6c99faf",
 									"levelIid": "9e0a1530-5110-11ed-885d-bb33d4506b59",
-									"worldIid": "98096c70-5110-11ed-81af-6fa8dee8766e"
+									"worldIid": "5686d270-5110-11ed-8b33-8d209ceb63f4"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["a4623a70-5110-11ed-885d-537022919835"]

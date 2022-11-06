@@ -50,6 +50,7 @@
 	<haxelib name="textpop" />
 	<haxelib name="lucidtext" />
 	<haxelib name="ldtk-haxe-api" />
+	<haxelib name="zerolib-flixel" />
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
