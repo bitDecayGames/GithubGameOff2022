@@ -15,7 +15,7 @@ class NPC extends Interactable {
 		makeGraphic(Constants.TILE_SIZE, Constants.TILE_SIZE, FlxColor.LIME);
 
 		// the mad tag is slightly delayed while I figure out some bugs with how tag callbacks are handled
-		dialogBox = new CharacterDialog(AssetPaths.crapnpc_single__png, "<cb val=happy />Hello there, boy.<page/>What<cb val=mad /> do you want?<page/>Just<cb val=sad /> kidding, I'm just old and <scrub>bored.</scrub>");
+		dialogBox = new CharacterDialog(LONK, "<cb val=happy />Hello there, boy.<page/>What<cb val=mad /> do you want?<page/>Just<cb val=sad /> kidding, I'm just old and <scrub>bored.</scrub>");
 		dialogBox.textGroup.tagCallback = updateFacialExpression;
 
 		dialogBox.textGroup.finishCallback = dialogFinished;
@@ -23,19 +23,7 @@ class NPC extends Interactable {
 
 	public function updateFacialExpression(tag:TagLocation) {
 		if (tag.tag == "cb") {
-			dialogBox.portrait.animation.frameIndex = switch(tag.parsedOptions.val) {
-				case "neutral":
-					0;
-				case "happy":
-					1;
-				case "mad":
-					2;
-				case "sad":
-					3;
-				default:
-					FlxG.log.warn('no handling of ${tag.parsedOptions.val}');
-					0;
-			}
+			dialogBox.setExpression(tag.parsedOptions.val);
 		}
 	}
 

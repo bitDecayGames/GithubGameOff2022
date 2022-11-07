@@ -5,7 +5,7 @@ import encounters.CharacterDialog;
 
 class BasicPot extends CharacterDialog {
 	public function new() {
-		super(AssetPaths.crappot__png, "It is a pot");
+		super(POT, "It is a pot");
 
 		// hook up any special handling we want for tags
 		textGroup.tagCallback = (tag:TagLocation) -> {
