@@ -9,11 +9,15 @@ import com.bitdecay.lucidtext.TypeOptions;
 import flixel.group.FlxGroup;
 
 class CharacterDialog extends FlxGroup {
+	private static var expressionsAsset = AssetPaths.NPCexpressions__png;
+
+	public var characterIndex:CharacterIndex;
+
 	public var textGroup:TypingGroup;
 	public var portrait:FlxSprite;
 	public var options:TypeOptions;
 
-	public function new(profileAsset:String, initialText:String) {
+	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
 
 		options = new TypeOptions(AssetPaths.battleMenuSlice__png, [4, 4, 7, 8], [5, 5, 60, 5], 10);
@@ -38,11 +42,17 @@ class CharacterDialog extends FlxGroup {
 
 		portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
 		portrait.scrollFactor.set();
-		portrait.loadGraphic(profileAsset, true, 50, 50);
-		portrait.animation.frameIndex = 0;
+		portrait.loadGraphic(expressionsAsset, true, 50, 50);
+		var rowLength = Std.int(portrait.graphic.width / 50);
+		characterIndex = expressionIndex * rowLength;
+		portrait.animation.frameIndex = characterIndex;
 
 		add(textGroup);
 		add(portrait);
+	}
+
+	public function setExpression(e:Expression) {
+		portrait.animation.frameIndex = characterIndex + e.asIndex();
 	}
 
 	public function loadDialogLine(text:String) {
