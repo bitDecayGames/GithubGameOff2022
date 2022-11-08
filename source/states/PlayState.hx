@@ -1,5 +1,11 @@
 package states;
 
+import flixel.FlxObject;
+import flixel.math.FlxRect;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
+import flixel.util.FlxSort;
+import flixel.FlxBasic;
 import encounters.CharacterDialog;
 import characters.BasicPot;
 import states.battles.PotBattleState;
@@ -22,11 +28,15 @@ import flixel.FlxG;
 import bitdecay.flixel.debug.DebugDraw;
 
 using states.FlxStateExt;
+using extension.CardinalExt;
 
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
-	public var player:FlxSprite;
+	public var player:Player;
+
+	// the sorting layer will hold anything we want sorted by it's positional y-value
+	public var sortingLayer:FlxTypedGroup<FlxSprite>;
 
 	public var terrain:FlxSpriteGroup;
 	public var entities:FlxTypedGroup<FlxSprite>;
@@ -37,6 +47,7 @@ class PlayState extends FlxTransitionableState {
 	var dialogCount = 0;
 
 	public var playerActive:Bool = true;
+	public var playerInTransition:Bool = false;
 
 	override public function create() {
 		super.create();
@@ -46,6 +57,7 @@ class PlayState extends FlxTransitionableState {
 
 		Lifecycle.startup.dispatch();
 
+		sortingLayer = new FlxTypedGroup<FlxSprite>();
 		terrain = new FlxSpriteGroup();
 		collisions = new FlxTypedGroup<FlxSprite>();
 		entities = new FlxTypedGroup<FlxSprite>();
@@ -54,9 +66,10 @@ class PlayState extends FlxTransitionableState {
 		dialogs = new FlxGroup();
 		add(terrain);
 		add(collisions);
-		add(entities);
-		add(interactables);
+		// add(entities);
+		// add(interactables);
 		add(doors);
+		add(sortingLayer);
 		add(dialogs);
 
 		loadLevel(0);
@@ -84,6 +97,11 @@ class PlayState extends FlxTransitionableState {
 			c.destroy();
 		});
 		collisions.clear();
+		interactables.forEach((c) -> {
+			c.destroy();
+		});
+		interactables.clear();
+		sortingLayer.clear();
 
 		// We might be able to just have this be a nice static thing
 		var project = new LDTKProject();
@@ -116,17 +134,20 @@ class PlayState extends FlxTransitionableState {
 		for (eDoor in level.l_Entities.all_Door) {
 			var door = new Door(eDoor);
 			doors.add(door);
+			// sortingLayer.add(door);
 		}
 
 		for (eNPC in level.l_Entities.all_NPC) {
 			var npc = new NPC(eNPC);
 			interactables.add(npc);
+			sortingLayer.add(npc);
 		}
 
 		for (eInteract in level.l_Entities.all_Interactable) {
 			// TODO: need to come up with a proper way to parse out unique interactables
 			var interact = new Interactable(eInteract.cx * Constants.TILE_SIZE, eInteract.cy * Constants.TILE_SIZE);
 			interactables.add(interact);
+			sortingLayer.add(interact);
 		}
 
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
@@ -152,31 +173,61 @@ class PlayState extends FlxTransitionableState {
 		}
 		player = new Player(playerStart.x, playerStart.y);
 		entities.add(player);
+		sortingLayer.add(player);
+
 		camera.follow(player);
 	}
 
 	override public function update(elapsed:Float) {
 		// TODO: probably a better way of handling this
 		// dialogs.mem
-		playerActive = dialogCount == 0;
+		playerActive = dialogCount == 0 || !playerInTransition;
 
 		super.update(elapsed);
+
+		sortingLayer.sort(FlxSort.byY);
 
 		var cam = FlxG.camera;
 		DebugDraw.ME.drawWorldRect(-5, -5, 10, 10);
 
 		FlxG.overlap(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
+		FlxG.collide(interactables, player);
 	}
 
 	function playerTouchDoor(d:Door, p:Player) {
+		if (!playerActive) {
+			return;
+		}
+
 		var diff = d.getMidpoint().subtractPoint(p.getMidpoint());
 		if (d.accessDir.vertical() && Math.abs(diff.x) > 1) {
-			p.directionInfluence.set(diff.x, 0);
+			p.oneFrameDirectionInfluence.set(diff.x, 0);
 		} else if (d.accessDir.horizontal() && Math.abs(diff.y) > 1) {
-			p.directionInfluence.set(0, diff.y);
+			p.oneFrameDirectionInfluence.set(0, diff.y);
 		} else {
-			loadLevel(d.destinationLevel, d.destinationDoorID);
+			playerInTransition = true;
+			d.animation.play('open');
+			d.animation.finishCallback = (name) -> {
+				p.allowCollisions = FlxObject.NONE;
+				d.accessDir.opposite().asCleanVector(p.persistentDirectionInfluence);
+				var clip = FlxRect.get(d.x, d.y, 16, 16);
+				switch(d.accessDir) {
+					case N | S:
+						clip.y -= 13;
+						clip.height += 16;
+					default:
+						FlxG.log.warn('found a door with a unhandled access dir: ${d.accessDir}');
+				}
+				p.worldClip = clip;
+				new FlxTimer().start(2 * 16 / p.speed, (t) -> {
+					p.persistentDirectionInfluence.set();
+					loadLevel(d.destinationLevel, d.destinationDoorID);
+					p.allowCollisions = FlxObject.ANY;
+					playerInTransition = false;
+					p.worldClip = null;
+				});
+			};
 		}
 	}
 

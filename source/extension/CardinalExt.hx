@@ -1,5 +1,6 @@
 package extension;
 
+import flixel.math.FlxVector;
 import flixel.FlxObject;
 import bitdecay.flixel.spacial.Cardinal;
 
@@ -17,6 +18,30 @@ class CardinalExt {
 		}
 
 		return NONE;
+	}
+
+	public static function asCleanVector(c:Cardinal, v:FlxVector) {
+		if (v == null) {
+			v = FlxVector.get();
+		}
+		v.set();
+
+		switch (c) {
+			case NW | N | NE:
+				v.y = -1;
+			case SW | S | SE:
+				v.y = 1;
+			default:
+		}
+		switch (c) {
+			case NE | E | SE:
+				v.x = 1;
+			case NW | W | SW:
+				v.x = -1;
+			default:
+		}
+
+		return v.normalize();
 	}
 
 	public static function asUDLR(c:Cardinal):String {

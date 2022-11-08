@@ -1,5 +1,7 @@
 package entities;
 
+import bitdecay.flixel.debug.DebugDraw;
+import flixel.math.FlxRect;
 import constants.Characters;
 import flixel.math.FlxVector;
 import flixel.FlxObject;
@@ -10,14 +12,18 @@ import input.SimpleController;
 import input.InputCalcuator;
 import flixel.FlxSprite;
 import extension.CardinalExt;
+using extension.CardinalExt;
 
 class Player extends FlxSprite {
-	var speed:Float = 60;
+	public var speed:Float = 60;
 	var playerNum = 0;
 
-	public var directionInfluence = FlxVector.get();
+	public var persistentDirectionInfluence = FlxVector.get();
+	public var oneFrameDirectionInfluence = FlxVector.get();
 
 	var interactionBox:FlxObject;
+
+	public var worldClip:FlxRect = null;
 
 	var tmp:FlxPoint = FlxPoint.get();
 
@@ -57,11 +63,19 @@ class Player extends FlxSprite {
 	}
 
 	override public function update(delta:Float) {
+		if (worldClip != null) {
+			clipRect = FlxRect.get(worldClip.x - x + offset.x, worldClip.y - y + offset.y, worldClip.width, worldClip.height);
+			DebugDraw.ME.drawWorldRect(worldClip.x, worldClip.y, worldClip.width, worldClip.height);
+			// DebugDraw.ME.drawWorldRect(clipRect.x + x, clipRect.y + y, clipRect.width, clipRect.height, 0xFFFFFF);
+		} else if (clipRect != null) {
+			clipRect = null;
+		}
+
 		if (PlayState.ME.playerActive) {
 			// Only check input direction if the game wants us to move
 			var inputDir = InputCalcuator.getInputCardinal(playerNum);
 			if (inputDir != NONE) {
-				inputDir.asVector(velocity).scale(speed);
+				inputDir.asCleanVector(velocity).scale(speed);
 				facing = inputDir.asFacing();
 			} else {
 				velocity.set();
@@ -71,8 +85,8 @@ class Player extends FlxSprite {
 		}
 
 		// do the influence outside of the other check to allow us to do some sort of cutscenes and such
-		velocity.copyFrom(directionInfluence.normalize().scale(speed).addPoint(velocity).normalize().scale(speed));
-		directionInfluence.set();
+		velocity.copyFrom(oneFrameDirectionInfluence.addPoint(persistentDirectionInfluence).normalize().scale(speed).addPoint(velocity).normalize().scale(speed));
+		oneFrameDirectionInfluence.set();
 
 		super.update(delta);
 

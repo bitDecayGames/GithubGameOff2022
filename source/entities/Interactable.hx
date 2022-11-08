@@ -8,6 +8,7 @@ class Interactable extends FlxSprite {
 	public function new(X:Float, Y:Float) {
 		super(X, Y);
 		makeGraphic(Constants.TILE_SIZE, Constants.TILE_SIZE, FlxColor.YELLOW);
+		immovable = true;
 	}
 
 	public function interact() {

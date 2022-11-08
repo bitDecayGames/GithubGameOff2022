@@ -1,3 +1,5 @@
+#!/bin/bash
+
 restoreDevCommands=()
 
 while read line; do

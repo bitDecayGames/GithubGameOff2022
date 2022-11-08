@@ -14,7 +14,8 @@ class NPCTextBank {
 		],
 		WOMAN => [
 			"quest" => [
-				"Do you know that old man over there?<page/>He<cb val=sad /> keeps staring at me..."
+				"Do you know that old man over there?<page/>He<cb val=sad /> keeps staring at me...",
+				"Ask him to leave"
 			]
 		]
 	];

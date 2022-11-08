@@ -3,14 +3,11 @@ package entities;
 import entities.library.NPCTextBank;
 import flixel.FlxObject;
 import bitdecay.flixel.spacial.Cardinal;
-import extension.CardinalExt;
 import constants.Characters;
 import states.PlayState;
 import flixel.FlxG;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import encounters.CharacterDialog;
-import flixel.util.FlxColor;
-import flixel.FlxSprite;
 import encounters.CharacterIndex;
 
 using extension.CardinalExt;
@@ -24,7 +21,7 @@ class NPC extends Interactable {
 		charIndex = data.f_character.getIndex();
 		loadGraphic(charIndex.getAssetPackage(), true, 26, 34);
 		setSize(16, 16);
-		offset.set(5, 12);
+		offset.set(5, 17);
 
 		facing = FlxObject.DOWN;
 
