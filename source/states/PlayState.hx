@@ -213,15 +213,21 @@ class PlayState extends FlxTransitionableState {
 				p.allowCollisions = FlxObject.NONE;
 				d.accessDir.opposite().asCleanVector(p.persistentDirectionInfluence);
 				var clip = FlxRect.get(d.x, d.y, 16, 16);
+				var walkDistance = 0.0;
 				switch(d.accessDir) {
-					case N | S:
-						clip.y -= 13;
+					case N:
+						clip.y -= p.frameHeight;
+						clip.height += p.frameHeight;
+						walkDistance = clip.height + p.frameHeight;
+					case S:
+						clip.y += 1; // for nice pixel clipping
 						clip.height += 16;
+						walkDistance = clip.height + p.height;
 					default:
 						FlxG.log.warn('found a door with a unhandled access dir: ${d.accessDir}');
 				}
 				p.worldClip = clip;
-				new FlxTimer().start(2 * 16 / p.speed, (t) -> {
+				new FlxTimer().start(walkDistance / p.speed, (t) -> {
 					p.persistentDirectionInfluence.set();
 					loadLevel(d.destinationLevel, d.destinationDoorID);
 					p.allowCollisions = FlxObject.ANY;
