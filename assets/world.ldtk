@@ -163,9 +163,9 @@
 			"requiredTags": [],
 			"excludedTags": [],
 			"intGridValues": [
-				{ "value": 1, "identifier": null, "color": "#078728" },
-				{ "value": 2, "identifier": null, "color": "#606060" },
-				{ "value": 3, "identifier": null, "color": "#695036" }
+				{ "value": 1, "identifier": "Grass", "color": "#078728" },
+				{ "value": 2, "identifier": "Brick", "color": "#606060" },
+				{ "value": 3, "identifier": "Dirt", "color": "#695036" }
 			],
 			"autoTilesetDefUid": 35,
 			"autoRuleGroups": [

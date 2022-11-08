@@ -1,5 +1,6 @@
 package entities;
 
+import entities.library.NPCTextBank;
 import flixel.FlxObject;
 import bitdecay.flixel.spacial.Cardinal;
 import extension.CardinalExt;
@@ -15,11 +16,12 @@ import encounters.CharacterIndex;
 using extension.CardinalExt;
 
 class NPC extends Interactable {
+	var charIndex:CharacterIndex;
 	var dialogBox:CharacterDialog;
 
 	public function new(data:Entity_NPC) {
 		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE);
-		var charIndex:CharacterIndex = data.f_character.getIndex();
+		charIndex = data.f_character.getIndex();
 		loadGraphic(charIndex.getAssetPackage(), true, 26, 34);
 		setSize(16, 16);
 		offset.set(5, 12);
@@ -32,7 +34,7 @@ class NPC extends Interactable {
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
 
-		dialogBox = new CharacterDialog(data.f_character.getIndex(), "<cb val=happy />Hello there, boy.<page/>What<cb val=mad /> do you want?<page/>Just<cb val=sad /> kidding, I'm just old and <scrub>bored.</scrub>");
+		dialogBox = new CharacterDialog(data.f_character.getIndex(), "");
 		dialogBox.textGroup.tagCallback = updateFacialExpression;
 
 		dialogBox.textGroup.finishCallback = dialogFinished;
@@ -46,6 +48,7 @@ class NPC extends Interactable {
 
 	override function interact() {
 		facing = Cardinal.closest(PlayState.ME.player.getMidpoint().subtractPoint(getMidpoint())).asFacing();
+		dialogBox.loadDialogLine(NPCTextBank.all[charIndex]["quest"][0]);
 		PlayState.ME.openDialog(dialogBox);
 	}
 
