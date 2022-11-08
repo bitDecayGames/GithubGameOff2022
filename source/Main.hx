@@ -32,6 +32,8 @@ class Main extends Sprite {
 		Storage.load();
 		Achievements.initAchievements();
 
+		configureTextEffects();
+
 		var startingState:Class<FlxState> = SplashScreenState;
 		#if play
 		startingState = PlayState;
@@ -67,8 +69,11 @@ class Main extends Sprite {
 		FlxG.plugins.add(new FmodPlugin());
 
 		configureLogging();
+	}
 
+	private function configureTextEffects() {
 		TextGroup.defaultScrollFactor = FlxPoint.get();
+		EffectRegistry.registerDefault("scrub", { height: 4 });
 	}
 
 	private function configureLogging() {

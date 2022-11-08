@@ -18,4 +18,19 @@ class CardinalExt {
 
 		return NONE;
 	}
+
+	public static function asUDLR(c:Cardinal):String {
+		switch(c) {
+			case N:
+				return "up";
+			case E:
+				return "right";
+			case S:
+				return "down";
+			case W:
+				return "left";
+			default:
+				return "none";
+		}
+	}
 }
