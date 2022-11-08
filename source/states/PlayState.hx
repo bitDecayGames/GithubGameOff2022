@@ -1,34 +1,32 @@
 package states;
 
+import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.math.FlxRect;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import flixel.util.FlxSort;
-import flixel.FlxBasic;
-import encounters.CharacterDialog;
-import characters.BasicPot;
-import states.battles.PotBattleState;
-import states.battles.EncounterBaseState;
+import flixel.FlxSprite;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
+import flixel.math.FlxPoint;
+import flixel.math.FlxRect;
+import flixel.math.FlxVector;
+import flixel.util.FlxColor;
+import flixel.util.FlxSort;
+import flixel.util.FlxStringUtil;
+import flixel.util.FlxTimer;
+
+import bitdecay.flixel.debug.DebugDraw;
+import characters.BasicPot;
+import encounters.CharacterDialog;
+import entities.Door;
 import entities.Interactable;
 import entities.NPC;
-import flixel.math.FlxVector;
-import flixel.math.FlxPoint;
-import flixel.util.FlxStringUtil;
-import entities.Door;
-import flixel.group.FlxGroup;
-import flixel.util.FlxColor;
-import achievements.Achievements;
-import flixel.addons.transition.FlxTransitionableState;
-import signals.Lifecycle;
 import entities.Player;
-import flixel.FlxSprite;
-import flixel.FlxG;
-import bitdecay.flixel.debug.DebugDraw;
+import quest.Quest;
+import signals.Lifecycle;
+import states.battles.PotBattleState;
 
-using states.FlxStateExt;
 using extension.CardinalExt;
+using states.FlxStateExt;
 
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
@@ -44,6 +42,8 @@ class PlayState extends FlxTransitionableState {
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
+	public var quest:Quest;
+
 	var dialogCount = 0;
 
 	public var playerActive:Bool = true;
@@ -64,6 +64,7 @@ class PlayState extends FlxTransitionableState {
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
 		dialogs = new FlxGroup();
+		quest = new Quest();
 		add(terrain);
 		add(collisions);
 		// add(entities);
@@ -151,7 +152,7 @@ class PlayState extends FlxTransitionableState {
 		}
 
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
-			throw ('level ${level.identifier} has multiple spawns');
+			throw('level ${level.identifier} has multiple spawns');
 		}
 
 		var playerStart = FlxPoint.get();
@@ -181,7 +182,7 @@ class PlayState extends FlxTransitionableState {
 	override public function update(elapsed:Float) {
 		// TODO: probably a better way of handling this
 		// dialogs.mem
-		playerActive = dialogCount == 0 || !playerInTransition;
+		playerActive = dialogCount == 0 && !playerInTransition;
 
 		super.update(elapsed);
 
