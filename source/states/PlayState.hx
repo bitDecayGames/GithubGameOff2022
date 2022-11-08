@@ -1,5 +1,6 @@
 package states;
 
+import quest.Quest;
 import encounters.CharacterDialog;
 import characters.BasicPot;
 import states.battles.PotBattleState;
@@ -34,6 +35,8 @@ class PlayState extends FlxTransitionableState {
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
+	public var quest:Quest;
+
 	var dialogCount = 0;
 
 	public var playerActive:Bool = true;
@@ -52,6 +55,7 @@ class PlayState extends FlxTransitionableState {
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
 		dialogs = new FlxGroup();
+		quest = new Quest();
 		add(terrain);
 		add(collisions);
 		add(entities);
@@ -130,7 +134,7 @@ class PlayState extends FlxTransitionableState {
 		}
 
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
-			throw ('level ${level.identifier} has multiple spawns');
+			throw('level ${level.identifier} has multiple spawns');
 		}
 
 		var playerStart = FlxPoint.get();
