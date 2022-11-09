@@ -31,6 +31,8 @@ using states.FlxStateExt;
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
+	private static inline var START_LEVEL = "House_Lonk_2";
+
 	public var player:Player;
 
 	// the sorting layer will hold anything we want sorted by it's positional y-value
@@ -53,7 +55,7 @@ class PlayState extends FlxTransitionableState {
 		super.create();
 		ME = this;
 		camera.bgColor = FlxColor.PINK;
-		FlxG.camera.pixelPerfectRender = true;
+		// FlxG.camera.pixelPerfectRender = true;
 
 		Lifecycle.startup.dispatch();
 
@@ -73,7 +75,7 @@ class PlayState extends FlxTransitionableState {
 		add(sortingLayer);
 		add(dialogs);
 
-		loadLevel(0);
+		loadLevel(START_LEVEL);
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
 	}
 

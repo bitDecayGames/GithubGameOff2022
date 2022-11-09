@@ -14,8 +14,7 @@ class NPCTextBank {
 		],
 		WOMAN => [
 			"quest" => [
-				"Do you know that old man over there?<page/>He<cb val=sad /> keeps staring at me...",
-				"Ask him to leave"
+				"Your grandfather Lonk is an interesting man.<page/>I<cb val=sad /> feel like he's lost touch with the people of this town."
 			]
 		]
 	];

@@ -24,5 +24,9 @@ class Door extends FlxSprite {
 		destinationLevel = data.f_connection.levelIid;
 		destinationDoorID = data.f_connection.entityIid;
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
+		if (accessDir == Cardinal.N) {
+			flipY = true;
+			offset.y = 3;
+		}
 	}
 }
