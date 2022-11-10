@@ -1,4 +1,4 @@
-package entities;
+package entities.interact;
 
 import states.PlayState;
 import flixel.util.FlxColor;
@@ -13,6 +13,6 @@ class Interactable extends FlxSprite {
 
 	public function interact() {
 		// TODO: will need to subclass this to have each thing do its own interaction
-		PlayState.ME.startEncounter();
+		// PlayState.ME.startEncounter(<SUB STATE>);
 	}
 }

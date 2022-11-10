@@ -9,6 +9,7 @@ import flixel.FlxG;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import encounters.CharacterDialog;
 import encounters.CharacterIndex;
+import entities.interact.Interactable;
 
 using extension.CardinalExt;
 

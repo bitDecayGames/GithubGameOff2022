@@ -12,6 +12,8 @@ import input.SimpleController;
 import input.InputCalcuator;
 import flixel.FlxSprite;
 import extension.CardinalExt;
+import entities.interact.Interactable;
+
 using extension.CardinalExt;
 
 class Player extends FlxSprite {

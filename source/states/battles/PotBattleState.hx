@@ -18,7 +18,6 @@ using zero.flixel.extensions.FlxPointExt;
 class PotBattleState extends EncounterBaseState {
 	var ring:FlxSprite;
 
-	var acceptInput = false;
 	var cursor:FlxSprite;
 	var cursorAngle = 0.0;
 

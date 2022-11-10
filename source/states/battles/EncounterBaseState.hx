@@ -8,6 +8,8 @@ import flixel.util.FlxColor;
 import flixel.FlxSubState;
 
 class EncounterBaseState extends FlxSubState {
+	// just a helper to toggle if player input should be accepted or not
+	var acceptInput = false;
 
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();

@@ -1,5 +1,7 @@
 package states;
 
+import entities.interact.InteractableFactory;
+import flixel.FlxSubState;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -18,7 +20,7 @@ import bitdecay.flixel.debug.DebugDraw;
 import characters.BasicPot;
 import encounters.CharacterDialog;
 import entities.Door;
-import entities.Interactable;
+import entities.interact.Interactable;
 import entities.NPC;
 import entities.Player;
 import quest.Quest;
@@ -148,7 +150,7 @@ class PlayState extends FlxTransitionableState {
 
 		for (eInteract in level.l_Entities.all_Interactable) {
 			// TODO: need to come up with a proper way to parse out unique interactables
-			var interact = new Interactable(eInteract.cx * Constants.TILE_SIZE, eInteract.cy * Constants.TILE_SIZE);
+			var interact = InteractableFactory.make(eInteract);
 			interactables.add(interact);
 			sortingLayer.add(interact);
 		}
@@ -240,8 +242,8 @@ class PlayState extends FlxTransitionableState {
 		}
 	}
 
-	public function startEncounter() {
-		openSubState(new PotBattleState(new BasicPot()));
+	public function startEncounter(encounterSubState:FlxSubState) {
+		openSubState(encounterSubState);
 	}
 
 	public function openDialog(dialog:CharacterDialog) {
