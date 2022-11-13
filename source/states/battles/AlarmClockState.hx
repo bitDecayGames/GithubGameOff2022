@@ -73,7 +73,7 @@ class AlarmClockState extends EncounterBaseState {
 			dialog.kill();
 			fightGroup.active = true;
 
-			new FlxTimer().start(1, (t) -> {
+			new FlxTimer().start(.05, (t) -> {
 				acceptInput = true;
 			});
 		};
@@ -134,8 +134,17 @@ class AlarmClockState extends EncounterBaseState {
 				}
 				handTween = null;
 			}
-			new FlxTimer().start(4, (t) -> {
-				transitionOut();
+			new FlxTimer().start(2, (t) -> {
+				dialog.revive();
+				dialog.loadDialogLine("....You win this time...<page/>I will see you tomorrow...");
+				dialog.textGroup.finishCallback = () -> {
+					dialog.kill();
+					fightGroup.active = true;
+		
+					new FlxTimer().start(1, (t) -> {
+						transitionOut();
+					});
+				};
 			});
 		}
 
