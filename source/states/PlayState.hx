@@ -1,5 +1,6 @@
 package states;
 
+import quest.GlobalQuestState;
 import entities.interact.InteractableFactory;
 import flixel.FlxSubState;
 import flixel.FlxG;
@@ -17,15 +18,11 @@ import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 
 import bitdecay.flixel.debug.DebugDraw;
-import characters.BasicPot;
 import encounters.CharacterDialog;
 import entities.Door;
-import entities.interact.Interactable;
-import entities.NPC;
 import entities.Player;
-import quest.Quest;
+import entities.npcs.NPCFactory;
 import signals.Lifecycle;
-import states.battles.PotBattleState;
 
 using extension.CardinalExt;
 using states.FlxStateExt;
@@ -46,7 +43,6 @@ class PlayState extends FlxTransitionableState {
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
-	public var quest:Quest;
 	public var level:LDTKProject_Level;
 
 	var dialogCount = 0;
@@ -69,7 +65,6 @@ class PlayState extends FlxTransitionableState {
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
 		dialogs = new FlxGroup();
-		quest = new Quest();
 		add(terrain);
 		add(collisions);
 		// add(entities);
@@ -80,6 +75,9 @@ class PlayState extends FlxTransitionableState {
 
 		loadLevel(START_LEVEL);
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
+
+		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
+		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
 	}
 
 	// loads the level with the given id, optionally spawning the player at the provided doorID
@@ -144,9 +142,12 @@ class PlayState extends FlxTransitionableState {
 		}
 
 		for (eNPC in level.l_Entities.all_NPC) {
-			var npc = new NPC(eNPC);
-			interactables.add(npc);
-			sortingLayer.add(npc);
+			var npc = NPCFactory.make(eNPC);
+			if (npc != null) {
+				// we may get null back if the NPC shouldn't spawn based on the current quest
+				interactables.add(npc);
+				sortingLayer.add(npc);
+			}
 		}
 
 		for (eInteract in level.l_Entities.all_Interactable) {

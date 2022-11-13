@@ -1,5 +1,6 @@
-package entities;
+package entities.npcs;
 
+import quest.Quest;
 import entities.library.NPCTextBank;
 import flixel.FlxObject;
 import bitdecay.flixel.spacial.Cardinal;
@@ -16,6 +17,7 @@ using extension.CardinalExt;
 class NPC extends Interactable {
 	var charIndex:CharacterIndex;
 	var dialogBox:CharacterDialog;
+	var chatIndex = 0;
 
 	public function new(data:Entity_NPC) {
 		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE);
@@ -33,21 +35,20 @@ class NPC extends Interactable {
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
 
 		dialogBox = new CharacterDialog(data.f_character.getIndex(), "");
-		dialogBox.textGroup.tagCallback = updateFacialExpression;
+		dialogBox.textGroup.tagCallback = handleTagCallback;
 
 		dialogBox.textGroup.finishCallback = dialogFinished;
 	}
 
-	public function updateFacialExpression(tag:TagLocation) {
+	public function handleTagCallback(tag:TagLocation) {
 		if (tag.tag == "cb") {
 			dialogBox.setExpression(tag.parsedOptions.val);
 		}
 	}
 
+	// override this to actually do stuff besides turning to face the player
 	override function interact() {
 		facing = Cardinal.closest(PlayState.ME.player.getMidpoint().subtractPoint(getMidpoint())).asFacing();
-		dialogBox.loadDialogLine(NPCTextBank.all[charIndex]["quest"][0]);
-		PlayState.ME.openDialog(dialogBox);
 	}
 
 	function dialogFinished() {
