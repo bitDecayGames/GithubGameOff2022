@@ -34,15 +34,13 @@ class AlarmClockState extends EncounterBaseState {
 
 	public function new() {
 		super();
-
-		// TODO Speed is broken
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "BEEP BEEP BEEP BEEP<page/>BEEP BEEP BEEP BEEP");
+		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<page/>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP</speed>");
 	}
 
 	override function create() {
 		super.create();
 
-		
+
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
 		});
