@@ -105,7 +105,8 @@ class AlarmClockState extends EncounterBaseState {
 		}
 
 
-		if (hand.overlaps(clock)) {
+		if (hand.overlaps(clock) && Math.abs(clock.getMidpoint().x - hand.getMidpoint().x) <= 15) {
+			// only count if they hand hits the top of the clock
 			fightOver = true;
 			FmodManager.SetEventParameterOnSong("AlarmOff", 1);
 			FmodManager.PlaySoundOneShot(FmodSFX.AlarmClockHit);
