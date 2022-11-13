@@ -11,6 +11,9 @@ class EncounterBaseState extends FlxSubState {
 	// just a helper to toggle if player input should be accepted or not
 	var acceptInput = false;
 
+	// a flag to know if we succeeded the encounter or not
+	public var success = false;
+
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();
 	var transition:FlxSprite;

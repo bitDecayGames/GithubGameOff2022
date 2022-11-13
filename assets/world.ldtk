@@ -1988,9 +1988,9 @@
 									"id": "V_String",
 									"params": ["Woman"]
 								}] },
-								{ "__identifier": "show_for_quests", "__value": ["compass_1"], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [{
+								{ "__identifier": "show_for_quests", "__value": ["compass"], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["compass_1"]
+									"params": ["compass"]
 								}] },
 								{ "__identifier": "hide_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 103, "realEditorValues": [] }
 							]

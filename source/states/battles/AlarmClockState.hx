@@ -57,7 +57,6 @@ class AlarmClockState extends EncounterBaseState {
 
 		clock = new FlxSprite();
 		clock.scrollFactor.set();
-		// clock.makeGraphic(30, 30, FlxColor.RED);
 		clock.loadGraphic(AssetPaths.clockLarge__png, true, 30, 30);
 		clock.animation.add('blink', [0,1], 2);
 		clock.animation.play('blink');
@@ -74,12 +73,10 @@ class AlarmClockState extends EncounterBaseState {
 		fightGroup.add(hand);
 
 		battleGroup.add(fightGroup);
-		// fightGroup.active = false;
 		battleGroup.add(dialog);
 
 		dialog.textGroup.finishCallback = () -> {
 			dialog.kill();
-			// fightGroup.active = true;
 
 			new FlxTimer().start(.05, (t) -> {
 				acceptInput = true;
@@ -90,7 +87,12 @@ class AlarmClockState extends EncounterBaseState {
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
-		// DebugDraw.ME.drawCameraLine(hand.getMidpoint().x - requiredAccuracyPixels, hand.y, hand.getMidpoint().x + requiredAccuracyPixels, hand.y);
+		#if encounter_debug
+		var handMid = hand.getMidpoint();
+		DebugDraw.ME.drawCameraLine(handMid.x - requiredAccuracyPixels, hand.y + hand.height, handMid.x + requiredAccuracyPixels, hand.y + hand.height);
+		var clockMid = clock.getMidpoint();
+		DebugDraw.ME.drawCameraLine(clockMid.x, clockMid.y - 10, clockMid.x, clockMid.y + 10);
+		#end
 
 		if (!acceptInput) {
 			return;
@@ -148,6 +150,7 @@ class AlarmClockState extends EncounterBaseState {
 				handTween = null;
 			}
 			new FlxTimer().start(2, (t) -> {
+				success = true;
 				dialog.revive();
 				dialog.loadDialogLine("....You win this time...<page/>I will see you tomorrow...");
 				dialog.textGroup.finishCallback = () -> {
@@ -160,15 +163,6 @@ class AlarmClockState extends EncounterBaseState {
 			});
 
 			GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
-		}
-
-		if (checkSuccess()) {
-			// TODO: success end sequence start
-			// transitionOut();
-		} else {
-			// failure
-			// acceptInput = false;
-			// transitionOut();
 		}
 	}
 

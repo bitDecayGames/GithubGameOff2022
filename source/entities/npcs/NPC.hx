@@ -16,11 +16,10 @@ using extension.CardinalExt;
 
 class NPC extends Interactable {
 	var charIndex:CharacterIndex;
-	var dialogBox:CharacterDialog;
 	var chatIndex = 0;
 
 	public function new(data:Entity_NPC) {
-		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE);
+		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE, data.f_character.getIndex());
 		charIndex = data.f_character.getIndex();
 		loadGraphic(charIndex.getAssetPackage(), true, 26, 34);
 		setSize(16, 16);
@@ -33,27 +32,12 @@ class NPC extends Interactable {
 
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
-
-		dialogBox = new CharacterDialog(data.f_character.getIndex(), "");
-		dialogBox.textGroup.tagCallback = handleTagCallback;
-
-		dialogBox.textGroup.finishCallback = dialogFinished;
-	}
-
-	public function handleTagCallback(tag:TagLocation) {
-		if (tag.tag == "cb") {
-			dialogBox.setExpression(tag.parsedOptions.val);
-		}
 	}
 
 	// override this to actually do stuff besides turning to face the player
 	override function interact() {
+		super.interact();
 		facing = Cardinal.closest(PlayState.ME.player.getMidpoint().subtractPoint(getMidpoint())).asFacing();
-	}
-
-	function dialogFinished() {
-		PlayState.ME.closeDialog(dialogBox);
-		dialogBox.resetLastLine();
 	}
 
 	function addAnimation(baseName:String, frames:Array<Int>, rowLength:Int) {
