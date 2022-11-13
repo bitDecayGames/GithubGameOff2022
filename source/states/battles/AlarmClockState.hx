@@ -32,7 +32,7 @@ class AlarmClockState extends EncounterBaseState {
 
 	public function new() {
 		super();
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /></speed>");
+		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<page/>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP</speed>");
 	}
 
 	override function create() {

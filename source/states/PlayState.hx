@@ -1,5 +1,6 @@
 package states;
 
+import flixel.util.FlxSignal;
 import quest.GlobalQuestState;
 import entities.interact.InteractableFactory;
 import flixel.FlxSubState;
@@ -49,6 +50,8 @@ class PlayState extends FlxTransitionableState {
 
 	public var playerActive:Bool = true;
 	public var playerInTransition:Bool = false;
+
+	public var transitionSignal = new FlxTypedSignal<String->Void>();
 
 	override public function create() {
 		super.create();
@@ -203,10 +206,6 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	function playerTouchDoor(d:Door, p:Player) {
-
-		
-		FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
-
 		if (!playerActive) {
 			return;
 		}
@@ -217,6 +216,8 @@ class PlayState extends FlxTransitionableState {
 		} else if (d.accessDir.horizontal() && Math.abs(diff.y) > 1) {
 			p.oneFrameDirectionInfluence.set(0, diff.y);
 		} else {
+			FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
+			transitionSignal.dispatch(d.destinationLevel);
 			playerInTransition = true;
 			d.animation.play('open');
 			d.animation.finishCallback = (name) -> {

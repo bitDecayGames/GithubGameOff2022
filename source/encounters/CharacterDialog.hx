@@ -61,6 +61,5 @@ class CharacterDialog extends FlxGroup {
 	public function resetLastLine() {
 		// TODO: Obviously not efficient, but works for now
 		textGroup.loadText(textGroup.rawText);
-		textGroup.update(0.001);
 	}
 }
