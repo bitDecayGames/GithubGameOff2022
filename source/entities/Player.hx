@@ -83,6 +83,8 @@ class Player extends FlxSprite {
 
 	function playStepSound(terrainIndex:Int){
 		switch(terrainIndex) {
+			case GRASS:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrass);
 			case DIRT:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
 			case BRICK:

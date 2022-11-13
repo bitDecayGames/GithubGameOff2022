@@ -202,6 +202,10 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	function playerTouchDoor(d:Door, p:Player) {
+
+		
+		FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
+
 		if (!playerActive) {
 			return;
 		}
