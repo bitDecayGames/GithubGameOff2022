@@ -39,6 +39,9 @@ class CharacterDialog extends FlxGroup {
 			options
 		);
 		textGroup.scrollFactor.set();
+		textGroup.letterCallback = () -> {
+			FmodManager.PlaySoundOneShot(FmodSFX.TypeWriterSingleStroke);
+		};
 
 		portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
 		portrait.scrollFactor.set();

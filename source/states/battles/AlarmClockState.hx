@@ -30,13 +30,22 @@ class AlarmClockState extends EncounterBaseState {
 	var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
+	// TODO The clock should stay still at the beginning and always dodge your first attempt, then go into the normal game
+
 	public function new() {
 		super();
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /></speed>");
+
+		// TODO Speed is broken
+		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "BEEP BEEP BEEP BEEP<page/>BEEP BEEP BEEP BEEP");
 	}
 
 	override function create() {
 		super.create();
+
+		
+		new FlxTimer().start(1.75, (t) -> {
+			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
+		});
 
 		fightGroup = new FlxGroup();
 
@@ -96,6 +105,7 @@ class AlarmClockState extends EncounterBaseState {
 
 
 		if (hand.overlaps(clock)) {
+			FmodManager.SetEventParameterOnSong("AlarmOff", 1);
 			acceptInput = false;
 			hand.velocity.set();
 			if (clockTween != null) {

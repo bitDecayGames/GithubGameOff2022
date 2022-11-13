@@ -12,6 +12,8 @@ class AlarmClock extends Interactable {
 	}
 
 	override function interact() {
+		FmodManager.StopSongImmediately();
+		FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 		PlayState.ME.startEncounter(new AlarmClockState());
 	}
 }

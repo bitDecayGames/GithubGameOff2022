@@ -1,5 +1,6 @@
 package entities;
 
+import js.html.Console;
 import flixel.util.FlxColor;
 import bitdecay.flixel.debug.DebugDraw;
 import flixel.math.FlxRect;
@@ -168,6 +169,7 @@ class Player extends FlxSprite {
 		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
 			// This seems wrong... not sure why, but it overlaps erroneously when the interaction box is to the right,
 			// or below the interactable
+			trace("attempting to interact");
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
 		}
 

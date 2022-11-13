@@ -6,14 +6,20 @@
 package;
 
 class FmodSongs {
+    public static inline var Battle:String = "event:/Music/Battle";
+    public static inline var BattleWithAlarm:String = "event:/Music/BattleWithAlarm";
     public static inline var LetsGo:String = "event:/Music/LetsGo";
 }
 
 class FmodSFX {
+    public static inline var AlarmClock:String = "event:/SFX/Alarm/AlarmClock";
+    public static inline var BattleStart:String = "event:/SFX/Battle/BattleStart";
     public static inline var DoorOpen:String = "event:/SFX/Door/DoorOpen";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";
     public static inline var FootstepStone:String = "event:/SFX/Player/FootstepStone";
     public static inline var FootstepWood:String = "event:/SFX/Player/FootstepWood";
+    public static inline var Typewriter:String = "event:/SFX/Typewriter/Typewriter";
+    public static inline var TypeWriterSingleStroke:String = "event:/SFX/Typewriter/TypeWriterSingleStroke";
 }
