@@ -186,6 +186,13 @@ class PlayState extends FlxTransitionableState {
 		sortingLayer.add(player);
 
 		camera.follow(player);
+
+		// TODO pass in name of level to help pick song
+		playSong();
+	}
+
+	private function playSong() {
+		FmodManager.PlaySong(FmodSFX.AlarmClock);
 	}
 
 	override public function update(elapsed:Float) {

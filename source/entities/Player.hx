@@ -1,5 +1,6 @@
 package entities;
 
+import js.html.Console;
 import flixel.util.FlxColor;
 import bitdecay.flixel.debug.DebugDraw;
 import flixel.math.FlxRect;
@@ -57,24 +58,48 @@ class Player extends FlxSprite {
 		animation.callback = (name, frameNumber, frameIndex) -> {
 			if (StringTools.contains(name, '${Characters.RUN_ANIM}')) {
 
-				var footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
-				var footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
+				// var footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
+				// var footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
+
+				var feetPosition = getFeetPosition(name);
+				var recSize = 5;
+				DebugDraw.ME.drawWorldRect(feetPosition[0].x-recSize/2, feetPosition[0].y-recSize/2, recSize, recSize);
+				DebugDraw.ME.drawWorldRect(feetPosition[1].x-recSize/2, feetPosition[1].y-recSize/2, recSize, recSize);
 
 				if (!StringTools.contains(name, 'left')) {
 					if (frameNumber == 2){
-						playStepSound(getTerrainIndex(footPosition1));
+						playStepSound(getTerrainIndex(feetPosition[0]));
 					} else if (frameNumber == 5) {
-						playStepSound(getTerrainIndex(footPosition2));
+						playStepSound(getTerrainIndex(feetPosition[1]));
 					}
 				} else {
 					if (frameNumber == 2){
-						playStepSound(getTerrainIndex(footPosition2));
+						playStepSound(getTerrainIndex(feetPosition[1]));
 					} else if (frameNumber == 5) {
-						playStepSound(getTerrainIndex(footPosition1));
+						playStepSound(getTerrainIndex(feetPosition[0]));
 					}
 				}
 			}
 		}
+	}
+
+	function getFeetPosition(animationName:String):Array<FlxPoint> {
+
+		var footPosition1:FlxPoint;
+		var footPosition2:FlxPoint;
+
+		if (StringTools.contains(animationName, 'up') || StringTools.contains(animationName, 'down')){
+			footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270)).addPoint(new FlxPoint(0,4));
+			footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90)).addPoint(new FlxPoint(0,4));
+		} else if (StringTools.contains(animationName, 'right')){
+			footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(-5).rotateByDegrees(270));
+			footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(7).rotateByDegrees(90));
+		} else {
+			footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(7).rotateByDegrees(270));
+			footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(-5).rotateByDegrees(90));
+		}
+
+		return [footPosition1, footPosition2];
 	}
 
 	function getTerrainIndex(footPosition:FlxPoint):Int {
@@ -144,6 +169,7 @@ class Player extends FlxSprite {
 		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
 			// This seems wrong... not sure why, but it overlaps erroneously when the interaction box is to the right,
 			// or below the interactable
+			trace("attempting to interact");
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
 		}
 
