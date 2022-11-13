@@ -12,7 +12,10 @@ class FmodSongs {
 }
 
 class FmodSFX {
+    public static inline var AlarmBreak:String = "event:/SFX/Alarm/AlarmBreak";
     public static inline var AlarmClock:String = "event:/SFX/Alarm/AlarmClock";
+    public static inline var AlarmClockHit:String = "event:/SFX/Alarm/AlarmClockHit";
+    public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
     public static inline var BattleStart:String = "event:/SFX/Battle/BattleStart";
     public static inline var DoorOpen:String = "event:/SFX/Door/DoorOpen";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
