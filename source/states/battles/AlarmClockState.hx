@@ -1,5 +1,6 @@
 package states.battles;
 
+import quest.GlobalQuestState;
 import flixel.math.FlxMath;
 import encounters.CharacterIndex;
 import flixel.FlxG;
@@ -148,6 +149,8 @@ class AlarmClockState extends EncounterBaseState {
 					});
 				};
 			});
+
+			GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		}
 
 		if (checkSuccess()) {

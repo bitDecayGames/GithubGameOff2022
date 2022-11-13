@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{56ae343c-70b5-4e9f-a25e-636ac45d04ee}">
+		<property name="name">
+			<value>AlarmLowPass</value>
+		</property>
+		<relationship name="folder">
+			<destination>{da9bea1d-65f6-4eb5-8299-adf0fee0fa69}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a4df1fee-e6c4-40c3-aca7-edda8a968544}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a4df1fee-e6c4-40c3-aca7-edda8a968544}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
