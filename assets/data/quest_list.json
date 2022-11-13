@@ -1,12 +1,39 @@
 {
   "quests": [
     {
-      "number": 1,
-      "steps": [1, 2, 3]
+      "name": "intro",
+      "steps": [
+        {
+          "num": 1,
+          "reqs": {
+            "talk": "LONK",
+            "defeat": {
+              "type": "POT_RUBBER",
+              "count": 1
+            }
+          }
+        },
+        {
+          "num": 2,
+          "reqs": {
+            "collect": "COMPASS"
+          }
+        }
+      ]
     },
     {
-      "number": 2,
-      "steps": [1, 2, 3]
+      "name": "compassFetch",
+      "steps": [
+        {
+          "num": 1
+        },
+        {
+          "num": 2
+        },
+        {
+          "num": 3
+        }
+      ]
     }
   ]
 }

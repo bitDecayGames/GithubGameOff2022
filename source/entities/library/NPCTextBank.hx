@@ -8,8 +8,14 @@ class NPCTextBank {
 	//    say at that point in the game. We'll have to talk about how we want to orgainize this
 	public static var all:Map<CharacterIndex, Map<String, Array<String>>> = [
 		LONK => [
-			"quest" => [
-				"<cb val=happy />Hello there, boy.<page/>What<cb val=mad /> do you want?<page/>Just<cb val=sad /> kidding, I'm just old and <scrub>bored.</scrub>"
+			"intro_0" => [
+				"<cb val=happy />I see you're awake - Today is the big day!<page/>" +
+				"By the end of the week, you'll be an adventurer just like I used to be.<page/>" +
+				"I used to <cb val=mad /><shake>destroy</shake><cb val=happy /> pottery. Today, I'd love to teach you the ancient art.",
+				"I haven't been programmed to tell you what to do yet... so can you just go outside for a minute?<cb val=questDone/>"
+			],
+			"compassFetch" => [
+				"<cb val=happy />I knew you couldn't resist coming out here to talk to me again"
 			]
 		],
 		WOMAN => [

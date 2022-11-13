@@ -74,6 +74,7 @@ class Main extends Sprite {
 	private function configureTextEffects() {
 		TextGroup.defaultScrollFactor = FlxPoint.get();
 		EffectRegistry.registerDefault("scrub", { height: 3 });
+		EffectRegistry.registerDefault("shake", { dist: 1 });
 	}
 
 	private function configureLogging() {
