@@ -1,5 +1,6 @@
 package entities;
 
+import flixel.util.FlxColor;
 import bitdecay.flixel.debug.DebugDraw;
 import flixel.math.FlxRect;
 import constants.Characters;
@@ -39,11 +40,50 @@ class Player extends FlxSprite {
 		addAnimation(Characters.IDLE_ANIM, [ 0 ], 8);
 		addAnimation(Characters.RUN_ANIM, [ for (i in 1...7) i ], 8);
 
+		addAnimationCallback();
+
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
 
 
 		interactionBox = new FlxObject(0, 0, 10, 10);
+	}
+
+	function addAnimationCallback():Void {
+		animation.callback = (name, frameNumber, frameIndex) -> {
+			if (StringTools.contains(name, '${Characters.RUN_ANIM}')) {
+				// TODO clean this up massively
+				if (flipX){
+					if (frameNumber == 5){
+						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
+						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5);
+						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
+							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
+						} 
+					} else if (frameNumber == 2) {
+						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
+						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5, FlxColor.BLACK);
+						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
+							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
+						} 
+					}
+				} else {
+					if (frameNumber == 2){
+						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
+						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5);
+						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
+							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
+						} 
+					} else if (frameNumber == 5) {
+						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
+						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5, FlxColor.BLACK);
+						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
+							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
+						} 
+					}
+				}
+			}
+		}
 	}
 
 	// frames are assumed to be in the down direction

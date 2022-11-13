@@ -47,6 +47,7 @@ class PlayState extends FlxTransitionableState {
 	public var collisions:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
 	public var quest:Quest;
+	public var level:LDTKProject_Level;
 
 	var dialogCount = 0;
 
@@ -111,7 +112,7 @@ class PlayState extends FlxTransitionableState {
 		// We might be able to just have this be a nice static thing
 		var project = new LDTKProject();
 
-		var level = project.getLevel(uid, id);
+		level = project.getLevel(uid, id);
 		if (level == null) {
 			for (pl in project.levels) {
 				if (pl.iid == id) {
