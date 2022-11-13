@@ -1,5 +1,6 @@
 package states.battles;
 
+import com.bitdecay.lucidtext.parse.TagLocation;
 import bitdecay.flixel.debug.DebugDraw;
 import quest.GlobalQuestState;
 import flixel.math.FlxMath;
@@ -27,6 +28,8 @@ class AlarmClockState extends EncounterBaseState {
 
 	var clock:FlxSprite;
 	var clockTween:FlxTween = null;
+	var clockTweenCount = 0;
+	var restModifier = 0.0;
 
 	var fightOver = false;
 
@@ -38,16 +41,10 @@ class AlarmClockState extends EncounterBaseState {
 	var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
-	// TODO The clock should stay still at the beginning and always dodge your first attempt, then go into the normal game
-
-	public function new() {
-		super();
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<page/>BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP<pause t=1 /> BEEP</speed>");
-	}
-
 	override function create() {
 		super.create();
 
+		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<page/>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP</speed>");
 
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
@@ -82,6 +79,14 @@ class AlarmClockState extends EncounterBaseState {
 				acceptInput = true;
 			});
 		};
+
+		dialog.textGroup.tagCallback = handleTagCallback;
+	}
+
+	function handleTagCallback(tag:TagLocation) {
+		if (tag.tag == "cb") {
+			dialog.setExpression(tag.parsedOptions.val);
+		}
 	}
 
 	override function update(elapsed:Float) {
@@ -152,7 +157,7 @@ class AlarmClockState extends EncounterBaseState {
 			new FlxTimer().start(2, (t) -> {
 				success = true;
 				dialog.revive();
-				dialog.loadDialogLine("....You win this time...<page/>I will see you tomorrow...");
+				dialog.loadDialogLine("<cb val=sad />....You win this time...<page/>I will see you tomorrow...");
 				dialog.textGroup.finishCallback = () -> {
 					dialog.kill();
 
@@ -179,6 +184,8 @@ class AlarmClockState extends EncounterBaseState {
 			nextX = FlxG.random.bool() ? 0 : Math.round(FlxG.width - clock.width);
 			moveTime = clockMoveTimeMin;
 		}
+		clockTweenCount++;
+		restModifier = Math.round(clockTweenCount / 5) * 0.1;
 		clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
 			moveTime,
 			{
@@ -187,7 +194,7 @@ class AlarmClockState extends EncounterBaseState {
 					if (edge) {
 						acceptInput = false;
 						dialog.revive();
-						dialog.loadDialogLine("You'll have to be faster than that!");
+						dialog.loadDialogLine("<cb val=mad />You'll have to be faster than that!");
 						dialog.textGroup.finishCallback = () -> {
 							dialog.kill();
 
@@ -196,13 +203,13 @@ class AlarmClockState extends EncounterBaseState {
 								acceptInput = true;
 							});
 						};
-						new FlxTimer().start(restSeconds, (timer) -> {
+						new FlxTimer().start(restSeconds + restModifier, (timer) -> {
 							startClockTween();
 						});
 					}
 					else {
 						// if you take out this var (even though it's unused) it errors
-						var test = new FlxTimer().start(restSeconds, (timer) -> {
+						var test = new FlxTimer().start(restSeconds + restModifier, (timer) -> {
 							startClockTween();
 						});
 					}
