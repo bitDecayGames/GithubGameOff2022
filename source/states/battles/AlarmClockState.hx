@@ -8,7 +8,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxSpriteUtil;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
@@ -18,17 +17,22 @@ import input.SimpleController;
 using zero.flixel.extensions.FlxPointExt;
 
 class AlarmClockState extends EncounterBaseState {
+	// midpoints can only be this far apart and still count as hitting the clock
+	private static var requiredAccuracyPixels = 10;
+	private static var restSeconds = 0.5;
+	private static var finishYOffset = 11;
+
 	var clock:FlxSprite;
 	var clockTween:FlxTween = null;
 
 	var fightOver = false;
 
+	var firstSwipe = true;
 	var handSwiping = false;
 	var handHoverY = 30;
 	var hand:FlxSprite;
 	var handXAccel = 20;
 	var handTween:FlxTween = null;
-
 
 	var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
@@ -52,13 +56,15 @@ class AlarmClockState extends EncounterBaseState {
 
 		clock = new FlxSprite();
 		clock.scrollFactor.set();
-		clock.makeGraphic(30, 30, FlxColor.RED);
+		// clock.makeGraphic(30, 30, FlxColor.RED);
+		clock.loadGraphic(AssetPaths.clockLarge__png, true, 30, 30);
+		clock.animation.add('blink', [0,1], 2);
+		clock.animation.play('blink');
 		clock.screenCenter();
-		startClockTween();
 
 		hand = new FlxSprite();
 		hand.scrollFactor.set();
-		hand.makeGraphic(50, 30, FlxColor.BLUE);
+		hand.loadGraphic(AssetPaths.crappyHand__png);
 		hand.screenCenter(X);
 		hand.y = handHoverY;
 
@@ -67,12 +73,12 @@ class AlarmClockState extends EncounterBaseState {
 		fightGroup.add(hand);
 
 		battleGroup.add(fightGroup);
-		fightGroup.active = false;
+		// fightGroup.active = false;
 		battleGroup.add(dialog);
 
 		dialog.textGroup.finishCallback = () -> {
 			dialog.kill();
-			fightGroup.active = true;
+			// fightGroup.active = true;
 
 			new FlxTimer().start(.05, (t) -> {
 				acceptInput = true;
@@ -106,9 +112,10 @@ class AlarmClockState extends EncounterBaseState {
 		}
 
 
-		if (hand.overlaps(clock) && Math.abs(clock.getMidpoint().x - hand.getMidpoint().x) <= 15) {
+		if (hand.overlaps(clock) && Math.abs(clock.getMidpoint().x - hand.getMidpoint().x) <= requiredAccuracyPixels) {
 			// only count if they hand hits the top of the clock
 			fightOver = true;
+			hand.y = clock.y - hand.height + finishYOffset;
 			FmodManager.SetEventParameterOnSong("AlarmOff", 1);
 			FmodManager.PlaySoundOneShot(FmodSFX.AlarmClockHit);
 			camera.shake(0.01, 0.25);
@@ -142,7 +149,6 @@ class AlarmClockState extends EncounterBaseState {
 				dialog.loadDialogLine("....You win this time...<page/>I will see you tomorrow...");
 				dialog.textGroup.finishCallback = () -> {
 					dialog.kill();
-					fightGroup.active = true;
 
 					new FlxTimer().start(1, (t) -> {
 						transitionOut();
@@ -165,25 +171,53 @@ class AlarmClockState extends EncounterBaseState {
 
 	var clockMoveTimeMin = 0.2;
 	var clockMoveTimeMax = 0.7;
-	function startClockTween() {
+	function startClockTween(edge:Bool = false) {
 		if (fightOver) {
 			// fight is over, no more moving
 			return;
 		}
 		var nextX = FlxG.random.int(0, Math.round(FlxG.width - clock.width));
+		var moveTime = FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax);
+		if (edge) {
+			nextX = FlxG.random.bool() ? 0 : Math.round(FlxG.width - clock.width);
+			moveTime = clockMoveTimeMin;
+		}
 		clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
-			FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax),
+			moveTime,
 			{
 				ease: FlxEase.quadInOut,
 				onComplete: (t) -> {
-					new FlxTimer().start(0.25, (timer) -> {
-						startClockTween();
-					});
+					if (edge) {
+						acceptInput = false;
+						dialog.revive();
+						dialog.loadDialogLine("You'll have to be faster than that!");
+						dialog.textGroup.finishCallback = () -> {
+							dialog.kill();
+
+							// make sure our dialog acceptance doesn't also force a swipe
+							new FlxTimer().start(.05, (t) -> {
+								acceptInput = true;
+							});
+						};
+						new FlxTimer().start(restSeconds, (timer) -> {
+							startClockTween();
+						});
+					}
+					else {
+						// if you take out this var (even though it's unused) it errors
+						var test = new FlxTimer().start(restSeconds, (timer) -> {
+							startClockTween();
+						});
+					}
 				}
 			});
 	}
 
 	function startSwipe() {
+		if (firstSwipe) {
+			startClockTween(true);
+			firstSwipe = false;
+		}
 		// hand.velocity.set();
 		handSwiping = true;
 		handTween = FlxTween.linearMotion(hand, hand.x, hand.y, hand.x, FlxG.height, 0.3, {
