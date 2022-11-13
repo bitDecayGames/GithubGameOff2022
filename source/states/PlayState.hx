@@ -195,9 +195,10 @@ class PlayState extends FlxTransitionableState {
 		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
 			if (StringTools.startsWith(level.identifier, "House_Lonk")) {
 				FmodManager.PlaySong(FmodSFX.AlarmClock);
+				FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
 			}
 			if (level.identifier == "House_Lonk_1") {
-				// FmodManager.SetEventParameterOnSong();
+				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 			}
 		}
 	}
