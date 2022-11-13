@@ -49,41 +49,47 @@ class Player extends FlxSprite {
 		interactionBox = new FlxObject(0, 0, 10, 10);
 	}
 
+	public static inline var GRASS = 1;
+	public static inline var BRICK = 2;
+	public static inline var DIRT = 3;
+
 	function addAnimationCallback():Void {
 		animation.callback = (name, frameNumber, frameIndex) -> {
 			if (StringTools.contains(name, '${Characters.RUN_ANIM}')) {
-				// TODO clean this up massively
-				if (flipX){
-					if (frameNumber == 5){
-						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
-						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5);
-						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
-							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
-						} 
-					} else if (frameNumber == 2) {
-						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
-						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5, FlxColor.BLACK);
-						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
-							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
-						} 
+
+				var footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
+				var footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
+
+				if (!StringTools.contains(name, 'left')) {
+					if (frameNumber == 2){
+						playStepSound(getTerrainIndex(footPosition1));
+					} else if (frameNumber == 5) {
+						playStepSound(getTerrainIndex(footPosition2));
 					}
 				} else {
 					if (frameNumber == 2){
-						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
-						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5);
-						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
-							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
-						} 
+						playStepSound(getTerrainIndex(footPosition2));
 					} else if (frameNumber == 5) {
-						var footPosition = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
-						// DebugDraw.ME.drawWorldRect(footPosition.x, footPosition.y, 5, 5, FlxColor.BLACK);
-						if (PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16)) == 2) {
-							FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
-						} 
+						playStepSound(getTerrainIndex(footPosition1));
 					}
 				}
 			}
 		}
+	}
+
+	function getTerrainIndex(footPosition:FlxPoint):Int {
+		return PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16));
+	}
+
+	function playStepSound(terrainIndex:Int){
+		switch(terrainIndex) {
+			case GRASS:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrass);
+			case DIRT:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
+			case BRICK:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepStone);
+		};
 	}
 
 	// frames are assumed to be in the down direction
