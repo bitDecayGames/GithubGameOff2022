@@ -161,17 +161,17 @@ class AlarmClockState extends EncounterBaseState {
 	var clockMoveTimeMin = 0.2;
 	var clockMoveTimeMax = 0.7;
 	function startClockTween() {
-		// var nextX = FlxG.random.int(0, Math.round(FlxG.width - clock.width));
-		// clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
-		// 	FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax),
-		// 	{
-		// 		ease: FlxEase.quadInOut,
-		// 		onComplete: (t) -> {
-		// 			new FlxTimer().start(0.25, (timer) -> {
-		// 				startClockTween();
-		// 			});
-		// 		}
-		// 	});
+		var nextX = FlxG.random.int(0, Math.round(FlxG.width - clock.width));
+		clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
+			FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax),
+			{
+				ease: FlxEase.quadInOut,
+				onComplete: (t) -> {
+					new FlxTimer().start(0.25, (timer) -> {
+						startClockTween();
+					});
+				}
+			});
 	}
 
 	function startSwipe() {
