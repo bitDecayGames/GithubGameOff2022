@@ -71,7 +71,7 @@ class AlarmClockState extends EncounterBaseState {
 			dialog.kill();
 			fightGroup.active = true;
 
-			new FlxTimer().start(1, (t) -> {
+			new FlxTimer().start(.05, (t) -> {
 				acceptInput = true;
 			});
 		};
@@ -86,6 +86,7 @@ class AlarmClockState extends EncounterBaseState {
 
 		if (!handSwiping) {
 			if (SimpleController.just_pressed(A)) {
+				FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
 				startSwipe();
 			} else if (SimpleController.pressed(LEFT)) {
 				hand.velocity.x -= handXAccel * elapsed;
@@ -104,6 +105,19 @@ class AlarmClockState extends EncounterBaseState {
 
 		if (hand.overlaps(clock)) {
 			FmodManager.SetEventParameterOnSong("AlarmOff", 1);
+			FmodManager.PlaySoundOneShot(FmodSFX.AlarmClockHit);
+			camera.shake(0.01, 0.25);
+			camera.flash(FlxColor.WHITE, 0.5);
+			
+		
+			new FlxTimer().start(2, (t) -> {
+				FmodManager.StopSong();
+			});
+		
+			new FlxTimer().start(.1, (t) -> {
+				FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+			});
+
 			acceptInput = false;
 			hand.velocity.set();
 			if (clockTween != null) {
@@ -118,7 +132,18 @@ class AlarmClockState extends EncounterBaseState {
 				}
 				handTween = null;
 			}
-			transitionOut();
+			new FlxTimer().start(2, (t) -> {
+				dialog.revive();
+				dialog.loadDialogLine("....You win this time...<page/>I will see you tomorrow...");
+				dialog.textGroup.finishCallback = () -> {
+					dialog.kill();
+					fightGroup.active = true;
+		
+					new FlxTimer().start(1, (t) -> {
+						transitionOut();
+					});
+				};
+			});
 		}
 
 		if (checkSuccess()) {
@@ -134,17 +159,17 @@ class AlarmClockState extends EncounterBaseState {
 	var clockMoveTimeMin = 0.2;
 	var clockMoveTimeMax = 0.7;
 	function startClockTween() {
-		var nextX = FlxG.random.int(0, Math.round(FlxG.width - clock.width));
-		clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
-			FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax),
-			{
-				ease: FlxEase.quadInOut,
-				onComplete: (t) -> {
-					new FlxTimer().start(0.25, (timer) -> {
-						startClockTween();
-					});
-				}
-			});
+		// var nextX = FlxG.random.int(0, Math.round(FlxG.width - clock.width));
+		// clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
+		// 	FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax),
+		// 	{
+		// 		ease: FlxEase.quadInOut,
+		// 		onComplete: (t) -> {
+		// 			new FlxTimer().start(0.25, (timer) -> {
+		// 				startClockTween();
+		// 			});
+		// 		}
+		// 	});
 	}
 
 	function startSwipe() {
