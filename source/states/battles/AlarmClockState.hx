@@ -1,5 +1,6 @@
 package states.battles;
 
+import bitdecay.flixel.debug.DebugDraw;
 import quest.GlobalQuestState;
 import flixel.math.FlxMath;
 import encounters.CharacterIndex;
@@ -18,9 +19,11 @@ using zero.flixel.extensions.FlxPointExt;
 
 class AlarmClockState extends EncounterBaseState {
 	// midpoints can only be this far apart and still count as hitting the clock
-	private static var requiredAccuracyPixels = 10;
-	private static var restSeconds = 0.5;
+	private static var requiredAccuracyPixels = 13;
+	private static var restSeconds = 0.75;
 	private static var finishYOffset = 11;
+	private static var handHoverY = 30;
+	private static var handXAccel = 40;
 
 	var clock:FlxSprite;
 	var clockTween:FlxTween = null;
@@ -29,9 +32,7 @@ class AlarmClockState extends EncounterBaseState {
 
 	var firstSwipe = true;
 	var handSwiping = false;
-	var handHoverY = 30;
 	var hand:FlxSprite;
-	var handXAccel = 20;
 	var handTween:FlxTween = null;
 
 	var dialog:CharacterDialog;
@@ -88,6 +89,8 @@ class AlarmClockState extends EncounterBaseState {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+
+		// DebugDraw.ME.drawCameraLine(hand.getMidpoint().x - requiredAccuracyPixels, hand.y, hand.getMidpoint().x + requiredAccuracyPixels, hand.y);
 
 		if (!acceptInput) {
 			return;
