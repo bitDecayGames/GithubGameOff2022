@@ -188,11 +188,18 @@ class PlayState extends FlxTransitionableState {
 		camera.follow(player);
 
 		// TODO pass in name of level to help pick song
-		playSong();
+		playSong(level);
 	}
 
-	private function playSong() {
-		FmodManager.PlaySong(FmodSFX.AlarmClock);
+	private function playSong(level:LDTKProject_Level) {
+		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
+			if (StringTools.startsWith(level.identifier, "House_Lonk")) {
+				FmodManager.PlaySong(FmodSFX.AlarmClock);
+			}
+			if (level.identifier == "House_Lonk_1") {
+				// FmodManager.SetEventParameterOnSong();
+			}
+		}
 	}
 
 	override public function update(elapsed:Float) {

@@ -5,6 +5,10 @@ class GlobalQuestState {
 	public static var currentQuest:QuestIndex = INTRO;
 	public static var subQuest:Int = 0;
 
+	// FLAGS OUT THE WAZOO
+	public static var DEFEATED_ALARM_CLOCK = false;
+
+
 	public static function getCurrentQuestKey():String {
 		return '${GlobalQuestState.currentQuest}_${GlobalQuestState.subQuest}';
 	}

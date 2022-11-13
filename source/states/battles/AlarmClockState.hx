@@ -20,6 +20,8 @@ class AlarmClockState extends EncounterBaseState {
 	var clock:FlxSprite;
 	var clockTween:FlxTween = null;
 
+	var fightOver = false;
+
 	var handSwiping = false;
 	var handHoverY = 30;
 	var hand:FlxSprite;
@@ -104,16 +106,17 @@ class AlarmClockState extends EncounterBaseState {
 
 
 		if (hand.overlaps(clock)) {
+			fightOver = true;
 			FmodManager.SetEventParameterOnSong("AlarmOff", 1);
 			FmodManager.PlaySoundOneShot(FmodSFX.AlarmClockHit);
 			camera.shake(0.01, 0.25);
 			camera.flash(FlxColor.WHITE, 0.5);
-			
-		
+
+
 			new FlxTimer().start(2, (t) -> {
 				FmodManager.StopSong();
 			});
-		
+
 			new FlxTimer().start(.1, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
 			});
@@ -138,7 +141,7 @@ class AlarmClockState extends EncounterBaseState {
 				dialog.textGroup.finishCallback = () -> {
 					dialog.kill();
 					fightGroup.active = true;
-		
+
 					new FlxTimer().start(1, (t) -> {
 						transitionOut();
 					});
@@ -159,6 +162,10 @@ class AlarmClockState extends EncounterBaseState {
 	var clockMoveTimeMin = 0.2;
 	var clockMoveTimeMax = 0.7;
 	function startClockTween() {
+		if (fightOver) {
+			// fight is over, no more moving
+			return;
+		}
 		var nextX = FlxG.random.int(0, Math.round(FlxG.width - clock.width));
 		clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
 			FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax),
