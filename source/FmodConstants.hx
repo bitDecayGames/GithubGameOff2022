@@ -21,6 +21,13 @@ class FmodSFX {
     public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
     public static inline var BattleStart:String = "event:/SFX/Battle/BattleStart";
     public static inline var DoorOpen:String = "event:/SFX/Door/DoorOpen";
+    public static inline var PotDestroy:String = "event:/SFX/Enemies/Pot/PotDestroy";
+    public static inline var PotPlayerAttemptStrike:String = "event:/SFX/Enemies/Pot/PotPlayerAttemptStrike";
+    public static inline var PotPlayerCursorSpawn:String = "event:/SFX/Enemies/Pot/PotPlayerCursorSpawn";
+    public static inline var PotPlayerCursorSpawn2:String = "event:/SFX/Enemies/Pot/PotPlayerCursorSpawn2";
+    public static inline var PotPlayerStrikeFinal:String = "event:/SFX/Enemies/Pot/PotPlayerStrikeFinal";
+    public static inline var PotRingSpawn:String = "event:/SFX/Enemies/Pot/PotRingSpawn";
+    public static inline var PotTargetSpawn:String = "event:/SFX/Enemies/Pot/PotTargetSpawn";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";

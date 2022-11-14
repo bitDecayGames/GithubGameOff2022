@@ -1,5 +1,6 @@
 package entities;
 
+import quest.GlobalQuestState;
 import bitdecay.flixel.debug.DebugDraw;
 import flixel.math.FlxRect;
 import constants.Characters;
@@ -37,6 +38,11 @@ class Player extends FlxSprite {
 	var foot2:FlxPoint = FlxPoint.get();
 
 	public function new(X:Float, Y:Float) {
+
+		if (GlobalQuestState.SPEEDY_DEBUG){ 
+			speed = 120;
+		}
+
 		// Because we change the hitbox to 14x14 instead of 16x16, we create the sprite
 		// with a 1-pixel offset so it's aligned correctly with the map's 16x16 tiles
 		// NOTE: This _should_ just need to be 1, however, it looks proper with 2 pixels instead.

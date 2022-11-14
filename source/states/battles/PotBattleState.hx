@@ -87,17 +87,20 @@ class PotBattleState extends EncounterBaseState {
 			new FlxTimer().start(0.5, (t) -> {
 				// TODO: SFX guide ring fades in
 				FlxTween.tween(ring, { alpha: 1 }, 0.5, {
+					onStart: (t) -> {FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);},
 					onComplete: (t) -> {
 						var delay = 0.0;
 						weakPointsGroup.forEach((wp) -> {
 							// TODO: SFX single weakpoint fades in
 							new FlxTimer().start(delay, (t) -> {
+								FmodManager.PlaySoundOneShot(FmodSFX.PotTargetSpawn);
 								FlxTween.tween(wp, { alpha: 1}, 0.5);
 							});
 							delay += .35;
 						});
 						new FlxTimer().start(delay, (t) -> {
 							// TODO: SFX attack cursor fades in
+							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerCursorSpawn2);
 							FlxTween.tween(cursor, { alpha: 1}, 0.5, {
 								onComplete: (t) -> {
 									acceptInput = true;
@@ -156,6 +159,9 @@ class PotBattleState extends EncounterBaseState {
 			// TODO: success end sequence start
 			complete = true;
 			animateAttacks();
+			new FlxTimer().start(2.5, (t) -> {
+				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+			});
 			PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
 		} else if (attackGroup.length == attackLimit) {
 			// failure
@@ -178,7 +184,7 @@ class PotBattleState extends EncounterBaseState {
 	}
 
 	function createAttack() {
-		// TODO:SFX attack aimed at pot
+		FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerAttemptStrike);
 		FlxG.camera.shake(0.02, 0.1);
 		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
 		var attack = new FlxSprite();
@@ -215,7 +221,7 @@ class PotBattleState extends EncounterBaseState {
 				attackGroup.forEach((a) -> {
 					if (a.overlaps(weakPointsGroup)) {
 						new FlxTimer().start(delay, (t) -> {
-							// TODO: SFX pot attack hits pot. will happen 'n' times
+							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerStrikeFinal);
 							FlxG.camera.shake(0.02, 0.1);
 							camera.flash(0.05);
 							var particle = new Slash(a.x, a.y);

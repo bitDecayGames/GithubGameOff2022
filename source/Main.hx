@@ -22,6 +22,8 @@ import misc.FlxTextFactory;
 import openfl.display.Sprite;
 #if play
 import states.PlayState;
+#elseif pot_battle
+import states.battles.PotBattleState;
 #end
 
 class Main extends Sprite {
@@ -37,6 +39,8 @@ class Main extends Sprite {
 		var startingState:Class<FlxState> = SplashScreenState;
 		#if play
 		startingState = PlayState;
+		#elseif pot_battle
+		startingState = PotBattleState;
 		#else
 		if (Macros.isDefined("SKIP_SPLASH")) {
 			startingState = MainMenuState;

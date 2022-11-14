@@ -245,17 +245,19 @@ class PlayState extends FlxTransitionableState {
 		FlxG.watch.addQuick("Active: ", playerActive);
 		if (!GlobalQuestState.WOKEN_FIRST_TIME){
 			GlobalQuestState.WOKEN_FIRST_TIME = true;
-			player.lockControls = true;
-			player.animation.play(Player.SLEEP);
-			new FlxTimer().start(6.75, (t) -> {
-				eventSignal.dispatch('alarmStart');
-				FmodManager.PlaySong(FmodSFX.AlarmClock);
-				player.animation.play(Player.STARTLED);
-				new FlxTimer().start(2.5, (t) -> {
-					player.animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
-					player.lockControls = false;
+			if (!GlobalQuestState.SPEEDY_DEBUG) {
+				player.lockControls = true;
+				player.animation.play(Player.SLEEP);
+				new FlxTimer().start(6.75, (t) -> {
+					eventSignal.dispatch('alarmStart');
+					FmodManager.PlaySong(FmodSFX.AlarmClock);
+					player.animation.play(Player.STARTLED);
+					new FlxTimer().start(2.5, (t) -> {
+						player.animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
+						player.lockControls = false;
+					});
 				});
-			});
+			}
 		}
 
 		FmodManager.Update();
