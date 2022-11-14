@@ -32,10 +32,13 @@ class Player extends FlxSprite {
 	var tmp:FlxPoint = FlxPoint.get();
 
 	public function new(X:Float, Y:Float) {
-		super(X, Y);
+		// Because we change the hitbox to 14x14 instead of 16x16, we create the sprite
+		// with a 1-pixel offset so it's aligned correctly with the map's 16x16 tiles
+		// NOTE: This _should_ just need to be 1, however, it looks proper with 2 pixels instead.
+		super(X + 2, Y + 2);
 		loadGraphic(AssetPaths.player__png, true, 26, 34);
-		setSize(16, 16);
-		offset.set(5, 12);
+		setSize(14, 14);
+		offset.set(7, 14);
 
 
 		addAnimation(Characters.IDLE_ANIM, [ 0 ], 8);
@@ -45,7 +48,6 @@ class Player extends FlxSprite {
 
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
-
 
 		interactionBox = new FlxObject(0, 0, 10, 10);
 	}

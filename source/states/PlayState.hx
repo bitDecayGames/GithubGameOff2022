@@ -153,6 +153,17 @@ class PlayState extends FlxTransitionableState {
 			}
 		}
 
+		// the BottomDecor layer is treated as terrain so that it renders underneath all entities
+		level.l_BottomDecor.render(terrain);
+
+		// The other decor layers are injected directly into our sorting group so they behave like world objects
+		var group = level.l_Decor.render();
+		level.l_TopDecor.render(group);
+		for (decorSprite in group.members) {
+			sortingLayer.add(decorSprite);
+		}
+
+
 		for (eInteract in level.l_Entities.all_Interactable) {
 			// TODO: need to come up with a proper way to parse out unique interactables
 			var interact = InteractableFactory.make(eInteract);
@@ -167,7 +178,7 @@ class PlayState extends FlxTransitionableState {
 		var playerStart = FlxPoint.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
-			playerStart.set(spawnData.cx * 16, spawnData.cy * 16);
+			playerStart.set(spawnData.pixelX, spawnData.pixelY);
 		} else {
 			var matches = doors.members.filter((d) -> d.iid == doorID);
 			if (matches.length != 1) {
@@ -244,11 +255,11 @@ class PlayState extends FlxTransitionableState {
 					case N:
 						clip.y -= p.frameHeight;
 						clip.height += p.frameHeight;
-						walkDistance = clip.height + p.frameHeight;
+						walkDistance = Math.abs(clip.bottom - p.y) + p.height;
 					case S:
 						clip.y += 1; // for nice pixel clipping
 						clip.height += 16;
-						walkDistance = clip.height + p.height;
+						walkDistance = Math.abs(clip.y - p.y) + p.height;
 					default:
 						FlxG.log.warn('found a door with a unhandled access dir: ${d.accessDir}');
 				}

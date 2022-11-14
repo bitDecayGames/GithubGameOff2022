@@ -1,8 +1,5 @@
 package entities.interact;
 
-import characters.BasicPot;
-import encounters.CharacterIndex;
-
 class InteractableFactory {
 	public static function make(data:Entity_Interactable):Interactable {
 		var index:InteractIndex = data.f_Type.getIndex();

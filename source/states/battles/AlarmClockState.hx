@@ -1,7 +1,6 @@
 package states.battles;
 
 import com.bitdecay.lucidtext.parse.TagLocation;
-import bitdecay.flixel.debug.DebugDraw;
 import quest.GlobalQuestState;
 import flixel.math.FlxMath;
 import encounters.CharacterIndex;
@@ -12,6 +11,10 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+
+#if encounter_debug
+import bitdecay.flixel.debug.DebugDraw;
+#end
 
 import encounters.CharacterDialog;
 import input.SimpleController;
