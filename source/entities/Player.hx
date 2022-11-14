@@ -164,6 +164,7 @@ class Player extends FlxSprite {
 
 		CardinalExt.fromFacing(facing).asVector(tmp).scale(Constants.TILE_SIZE).add(x, y).add(width/2, height/2);
 		interactionBox.setPositionMidpoint(tmp.x, tmp.y);
+		interactionBox.last.set(interactionBox.x, interactionBox.y);
 
 		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
 			// This seems wrong... not sure why, but it overlaps erroneously when the interaction box is to the right,
