@@ -18,7 +18,7 @@ class SplashScreenState extends FlxState {
 	var splashImages:Array<FlxSprite> = [];
 
 	var timer = 0.0;
-	var splashDuration = 3.0;
+	var splashDuration = 6.0;
 
 	var currentTween:FlxTween = null;
 	var splashesOver:Bool = false;
@@ -26,6 +26,8 @@ class SplashScreenState extends FlxState {
 
 	override public function create():Void {
 		super.create();
+
+		FmodManager.PlaySong(FmodSongs.AwakenLullaby);
 
 		// List splash screen image paths here
 		loadSplashImages([
@@ -106,7 +108,7 @@ class SplashScreenState extends FlxState {
 		} else {
 			splashesOver = true;
 			currentTween.onComplete = (t) -> {
-				FmodFlxUtilities.TransitionToState(new MainMenuState());
+				FmodFlxUtilities.TransitionToState(new PlayState());
 			};
 		}
 	}

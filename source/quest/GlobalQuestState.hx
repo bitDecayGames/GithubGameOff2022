@@ -7,6 +7,7 @@ class GlobalQuestState {
 
 	// FLAGS OUT THE WAZOO
 	public static var DEFEATED_ALARM_CLOCK = false;
+	public static var WOKEN_FIRST_TIME = false;
 
 
 	public static function getCurrentQuestKey():String {
@@ -14,5 +15,6 @@ class GlobalQuestState {
 	}
 
 	// misc flags to help us know when to transition quests
+	public static var leftHouseFirstTime = false;
 	public static var hasCompass = false;
 }

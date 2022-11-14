@@ -46,6 +46,8 @@ class PlayState extends FlxTransitionableState {
 	public var dialogs:FlxGroup;
 	public var level:LDTKProject_Level;
 
+	var project = new LDTKProject();
+
 	var dialogCount = 0;
 
 	public var playerActive:Bool = true;
@@ -110,14 +112,14 @@ class PlayState extends FlxTransitionableState {
 		interactables.clear();
 		sortingLayer.clear();
 
-		// We might be able to just have this be a nice static thing
-		var project = new LDTKProject();
-
 		level = project.getLevel(uid, id);
 		if (level == null) {
 			for (pl in project.levels) {
 				if (pl.iid == id) {
 					level = pl;
+					if (level.identifier == "Town_main") {
+						GlobalQuestState.leftHouseFirstTime = true;
+					}
 					break;
 				}
 			}
@@ -198,19 +200,29 @@ class PlayState extends FlxTransitionableState {
 
 		camera.follow(player);
 
-		// TODO pass in name of level to help pick song
 		playSong(level);
 	}
 
+	// TODO Transitions when going through doors would be cool to do when link touches the door rather than when the new level is loaded
 	private function playSong(level:LDTKProject_Level) {
-		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
-			if (StringTools.startsWith(level.identifier, "House_Lonk")) {
-				FmodManager.PlaySong(FmodSFX.AlarmClock);
+		if(!FmodManager.IsSongPlaying()){
+			FmodManager.PlaySong(FmodSongs.Silence);
+		}
+		
+		if (StringTools.startsWith(level.identifier, "House_Lonk")) {
+			if (!GlobalQuestState.WOKEN_FIRST_TIME){
+				FmodManager.PlaySongTransition(FmodSongs.AwakenLullaby);
+			} else if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
+				FmodManager.PlaySongTransition(FmodSFX.AlarmClock);
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
+				if (level.identifier == "House_Lonk_1") {
+					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
+				} 
+			} else if (GlobalQuestState.leftHouseFirstTime) { 
+				FmodManager.PlaySong(FmodSongs.Awaken);
 			}
-			if (level.identifier == "House_Lonk_1") {
-				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
-			}
+		} else {
+			FmodManager.PlaySong(FmodSongs.Awaken);
 		}
 	}
 
@@ -218,6 +230,27 @@ class PlayState extends FlxTransitionableState {
 		// TODO: probably a better way of handling this
 		// dialogs.mem
 		playerActive = dialogCount == 0 && !playerInTransition;
+
+		// TODO terrible hack I sorry
+		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
+			FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
+			if (level.identifier == "House_Lonk_1") {
+				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
+			} 
+		}
+
+
+		FlxG.watch.addQuick("Active: ", playerActive);
+		if (!GlobalQuestState.WOKEN_FIRST_TIME){
+			GlobalQuestState.WOKEN_FIRST_TIME = true;
+			player.lockControls = true;
+			new FlxTimer().start(6.75, (t) -> {
+				FmodManager.PlaySong(FmodSFX.AlarmClock);
+				player.lockControls = false;
+			});
+		}
+
+		FmodManager.Update();
 
 		super.update(elapsed);
 
