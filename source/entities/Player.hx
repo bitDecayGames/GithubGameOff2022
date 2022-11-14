@@ -13,7 +13,6 @@ import flixel.math.FlxPoint;
 import input.SimpleController;
 import input.InputCalcuator;
 import flixel.FlxSprite;
-import extension.CardinalExt;
 import entities.interact.Interactable;
 
 using extension.CardinalExt;
@@ -32,12 +31,17 @@ class Player extends FlxSprite {
 	public var worldClip:FlxRect = null;
 
 	var tmp:FlxPoint = FlxPoint.get();
+	var foot1:FlxPoint = FlxPoint.get();
+	var foot2:FlxPoint = FlxPoint.get();
 
 	public function new(X:Float, Y:Float) {
-		super(X, Y);
+		// Because we change the hitbox to 14x14 instead of 16x16, we create the sprite
+		// with a 1-pixel offset so it's aligned correctly with the map's 16x16 tiles
+		// NOTE: This _should_ just need to be 1, however, it looks proper with 2 pixels instead.
+		super(X + 2, Y + 2);
 		loadGraphic(AssetPaths.player__png, true, 26, 34);
-		setSize(16, 16);
-		offset.set(5, 12);
+		setSize(14, 14);
+		offset.set(7, 14);
 
 
 		addAnimation(Characters.IDLE_ANIM, [ 0 ], 8);
@@ -47,7 +51,6 @@ class Player extends FlxSprite {
 
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
-
 
 		interactionBox = new FlxObject(0, 0, 10, 10);
 	}
@@ -59,49 +62,36 @@ class Player extends FlxSprite {
 	function addAnimationCallback():Void {
 		animation.callback = (name, frameNumber, frameIndex) -> {
 			if (StringTools.contains(name, '${Characters.RUN_ANIM}')) {
-
-				// var footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270));
-				// var footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90));
-
-				var feetPosition = getFeetPosition(name);
-				var recSize = 5;
-				DebugDraw.ME.drawWorldRect(feetPosition[0].x-recSize/2, feetPosition[0].y-recSize/2, recSize, recSize);
-				DebugDraw.ME.drawWorldRect(feetPosition[1].x-recSize/2, feetPosition[1].y-recSize/2, recSize, recSize);
+				updateFeetPositions(name);
 
 				if (!StringTools.contains(name, 'left')) {
 					if (frameNumber == 2){
-						playStepSound(getTerrainIndex(feetPosition[0]));
+						playStepSound(getTerrainIndex(foot1));
 					} else if (frameNumber == 5) {
-						playStepSound(getTerrainIndex(feetPosition[1]));
+						playStepSound(getTerrainIndex(foot2));
 					}
 				} else {
 					if (frameNumber == 2){
-						playStepSound(getTerrainIndex(feetPosition[1]));
+						playStepSound(getTerrainIndex(foot1));
 					} else if (frameNumber == 5) {
-						playStepSound(getTerrainIndex(feetPosition[0]));
+						playStepSound(getTerrainIndex(foot2));
 					}
 				}
 			}
 		}
 	}
 
-	function getFeetPosition(animationName:String):Array<FlxPoint> {
-
-		var footPosition1:FlxPoint;
-		var footPosition2:FlxPoint;
-
+	function updateFeetPositions(animationName:String) {
 		if (StringTools.contains(animationName, 'up') || StringTools.contains(animationName, 'down')){
-			footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(270)).addPoint(new FlxPoint(0,4));
-			footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(4).rotateByDegrees(90)).addPoint(new FlxPoint(0,4));
+			getMidpoint(foot1).addPoint(CardinalExt.fromFacing(facing).asVector().rotateByDegrees(270).scale(5)).addPoint(new FlxPoint(0,4));
+			getMidpoint(foot2).addPoint(CardinalExt.fromFacing(facing).asVector().rotateByDegrees(90).scale(5)).addPoint(new FlxPoint(0,4));
 		} else if (StringTools.contains(animationName, 'right')){
-			footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(-5).rotateByDegrees(270));
-			footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(7).rotateByDegrees(90));
+			getMidpoint(foot1).addPoint(CardinalExt.fromFacing(facing).asVector().rotateByDegrees(270).scale(-5));
+			getMidpoint(foot2).addPoint(CardinalExt.fromFacing(facing).asVector().rotateByDegrees(90).scale(7));
 		} else {
-			footPosition1 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(7).rotateByDegrees(270));
-			footPosition2 = getMidpoint().addPoint(CardinalExt.fromFacing(facing).asVector().scale(-5).rotateByDegrees(90));
+			getMidpoint(foot1).addPoint(CardinalExt.fromFacing(facing).asVector().rotateByDegrees(270).scale(7));
+			getMidpoint(foot2).addPoint(CardinalExt.fromFacing(facing).asVector().rotateByDegrees(90).scale(-5));
 		}
-
-		return [footPosition1, footPosition2];
 	}
 
 	function getTerrainIndex(footPosition:FlxPoint):Int {
@@ -150,6 +140,9 @@ class Player extends FlxSprite {
 		} else if (clipRect != null) {
 			clipRect = null;
 		}
+
+		DebugDraw.ME.drawWorldRect(foot1.x-1, foot1.y-1, 2, 2, 0xFFFFFF);
+		DebugDraw.ME.drawWorldRect(foot2.x-1, foot2.y-1, 2, 2, 0xFFFFFF);
 
 		if (PlayState.ME.playerActive) {
 			// Only check input direction if the game wants us to move
