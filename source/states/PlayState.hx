@@ -1,5 +1,6 @@
 package states;
 
+import constants.Characters;
 import flixel.util.FlxSignal;
 import quest.GlobalQuestState;
 import entities.interact.InteractableFactory;
@@ -54,6 +55,7 @@ class PlayState extends FlxTransitionableState {
 	public var playerInTransition:Bool = false;
 
 	public var transitionSignal = new FlxTypedSignal<String->Void>();
+	public var eventSignal = new FlxTypedSignal<String->Void>();
 
 	override public function create() {
 		super.create();
@@ -208,7 +210,7 @@ class PlayState extends FlxTransitionableState {
 		if(!FmodManager.IsSongPlaying()){
 			FmodManager.PlaySong(FmodSongs.Silence);
 		}
-		
+
 		if (StringTools.startsWith(level.identifier, "House_Lonk")) {
 			if (!GlobalQuestState.WOKEN_FIRST_TIME){
 				FmodManager.PlaySongTransition(FmodSongs.AwakenLullaby);
@@ -217,8 +219,8 @@ class PlayState extends FlxTransitionableState {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
 				if (level.identifier == "House_Lonk_1") {
 					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
-				} 
-			} else if (GlobalQuestState.leftHouseFirstTime) { 
+				}
+			} else if (GlobalQuestState.leftHouseFirstTime) {
 				FmodManager.PlaySong(FmodSongs.Awaken);
 			}
 		} else {
@@ -236,7 +238,7 @@ class PlayState extends FlxTransitionableState {
 			FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
 			if (level.identifier == "House_Lonk_1") {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
-			} 
+			}
 		}
 
 
@@ -244,9 +246,15 @@ class PlayState extends FlxTransitionableState {
 		if (!GlobalQuestState.WOKEN_FIRST_TIME){
 			GlobalQuestState.WOKEN_FIRST_TIME = true;
 			player.lockControls = true;
+			player.animation.play(Player.SLEEP);
 			new FlxTimer().start(6.75, (t) -> {
+				eventSignal.dispatch('alarmStart');
 				FmodManager.PlaySong(FmodSFX.AlarmClock);
-				player.lockControls = false;
+				player.animation.play(Player.STARTLED);
+				new FlxTimer().start(2.5, (t) -> {
+					player.animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
+					player.lockControls = false;
+				});
 			});
 		}
 

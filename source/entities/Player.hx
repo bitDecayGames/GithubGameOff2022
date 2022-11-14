@@ -1,7 +1,5 @@
 package entities;
 
-import js.html.Console;
-import flixel.util.FlxColor;
 import bitdecay.flixel.debug.DebugDraw;
 import flixel.math.FlxRect;
 import constants.Characters;
@@ -18,6 +16,9 @@ import entities.interact.Interactable;
 using extension.CardinalExt;
 
 class Player extends FlxSprite {
+	public static inline var SLEEP = 'sleep';
+	public static inline var STARTLED = 'startled';
+
 	public var lockControls:Bool = false;
 
 	public var speed:Float = 60;
@@ -46,6 +47,8 @@ class Player extends FlxSprite {
 
 		addAnimation(Characters.IDLE_ANIM, [ 0 ], 8);
 		addAnimation(Characters.RUN_ANIM, [ for (i in 1...7) i ], 8);
+		animation.add(SLEEP, [24,25,26] , 8);
+		animation.add(STARTLED, [27] , 8);
 
 		addAnimationCallback();
 
@@ -128,11 +131,6 @@ class Player extends FlxSprite {
 	}
 
 	override public function update(delta:Float) {
-
-		if(lockControls){
-			return;
-		}
-
 		if (worldClip != null) {
 			clipRect = FlxRect.get(worldClip.x - x + offset.x, worldClip.y - y + offset.y, worldClip.width, worldClip.height);
 			DebugDraw.ME.drawWorldRect(worldClip.x, worldClip.y, worldClip.width, worldClip.height);
@@ -144,7 +142,7 @@ class Player extends FlxSprite {
 		DebugDraw.ME.drawWorldRect(foot1.x-1, foot1.y-1, 2, 2, 0xFFFFFF);
 		DebugDraw.ME.drawWorldRect(foot2.x-1, foot2.y-1, 2, 2, 0xFFFFFF);
 
-		if (PlayState.ME.playerActive) {
+		if (!lockControls && PlayState.ME.playerActive) {
 			// Only check input direction if the game wants us to move
 			var inputDir = InputCalcuator.getInputCardinal(playerNum);
 			if (inputDir != NONE) {
@@ -174,9 +172,14 @@ class Player extends FlxSprite {
 		}
 
 		updateAnimations();
+		FlxG.watch.addQuick("player anim: ", animation.curAnim.name);
 	}
 
 	function updateAnimations() {
+		if (animation.curAnim.name == SLEEP || animation.curAnim.name == STARTLED) {
+			return;
+		}
+
 		// we are using 1 here due to weird "nearly zero" errors (likely from rotation of the cardinal vector)
 		if (Math.abs(velocity.y) > 1) {
 			if (velocity.y < -1) {

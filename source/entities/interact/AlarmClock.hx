@@ -8,14 +8,21 @@ class AlarmClock extends Interactable {
 	public function new(X:Float, Y:Float) {
 		super(X, Y, ALARM_CLOCK);
 		loadGraphic(AssetPaths.clock__png, true, 16, 16);
+		animation.add('steady', [0]);
 		animation.add('blink', [0,1], 2);
 		animation.add('broken', [1], 2);
 		if (GlobalQuestState.DEFEATED_ALARM_CLOCK) {
 			animation.play('broken');
 		} else {
-			animation.play('blink');
+			animation.play('steady');
 		}
 		immovable = true;
+
+		PlayState.ME.eventSignal.addOnce((s) -> {
+			if (s == "alarmStart") {
+				animation.play('blink');
+			}
+		});
 	}
 
 	override function interact() {

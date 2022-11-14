@@ -44,22 +44,18 @@ class PotBattleState extends EncounterBaseState {
 
 		fightGroup = new FlxGroup();
 
-		ring = new FlxSprite();
+		ring = new FlxSprite(AssetPaths.ring__png);
 		ring.scrollFactor.set();
-		ring.makeGraphic(100, 100, FlxColor.TRANSPARENT);
-		// can't figure out how to just draw a circle outline... so just draw a black circle on top of the white circle
-		FlxSpriteUtil.drawCircle(ring, -1, -1, -1, FlxColor.WHITE);
-		FlxSpriteUtil.drawCircle(ring, -1, -1, 49, FlxColor.BLACK);
 
 		ring.screenCenter();
 		ring.alpha = 0;
 
 		randomizeAimPoints(4);
 
-		var potSprite = new FlxSprite();
+		var potSprite = new FlxSprite(AssetPaths.battlePot__png);
 		potSprite.scrollFactor.set();
-		potSprite.makeGraphic(75, 75, FlxColor.RED);
 		potSprite.screenCenter();
+		potSprite.y -= 9;
 		battleGroup.add(potSprite);
 
 		cursor = new FlxSprite();
