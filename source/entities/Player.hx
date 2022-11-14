@@ -19,6 +19,8 @@ import entities.interact.Interactable;
 using extension.CardinalExt;
 
 class Player extends FlxSprite {
+	public var lockControls:Bool = false;
+
 	public var speed:Float = 60;
 	var playerNum = 0;
 
@@ -136,6 +138,11 @@ class Player extends FlxSprite {
 	}
 
 	override public function update(delta:Float) {
+
+		if(lockControls){
+			return;
+		}
+
 		if (worldClip != null) {
 			clipRect = FlxRect.get(worldClip.x - x + offset.x, worldClip.y - y + offset.y, worldClip.width, worldClip.height);
 			DebugDraw.ME.drawWorldRect(worldClip.x, worldClip.y, worldClip.width, worldClip.height);
