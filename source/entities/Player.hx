@@ -20,6 +20,7 @@ class Player extends FlxSprite {
 	public static inline var STARTLED = 'startled';
 
 	public var lockControls:Bool = false;
+	public var isInteracting = false;
 
 	public var speed:Float = 60;
 	var playerNum = 0;
@@ -168,6 +169,7 @@ class Player extends FlxSprite {
 			// This seems wrong... not sure why, but it overlaps erroneously when the interaction box is to the right,
 			// or below the interactable
 			trace("attempting to interact");
+			isInteracting = false;
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
 		}
 
@@ -204,8 +206,13 @@ class Player extends FlxSprite {
 	}
 
 	function playerInteracts(i:Interactable, other:FlxObject) {
-		// TODO: This is triggering twice for some reason
+		if (isInteracting) {
+			// TODO: This is triggering twice for some reason
+			// I guess this is a known issue
+			return;
+		}
 		i.interact();
+		isInteracting = true;
 	}
 
 	#if FLX_DEBUG

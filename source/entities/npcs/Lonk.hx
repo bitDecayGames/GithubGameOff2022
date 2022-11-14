@@ -7,12 +7,22 @@ import entities.library.NPCTextBank;
 import states.PlayState;
 
 class Lonk extends NPC {
+	var lastQuest:String = "";
+
 	public function new(data:Entity_NPC) {
 		super(data);
+
+		PlayState.ME.eventSignal.add(handleEvent);
 	}
 
 	override function interact() {
 		super.interact();
+
+		// TODO: Do we want to add this to the super method so all NPCs benefit?
+		if (lastQuest != GlobalQuestState.getCurrentQuestKey()) {
+			lastQuest = GlobalQuestState.getCurrentQuestKey();
+			chatIndex = 0;
+		}
 
 		var allText = NPCTextBank.all[charIndex];
 		var questText = allText[GlobalQuestState.getCurrentQuestKey()];
@@ -41,5 +51,16 @@ class Lonk extends NPC {
 	function bumpQuest(name:String) {
 		PlayState.ME.transitionSignal.remove(bumpQuest);
 		GlobalQuestState.currentQuest = COMPASS_FETCH;
+	}
+
+	function handleEvent(e:String) {
+		if (e == "rubberPotDefeated" && GlobalQuestState.getCurrentQuestKey() == "intro_0") {
+			GlobalQuestState.subQuest++;
+		}
+	}
+
+	override function destroy() {
+		super.destroy();
+		PlayState.ME.eventSignal.remove(handleEvent);
 	}
 }

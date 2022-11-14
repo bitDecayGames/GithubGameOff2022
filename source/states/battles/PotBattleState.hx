@@ -156,6 +156,7 @@ class PotBattleState extends EncounterBaseState {
 			// TODO: success end sequence start
 			complete = true;
 			animateAttacks();
+			PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
 		} else if (attackGroup.length == attackLimit) {
 			// failure
 			// TODO: SFX failure begins. cursor slows rotation
