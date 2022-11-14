@@ -221,14 +221,17 @@ class PlayState extends FlxTransitionableState {
 
 		super.update(elapsed);
 
-		sortingLayer.sort(FlxSort.byY);
-
 		var cam = FlxG.camera;
 		DebugDraw.ME.drawWorldRect(-5, -5, 10, 10);
 
 		FlxG.overlap(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
 		FlxG.collide(interactables, player);
+
+		// sort objects by their bottom edge
+		sortingLayer.sort((Order:Int, Obj1:FlxObject, Obj2:FlxObject) -> {
+			return FlxSort.byValues(Order, Obj1.y + Obj1.height, Obj2.y + Obj2.height);
+		});
 	}
 
 	function playerTouchDoor(d:Door, p:Player) {

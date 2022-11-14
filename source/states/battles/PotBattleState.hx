@@ -1,5 +1,6 @@
 package states.battles;
 
+import particles.Slash;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
@@ -51,6 +52,7 @@ class PotBattleState extends EncounterBaseState {
 		FlxSpriteUtil.drawCircle(ring, -1, -1, 49, FlxColor.BLACK);
 
 		ring.screenCenter();
+		ring.alpha = 0;
 
 		randomizeAimPoints(4);
 
@@ -58,15 +60,17 @@ class PotBattleState extends EncounterBaseState {
 		potSprite.scrollFactor.set();
 		potSprite.makeGraphic(75, 75, FlxColor.RED);
 		potSprite.screenCenter();
-		// battleGroup.add(potSprite);
+		battleGroup.add(potSprite);
 
 		cursor = new FlxSprite();
 		cursor.scrollFactor.set();
 		cursor.makeGraphic(15, 15, FlxColor.TRANSPARENT);
 		// can't figure out how to just draw a circle outline... so just draw a black circle on top of the white circle
 		FlxSpriteUtil.drawCircle(cursor, -1, -1, -1, FlxColor.RED);
+		cursor.alpha = 0;
 
-		var point = ring.getGraphicMidpoint().place_on_circumference(0, ring.width/2);
+		cursorAngle = FlxG.random.float(0, 279);
+		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
 		cursor.setPositionMidpoint(point.x, point.y);
 		point.put();
 
@@ -84,9 +88,29 @@ class PotBattleState extends EncounterBaseState {
 			dialog.kill();
 			fightGroup.active = true;
 
-			new FlxTimer().start(1, (t) -> {
-				acceptInput = true;
-				FlxTween.tween(this, { spinSpeed: maxSpinSpeed }, { ease: FlxEase.sineIn });
+			new FlxTimer().start(0.5, (t) -> {
+				// TODO: SFX guide ring fades in
+				FlxTween.tween(ring, { alpha: 1 }, 0.5, {
+					onComplete: (t) -> {
+						var delay = 0.0;
+						weakPointsGroup.forEach((wp) -> {
+							// TODO: SFX single weakpoint fades in
+							new FlxTimer().start(delay, (t) -> {
+								FlxTween.tween(wp, { alpha: 1}, 0.5);
+							});
+							delay += .35;
+						});
+						new FlxTimer().start(delay, (t) -> {
+							// TODO: SFX attack cursor fades in
+							FlxTween.tween(cursor, { alpha: 1}, 0.5, {
+								onComplete: (t) -> {
+									acceptInput = true;
+									FlxTween.tween(this, { spinSpeed: maxSpinSpeed }, { ease: FlxEase.sineIn });
+								}
+							});
+						});
+					}
+				});
 			});
 		};
 	}
@@ -105,6 +129,8 @@ class PotBattleState extends EncounterBaseState {
 			aim.setPositionMidpoint(point.x, point.y);
 			point.put();
 
+			aim.alpha = 0;
+
 			weakPointsGroup.add(aim);
 		}
 	}
@@ -122,15 +148,21 @@ class PotBattleState extends EncounterBaseState {
 			return;
 		}
 
+		if (complete) {
+			return;
+		}
+
 		if (SimpleController.just_pressed(A) && attackGroup.length < attackLimit) {
 			createAttack();
 		}
 
 		if (checkSuccess()) {
 			// TODO: success end sequence start
-			transitionOut();
+			complete = true;
+			animateAttacks();
 		} else if (attackGroup.length == attackLimit) {
 			// failure
+			// TODO: SFX failure begins. cursor slows rotation
 			acceptInput = false;
 			new FlxTimer().start(1, (t) -> {
 				FlxTween.tween(this, { spinSpeed: 0 }, 2,
@@ -149,6 +181,7 @@ class PotBattleState extends EncounterBaseState {
 	}
 
 	function createAttack() {
+		// TODO:SFX attack aimed at pot
 		FlxG.camera.shake(0.02, 0.1);
 		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
 		var attack = new FlxSprite();
@@ -174,5 +207,35 @@ class PotBattleState extends EncounterBaseState {
 		});
 
 		return success;
+	}
+
+	function animateAttacks() {
+		FlxTween.tween(this, { spinSpeed: 0 }, 1,
+		{
+			ease: FlxEase.sineOut,
+			onComplete: (t) -> {
+				var delay = 0.0;
+				attackGroup.forEach((a) -> {
+					if (a.overlaps(weakPointsGroup)) {
+						new FlxTimer().start(delay, (t) -> {
+							// TODO: SFX pot attack hits pot. will happen 'n' times
+							FlxG.camera.shake(0.02, 0.1);
+							camera.flash(0.05);
+							var particle = new Slash(a.x, a.y);
+							particle.scale.set(FlxG.random.float(1, 5), FlxG.random.float(1, 5));
+							particle.scrollFactor.set();
+							particle.flipX = FlxG.random.bool();
+							particle.flipY = FlxG.random.bool();
+							add(particle);
+						});
+						delay += .35;
+					}
+				});
+
+				new FlxTimer().start(delay, (t) -> {
+					transitionOut();
+				});
+			}
+		});
 	}
 }

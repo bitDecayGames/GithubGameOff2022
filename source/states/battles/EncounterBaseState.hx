@@ -14,6 +14,9 @@ class EncounterBaseState extends FlxSubState {
 	// a flag to know if we succeeded the encounter or not
 	public var success = false;
 
+	// a flag to let us know when the state is done in regards to user input
+	public var complete = false;
+
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();
 	var transition:FlxSprite;
@@ -68,6 +71,7 @@ class EncounterBaseState extends FlxSubState {
 	}
 
 	public function transitionOut(onDone:()->Void = null) {
+		complete = true;
 		FlxTween.tween(transition, { alpha: 1 }, {
 			onComplete: (t) -> {
 				battleGroup.visible = false;

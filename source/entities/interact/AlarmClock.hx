@@ -1,7 +1,5 @@
 package entities.interact;
 
-import encounters.CharacterIndex;
-import encounters.CharacterDialog;
 import quest.GlobalQuestState;
 import states.PlayState;
 import states.battles.AlarmClockState;
