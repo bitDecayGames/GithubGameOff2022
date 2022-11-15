@@ -42,6 +42,10 @@ class PotBattleState extends EncounterBaseState {
 	override function create() {
 		super.create();
 
+		new FlxTimer().start(1.75, (t) -> {
+			FmodManager.PlaySong(FmodSongs.Battle);
+		});
+		
 		fightGroup = new FlxGroup();
 
 		ring = new FlxSprite(AssetPaths.ring__png);
@@ -159,8 +163,16 @@ class PotBattleState extends EncounterBaseState {
 			// TODO: success end sequence start
 			complete = true;
 			animateAttacks();
-			new FlxTimer().start(2.5, (t) -> {
+			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+			});
+			new FlxTimer().start(4.5, (t) -> {
+				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I am ok actually. I am made of rubber after all!');
+				dialog.textGroup.finishCallback = () -> {
+					transitionOut();
+					FmodManager.StopSong();
+				};
+				dialog.revive();
 			});
 			PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
 		} else if (attackGroup.length == attackLimit) {
@@ -233,10 +245,6 @@ class PotBattleState extends EncounterBaseState {
 						});
 						delay += .35;
 					}
-				});
-
-				new FlxTimer().start(delay, (t) -> {
-					transitionOut();
 				});
 			}
 		});
