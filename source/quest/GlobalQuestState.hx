@@ -1,7 +1,7 @@
 package quest;
 
 class GlobalQuestState {
-	public static var SPEEDY_DEBUG = true;
+	public static var SPEEDY_DEBUG = false;
 
 	// Top level quest tracker
 	public static var currentQuest(default, set):QuestIndex = INTRO;

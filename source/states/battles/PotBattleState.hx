@@ -104,7 +104,7 @@ class PotBattleState extends EncounterBaseState {
 						});
 						new FlxTimer().start(delay, (t) -> {
 							// TODO: SFX attack cursor fades in
-							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerCursorSpawn2);
+							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerCursorSpawn3);
 							FlxTween.tween(cursor, { alpha: 1}, 0.5, {
 								onComplete: (t) -> {
 									acceptInput = true;
