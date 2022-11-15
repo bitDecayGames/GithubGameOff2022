@@ -1,5 +1,6 @@
 package states;
 
+import entities.misc.House;
 import constants.Characters;
 import flixel.util.FlxSignal;
 import quest.GlobalQuestState;
@@ -76,7 +77,7 @@ class PlayState extends FlxTransitionableState {
 		add(collisions);
 		// add(entities);
 		// add(interactables);
-		add(doors);
+		// add(doors);
 		add(sortingLayer);
 		add(dialogs);
 
@@ -142,10 +143,15 @@ class PlayState extends FlxTransitionableState {
 
 		level.l_Terrain.render(terrain);
 
+		for (eHouse in level.l_Entities.all_House) {
+			var house = new House(eHouse);
+			sortingLayer.add(house);
+		}
+
 		for (eDoor in level.l_Entities.all_Door) {
 			var door = new Door(eDoor);
 			doors.add(door);
-			// sortingLayer.add(door);
+			sortingLayer.add(door);
 		}
 
 		for (eNPC in level.l_Entities.all_NPC) {
@@ -271,9 +277,23 @@ class PlayState extends FlxTransitionableState {
 		FlxG.collide(collisions, player);
 		FlxG.collide(interactables, player);
 
-		// sort objects by their bottom edge
+		// sort objects by their reference Y (typically bottom edge)
 		sortingLayer.sort((Order:Int, Obj1:FlxObject, Obj2:FlxObject) -> {
-			return FlxSort.byValues(Order, Obj1.y + Obj1.height, Obj2.y + Obj2.height);
+			var o1RefY = Obj1.y + Obj1.height;
+			var o2RefY = Obj2.y + Obj2.height;
+
+			// some minor hacks to make sure doors facing north render properly
+			if (Obj1 is Door) {
+				if (cast(Obj1, Door).accessDir == N) {
+					o1RefY = Obj1.y - 2;
+				}
+			} else if (Obj2 is Door) {
+				if (cast(Obj2, Door).accessDir == N) {
+					o2RefY = Obj2.y - 2;
+				}
+			}
+
+			return FlxSort.byValues(Order, o1RefY, o2RefY);
 		});
 	}
 
