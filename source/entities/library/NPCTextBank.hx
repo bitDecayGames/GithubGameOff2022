@@ -17,14 +17,14 @@ class NPCTextBank {
 				"<cb val=neutral/>Keep trying until you've proven you can break it"
 			],
 			"intro_1" => [
-				"Well done, Boy! You're ready to begin preparations. I need you to collect my <color rgb=0x0000FF>compass</color> from <INSERT NAME>'s house on the " +
+				"Well done, Boy! You're ready to begin preparations. I need you to collect my <color rgb=0x0000FF>compass</color> from Cludd's house on the " +
 				"north side of town.",
 				"Come back here once you have my <color rgb=0x0000FF>compass</color>"
 			]
 		],
 		WOMAN => [
-			"quest" => [
-				"Your grandfather Lonk is an interesting man.<page/>I<cb val=sad /> feel like he's lost touch with the people of this town."
+			"intro_1" => [
+				"Cludd? He lives up North.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color rgb=0x0000FF>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
 			]
 		]
 	];

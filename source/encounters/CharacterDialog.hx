@@ -8,6 +8,7 @@ import com.bitdecay.lucidtext.TypingGroup;
 import com.bitdecay.lucidtext.TypeOptions;
 import flixel.group.FlxGroup;
 
+@:access(com.bitdecay.lucidtext.TypingGroup)
 class CharacterDialog extends FlxGroup {
 	private static var expressionsAsset = AssetPaths.NPCexpressions__png;
 
@@ -16,6 +17,9 @@ class CharacterDialog extends FlxGroup {
 	public var textGroup:TypingGroup;
 	public var portrait:FlxSprite;
 	public var options:TypeOptions;
+
+	public var faster = false;
+	public var skipFirstPressCheck = true;
 
 	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
@@ -42,6 +46,11 @@ class CharacterDialog extends FlxGroup {
 		textGroup.letterCallback = () -> {
 			FmodManager.PlaySoundOneShot(FmodSFX.TypeWriterSingleStroke);
 		};
+		textGroup.pageCallback = () -> {
+			skipFirstPressCheck = true;
+			faster = false;
+			textGroup.options.modOps.speedMultiplier = 1;
+		}
 
 		portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
 		portrait.scrollFactor.set();
@@ -60,9 +69,30 @@ class CharacterDialog extends FlxGroup {
 
 	public function loadDialogLine(text:String) {
 		textGroup.loadText(text);
+		skipFirstPressCheck = true;
 	}
+
 	public function resetLastLine() {
 		// TODO: Obviously not efficient, but works for now
 		textGroup.loadText(textGroup.rawText);
+		skipFirstPressCheck = true;
+	}
+
+	override function update(elapsed:Float) {
+		super.update(elapsed);
+
+		if (SimpleController.just_pressed(A) && !faster) {
+			if (skipFirstPressCheck) {
+				skipFirstPressCheck = false;
+			} else {
+				faster = true;
+				textGroup.options.modOps.speedMultiplier = 3;
+			}
+		}
+
+		if (!SimpleController.pressed(A) && faster) {
+			faster = false;
+			textGroup.options.modOps.speedMultiplier = 1;
+		}
 	}
 }

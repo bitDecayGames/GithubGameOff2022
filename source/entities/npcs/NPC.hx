@@ -1,14 +1,13 @@
 package entities.npcs;
 
-import quest.Quest;
+import flixel.math.FlxMath;
 import entities.library.NPCTextBank;
+import quest.GlobalQuestState;
 import flixel.FlxObject;
 import bitdecay.flixel.spacial.Cardinal;
 import constants.Characters;
 import states.PlayState;
 import flixel.FlxG;
-import com.bitdecay.lucidtext.parse.TagLocation;
-import encounters.CharacterDialog;
 import encounters.CharacterIndex;
 import entities.interact.Interactable;
 
@@ -17,6 +16,10 @@ using extension.CardinalExt;
 class NPC extends Interactable {
 	var charIndex:CharacterIndex;
 	var chatIndex = 0;
+
+	// This just tracks the last quest we were on. If the quest changes, this will help us know to reset
+	// the chatIndex
+	var lastQuest:String = "";
 
 	public function new(data:Entity_NPC) {
 		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE, data.f_character.getIndex());
@@ -34,10 +37,29 @@ class NPC extends Interactable {
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
 	}
 
-	// override this to actually do stuff besides turning to face the player
 	override function interact() {
 		super.interact();
 		facing = Cardinal.closest(PlayState.ME.player.getMidpoint().subtractPoint(getMidpoint())).asFacing();
+
+		if (lastQuest != GlobalQuestState.getCurrentQuestKey()) {
+			lastQuest = GlobalQuestState.getCurrentQuestKey();
+			chatIndex = 0;
+		}
+
+		var allText = NPCTextBank.all[charIndex];
+		var questText = allText[GlobalQuestState.getCurrentQuestKey()];
+		if (questText == null) {
+			// if we didn't have text specific to this subtask, check for general quest text
+			questText = allText[GlobalQuestState.currentQuest];
+		}
+		if (questText != null) {
+			chatIndex = Math.round(FlxMath.bound(chatIndex, 0, questText.length-1));
+			dialogBox.loadDialogLine(questText[chatIndex++]);
+		}
+
+		// TODO: Do we want to have subclasses actually call this so that they can get the above functionality
+		// and perhaps be able to do something different besides just opening the dialog?
+		PlayState.ME.openDialog(dialogBox);
 	}
 
 	function addAnimation(baseName:String, frames:Array<Int>, rowLength:Int) {

@@ -33,7 +33,7 @@ using states.FlxStateExt;
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
-	private static inline var START_LEVEL = "House_Lonk_2";
+	private static inline var START_LEVEL = "House_Lonk_room_boy";
 
 	public var player:Player;
 

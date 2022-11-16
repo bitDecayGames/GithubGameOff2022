@@ -23,8 +23,7 @@ class NPCFactory {
 			case LONK:
 				return new Lonk(data);
 			case WOMAN:
-				// TODO: Do we need a dedicated thing here?
-				return new NPC(data);
+				return new Helper(data);
 			default:
 				throw 'unknown npc entity ${data.f_character.getName()}';
 		}
