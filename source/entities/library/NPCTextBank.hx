@@ -11,8 +11,8 @@ class NPCTextBank {
 			"intro_0" => [
 				"<cb val=happy />I see you're awake - Today is the big day!<page/>" +
 				"By<cb val=neutral /> the end of the week, you'll be an adventurer just like I used to be.<page/>" +
-				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.",
-				"<cb val=happy />You see that <color rgb=0x00FF00>rubber pot</color> over there? Attack it swiftly. Aim for the weak points.",
+				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.<page/>" +
+				"<cb val=happy />You see that <color rgb=0x00FF00>rubber pot</color> over there? Attack it swiftly. Aim for the weak points.<page/>",
 				"<cb val=mad /><shake>Obliterate it!</shake>",
 				"<cb val=neutral/>Keep trying until you've proven you can break it"
 			],

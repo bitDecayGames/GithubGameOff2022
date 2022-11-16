@@ -22,6 +22,8 @@ class PotNormal extends Interactable {
 		PlayState.ME.startEncounter(substate);
 		substate.closeCallback = () -> {
 			if (substate.success && data.f_Key == "compass") {
+				// TODO: How to not respawn this if they come back
+				kill();
 				PlayState.ME.eventSignal.dispatch('compassCollected');
 				// TODO: rejoice in your new compass!
 				// Should he drop the compass after holding it above his head? Causing it to only point west
