@@ -1,5 +1,6 @@
 package states.battles;
 
+import encounters.CharacterIndex;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import particles.Slash;
 import flixel.FlxG;
@@ -37,10 +38,13 @@ class PotBattleState extends EncounterBaseState {
 	var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
-	public function new(foe:CharacterDialog) {
+	var fightCharacter:CharacterIndex;
+
+	public function new(foe:CharacterDialog, character:CharacterIndex = POT) {
 		super();
 		dialog = foe;
 		dialog.textGroup.tagCallback = potTagHandle;
+		fightCharacter = character;
 	}
 
 	override function create() {
@@ -169,28 +173,15 @@ class PotBattleState extends EncounterBaseState {
 		if (checkSuccess()) {
 			// TODO: success end sequence start
 			complete = true;
+			success = true;
 			animateAttacks();
-			new FlxTimer().start(3, (t) -> {
-				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
-
-				FlxTween.tween(potSprite, { y: potY + 20 }, 1);
-				FlxTween.tween(potSprite, { "scale.x": 1.4, "scale.y": 0.5 }, 1, {
-					ease: FlxEase.bounceInOut,
-				});
-			});
-			new FlxTimer().start(4.5, (t) -> {
-				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I<cb val=repair/> am ok, actually. I am made of rubber after all!');
-				dialog.textGroup.finishCallback = () -> {
-					transitionOut();
-					FmodManager.StopSong();
-				};
-				dialog.revive();
-			});
-			PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
+			finishFight();
 		} else if (attackGroup.length == attackLimit) {
 			// failure
 			// TODO: SFX failure begins. cursor slows rotation
 			acceptInput = false;
+			complete = true;
+			success = false;
 			new FlxTimer().start(1, (t) -> {
 				FlxTween.tween(this, { spinSpeed: 0 }, 2,
 					{
@@ -298,5 +289,40 @@ class PotBattleState extends EncounterBaseState {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotRebound3);
 			}
 		}
+	}
+
+	function finishFight() {
+		if (fightCharacter == RUBBERPOT) {
+			new FlxTimer().start(3, (t) -> {
+				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+
+				FlxTween.tween(potSprite, { y: potY + 20 }, 1);
+				FlxTween.tween(potSprite, { "scale.x": 1.4, "scale.y": 0.5 }, 1, {
+					ease: FlxEase.bounceInOut,
+				});
+			});
+			new FlxTimer().start(4.5, (t) -> {
+				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I<cb val=repair/> am ok, actually. I am made of rubber after all!');
+				dialog.textGroup.finishCallback = () -> {
+					transitionOut();
+					FmodManager.StopSong();
+				};
+				dialog.revive();
+			});
+		} else {
+			new FlxTimer().start(3, (t) -> {
+				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+			});
+			new FlxTimer().start(4.5, (t) -> {
+				// TODO: This should be gotten from somewhere else.
+				dialog.loadDialogLine('I am slain... My contents loose upon the world.');
+				dialog.textGroup.finishCallback = () -> {
+					transitionOut();
+					FmodManager.StopSong();
+				};
+				dialog.revive();
+			});
+		}
+
 	}
 }

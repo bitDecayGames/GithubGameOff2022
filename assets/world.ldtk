@@ -1995,7 +1995,8 @@
 			{ "id": "Woman", "tileId": 0, "color": 13277567, "__tileSrcRect": [0,0,50,50] },
 			{ "id": "Pot", "tileId": 4, "color": 7373695, "__tileSrcRect": [0,50,50,50] },
 			{ "id": "Lonk", "tileId": 8, "color": 9409651, "__tileSrcRect": [0,100,50,50] },
-			{ "id": "Craftsman", "tileId": 12, "color": 11574421, "__tileSrcRect": [0,150,50,50] }
+			{ "id": "Craftsman", "tileId": 12, "color": 11574421, "__tileSrcRect": [0,150,50,50] },
+			{ "id": "RubberPot", "tileId": 4, "color": 7833719, "__tileSrcRect": [0,50,50,50] }
 		], "iconTilesetUid": 91, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "Interactables", "uid": 96, "values": [
 			{ "id": "AlarmClock", "tileId": 234, "color": 9796720, "__tileSrcRect": [160,224,16,16] },
@@ -3858,7 +3859,10 @@
 									"id": "V_String",
 									"params": ["Pot_rubber"]
 								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] }
+								{ "__identifier": "Key", "__value": "rubber", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["rubber"]
+								}] }
 							]
 						},
 						{

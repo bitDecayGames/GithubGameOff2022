@@ -5,8 +5,8 @@ import states.PlayState;
 import states.battles.AlarmClockState;
 
 class AlarmClock extends Interactable {
-	public function new(X:Float, Y:Float) {
-		super(X, Y, ALARM_CLOCK);
+	public function new(data:Entity_Interactable) {
+		super(data.pixelX, data.pixelY, ALARM_CLOCK);
 		loadGraphic(AssetPaths.clock__png, true, 16, 16);
 		animation.add('steady', [0]);
 		animation.add('blink', [0,1], 2);
