@@ -12,14 +12,14 @@ class NPCTextBank {
 				"<cb val=happy />I see you're awake - Today is the big day!<page/>" +
 				"By<cb val=neutral /> the end of the week, you'll be an adventurer just like I used to be.<page/>" +
 				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.<page/>" +
-				"<cb val=happy />You see that <color rgb=0x00FF00>rubber pot</color> over there? Attack it swiftly. Aim for the weak points.<page/>",
+				"<cb val=happy />You see that <color id=keyItem>rubber pot</color> over there? Attack it swiftly. Aim for the <color id=hint>weak points</color>.<page/>",
 				"<cb val=mad /><shake>Obliterate it!</shake>",
 				"<cb val=neutral/>Keep trying until you've proven you can break it"
 			],
 			"intro_1" => [
-				"Well done, Boy! You're ready to begin preparations. I need you to collect my <color rgb=0x0000FF>compass</color> from Cludd's house on the " +
+				"Well done, Boy! You're ready to begin preparations. I need you to collect my <color id=keyItem>compass</color> from Cludd's house on the " +
 				"north side of town.",
-				"Come back here once you have my <color rgb=0x0000FF>compass</color>"
+				"Come back here once you have my <color id=keyItem>compass</color>"
 			]
 		],
 		WOMAN => [

@@ -1,5 +1,6 @@
 package;
 
+import ui.font.TextColors;
 import flixel.math.FlxPoint;
 import com.bitdecay.lucidtext.TextGroup;
 import com.bitdecay.lucidtext.effect.EffectRegistry;
@@ -79,6 +80,7 @@ class Main extends Sprite {
 		TextGroup.defaultScrollFactor = FlxPoint.get();
 		EffectRegistry.registerDefault("scrub", { height: 3 });
 		EffectRegistry.registerDefault("shake", { dist: 1 });
+		TextColors.init();
 	}
 
 	private function configureLogging() {

@@ -39,7 +39,7 @@ class Player extends FlxSprite {
 
 	public function new(X:Float, Y:Float) {
 
-		if (GlobalQuestState.SPEEDY_DEBUG){ 
+		if (GlobalQuestState.SPEEDY_DEBUG){
 			speed = 120;
 		}
 
@@ -154,7 +154,18 @@ class Player extends FlxSprite {
 			var inputDir = InputCalcuator.getInputCardinal(playerNum);
 			if (inputDir != NONE) {
 				inputDir.asCleanVector(velocity).scale(speed);
-				facing = inputDir.asFacing();
+				switch (inputDir) {
+					case NW | N | NE:
+						facing = FlxObject.UP;
+					case SW | S | SE:
+						facing = FlxObject.DOWN;
+					case W:
+						facing = FlxObject.LEFT;
+					case E:
+						facing = FlxObject.RIGHT;
+					default:
+						facing = FlxObject.UP;
+				}
 			} else {
 				velocity.set();
 			}

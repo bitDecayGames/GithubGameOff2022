@@ -56,7 +56,21 @@ class NPC extends Interactable {
 
 	override function interact() {
 		super.interact();
-		facing = Cardinal.closest(PlayState.ME.player.getMidpoint().subtractPoint(getMidpoint())).asFacing();
+		var xDiff = x - PlayState.ME.player.x;
+		var yDiff = y - PlayState.ME.player.y;
+		if (Math.abs(xDiff) > Math.abs(yDiff)) {
+			if (xDiff > 0) {
+				facing = FlxObject.LEFT;
+			} else {
+				facing = FlxObject.RIGHT;
+			}
+		} else {
+			if (yDiff > 0) {
+				facing = FlxObject.UP;
+			} else {
+				facing = FlxObject.DOWN;
+			}
+		}
 
 		if (lastQuest != GlobalQuestState.getCurrentQuestKey()) {
 			lastQuest = GlobalQuestState.getCurrentQuestKey();

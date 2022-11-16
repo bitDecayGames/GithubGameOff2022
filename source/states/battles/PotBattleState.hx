@@ -209,6 +209,8 @@ class PotBattleState extends EncounterBaseState {
 		FlxSpriteUtil.drawCircle(attack, -1, -1, -1, FlxColor.BLUE);
 
 		attack.setPositionMidpoint(point.x, point.y);
+		// copy our position into our last so that collisions work nicely on first frame of existence
+		attack.getPosition(attack.last);
 		point.put();
 
 		attackGroup.add(attack);
