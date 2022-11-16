@@ -1,5 +1,6 @@
 package states.battles;
 
+import com.bitdecay.lucidtext.parse.TagLocation;
 import particles.Slash;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -17,10 +18,12 @@ import input.SimpleController;
 using zero.flixel.extensions.FlxPointExt;
 
 class PotBattleState extends EncounterBaseState {
+	var potSprite:FlxSprite;
 	var ring:FlxSprite;
-
 	var cursor:FlxSprite;
 	var cursorAngle = 0.0;
+
+	var potY = 0.0;
 
 	// spin speed in degrees per second
 	var spinSpeed = 0.0;
@@ -37,6 +40,7 @@ class PotBattleState extends EncounterBaseState {
 	public function new(foe:CharacterDialog) {
 		super();
 		dialog = foe;
+		dialog.textGroup.tagCallback = potTagHandle;
 	}
 
 	override function create() {
@@ -45,7 +49,7 @@ class PotBattleState extends EncounterBaseState {
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.Battle);
 		});
-		
+
 		fightGroup = new FlxGroup();
 
 		ring = new FlxSprite(AssetPaths.ring__png);
@@ -56,10 +60,11 @@ class PotBattleState extends EncounterBaseState {
 
 		randomizeAimPoints(4);
 
-		var potSprite = new FlxSprite(AssetPaths.battlePot__png);
+		potSprite = new FlxSprite(AssetPaths.battlePot__png);
 		potSprite.scrollFactor.set();
 		potSprite.screenCenter();
 		potSprite.y -= 9;
+		potY = potSprite.y;
 		battleGroup.add(potSprite);
 
 		cursor = new FlxSprite();
@@ -102,6 +107,8 @@ class PotBattleState extends EncounterBaseState {
 							});
 							delay += .35;
 						});
+						// give a solid delay between the weak points and the player cursor
+						delay += .5;
 						new FlxTimer().start(delay, (t) -> {
 							// TODO: SFX attack cursor fades in
 							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerCursorSpawn3);
@@ -165,9 +172,14 @@ class PotBattleState extends EncounterBaseState {
 			animateAttacks();
 			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+
+				FlxTween.tween(potSprite, { y: potY + 20 }, 1);
+				FlxTween.tween(potSprite, { "scale.x": 1.4, "scale.y": 0.5 }, 1, {
+					ease: FlxEase.bounceInOut,
+				});
 			});
 			new FlxTimer().start(4.5, (t) -> {
-				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I am ok actually. I am made of rubber after all!');
+				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I<cb val=repair/> am ok, actually. I am made of rubber after all!');
 				dialog.textGroup.finishCallback = () -> {
 					transitionOut();
 					FmodManager.StopSong();
@@ -225,28 +237,65 @@ class PotBattleState extends EncounterBaseState {
 	}
 
 	function animateAttacks() {
+		var attackTweens = new Array<()->Void>();
+
+		var delay = 0.0;
+		attackGroup.forEach((a) -> {
+			var hits = new Array<FlxSprite>();
+			var overlap = FlxG.overlap(a, weakPointsGroup, (attack, point) -> {
+				hits.push(point);
+			});
+			if (overlap) {
+				var localDelay = delay;
+				delay += .35;
+				attackTweens.push(() -> {
+					var t = new FlxTimer().start(localDelay, (t) -> {
+						FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerStrikeFinal);
+						FlxG.camera.shake(0.02, 0.1);
+						camera.flash(0.05);
+						var particle = new Slash(a.x, a.y);
+						particle.scale.set(FlxG.random.float(1, 5), FlxG.random.float(1, 5));
+						particle.scrollFactor.set();
+						particle.flipX = FlxG.random.bool();
+						particle.flipY = FlxG.random.bool();
+						add(particle);
+
+						a.kill();
+
+						for (h in hits) {
+							// FlxTween.tween(h, {alpha: 0}, 0.2);
+							h.kill();
+						}
+					});
+				});
+			} else {
+				attackTweens.push(() -> {
+					// FlxTween.tween(a, {alpha: 0}, 0.2);
+					a.kill();
+				});
+			}
+		});
+		FlxTween.tween(ring, {alpha: 0}, 1);
+		FlxTween.tween(cursor, {alpha: 0}, 1);
 		FlxTween.tween(this, { spinSpeed: 0 }, 1,
 		{
 			ease: FlxEase.sineOut,
 			onComplete: (t) -> {
-				var delay = 0.0;
-				attackGroup.forEach((a) -> {
-					if (a.overlaps(weakPointsGroup)) {
-						new FlxTimer().start(delay, (t) -> {
-							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerStrikeFinal);
-							FlxG.camera.shake(0.02, 0.1);
-							camera.flash(0.05);
-							var particle = new Slash(a.x, a.y);
-							particle.scale.set(FlxG.random.float(1, 5), FlxG.random.float(1, 5));
-							particle.scrollFactor.set();
-							particle.flipX = FlxG.random.bool();
-							particle.flipY = FlxG.random.bool();
-							add(particle);
-						});
-						delay += .35;
-					}
-				});
+				for (at in attackTweens) {
+					at();
+				}
 			}
 		});
+	}
+
+	function potTagHandle(tag:TagLocation) {
+		if (tag.tag == "cb") {
+			if (tag.parsedOptions.val == "repair") {
+				FlxTween.tween(potSprite, { y: potY }, 0.5, {ease: FlxEase.quadOut});
+				FlxTween.tween(potSprite, { "scale.x": 1, "scale.y": 1 }, 0.5, {
+					ease: FlxEase.bounceOut,
+				});
+			}
+		}
 	}
 }
