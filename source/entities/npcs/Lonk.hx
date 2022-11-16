@@ -5,16 +5,10 @@ import quest.GlobalQuestState;
 import states.PlayState;
 
 class Lonk extends NPC {
-	private static var personalLastQuest = "";
-	private static var personalChatIndex = 0;
-
 	public function new(data:Entity_NPC) {
 		super(data);
 
 		PlayState.ME.eventSignal.add(handleEvent);
-
-		lastQuest = personalLastQuest;
-		chatIndex = personalChatIndex;
 	}
 
 	override function interact() {
@@ -46,9 +40,5 @@ class Lonk extends NPC {
 	override function destroy() {
 		super.destroy();
 		PlayState.ME.eventSignal.remove(handleEvent);
-
-		// TODO: This is an experiment to see how to preserve our chat index for each character
-		personalLastQuest = lastQuest;
-		personalChatIndex = chatIndex;
 	}
 }

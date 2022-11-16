@@ -13,13 +13,20 @@ import entities.interact.Interactable;
 
 using extension.CardinalExt;
 
+typedef ChatProgress = {
+	var lastQuest:String;
+	var chatIndex:Int;
+}
+
 class NPC extends Interactable {
+	private static var npcProgressTracker = new Map<CharacterIndex, ChatProgress>();
+
 	var charIndex:CharacterIndex;
-	var chatIndex = 0;
 
 	// This just tracks the last quest we were on. If the quest changes, this will help us know to reset
-	// the chatIndex
-	var lastQuest:String = "";
+	// the chatIndex. The setters will keep the static map up-to-date
+	var lastQuest(default, set):String = "";
+	var chatIndex(default, set) = 0;
 
 	public function new(data:Entity_NPC) {
 		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE, data.f_character.getIndex());
@@ -35,6 +42,16 @@ class NPC extends Interactable {
 
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
+
+		if (!npcProgressTracker.exists(charIndex)) {
+			npcProgressTracker.set(charIndex, {
+				lastQuest: "",
+				chatIndex: 0,
+			});
+		}
+
+		lastQuest = npcProgressTracker.get(charIndex).lastQuest;
+		chatIndex = npcProgressTracker.get(charIndex).chatIndex;
 	}
 
 	override function interact() {
@@ -106,5 +123,15 @@ class NPC extends Interactable {
 		}
 
 		FlxG.watch.addQuick('player set anim: ', animation.curAnim.name);
+	}
+
+	function set_chatIndex(value) {
+		npcProgressTracker.get(charIndex).chatIndex = value;
+		return chatIndex = value;
+	}
+
+	function set_lastQuest(value:String):String {
+		npcProgressTracker.get(charIndex).lastQuest = value;
+		return lastQuest = value;
 	}
 }
