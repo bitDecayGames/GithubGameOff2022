@@ -295,6 +295,7 @@ class PotBattleState extends EncounterBaseState {
 				FlxTween.tween(potSprite, { "scale.x": 1, "scale.y": 1 }, 0.5, {
 					ease: FlxEase.bounceOut,
 				});
+				FmodManager.PlaySoundOneShot(FmodSFX.PotRebound3);
 			}
 		}
 	}
