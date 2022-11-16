@@ -26,7 +26,11 @@ class FmodSFX {
     public static inline var PotPlayerCursorSpawn:String = "event:/SFX/Enemies/Pot/PotPlayerCursorSpawn";
     public static inline var PotPlayerCursorSpawn2:String = "event:/SFX/Enemies/Pot/PotPlayerCursorSpawn2";
     public static inline var PotPlayerCursorSpawn3:String = "event:/SFX/Enemies/Pot/PotPlayerCursorSpawn3";
+    public static inline var PotPlayerCursorSpawn4:String = "event:/SFX/Enemies/Pot/PotPlayerCursorSpawn4";
     public static inline var PotPlayerStrikeFinal:String = "event:/SFX/Enemies/Pot/PotPlayerStrikeFinal";
+    public static inline var PotRebound:String = "event:/SFX/Enemies/Pot/PotRebound";
+    public static inline var PotRebound2:String = "event:/SFX/Enemies/Pot/PotRebound2";
+    public static inline var PotRebound3:String = "event:/SFX/Enemies/Pot/PotRebound3";
     public static inline var PotRingSpawn:String = "event:/SFX/Enemies/Pot/PotRingSpawn";
     public static inline var PotTargetSpawn:String = "event:/SFX/Enemies/Pot/PotTargetSpawn";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
