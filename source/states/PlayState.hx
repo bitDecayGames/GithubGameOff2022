@@ -1,5 +1,7 @@
 package states;
 
+import shaders.BlinkHelper;
+import input.SimpleController;
 import entities.misc.House;
 import constants.Characters;
 import flixel.util.FlxSignal;
@@ -245,6 +247,10 @@ class PlayState extends FlxTransitionableState {
 			if (level.identifier == "House_Lonk_1") {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 			}
+		}
+
+		if (SimpleController.just_pressed(Button.B)) {
+			BlinkHelper.Blink(player);
 		}
 
 

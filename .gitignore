@@ -6,6 +6,7 @@ fmod/CachedHaxeConstantsOutputLocation
 
 # FMOD
 fmod/.cache/
+fmod/.unsaved/
 
 # misc
 .VSCodeCounter/

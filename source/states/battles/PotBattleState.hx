@@ -1,5 +1,6 @@
 package states.battles;
 
+import shaders.BlinkHelper;
 import encounters.CharacterIndex;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import particles.Slash;
@@ -244,8 +245,9 @@ class PotBattleState extends EncounterBaseState {
 				attackTweens.push(() -> {
 					var t = new FlxTimer().start(localDelay, (t) -> {
 						FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerStrikeFinal);
+						BlinkHelper.Blink(potSprite, .1, 1);
 						FlxG.camera.shake(0.02, 0.1);
-						camera.flash(0.05);
+						// camera.flash(0.05);
 						var particle = new Slash(a.x, a.y);
 						particle.scale.set(FlxG.random.float(1, 5), FlxG.random.float(1, 5));
 						particle.scrollFactor.set();
