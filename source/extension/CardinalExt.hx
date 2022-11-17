@@ -20,7 +20,7 @@ class CardinalExt {
 		return NONE;
 	}
 
-	public static function asCleanVector(c:Cardinal, v:FlxVector) {
+	public static function asCleanVector(c:Cardinal, v:FlxVector = null) {
 		if (v == null) {
 			v = FlxVector.get();
 		}

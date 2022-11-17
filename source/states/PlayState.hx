@@ -177,6 +177,10 @@ class PlayState extends FlxTransitionableState {
 		for (eInteract in level.l_Entities.all_Interactable) {
 			// TODO: need to come up with a proper way to parse out unique interactables
 			var interact = InteractableFactory.make(eInteract);
+			if (interact == null) {
+				// this happens if this item was already collected/killed/etc (i.e. shouldn't show up again)
+				continue;
+			}
 			interactables.add(interact);
 			sortingLayer.add(interact);
 		}
@@ -188,21 +192,56 @@ class PlayState extends FlxTransitionableState {
 		var playerStart = FlxPoint.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
-			playerStart.set(spawnData.pixelX, spawnData.pixelY);
+			player = new Player(spawnData.pixelX, spawnData.pixelY);
 		} else {
 			var matches = doors.members.filter((d) -> d.iid == doorID);
 			if (matches.length != 1) {
 				throw 'expected door in level ${level.identifier} with iid ${doorID}, but got ${matches.length} matches';
 			}
-			playerStart.set(matches[0].x, matches[0].y);
+			var startDoor = matches[0];
+			startDoor.animation.play('opened');
+			playerStart.set(startDoor.x, startDoor.y);
 			var tmp = FlxVector.get();
+			playerStart.addPoint(startDoor.accessDir.opposite().asVector(tmp).scale(17));
 			// TODO: Likely will want to tween the player into the stage
-			playerStart.addPoint(matches[0].accessDir.asVector(tmp).scale(17));
-			tmp.put();
 
+			tmp.put();
 			playerStart.put();
+
+			player = new Player(playerStart.x, playerStart.y);
+
+			player.facing = startDoor.accessDir.asFacing();
+			player.lockControls = true;
+			player.persistentDirectionInfluence = startDoor.accessDir.asCleanVector();
+			player.allowCollisions = FlxObject.NONE;
+
+			var clip = FlxRect.get(startDoor.x, startDoor.y, 16, 16);
+			switch(startDoor.accessDir) {
+				case N:
+					clip.y -= player.frameHeight;
+					clip.height += player.frameHeight;
+				case S:
+					clip.y += 1; // for nice pixel clipping
+					clip.height += 16;
+				default:
+					FlxG.log.warn('found a door with a unhandled access dir: ${startDoor.accessDir}');
+			}
+
+			player.worldClip = clip;
+
+			// move the character slightly further than the edge of the door hitbox
+			new FlxTimer().start(37 / player.speed, (t) -> {
+				player.worldClip = null;
+				player.persistentDirectionInfluence.set();
+				startDoor.animation.play('close');
+				startDoor.animation.finishCallback = (n) -> {
+					startDoor.animation.play('closed');
+					playerInTransition = false;
+					player.lockControls = false;
+					player.allowCollisions = FlxObject.ANY;
+				}
+			});
 		}
-		player = new Player(playerStart.x, playerStart.y);
 		entities.add(player);
 		sortingLayer.add(player);
 
@@ -315,8 +354,8 @@ class PlayState extends FlxTransitionableState {
 			d.animation.finishCallback = (name) -> {
 				p.allowCollisions = FlxObject.NONE;
 				d.accessDir.opposite().asCleanVector(p.persistentDirectionInfluence);
-				var clip = FlxRect.get(d.x, d.y, 16, 16);
 				var walkDistance = 0.0;
+				var clip = FlxRect.get(d.x, d.y, 16, 16);
 				switch(d.accessDir) {
 					case N:
 						clip.y -= p.frameHeight;

@@ -47,8 +47,7 @@ class AlarmClockState extends EncounterBaseState {
 	override function create() {
 		super.create();
 
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=10>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<page/>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP</speed>");
-
+		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=100>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<page/>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP</speed>");
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
 		});
