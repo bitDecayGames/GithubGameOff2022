@@ -288,11 +288,6 @@ class PlayState extends FlxTransitionableState {
 			}
 		}
 
-		if (SimpleController.just_pressed(Button.B)) {
-			BlinkHelper.Blink(player);
-		}
-
-
 		FlxG.watch.addQuick("Active: ", playerActive);
 		if (!GlobalQuestState.WOKEN_FIRST_TIME){
 			GlobalQuestState.WOKEN_FIRST_TIME = true;
