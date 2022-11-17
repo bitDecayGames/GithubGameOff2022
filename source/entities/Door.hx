@@ -15,6 +15,7 @@ class Door extends FlxSprite {
 		super(data.cx * 16, data.cy * 16);
 		loadGraphic(AssetPaths.doorSheet__png, true, 32, 32);
 		animation.add('closed', [0]);
+		animation.add('close', [3, 2, 1], 5, false);
 		animation.add('open', [1, 2, 3], 5, false);
 		animation.add('opened', [3]);
 		animation.play('closed');

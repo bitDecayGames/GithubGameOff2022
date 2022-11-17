@@ -35,7 +35,16 @@ class NPC extends Interactable {
 		setSize(16, 16);
 		offset.set(5, 17);
 
-		facing = FlxObject.DOWN;
+		switch(data.f_Direction) {
+			case UP:
+				facing = FlxObject.UP;
+			case DOWN:
+				facing = FlxObject.DOWN;
+			case LEFT:
+				facing = FlxObject.LEFT;
+			case RIGHT:
+				facing = FlxObject.RIGHT;
+		}
 
 		addAnimation(Characters.IDLE_ANIM, [ 0 ], 8);
 		addAnimation(Characters.RUN_ANIM, [ for (i in 1...7) i ], 8);

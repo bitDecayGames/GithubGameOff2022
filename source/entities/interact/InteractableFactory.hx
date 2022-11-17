@@ -1,8 +1,14 @@
 package entities.interact;
 
 class InteractableFactory {
+	public static var defeated = new Map<String, Bool>();
+
 	public static function make(data:Entity_Interactable):Interactable {
 		var index:InteractIndex = data.f_Type.getIndex();
+		if (defeated.exists(data.f_Key)) {
+			return null;
+		}
+
 		switch(index) {
 			case ALARM_CLOCK:
 				return new AlarmClock(data);

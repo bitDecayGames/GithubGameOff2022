@@ -1,7 +1,7 @@
 package quest;
 
 class GlobalQuestState {
-	public static var SPEEDY_DEBUG = true;
+	public static var SPEEDY_DEBUG = false;
 
 	// Top level quest tracker
 	public static var currentQuest(default, set):QuestIndex = INTRO;
@@ -10,6 +10,7 @@ class GlobalQuestState {
 	// FLAGS OUT THE WAZOO
 	public static var DEFEATED_ALARM_CLOCK = false;
 	public static var WOKEN_FIRST_TIME = false;
+	public static var HAS_COMPASS = false;
 
 
 	public static function getCurrentQuestKey():String {
