@@ -10,7 +10,7 @@
 	},
 	"jsonVersion": "1.1.3",
 	"appBuildId": 458364,
-	"nextUid": 114,
+	"nextUid": 117,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -1902,6 +1902,35 @@
 					"allowedRefs": "OnlySame",
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "Doors",
+					"__type": "Array<EntityRef>",
+					"uid": 115,
+					"type": "F_EntityRef",
+					"isArray": true,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "RefLinkBetweenCenters",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "Any",
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		}
@@ -2097,7 +2126,7 @@
 									"entityIid": "a4623a70-5110-11ed-885d-537022919835",
 									"layerIid": "9e0a1531-5110-11ed-885d-a379c6c99faf",
 									"levelIid": "9e0a1530-5110-11ed-885d-bb33d4506b59",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["a4623a70-5110-11ed-885d-537022919835"]
@@ -2153,7 +2182,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -2176,10 +2205,21 @@
 							"height": 80,
 							"defUid": 109,
 							"px": [120,304],
-							"fieldInstances": [{ "__identifier": "HouseID", "__value": "Lonk", "__type": "String", "__tile": null, "defUid": 110, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["Lonk"]
-							}] }]
+							"fieldInstances": [
+								{ "__identifier": "HouseID", "__value": "Lonk", "__type": "String", "__tile": null, "defUid": 110, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Lonk"]
+								}] },
+								{ "__identifier": "Doors", "__value": [{
+									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
+									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
+									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
+								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
+								}] }
+							]
 						},
 						{
 							"__identifier": "NPC",
@@ -2198,9 +2238,9 @@
 									"id": "V_String",
 									"params": ["Woman"]
 								}] },
-								{ "__identifier": "show_for_quests", "__value": ["intro_2"], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [{
+								{ "__identifier": "show_for_quests", "__value": ["findLonk"], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["intro_2"]
+									"params": ["findLonk"]
 								}] },
 								{ "__identifier": "hide_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 103, "realEditorValues": [] },
 								{ "__identifier": "Direction", "__value": "LEFT", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 113, "realEditorValues": [{
@@ -3210,7 +3250,7 @@
 									"entityIid": "98b68eb0-5110-11ed-885d-7f964ebbede4",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["98b68eb0-5110-11ed-885d-7f964ebbede4"]
@@ -3238,7 +3278,7 @@
 									"entityIid": "27011a00-5110-11ed-885d-e99de2d31b8a",
 									"layerIid": "1dfe2010-5110-11ed-885d-e1f61e5a040e",
 									"levelIid": "1dfdf900-5110-11ed-885d-f121c4250586",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["27011a00-5110-11ed-885d-e99de2d31b8a"]
@@ -3266,7 +3306,7 @@
 									"entityIid": "77e7ae40-5110-11ed-9c25-3bcd8bc4238b",
 									"layerIid": "5ead65f1-5110-11ed-9c25-2526efa55a12",
 									"levelIid": "5ead65f0-5110-11ed-9c25-2388b65ea855",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["77e7ae40-5110-11ed-9c25-3bcd8bc4238b"]
@@ -3553,7 +3593,7 @@
 									"entityIid": "0f7b8690-5110-11ed-885d-e1091495bbf3",
 									"layerIid": "9e0a1531-5110-11ed-885d-a379c6c99faf",
 									"levelIid": "9e0a1530-5110-11ed-885d-bb33d4506b59",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0f7b8690-5110-11ed-885d-e1091495bbf3"]
@@ -3840,7 +3880,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -3868,7 +3908,7 @@
 									"entityIid": "1044c8d0-5110-11ed-8080-192d24f8367b",
 									"layerIid": "0230f6b0-5110-11ed-8080-1993689af92b",
 									"levelIid": "0230cfa0-5110-11ed-8080-e7a297986923",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1044c8d0-5110-11ed-8080-192d24f8367b"]
@@ -4404,7 +4444,7 @@
 									"entityIid": "0b825ec0-5110-11ed-8080-651fb30126e6",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0b825ec0-5110-11ed-8080-651fb30126e6"]
@@ -4442,11 +4482,11 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#94D9B3",
-							"iid": "fb4ed750-5110-11ed-9bc5-11baddd6cef2",
+							"iid": "4c3ea130-5110-11ed-8277-6ded909f0514",
 							"width": 16,
 							"height": 16,
 							"defUid": 24,
-							"px": [105,28],
+							"px": [104,28],
 							"fieldInstances": []
 						}
 					]
@@ -4876,7 +4916,7 @@
 									"entityIid": "71b5d5b0-5110-11ed-9c25-b77897ab52d7",
 									"layerIid": "9e0a1531-5110-11ed-885d-a379c6c99faf",
 									"levelIid": "9e0a1530-5110-11ed-885d-bb33d4506b59",
-									"worldIid": "e04caa90-5110-11ed-93c3-8b481955f130"
+									"worldIid": "a68fb0f0-5110-11ed-8277-17d2af0de09b"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["71b5d5b0-5110-11ed-9c25-b77897ab52d7"]

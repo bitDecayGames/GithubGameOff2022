@@ -46,7 +46,7 @@ class Player extends FlxSprite {
 		// Because we change the hitbox to 14x14 instead of 16x16, we create the sprite
 		// with a 1-pixel offset so it's aligned correctly with the map's 16x16 tiles
 		// NOTE: This _should_ just need to be 1, however, it looks proper with 2 pixels instead.
-		super(X + 2, Y + 2);
+		super(X + 3, Y + 2);
 		loadGraphic(AssetPaths.player__png, true, 26, 34);
 		setSize(12, 14);
 		offset.set(8, 14);

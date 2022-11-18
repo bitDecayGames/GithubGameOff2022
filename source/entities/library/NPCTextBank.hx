@@ -29,8 +29,9 @@ class NPCTextBank {
 			"intro_1" => [
 				"Cludd? He lives up North.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
 			],
-			"intro_2" => [
-				"I'm surprised Cludd let you borrow his <color id=keyItem>compass</color>!  <speed mod=.2>...</speed>Why is it pointing West -- aren't they supposed to point North?"
+			"findLonk_0" => [
+				"I'm surprised Cludd let you borrow his <color id=keyItem>compass</color>!  <speed mod=.2>...</speed>Why is it pointing West -- aren't they supposed to point North?",
+				"<cb val=sad/>Oh, the house? I heard the crash, too, and came out here to find this mess. Hard to say what happened."
 			]
 		]
 	];

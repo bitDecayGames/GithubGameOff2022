@@ -1,7 +1,6 @@
 package entities;
 
 import bitdecay.flixel.spacial.Cardinal;
-import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import helpers.LDTKEnum;
 

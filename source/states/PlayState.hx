@@ -148,9 +148,26 @@ class PlayState extends FlxTransitionableState {
 		for (eHouse in level.l_Entities.all_House) {
 			var house = new House(eHouse);
 			sortingLayer.add(house);
+
+			for (door in house.getDoors()) {
+				doors.add(door);
+				sortingLayer.add(door);
+			}
 		}
 
 		for (eDoor in level.l_Entities.all_Door) {
+			var found = false;
+			for (eHouse in level.l_Entities.all_House) {
+				for (doorRef in eHouse.f_Doors) {
+					if (doorRef.entityIid == eDoor.iid) {
+						found = true;
+					}
+				}
+			}
+			if (found) {
+				// this door is accounted for by house logic. Don't load it here
+				continue;
+			}
 			var door = new Door(eDoor);
 			doors.add(door);
 			sortingLayer.add(door);
