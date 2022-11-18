@@ -36,7 +36,7 @@ class PotBattleState extends EncounterBaseState {
 	var weakPointsGroup = new FlxTypedGroup<FlxSprite>();
 	var attackGroup = new FlxTypedGroup<FlxSprite>();
 
-	var dialog:CharacterDialog;
+	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
 	var fightCharacter:CharacterIndex;

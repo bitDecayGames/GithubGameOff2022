@@ -1,5 +1,6 @@
 package states.battles;
 
+import encounters.CharacterDialog;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
@@ -16,6 +17,8 @@ class EncounterBaseState extends FlxSubState {
 
 	// a flag to let us know when the state is done in regards to user input
 	public var complete = false;
+
+	var dialog:CharacterDialog;
 
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();

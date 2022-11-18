@@ -41,7 +41,7 @@ class AlarmClockState extends EncounterBaseState {
 	var hand:FlxSprite;
 	var handTween:FlxTween = null;
 
-	var dialog:CharacterDialog;
+	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
 	override function create() {

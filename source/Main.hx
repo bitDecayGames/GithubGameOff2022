@@ -23,8 +23,9 @@ import misc.FlxTextFactory;
 import openfl.display.Sprite;
 #if play
 import states.PlayState;
-#elseif pot_battle
-import states.battles.PotBattleState;
+#end
+#if testfight
+import states.TestEncounterState;
 #end
 
 class Main extends Sprite {
@@ -40,13 +41,16 @@ class Main extends Sprite {
 		var startingState:Class<FlxState> = SplashScreenState;
 		#if play
 		startingState = PlayState;
-		#elseif pot_battle
-		startingState = PotBattleState;
 		#else
 		if (Macros.isDefined("SKIP_SPLASH")) {
 			startingState = MainMenuState;
 		}
 		#end
+
+		#if testfight
+		startingState = TestEncounterState;
+		#end
+
 		addChild(new FlxGame(256, 244, startingState, 1, 60, 60, true, false));
 
 		FlxG.stage.quality = flash.display.StageQuality.LOW;
