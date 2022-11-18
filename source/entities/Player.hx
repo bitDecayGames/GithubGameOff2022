@@ -65,10 +65,6 @@ class Player extends FlxSprite {
 		interactionBox = new FlxObject(0, 0, 10, 10);
 	}
 
-	public static inline var GRASS = 1;
-	public static inline var BRICK = 2;
-	public static inline var DIRT = 3;
-
 	function addAnimationCallback():Void {
 		animation.callback = (name, frameNumber, frameIndex) -> {
 			if (StringTools.contains(name, '${Characters.RUN_ANIM}')) {
@@ -104,18 +100,43 @@ class Player extends FlxSprite {
 		}
 	}
 
-	function getTerrainIndex(footPosition:FlxPoint):Int {
-		return PlayState.ME.level.l_Terrain.getInt(Std.int(footPosition.x/16), Std.int(footPosition.y/16));
+	function getTerrainIndex(footPosition:FlxPoint):Enum_GroundType {
+		if (PlayState.ME.level.l_Ground.hasAnyTileAt(Std.int(footPosition.x/16), Std.int(footPosition.y/16))) {
+			// This is trash, but haven't found a better way to do it yet
+			var stack = PlayState.ME.level.l_Ground.getTileStackAt(Std.int(footPosition.x/16), Std.int(footPosition.y/16));
+			for (stackTile in stack) {
+				if (PlayState.ME.level.l_Ground.tileset.hasTag(stackTile.tileId, Carpet)) {
+					return Carpet;
+				}
+				if (PlayState.ME.level.l_Ground.tileset.hasTag(stackTile.tileId, Cobble)) {
+					return Cobble;
+				}
+				if (PlayState.ME.level.l_Ground.tileset.hasTag(stackTile.tileId, Grass)) {
+					return Grass;
+				}
+				if (PlayState.ME.level.l_Ground.tileset.hasTag(stackTile.tileId, Dirt)) {
+					return Dirt;
+				}
+				if (PlayState.ME.level.l_Ground.tileset.hasTag(stackTile.tileId, Wood)) {
+					return Wood;
+				}
+			}
+		}
+		return Dirt;
 	}
 
-	function playStepSound(terrainIndex:Int){
-		switch(terrainIndex) {
-			case GRASS:
+	function playStepSound(type:Enum_GroundType){
+		switch(type) {
+			case Carpet:
+				// TODO SFX: Carpet
+			case Cobble:
+				// TODO SFX: Cobble
+			case Grass:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrass);
-			case DIRT:
-				FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
-			case BRICK:
+			case Dirt:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepStone);
+			case Wood:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
 		};
 	}
 

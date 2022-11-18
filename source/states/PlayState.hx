@@ -140,10 +140,11 @@ class PlayState extends FlxTransitionableState {
 		collisionLayer.render().forEach((s) -> {
 			s.immovable = true;
 			s.updateHitbox();
+			s.visible = false;
 			collisions.add(s);
 		});
 
-		level.l_Terrain.render(terrain);
+		level.l_Ground.render(terrain);
 
 		for (eHouse in level.l_Entities.all_House) {
 			var house = new House(eHouse);
