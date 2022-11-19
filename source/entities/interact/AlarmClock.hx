@@ -1,10 +1,15 @@
 package entities.interact;
 
+import flixel.util.FlxTimer;
+import flixel.FlxSprite;
 import quest.GlobalQuestState;
 import states.PlayState;
 import states.battles.AlarmClockState;
 
 class AlarmClock extends Interactable {
+
+	var helperArrow:FlxSprite;
+
 	public function new(data:Entity_Interactable) {
 		super(data.pixelX, data.pixelY, ALARM_CLOCK);
 		loadGraphic(AssetPaths.clock__png, true, 16, 16);
@@ -23,6 +28,14 @@ class AlarmClock extends Interactable {
 				animation.play('blink');
 			}
 		});
+
+		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK){
+			helperArrow = new FlxSprite(x, y-56);
+			helperArrow.loadGraphic(AssetPaths.arrow_pointing__png, true, 16, 48);
+			helperArrow.animation.add("default", [0,1,2,3,4,5,6,7,8,9], 10);
+			helperArrow.animation.play("default");
+			PlayState.ME.uiHelpers.add(helperArrow);
+		}
 	}
 
 	override function interact() {
@@ -41,5 +54,9 @@ class AlarmClock extends Interactable {
 			}
 		};
 		PlayState.ME.startEncounter(substate);
+
+		if (helperArrow != null){
+			helperArrow.kill();
+		}
 	}
 }
