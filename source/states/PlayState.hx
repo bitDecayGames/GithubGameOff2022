@@ -22,6 +22,8 @@ import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 
+import entities.interact.AlarmClock;
+
 import bitdecay.flixel.debug.DebugDraw;
 import encounters.CharacterDialog;
 import entities.Door;
@@ -47,6 +49,7 @@ class PlayState extends FlxTransitionableState {
 	public var doors:FlxTypedGroup<Door>;
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
+	public var uiHelpers:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
 	public var level:LDTKProject_Level;
 
@@ -71,12 +74,14 @@ class PlayState extends FlxTransitionableState {
 		sortingLayer = new FlxTypedGroup<FlxSprite>();
 		terrain = new FlxSpriteGroup();
 		collisions = new FlxTypedGroup<FlxSprite>();
+		uiHelpers = new FlxTypedGroup<FlxSprite>();
 		entities = new FlxTypedGroup<FlxSprite>();
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
 		dialogs = new FlxGroup();
 		add(terrain);
 		add(collisions);
+		add(uiHelpers);
 		// add(entities);
 		// add(interactables);
 		// add(doors);
@@ -115,6 +120,10 @@ class PlayState extends FlxTransitionableState {
 			c.destroy();
 		});
 		interactables.clear();
+		uiHelpers.forEach((c) -> {
+			c.destroy();
+		});
+		uiHelpers.clear();
 		sortingLayer.clear();
 
 		level = project.getLevel(uid, id);
@@ -201,6 +210,7 @@ class PlayState extends FlxTransitionableState {
 				// this happens if this item was already collected/killed/etc (i.e. shouldn't show up again)
 				continue;
 			}
+
 			interactables.add(interact);
 			sortingLayer.add(interact);
 		}

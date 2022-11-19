@@ -12,7 +12,7 @@ class NPCTextBank {
 				"<cb val=happy />I see you're awake - Today is the big day!<page/>" +
 				"By<cb val=neutral /> the end of the week, you'll be an adventurer just like I used to be.<page/>" +
 				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.<page/>" +
-				"<cb val=happy />You see that <color id=keyItem>rubber pot</color> over there? Attack it swiftly. Aim for the <color id=hint>weak points</color>.<page/>",
+				"<cb val=happy />You see that <color id=keyItem>rubber pot</color> over there? Attack it swiftly. Aim for the <color id=hint>weak points</color>.<page/><cb val=informed_of_rubber_pot />",
 				"<cb val=mad /><shake>Obliterate it!</shake>",
 				"<cb val=neutral/>Keep trying until you've proven you can break it"
 			],
