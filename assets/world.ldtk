@@ -8155,6 +8155,31 @@
 									"params": ["DOWN"]
 								}] }
 							]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [6,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 91, "x": 0, "y": 100, "w": 50, "h": 50 },
+							"__smartColor": "#A45489",
+							"iid": "d8425100-5110-11ed-8191-5d1529ed88b6",
+							"width": 16,
+							"height": 16,
+							"defUid": 26,
+							"px": [96,32],
+							"fieldInstances": [
+								{ "__identifier": "character", "__value": "Lonk", "__type": "LocalEnum.Characters", "__tile": { "tilesetUid": 91, "x": 0, "y": 100, "w": 50, "h": 50 }, "defUid": 92, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Lonk"]
+								}] },
+								{ "__identifier": "show_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [] },
+								{ "__identifier": "hide_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 103, "realEditorValues": [] },
+								{ "__identifier": "Direction", "__value": "UP", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 113, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["UP"]
+								}] }
+							]
 						}
 					]
 				},

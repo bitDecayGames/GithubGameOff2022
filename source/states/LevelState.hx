@@ -52,21 +52,21 @@ class LevelState {
         
         if (cludd != null) {
             distanceFromCludd = FlxMath.distanceBetween(player, cludd);
-            // FlxG.watch.addQuick("Cludd distance: ", distanceFromCludd);
+            FlxG.watch.addQuick("Cludd distance: ", distanceFromCludd);
             distanceFromCludd-=16;
-            // FlxG.watch.addQuick("Cludd distance adjusted: ", distanceFromCludd);
+            FlxG.watch.addQuick("Cludd distance adjusted: ", distanceFromCludd);
             distanceFromCludd = FlxMath.maxInt(0, distanceFromCludd);
             distanceFromCludd = FlxMath.minInt(distanceFromCludd, 100);
-            // FlxG.watch.addQuick("Cludd distance bound: ", distanceFromCludd);
+            FlxG.watch.addQuick("Cludd distance bound: ", distanceFromCludd);
             snoreVolumeModifier = cast(1, Float) - (cast(distanceFromCludd, Float)/cast(100, Float));
-            // FlxG.watch.addQuick("Cludd sound modifer final: ", snoreVolumeModifier);
+            FlxG.watch.addQuick("Cludd sound modifer final: ", snoreVolumeModifier);
             FmodManager.SetEventParameterOnSound(cluddId, "SnoreVolume", snoreVolumeModifier);
         }
     }
 
     public function updateReferences() {
         
-        if (levelId == "House_Cludd_Main") {
+        if (levelId == "House_Cludd_Upstairs") {
             PlayState.ME.interactables.forEach((i) -> {
                 if (Std.isOfType(i, entities.npcs.Lonk)) {
                     cludd = cast(i, entities.npcs.Lonk);
@@ -103,7 +103,7 @@ class LevelState {
         }
     }
 	private function updateSfx() {
-        if (levelId == "House_Cludd_Main") {
+        if (levelId == "House_Cludd_Upstairs") {
             FmodManager.PlaySoundAndAssignId(FmodSFX.CluddSnore, cluddId);
         } else {
             FmodManager.StopSound(cluddId);
