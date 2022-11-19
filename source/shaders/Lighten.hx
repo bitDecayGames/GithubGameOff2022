@@ -39,6 +39,8 @@ class Lighten extends FlxShader
 
             if (distanceFromLightSource >= lightRadius) {
                 pixel = vec4(0, 0, 0, 1.0);
+            } else {
+                pixel = pixel * 0.33;
             }
 			gl_FragColor = pixel;
         }')

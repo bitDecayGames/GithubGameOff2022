@@ -10,6 +10,7 @@ class FmodSongs {
     public static inline var AwakenLullaby:String = "event:/Music/AwakenLullaby";
     public static inline var Battle:String = "event:/Music/Battle";
     public static inline var BattleWithAlarm:String = "event:/Music/BattleWithAlarm";
+    public static inline var Haunted:String = "event:/Music/Haunted";
     public static inline var LetsGo:String = "event:/Music/LetsGo";
     public static inline var Silence:String = "event:/Music/Silence";
 }

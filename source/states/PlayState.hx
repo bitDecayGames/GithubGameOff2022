@@ -1,5 +1,7 @@
 package states;
 
+import openfl.filters.ShaderFilter;
+import shaders.Lighten;
 import shaders.BlinkHelper;
 import input.SimpleController;
 import entities.misc.House;
@@ -52,6 +54,8 @@ class PlayState extends FlxTransitionableState {
 	public var uiHelpers:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
 	public var level:LDTKProject_Level;
+
+	public var levelState:LevelState;
 
 	var project = new LDTKProject();
 
@@ -277,39 +281,19 @@ class PlayState extends FlxTransitionableState {
 
 		camera.follow(player);
 
-		playSong(level);
-	}
-
-	// TODO Transitions when going through doors would be cool to do when link touches the door rather than when the new level is loaded
-	private function playSong(level:LDTKProject_Level) {
-		if(!FmodManager.IsSongPlaying()){
-			FmodManager.PlaySong(FmodSongs.Silence);
-		}
-
-		if (StringTools.startsWith(level.identifier, "House_Lonk")) {
-			if (!GlobalQuestState.WOKEN_FIRST_TIME){
-				FmodManager.PlaySongTransition(FmodSongs.AwakenLullaby);
-			} else if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
-				FmodManager.PlaySongTransition(FmodSFX.AlarmClock);
-				FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
-				if (level.identifier == "House_Lonk_1") {
-					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
-				}
-			} else if (GlobalQuestState.leftHouseFirstTime) {
-				FmodManager.PlaySong(FmodSongs.Awaken);
-			}
-		} else {
-			FmodManager.PlaySong(FmodSongs.Awaken);
-		}
+		levelState = LevelState.LoadLevelState(level);
 	}
 
 	override public function update(elapsed:Float) {
+
+		levelState.update();
+
 		// TODO: probably a better way of handling this
 		// dialogs.mem
 		playerActive = dialogCount == 0 && !playerInTransition;
 
 		// TODO terrible hack I sorry
-		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
+		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK && FmodManager.GetCurrentSongPath() == FmodSFX.AlarmClock) {
 			FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
 			if (level.identifier == "House_Lonk_1") {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
@@ -410,7 +394,13 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	public function startEncounter(encounterSubState:FlxSubState) {
+		camera.setFilters([]);
 		openSubState(encounterSubState);
+	}
+
+	override public function closeSubState():Void {
+		super.closeSubState();
+		levelState.updateShaders();
 	}
 
 	public function openDialog(dialog:CharacterDialog) {
