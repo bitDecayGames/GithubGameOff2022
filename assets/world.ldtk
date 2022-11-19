@@ -7932,7 +7932,7 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "House_compass_2",
+			"identifier": "House_Cludd_Upstairs",
 			"iid": "1dfdf900-5110-11ed-885d-f121c4250586",
 			"uid": 33,
 			"worldX": -432,
@@ -8145,7 +8145,7 @@
 									"entityIid": "1d2f15c0-5110-11ed-b865-cb3f18a680ee",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1d2f15c0-5110-11ed-b865-cb3f18a680ee"]
@@ -9894,7 +9894,7 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "Cludd_Basement",
+			"identifier": "House_Cludd_Basement",
 			"iid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
 			"uid": 122,
 			"worldX": -464,
@@ -10192,7 +10192,7 @@
 									"entityIid": "e4822440-5110-11ed-a2cf-f5af8e0762c5",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["e4822440-5110-11ed-a2cf-f5af8e0762c5"]
@@ -10220,7 +10220,7 @@
 									"entityIid": "88dd6b60-5110-11ed-b865-33f1c1e64239",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["88dd6b60-5110-11ed-b865-33f1c1e64239"]
@@ -10624,7 +10624,7 @@
 			"__neighbours": [{ "levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf", "levelUid": 123, "dir": "n" }]
 		},
 		{
-			"identifier": "Level_6",
+			"identifier": "House_Cludd_Main",
 			"iid": "6b621e00-5110-11ed-b865-d126fe92abdf",
 			"uid": 123,
 			"worldX": -480,
@@ -10634,7 +10634,7 @@
 			"pxHei": 224,
 			"__bgColor": "#696A79",
 			"bgColor": null,
-			"useAutoIdentifier": true,
+			"useAutoIdentifier": false,
 			"bgRelPath": null,
 			"bgPos": null,
 			"bgPivotX": 0.5,
@@ -10896,7 +10896,7 @@
 									"entityIid": "8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f"]
@@ -10924,7 +10924,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -10952,7 +10952,7 @@
 									"entityIid": "2033f150-5110-11ed-b865-ed9ae1676e1c",
 									"layerIid": "1dfe2010-5110-11ed-885d-e1f61e5a040e",
 									"levelIid": "1dfdf900-5110-11ed-885d-f121c4250586",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2033f150-5110-11ed-b865-ed9ae1676e1c"]
@@ -10980,7 +10980,7 @@
 									"entityIid": "458e2b00-5110-11ed-b865-fb521ddf4cbc",
 									"layerIid": "3af9e2b1-5110-11ed-b865-c7aef6c68607",
 									"levelIid": "3af9bba0-5110-11ed-b865-978c47b7b6e0",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["458e2b00-5110-11ed-b865-fb521ddf4cbc"]
@@ -11438,7 +11438,7 @@
 			"__neighbours": [ { "levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99", "levelUid": 122, "dir": "s" }, { "levelIid": "3af9bba0-5110-11ed-b865-978c47b7b6e0", "levelUid": 124, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_7",
+			"identifier": "House_Cludd_Side",
 			"iid": "3af9bba0-5110-11ed-b865-978c47b7b6e0",
 			"uid": 124,
 			"worldX": -128,
@@ -11448,7 +11448,7 @@
 			"pxHei": 128,
 			"__bgColor": "#696A79",
 			"bgColor": null,
-			"useAutoIdentifier": true,
+			"useAutoIdentifier": false,
 			"bgRelPath": null,
 			"bgPos": null,
 			"bgPivotX": 0.5,
@@ -11606,7 +11606,7 @@
 									"entityIid": "4359e5e0-5110-11ed-b865-95bc081880a4",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "27f97eb0-5110-11ed-b865-1f3fc1248a7d"
+									"worldIid": "01d9b4a0-5110-11ed-8191-330b7653ece6"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4359e5e0-5110-11ed-b865-95bc081880a4"]

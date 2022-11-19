@@ -66,7 +66,7 @@ class LevelState {
 
     public function updateReferences() {
         
-        if (levelId == "House_compass_1") {
+        if (levelId == "House_Cludd_Main") {
             PlayState.ME.interactables.forEach((i) -> {
                 if (Std.isOfType(i, entities.npcs.Lonk)) {
                     cludd = cast(i, entities.npcs.Lonk);
@@ -77,7 +77,7 @@ class LevelState {
 
     public function updateShaders() {
 
-        if (StringTools.startsWith(levelId, "House_compass")) {
+        if (StringTools.startsWith(levelId, "House_Cludd")) {
             lightenShader = new Lighten();
             lightenShader.iTime.value = [0];
             lightenShader.lightSourceX.value = [0];
@@ -103,7 +103,7 @@ class LevelState {
         }
     }
 	private function updateSfx() {
-        if (levelId == "House_compass_1") {
+        if (levelId == "House_Cludd_Main") {
             FmodManager.PlaySoundAndAssignId(FmodSFX.CluddSnore, cluddId);
         } else {
             FmodManager.StopSound(cluddId);
@@ -128,7 +128,7 @@ class LevelState {
 			} else if (GlobalQuestState.leftHouseFirstTime) {
 				FmodManager.PlaySong(FmodSongs.Awaken);
 			}
-        } else if (StringTools.startsWith(levelId, "House_compass")) {
+        } else if (StringTools.startsWith(levelId, "House_Cludd")) {
 			FmodManager.PlaySong(FmodSongs.Haunted);
 		} else {
 			FmodManager.PlaySong(FmodSongs.Awaken);
