@@ -1,5 +1,6 @@
 package states;
 
+import flixel.FlxCamera.FlxCameraFollowStyle;
 import shaders.BlinkHelper;
 import input.SimpleController;
 import entities.misc.House;
@@ -97,6 +98,7 @@ class PlayState extends FlxTransitionableState {
 
 	// loads the level with the given id, optionally spawning the player at the provided doorID
 	// Can provide either the uid int, or the iid string, but not both
+	@:access(flixel.FlxCamera)
 	function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
 		// clean up current level;
 		player = null;
@@ -146,12 +148,7 @@ class PlayState extends FlxTransitionableState {
 		var boundsHeight = Math.max(FlxG.height, collisionLayer.cHei * collisionLayer.gridSize);
 		FlxG.worldBounds.set(0, 0, boundsWidth, boundsHeight);
 		trace(FlxG.worldBounds);
-		collisionLayer.render().forEach((s) -> {
-			s.immovable = true;
-			s.updateHitbox();
-			s.visible = false;
-			collisions.add(s);
-		});
+		addCollisionsToWorld(collisionLayer);
 
 		level.l_Ground.render(terrain);
 
@@ -275,7 +272,22 @@ class PlayState extends FlxTransitionableState {
 		entities.add(player);
 		sortingLayer.add(player);
 
-		camera.follow(player);
+		camera.follow(player, FlxCameraFollowStyle.TOPDOWN_TIGHT);
+
+		if (level.pxWid < camera.width) {
+			camera.deadzone.x = 1;
+			camera.deadzone.width = FlxG.width - 2;
+			camera.scroll.x = -(FlxG.width - level.pxWid) / 2;
+		}
+
+		if (level.pxHei < camera.height) {
+			camera.deadzone.y = 1;
+			camera.deadzone.height = FlxG.height - 2;
+			camera.scroll.y = -(FlxG.height - level.pxHei) / 2;
+		}
+
+		// do this so our scroll start point is
+		camera._scrollTarget.set(camera.scroll.x, camera.scroll.y);
 
 		playSong(level);
 	}
@@ -304,6 +316,24 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	override public function update(elapsed:Float) {
+		#if cam_debug
+		if (FlxG.keys.pressed.J) {
+			camera.scroll.x--;
+		}
+		if (FlxG.keys.pressed.L) {
+			camera.scroll.x++;
+		}
+		if (FlxG.keys.pressed.I) {
+			camera.scroll.y--;
+		}
+		if (FlxG.keys.pressed.K) {
+			camera.scroll.y++;
+		}
+
+		DebugDraw.ME.drawCameraRect(camera.deadzone.x, camera.deadzone.y, camera.deadzone.width, camera.deadzone.height);
+		FlxG.watch.addQuick("cam scroll:", camera.scroll);
+		#end
+
 		// TODO: probably a better way of handling this
 		// dialogs.mem
 		playerActive = dialogCount == 0 && !playerInTransition;
@@ -424,6 +454,43 @@ class PlayState extends FlxTransitionableState {
 		if (dialogs.remove(dialog) != null) {
 			dialogCount--;
 		}
+	}
+
+	function addCollisionsToWorld(collisionLayer:levels.ldtk.Layer_Collisions) {
+		var checkPoint = FlxPoint.get();
+		var result = 0;
+		collisionLayer.render().forEach((s) -> {
+			s.immovable = true;
+			s.updateHitbox();
+			// Comment this line out if you want to render/debug collisions
+			s.visible = false;
+			collisions.add(s);
+			s.allowCollisions = FlxObject.ANY;
+			checkPoint.set(Std.int(s.x/8) + 1, Std.int(s.y/8));
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the right, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.RIGHT;
+			}
+			checkPoint.set(Std.int(s.x/8) - 1, Std.int(s.y/8));
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the left, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.LEFT;
+			}
+			checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) + 1);
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the bottom, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.DOWN;
+			}
+			checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) - 1);
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the top, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.UP;
+			}
+		});
 	}
 
 	override public function onFocusLost() {

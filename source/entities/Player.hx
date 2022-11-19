@@ -167,8 +167,10 @@ class Player extends FlxSprite {
 			clipRect = null;
 		}
 
+		#if footstep_debug
 		DebugDraw.ME.drawWorldRect(foot1.x-1, foot1.y-1, 2, 2, 0xFFFFFF);
 		DebugDraw.ME.drawWorldRect(foot2.x-1, foot2.y-1, 2, 2, 0xFFFFFF);
+		#end
 
 		if (!lockControls && PlayState.ME.playerActive) {
 			// Only check input direction if the game wants us to move

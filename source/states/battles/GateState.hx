@@ -32,6 +32,8 @@ class GateState extends EncounterBaseState {
 	var combo2:Combo;
 	var combo3:Combo;
 
+	var comboRollers = new Array<Combo>();
+
 	var comboIndex = 0;
 	var selectedCombo:Combo;
 	var cursor:FlxSprite;
@@ -61,9 +63,17 @@ class GateState extends EncounterBaseState {
 		lockBody.makeGraphic(100, 100, FlxColor.ORANGE);
 		lockBody.screenCenter();
 
+		lockLatch = new FlxSprite();
+		lockLatch.makeGraphic(75, 100, FlxColor.YELLOW);
+		lockLatch.setPosition(lockBody.x + 12, lockBody.y - 50);
+
+		// load our desired combo into the lock rollers here
 		combo1 = new Combo(lockBody, 0, 5);
 		combo2 = new Combo(lockBody, 1, 0);
 		combo3 = new Combo(lockBody, 2, 9);
+		comboRollers.push(combo1);
+		comboRollers.push(combo2);
+		comboRollers.push(combo3);
 
 		cursor = new FlxSprite();
 		cursor.y = lockBody.y + 50;
@@ -73,6 +83,7 @@ class GateState extends EncounterBaseState {
 		FlxSpriteUtil.drawLine(cursor, 24, 0, 24, 44);
 		FlxSpriteUtil.drawLine(cursor, 0, 44, 24, 44);
 
+		battleGroup.add(lockLatch);
 		battleGroup.add(lockBody);
 		battleGroup.add(combo1);
 		battleGroup.add(combo2);
@@ -90,6 +101,10 @@ class GateState extends EncounterBaseState {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+
+		if (!acceptInput) {
+			return;
+		}
 
 		if (SimpleController.just_pressed(LEFT)) {
 			comboIndex--;
@@ -115,6 +130,64 @@ class GateState extends EncounterBaseState {
 		} else if (SimpleController.just_pressed(DOWN)) {
 			selectedCombo.currentNum++;
 		}
+
+		if (SimpleController.just_pressed(A)) {
+			attemptOpen();
+		}
+	}
+
+	function attemptOpen() {
+		acceptInput = false;
+
+		for (roller in comboRollers) {
+			if (roller.currentNum != roller.magicNumber) {
+				doFail();
+				return;
+			}
+		}
+
+		doSuccess();
+	}
+
+	var failCount = 0;
+
+	function doFail() {
+		failCount++;
+		var rattleY = lockLatch.y-5;
+		FlxTween.tween(lockLatch, {y: rattleY}, 0.1, {
+			// ease: FlxEase.
+			type: FlxTweenType.PINGPONG,
+			onComplete: (t) -> {
+				// 6 is 3 cycles of open->close
+				if (t.executions == 6) {
+					t.cancel();
+
+					if (failCount >= 3) {
+						dialog.loadDialogLine('Only Cludd has the genius to unlock me! You will never get past me!');
+							dialog.textGroup.finishCallback = () -> {
+								transitionOut();
+							};
+							dialog.revive();
+					} else {
+						acceptInput = true;
+					}
+				}
+			}
+		});
+	}
+
+	function doSuccess() {
+		success = true;
+		var unlockY = lockLatch.y-50;
+		FlxTween.tween(lockLatch, {y: unlockY}, 1, {
+			ease: FlxEase.sineInOut,
+			onComplete: (t) -> {
+				if (PlayState.ME != null) {
+					PlayState.ME.eventSignal.dispatch("gate_unlocked");
+				}
+				transitionOut();
+			}
+		});
 	}
 
 	function checkSuccess():Bool {
@@ -135,6 +208,7 @@ class Combo extends FlxSprite {
 		magicNumber = magic;
 		super(relativeTo.x + 15 + (5 + 20)*index, baseY, AssetPaths.lockRoller__png);
 		this.index = index;
+		updateClip();
 	}
 
 	override function update(elapsed:Float) {
@@ -142,10 +216,7 @@ class Combo extends FlxSprite {
 
 		if (currentNum != lastNum) {
 			currentNum = FlxMath.wrap(currentNum, 0, 9);
-			// our zero is actually on the 3rd tile, so our scroll needs to be based on that position
-			var zeroY = 41 - 22; // we want the 41st pixel to be in the middle of our 44 pixel high window
-			y = baseY - zeroY - currentNum * 16;
-			clipRect = FlxRect.get(0, zeroY + currentNum * 16, width, 44);
+			updateClip();
 			lastNum = currentNum;
 
 			if (currentNum == magicNumber) {
@@ -154,5 +225,12 @@ class Combo extends FlxSprite {
 			}
 		}
 		// DebugDraw.ME.drawWorldRect(clipRect.x + x - offset.x, clipRect.y + y - offset.y, clipRect.width, clipRect.height);
+	}
+
+	function updateClip() {
+		// our zero is actually on the 3rd tile, so our scroll needs to be based on that position
+		var zeroY = 41 - 22; // we want the 41st pixel to be in the middle of our 44 pixel high window
+		y = baseY - zeroY - currentNum * 16;
+		clipRect = FlxRect.get(0, zeroY + currentNum * 16, width, 44);
 	}
 }
