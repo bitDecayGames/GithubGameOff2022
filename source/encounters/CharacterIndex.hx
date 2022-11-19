@@ -7,6 +7,7 @@ enum abstract CharacterIndex(Int) to Int from Int {
 	var CRAFTSMAN = 3;
 	var ALARM_CLOCK = 4;
 	var RUBBERPOT = 5;
+	var CLUDD = 6;
 
 	public function getAssetPackage():String {
 		switch(this) {
@@ -19,6 +20,8 @@ enum abstract CharacterIndex(Int) to Int from Int {
 				// TODO: Obviously this is wrong
 				return AssetPaths.player__png;
 			case LONK:
+				return AssetPaths.oldMan__png;
+			case CLUDD:
 				return AssetPaths.oldMan__png;
 			default:
 				// TODO: Obviously this is wrong

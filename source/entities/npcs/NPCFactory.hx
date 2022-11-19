@@ -24,6 +24,8 @@ class NPCFactory {
 				return new Lonk(data);
 			case WOMAN:
 				return new Helper(data);
+			case CLUDD:
+				return new Cludd(data);
 			default:
 				throw 'unknown npc entity ${data.f_character.getName()}';
 		}

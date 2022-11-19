@@ -274,19 +274,19 @@ class PlayState extends FlxTransitionableState {
 
 		camera.follow(player, FlxCameraFollowStyle.TOPDOWN_TIGHT);
 
-		if (level.pxWid < camera.width) {
+		if (level.pxWid <= camera.width) {
 			camera.deadzone.x = 1;
 			camera.deadzone.width = FlxG.width - 2;
 			camera.scroll.x = -(FlxG.width - level.pxWid) / 2;
 		}
 
-		if (level.pxHei < camera.height) {
+		if (level.pxHei <= camera.height) {
 			camera.deadzone.y = 1;
 			camera.deadzone.height = FlxG.height - 2;
 			camera.scroll.y = -(FlxG.height - level.pxHei) / 2;
 		}
 
-		// do this so our scroll start point is
+		// do this so our scroll start point is respected (it gets overriden otherwise and the camera is in the wrong)
 		camera._scrollTarget.set(camera.scroll.x, camera.scroll.y);
 
 		playSong(level);

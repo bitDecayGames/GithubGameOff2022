@@ -21,6 +21,7 @@ class CharacterDialog extends FlxGroup {
 	public var faster = false;
 	public var skipFirstPressCheck = true;
 
+	// TODO: need to handle dialog with no portrait
 	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
 
