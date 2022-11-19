@@ -1,5 +1,6 @@
 package states.battles;
 
+import quest.GlobalQuestState;
 import shaders.BlinkHelper;
 import encounters.CharacterIndex;
 import com.bitdecay.lucidtext.parse.TagLocation;

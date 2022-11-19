@@ -18,6 +18,11 @@ class Lonk extends NPC {
 	override public function handleTagCallback(tag:TagLocation) {
 		super.handleTagCallback(tag);
 
+		if (tag.tag == "cb" && tag.parsedOptions.val == "informed_of_rubber_pot") {
+			GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+			PlayState.ME.eventSignal.dispatch('informed_of_rubber_pot_event');
+		}
+		
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`
 		// //   value?
