@@ -148,12 +148,7 @@ class PlayState extends FlxTransitionableState {
 		var boundsHeight = Math.max(FlxG.height, collisionLayer.cHei * collisionLayer.gridSize);
 		FlxG.worldBounds.set(0, 0, boundsWidth, boundsHeight);
 		trace(FlxG.worldBounds);
-		collisionLayer.render().forEach((s) -> {
-			s.immovable = true;
-			s.updateHitbox();
-			s.visible = false;
-			collisions.add(s);
-		});
+		addCollisionsToWorld(collisionLayer);
 
 		level.l_Ground.render(terrain);
 
@@ -459,6 +454,43 @@ class PlayState extends FlxTransitionableState {
 		if (dialogs.remove(dialog) != null) {
 			dialogCount--;
 		}
+	}
+
+	function addCollisionsToWorld(collisionLayer:levels.ldtk.Layer_Collisions) {
+		var checkPoint = FlxPoint.get();
+		var result = 0;
+		collisionLayer.render().forEach((s) -> {
+			s.immovable = true;
+			s.updateHitbox();
+			// Comment this line out if you want to render/debug collisions
+			s.visible = false;
+			collisions.add(s);
+			s.allowCollisions = FlxObject.ANY;
+			checkPoint.set(Std.int(s.x/8) + 1, Std.int(s.y/8));
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the right, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.RIGHT;
+			}
+			checkPoint.set(Std.int(s.x/8) - 1, Std.int(s.y/8));
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the left, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.LEFT;
+			}
+			checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) + 1);
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the bottom, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.DOWN;
+			}
+			checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) - 1);
+			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+			if (result > 0) {
+				//collision to the top, so clean up this collision edge
+				s.allowCollisions = s.allowCollisions & ~FlxObject.UP;
+			}
+		});
 	}
 
 	override public function onFocusLost() {
