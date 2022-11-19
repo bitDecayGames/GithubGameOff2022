@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{aabbd75e-6d44-44aa-9e1b-ba9fb9779c8d}">
+		<property name="name">
+			<value>SnoreVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{da9bea1d-65f6-4eb5-8299-adf0fee0fa69}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{3c76c516-e483-49c1-97e8-718150dce9b4}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{3c76c516-e483-49c1-97e8-718150dce9b4}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

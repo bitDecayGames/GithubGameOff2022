@@ -1,5 +1,7 @@
 package states;
 
+import flixel.math.FlxMath;
+import entities.npcs.NPC;
 import flixel.FlxG;
 import flixel.util.FlxTimer;
 import entities.Player;
@@ -15,6 +17,12 @@ class LevelState {
 	var lightenShader:Lighten;
 	var lightFilter:ShaderFilter;
 
+    var cluddSnoring:Bool = false;
+    var cluddId:String = "CluddSnoring";
+    var cludd:NPC;
+    var distanceFromCludd:Int;
+    var snoreVolumeModifier:Float;
+
     var levelId:String;
 
     public function new(_levelId:String){
@@ -26,8 +34,10 @@ class LevelState {
 
     public static function LoadLevelState(level:LDTKProject_Level):LevelState {
         var levelState = new LevelState(level.identifier);
-        levelState.updateSong();
+        levelState.updateReferences();
         levelState.updateShaders();
+        levelState.updateSfx();
+        levelState.updateSong();
         return levelState;
     }
 
@@ -37,6 +47,31 @@ class LevelState {
             var screenPosition = camera.project(player.getMidpoint().subtract(1,4));
             lightenShader.lightSourceX.value = [screenPosition.x];
             lightenShader.lightSourceY.value = [screenPosition.y];
+        }
+
+        
+        if (cludd != null) {
+            distanceFromCludd = FlxMath.distanceBetween(player, cludd);
+            // FlxG.watch.addQuick("Cludd distance: ", distanceFromCludd);
+            distanceFromCludd-=16;
+            // FlxG.watch.addQuick("Cludd distance adjusted: ", distanceFromCludd);
+            distanceFromCludd = FlxMath.maxInt(0, distanceFromCludd);
+            distanceFromCludd = FlxMath.minInt(distanceFromCludd, 100);
+            // FlxG.watch.addQuick("Cludd distance bound: ", distanceFromCludd);
+            snoreVolumeModifier = cast(1, Float) - (cast(distanceFromCludd, Float)/cast(100, Float));
+            // FlxG.watch.addQuick("Cludd sound modifer final: ", snoreVolumeModifier);
+            FmodManager.SetEventParameterOnSound(cluddId, "SnoreVolume", snoreVolumeModifier);
+        }
+    }
+
+    public function updateReferences() {
+        
+        if (levelId == "House_compass_1") {
+            PlayState.ME.interactables.forEach((i) -> {
+                if (Std.isOfType(i, entities.npcs.Lonk)) {
+                    cludd = cast(i, entities.npcs.Lonk);
+                }
+            });
         }
     }
 
@@ -65,6 +100,13 @@ class LevelState {
             }, 0);
         } else {
             camera.setFilters([]);
+        }
+    }
+	private function updateSfx() {
+        if (levelId == "House_compass_1") {
+            FmodManager.PlaySoundAndAssignId(FmodSFX.CluddSnore, cluddId);
+        } else {
+            FmodManager.StopSound(cluddId);
         }
     }
 
