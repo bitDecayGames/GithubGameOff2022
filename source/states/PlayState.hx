@@ -1,5 +1,7 @@
 package states;
 
+import flixel.tweens.FlxTween;
+import shaders.MosaicManager;
 import flixel.math.FlxMath;
 import flixel.FlxCamera;
 import openfl.filters.ShaderFilter;
@@ -63,6 +65,9 @@ class PlayState extends FlxTransitionableState {
 
 	public var levelState:LevelState;
 
+	public var mosaicShaderManager:MosaicManager;
+	public var mosaicFilter:ShaderFilter;
+
 	var project = new LDTKProject();
 
 	var dialogCount = 0;
@@ -83,6 +88,9 @@ class PlayState extends FlxTransitionableState {
 		ME = this;
 		camera.bgColor = FlxColor.BLACK;
 		// FlxG.camera.pixelPerfectRender = true;
+
+		mosaicShaderManager = new MosaicManager();
+		mosaicFilter = new ShaderFilter(mosaicShaderManager.shader);
 
 		var dialogCamera = new FlxCamera();
 		dialogCamera.bgColor = FlxColor.TRANSPARENT;
@@ -396,9 +404,17 @@ class PlayState extends FlxTransitionableState {
 			var o2RefY = Obj2.y + Obj2.height;
 
 			if (Obj1 is Door) {
-				o1RefY = Obj1.y - 2;
+				switch (cast(Obj1, Door).accessDir) {
+					case E | W | N:
+						o1RefY = Obj1.y - 2;
+					default:
+				}
 			} else if (Obj2 is Door) {
-				o2RefY = Obj2.y - 2;
+				switch (cast(Obj2, Door).accessDir) {
+					case E | W | N:
+						o2RefY = Obj2.y - 2;
+					default:
+				}
 			}
 
 			return FlxSort.byValues(Order, o1RefY, o2RefY);
@@ -452,13 +468,11 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	public function startEncounter(encounterSubState:FlxSubState) {
-		camera.setFilters([]);
 		openSubState(encounterSubState);
 	}
 
 	override public function closeSubState():Void {
 		super.closeSubState();
-		levelState.updateShaders();
 	}
 
 	public function openDialog(dialog:CharacterDialog) {

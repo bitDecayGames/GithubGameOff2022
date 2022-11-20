@@ -27,7 +27,7 @@ class AlarmClockState extends EncounterBaseState {
 	private static var restSeconds = 0.75;
 	private static var finishYOffset = 11;
 	private static var handHoverY = 30;
-	private static var handXAccel = 40;
+	private static var handXAccel = 80;
 
 	var clock:FlxSprite;
 	var clockTween:FlxTween = null;

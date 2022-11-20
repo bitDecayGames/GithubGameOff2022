@@ -1,5 +1,7 @@
 package states.battles;
 
+import openfl.filters.BitmapFilter;
+import openfl.filters.ShaderFilter;
 import encounters.CharacterDialog;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
@@ -24,6 +26,8 @@ class EncounterBaseState extends FlxSubState {
 	var battleGroup:FlxGroup = new FlxGroup();
 	var transition:FlxSprite;
 
+	var restoreCamFilters:Array<BitmapFilter>;
+
 	public function new() {
 		super();
 	}
@@ -43,7 +47,7 @@ class EncounterBaseState extends FlxSubState {
 		battleGroup.add(bgImg);
 
 		transition = new FlxSprite();
-		transition.makeGraphic(1,1, FlxColor.BLUE);
+		transition.makeGraphic(1,1, FlxColor.BLACK);
 		transition.alpha = 0;
 		transition.scrollFactor.set();
 		transition.scale.set(FlxG.width, FlxG.height);
@@ -56,11 +60,16 @@ class EncounterBaseState extends FlxSubState {
 		transitionIn();
 	}
 
+	// gives us access to the camera's internal filter list so we can restore it later
+	@:access(flixel.FlxCamera)
 	public function transitionIn(onDone:()->Void = null) {
 		battleGroup.visible = false;
 		battleGroup.active = false;
 
-		FlxTween.tween(transition, { alpha: 1 }, {
+		var duration = 1.0;
+
+		// we do two separate tweens
+		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
 				FlxTween.tween(transition, { alpha: 0}, {
@@ -69,13 +78,32 @@ class EncounterBaseState extends FlxSubState {
 						if (onDone != null) onDone();
 					}
 				});
+				FlxTween.num(15, 0, duration, {}, function(v) {
+					PlayState.ME.mosaicShaderManager.setStrength(v, v);
+				}).onComplete = (t) -> {
+					// after transition is done, remove all filters
+					camera.setFilters([]);
+				};
 			}
 		});
+		// for start of transition, preserve any existing filters the game has active
+		restoreCamFilters = PlayState.ME.camera._filters;
+		var transitionFilters = restoreCamFilters.copy();
+		transitionFilters.push(PlayState.ME.mosaicFilter);
+		// start with our filter in addition to whatever the game had going
+		PlayState.ME.camera.setFilters(transitionFilters);
+		FlxTween.num(0, 15, duration, {}, function(v) {
+			PlayState.ME.mosaicShaderManager.setStrength(v, v);
+		}).onComplete = (t) -> {
+			// once we fully 'fade out', just use our mosaic filter
+			PlayState.ME.camera.setFilters([PlayState.ME.mosaicFilter]);
+		};
 	}
 
 	public function transitionOut(onDone:()->Void = null) {
 		complete = true;
-		FlxTween.tween(transition, { alpha: 1 }, {
+		var duration = 1.0;
+		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = false;
 				battleGroup.active = false;
@@ -85,7 +113,23 @@ class EncounterBaseState extends FlxSubState {
 						if (onDone != null) onDone();
 					}
 				});
+
+				var transitionFilters = restoreCamFilters.copy();
+				transitionFilters.push(PlayState.ME.mosaicFilter);
+				// Then use both filters as come back to the game
+				PlayState.ME.camera.setFilters(transitionFilters);
+				FlxTween.num(15, 0, duration, {}, function(v) {
+					PlayState.ME.mosaicShaderManager.setStrength(v, v);
+				}).onComplete = (t) -> {
+					// then finally restore the filters as they were before this encounter
+					PlayState.ME.camera.setFilters(restoreCamFilters);
+				};
 			}
+		});
+		// start with just our mosaicfilter
+		PlayState.ME.camera.setFilters([PlayState.ME.mosaicFilter]);
+		FlxTween.num(0, 15, duration, {}, function(v) {
+			PlayState.ME.mosaicShaderManager.setStrength(v, v);
 		});
 	}
 
