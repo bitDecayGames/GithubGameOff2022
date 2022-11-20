@@ -1,5 +1,9 @@
 package entities;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import entities.particles.ItemParticle;
+import flixel.util.FlxTimer;
 import quest.GlobalQuestState;
 import bitdecay.flixel.debug.DebugDraw;
 import flixel.math.FlxRect;
@@ -17,8 +21,9 @@ import entities.interact.Interactable;
 using extension.CardinalExt;
 
 class Player extends FlxSprite {
-	public static inline var SLEEP = 'sleep';
-	public static inline var STARTLED = 'startled';
+	public static inline var SLEEP = 'sleep_down';
+	public static inline var STARTLED = 'startled_down';
+	public static inline var ITEM_GET = 'itemget_down';
 
 	public var lockControls:Bool = false;
 	public var isInteracting = false;
@@ -36,6 +41,8 @@ class Player extends FlxSprite {
 	var tmp:FlxPoint = FlxPoint.get();
 	var foot1:FlxPoint = FlxPoint.get();
 	var foot2:FlxPoint = FlxPoint.get();
+
+	var heldItem:FlxSprite;
 
 	public function new(X:Float, Y:Float) {
 
@@ -56,6 +63,7 @@ class Player extends FlxSprite {
 		addAnimation(Characters.RUN_ANIM, [ for (i in 1...7) i ], 8);
 		animation.add(SLEEP, [24,25,26] , 8);
 		animation.add(STARTLED, [27] , 8);
+		animation.add(ITEM_GET, [33]);
 
 		addAnimationCallback();
 
@@ -63,6 +71,42 @@ class Player extends FlxSprite {
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
 
 		interactionBox = new FlxObject(0, 0, 10, 10);
+
+		PlayState.ME.eventSignal.add(handleEvent);
+	}
+
+	function handleEvent(e:String) {
+		if (e == "compassCollected") {
+			lockControls = true;
+			animation.play(ITEM_GET);
+			// TODO SFX: item gotted jingle
+			FmodManager.PlaySoundOneShot(FmodSFX.PotRebound);
+			heldItem = new ItemParticle(x + width/2, y-24, COMPASS);
+			FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
+				type: FlxTweenType.PINGPONG,
+				ease: FlxEase.sineInOut,
+			});
+			PlayState.ME.uiHelpers.add(heldItem);
+		}
+		if (e == "compassDropped") {
+			lockControls = true;
+			animation.play(STARTLED);
+			// TODO SFX: compass dropped / crash
+			FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+
+			if (heldItem != null) {
+				heldItem.kill();
+			}
+
+			new FlxTimer().start(2, (t) -> {
+				lockControls = false;
+				updateAnimations(true);
+			});
+		}
+	}
+
+	override function destroy() {
+		super.destroy();
 	}
 
 	function addAnimationCallback():Void {
@@ -218,9 +262,11 @@ class Player extends FlxSprite {
 		FlxG.watch.addQuick("player anim: ", animation.curAnim.name);
 	}
 
-	function updateAnimations() {
-		if (animation.curAnim.name == SLEEP || animation.curAnim.name == STARTLED) {
-			return;
+	function updateAnimations(force:Bool = false) {
+		if (!force) {
+			if (animation.curAnim.name == SLEEP || animation.curAnim.name == STARTLED || animation.curAnim.name == ITEM_GET) {
+				return;
+			}
 		}
 
 		// we are using 1 here due to weird "nearly zero" errors (likely from rotation of the cardinal vector)

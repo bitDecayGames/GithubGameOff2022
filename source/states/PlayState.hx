@@ -67,12 +67,17 @@ class PlayState extends FlxTransitionableState {
 	public var playerInTransition:Bool = false;
 
 	public var transitionSignal = new FlxTypedSignal<String->Void>();
+
+	// handle events for the current level. Cleared out on level load
 	public var eventSignal = new FlxTypedSignal<String->Void>();
+
+	// handle events. Please clean up after yourself as this is never emptied automatically
+	public var eventSignalPersistent = new FlxTypedSignal<String->Void>();
 
 	override public function create() {
 		super.create();
 		ME = this;
-		camera.bgColor = FlxColor.PINK;
+		camera.bgColor = FlxColor.BLACK;
 		// FlxG.camera.pixelPerfectRender = true;
 
 		var dialogCamera = new FlxCamera();
@@ -93,11 +98,11 @@ class PlayState extends FlxTransitionableState {
 		dialogs.cameras = [dialogCamera];
 		add(terrain);
 		add(collisions);
-		add(uiHelpers);
 		// add(entities);
 		// add(interactables);
 		// add(doors);
 		add(sortingLayer);
+		add(uiHelpers);
 		add(dialogs);
 
 		loadLevel(START_LEVEL);
@@ -113,6 +118,8 @@ class PlayState extends FlxTransitionableState {
 	function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
 		// clean up current level;
 		player = null;
+		// Clean up any event listeners between levels;
+		eventSignal.removeAll();
 		doors.forEach((d) -> {
 			d.destroy();
 		});

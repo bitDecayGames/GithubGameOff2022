@@ -22,7 +22,7 @@ class Lonk extends NPC {
 			GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
 			PlayState.ME.eventSignal.dispatch('informed_of_rubber_pot_event');
 		}
-		
+
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`
 		// //   value?
@@ -40,10 +40,5 @@ class Lonk extends NPC {
 		if (e == "rubberPotDefeated" && GlobalQuestState.getCurrentQuestKey() == "intro_0") {
 			GlobalQuestState.subQuest++;
 		}
-	}
-
-	override function destroy() {
-		super.destroy();
-		PlayState.ME.eventSignal.remove(handleEvent);
 	}
 }
