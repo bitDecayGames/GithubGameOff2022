@@ -173,11 +173,11 @@ class Player extends FlxSprite {
 	function playStepSound(type:Enum_GroundType){
 		switch(type) {
 			case Carpet:
-				// TODO SFX: Carpet
-			case Cobble:
-				// TODO SFX: Cobble
-			case Grass:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrass);
+			case Cobble:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepStone);
+			case Grass:
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrassReal);
 			case Dirt:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepStone);
 			case Wood:

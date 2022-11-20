@@ -38,6 +38,7 @@ class FmodSFX {
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";
+    public static inline var FootstepGrassReal:String = "event:/SFX/Player/FootstepGrassReal";
     public static inline var FootstepStone:String = "event:/SFX/Player/FootstepStone";
     public static inline var FootstepWood:String = "event:/SFX/Player/FootstepWood";
     public static inline var Typewriter:String = "event:/SFX/Typewriter/Typewriter";
