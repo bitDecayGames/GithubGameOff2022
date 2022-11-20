@@ -80,7 +80,7 @@ class Player extends FlxSprite {
 			lockControls = true;
 			animation.play(ITEM_GET);
 			// TODO SFX: item gotted jingle
-			FmodManager.PlaySoundOneShot(FmodSFX.PotRebound);
+			FmodManager.PlaySoundOneShot(FmodSFX.WorldCollectImportantDelay);
 			heldItem = new ItemParticle(x + width/2, y-24, COMPASS);
 			FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
 				type: FlxTweenType.PINGPONG,

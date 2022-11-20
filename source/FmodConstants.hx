@@ -41,4 +41,6 @@ class FmodSFX {
     public static inline var FootstepWood:String = "event:/SFX/Player/FootstepWood";
     public static inline var Typewriter:String = "event:/SFX/Typewriter/Typewriter";
     public static inline var TypeWriterSingleStroke:String = "event:/SFX/Typewriter/TypeWriterSingleStroke";
+    public static inline var WorldCollectImportant:String = "event:/SFX/World/WorldCollectImportant";
+    public static inline var WorldCollectImportantDelay:String = "event:/SFX/World/WorldCollectImportantDelay";
 }

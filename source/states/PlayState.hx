@@ -1,5 +1,6 @@
 package states;
 
+import flixel.math.FlxMath;
 import flixel.FlxCamera;
 import openfl.filters.ShaderFilter;
 import shaders.Lighten;
@@ -42,6 +43,9 @@ class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
 	private static inline var START_LEVEL = "House_Lonk_room_boy";
+
+	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "House_Cludd_Main"];
+	private var levelSelectionCursor = 0;
 
 	public var player:Player;
 
@@ -237,7 +241,11 @@ class PlayState extends FlxTransitionableState {
 		var playerStart = FlxVector.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
-			player = new Player(spawnData.pixelX, spawnData.pixelY);
+			if (spawnData != null){
+				player = new Player(spawnData.pixelX, spawnData.pixelY);
+			} else {
+				player = new Player(level.pxWid/2, level.pxHei/2);
+			}
 		} else {
 			var matches = doors.members.filter((d) -> d.iid == doorID);
 			if (matches.length != 1) {
@@ -311,6 +319,11 @@ class PlayState extends FlxTransitionableState {
 	override public function update(elapsed:Float) {
 
 		levelState.update();
+
+		if (FlxG.keys.justPressed.U) {
+			levelSelectionCursor = FlxMath.wrap(levelSelectionCursor+1, 0, LEVEL_ARRAY.length-1);
+			loadLevel(LEVEL_ARRAY[levelSelectionCursor]);
+		}
 
 		#if cam_debug
 		if (FlxG.keys.pressed.J) {

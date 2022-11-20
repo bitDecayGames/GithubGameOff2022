@@ -31,6 +31,7 @@ class Chest extends Interactable {
 	override function interact() {
 		if (!opened) {
 			// TODO SFX: chest open sound. Does this depend on the item inside?
+			FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
 			// TODO: Encounter code?
 			animation.play("open");
 			opened = true;
