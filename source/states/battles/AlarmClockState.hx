@@ -23,7 +23,7 @@ using zero.flixel.extensions.FlxPointExt;
 
 class AlarmClockState extends EncounterBaseState {
 	// midpoints can only be this far apart and still count as hitting the clock
-	private static var requiredAccuracyPixels = 20;
+	private static var requiredAccuracyPixels = 21;
 	private static var restSeconds = 0.75;
 	private static var finishYOffset = 11;
 	private static var handHoverY = 30;
@@ -171,6 +171,7 @@ class AlarmClockState extends EncounterBaseState {
 
 			GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 			GlobalQuestState.currentQuest = INTRO;
+			GlobalQuestState.subQuest = 2; // starting here to make editing the old structure easier
 		}
 	}
 

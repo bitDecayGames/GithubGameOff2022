@@ -1,5 +1,7 @@
 package states;
 
+import quest.QuestIndex;
+import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import shaders.MosaicManager;
 import flixel.math.FlxMath;
@@ -50,6 +52,7 @@ class PlayState extends FlxTransitionableState {
 	private var levelSelectionCursor = 0;
 
 	public var player:Player;
+	public var flavorText:FlxText;
 
 	// the sorting layer will hold anything we want sorted by it's positional y-value
 	public var sortingLayer:FlxTypedGroup<FlxSprite>;
@@ -122,6 +125,9 @@ class PlayState extends FlxTransitionableState {
 
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
+
+		flavorText = new FlxText(0, 0, 100, "Test String");
+		add(flavorText);
 	}
 
 	// loads the level with the given id, optionally spawning the player at the provided doorID
@@ -326,6 +332,7 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	override public function update(elapsed:Float) {
+		flavorText.text = GlobalQuestState.currentQuest.GetFlavorText();
 
 		levelState.update();
 

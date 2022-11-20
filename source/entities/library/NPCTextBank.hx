@@ -8,24 +8,31 @@ class NPCTextBank {
 	//    say at that point in the game. We'll have to talk about how we want to orgainize this
 	public static var all:Map<CharacterIndex, Map<String, Array<String>>> = [
 		LONK => [
-			"wake_up" => [
-				"Are you going to leave that alarm clock beeping all day?",
-				"Please go turn off your alarm."
+			"wake_up_0" => [
+				"Are you going to leave that alarm clock beeping all day?<cb val=turn_off_clock />"
 			],
-			"intro_0" => [
+			"wake_up_1" => [
+				"Go turn off your alarm..."
+			],
+			"intro_2" => [
 				"<cb val=happy />Today is the big day!<page/>" +
 				"By<cb val=neutral /> the end of the week, you'll be an adventurer just like I used to be.<page/>" +
 				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.<page/>" +
 				"<cb val=happy />You see that <color id=keyItem>rubber pot</color> over there? Attack it swiftly. Aim for the <color id=hint>weak points</color>.<page/><cb val=informed_of_rubber_pot />",
+			],
+			"intro_3" => [
 				"<cb val=mad /><shake>Obliterate it!</shake>",
 				"<cb val=neutral/>Keep trying until you've proven you can break it"
 			],
-			"intro_1" => [
+			"intro_4" => [
 				"<cb val=happy />Well done, Boy! You're ready to begin preparations. I need you to collect my <color id=keyItem>compass</color> from Cludd's house on the " +
-				"north side of town.",
+				"north side of town.<cb val=informed_of_compass />"
+			],
+			"intro_5" => [
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
-			"intro_2" => [
+			
+			"intro_6" => [
 				"<cb val=happy/>Excellent!"
 			]
 		],
