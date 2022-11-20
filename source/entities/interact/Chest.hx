@@ -1,5 +1,6 @@
 package entities.interact;
 
+import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
 import flixel.FlxSprite;
 import quest.GlobalQuestState;
@@ -33,14 +34,26 @@ class Chest extends Interactable {
 			// TODO: Encounter code?
 			animation.play("open");
 			opened = true;
-			dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.");
+			dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/>It<cb val=compassGet/> is glorious!<page/> <cb val=compassDrop/><pause t=1/>Oops.<pause t=1/> It is probably fine.");
 			PlayState.ME.openDialog(dialogBox);
 			InteractableFactory.collected.set(contentKey, true);
 			GlobalQuestState.HAS_COMPASS = true;
-			PlayState.ME.eventSignal.dispatch('compassCollected');
 		} else {
 			dialogBox.loadDialogLine("It is empty.");
 			PlayState.ME.openDialog(dialogBox);
+		}
+	}
+
+	override public function handleTagCallback(tag:TagLocation) {
+		super.handleTagCallback(tag);
+		if (tag.tag == "cb") {
+			if (tag.parsedOptions.val == "compassGet") {
+				PlayState.ME.eventSignal.dispatch('compassCollected');
+			}
+
+			if (tag.parsedOptions.val == "compassDrop") {
+				PlayState.ME.eventSignal.dispatch('compassDropped');
+			}
 		}
 	}
 }

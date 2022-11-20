@@ -26,7 +26,7 @@ class PotNormal extends Interactable {
 				InteractableFactory.defeated.set(data.f_Key, true);
 				// TODO: How to not respawn this if they come back
 				kill();
-				PlayState.ME.eventSignal.dispatch('compassCollected');
+				// PlayState.ME.eventSignal.dispatch('compassCollected');
 				// TODO: rejoice in your new compass!
 				// Should he drop the compass after holding it above his head? Causing it to only point west
 				// This would be a nice seque into our next quest
