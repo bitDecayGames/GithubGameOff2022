@@ -1,5 +1,8 @@
 package entities;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import entities.particles.ItemParticle;
 import flixel.util.FlxTimer;
 import quest.GlobalQuestState;
 import bitdecay.flixel.debug.DebugDraw;
@@ -39,6 +42,8 @@ class Player extends FlxSprite {
 	var foot1:FlxPoint = FlxPoint.get();
 	var foot2:FlxPoint = FlxPoint.get();
 
+	var heldItem:FlxSprite;
+
 	public function new(X:Float, Y:Float) {
 
 		if (GlobalQuestState.SPEEDY_DEBUG){
@@ -76,12 +81,22 @@ class Player extends FlxSprite {
 			animation.play(ITEM_GET);
 			// TODO SFX: item gotted jingle
 			FmodManager.PlaySoundOneShot(FmodSFX.PotRebound);
+			heldItem = new ItemParticle(x + width/2, y-24, COMPASS);
+			FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
+				type: FlxTweenType.PINGPONG,
+				ease: FlxEase.sineInOut,
+			});
+			PlayState.ME.uiHelpers.add(heldItem);
 		}
 		if (e == "compassDropped") {
 			lockControls = true;
 			animation.play(STARTLED);
 			// TODO SFX: compass dropped / crash
 			FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+
+			if (heldItem != null) {
+				heldItem.kill();
+			}
 
 			new FlxTimer().start(2, (t) -> {
 				lockControls = false;

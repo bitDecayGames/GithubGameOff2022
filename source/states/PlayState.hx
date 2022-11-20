@@ -98,11 +98,11 @@ class PlayState extends FlxTransitionableState {
 		dialogs.cameras = [dialogCamera];
 		add(terrain);
 		add(collisions);
-		add(uiHelpers);
 		// add(entities);
 		// add(interactables);
 		// add(doors);
 		add(sortingLayer);
+		add(uiHelpers);
 		add(dialogs);
 
 		loadLevel(START_LEVEL);
