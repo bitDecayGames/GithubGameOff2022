@@ -87,6 +87,7 @@ class Player extends FlxSprite {
 				ease: FlxEase.sineInOut,
 			});
 			PlayState.ME.uiHelpers.add(heldItem);
+			facing = FlxObject.DOWN;
 		}
 		if (e == "compassDropped") {
 			lockControls = true;
