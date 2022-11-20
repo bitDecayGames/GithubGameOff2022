@@ -33,6 +33,11 @@ class NPCTextBank {
 				"I'm surprised Cludd let you borrow his <color id=keyItem>compass</color>!  <speed mod=.2>...</speed>Why is it pointing West -- aren't they supposed to point North?",
 				"<cb val=sad/>Oh, the house? I heard the crash, too, and came out here to find this mess. Hard to say what happened."
 			]
+		],
+		CLUDD => [
+			"intro" => [
+				"ZzzzZzzzZzzz"
+			]
 		]
 	];
 }

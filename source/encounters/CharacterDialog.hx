@@ -21,10 +21,14 @@ class CharacterDialog extends FlxGroup {
 	public var faster = false;
 	public var skipFirstPressCheck = true;
 
+	var portraitMargins:Array<Float> = [5, 5, 60, 5];
+	var noPortraitMargins:Array<Float> = [5, 5, 5, 5];
+
+	// TODO: need to handle dialog with no portrait
 	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
 
-		options = new TypeOptions(AssetPaths.battleMenuSlice__png, [4, 4, 7, 8], [5, 5, 60, 5], 10);
+		options = new TypeOptions(AssetPaths.battleMenuSlice__png, [4, 4, 7, 8], expressionIndex != NONE ? portraitMargins : noPortraitMargins, 10);
 		options.checkPageConfirm = (delta) -> {
 			return SimpleController.just_pressed(A);
 		};
@@ -52,18 +56,23 @@ class CharacterDialog extends FlxGroup {
 			textGroup.options.modOps.speedMultiplier = 1;
 		}
 
-		portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
-		portrait.scrollFactor.set();
-		portrait.loadGraphic(expressionsAsset, true, 50, 50);
-		var rowLength = Std.int(portrait.graphic.width / 50);
-		characterIndex = expressionIndex * rowLength;
-		portrait.animation.frameIndex = characterIndex;
-
 		add(textGroup);
-		add(portrait);
+
+		if (expressionIndex != NONE) {
+			portrait = new FlxSprite(textGroup.bounds.x + 5, textGroup.bounds.top + (textGroup.bounds.bottom - textGroup.bounds.top) / 2 - 25);
+			portrait.scrollFactor.set();
+			portrait.loadGraphic(expressionsAsset, true, 50, 50);
+			var rowLength = Std.int(portrait.graphic.width / 50);
+			characterIndex = expressionIndex * rowLength;
+			portrait.animation.frameIndex = characterIndex;
+			add(portrait);
+		}
 	}
 
 	public function setExpression(e:Expression) {
+		if (portrait == null) {
+			return;
+		}
 		portrait.animation.frameIndex = characterIndex + e.asIndex();
 	}
 

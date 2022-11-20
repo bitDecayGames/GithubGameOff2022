@@ -1,6 +1,5 @@
 package entities.interact;
 
-import flixel.util.FlxTimer;
 import flixel.FlxSprite;
 import quest.GlobalQuestState;
 import states.PlayState;

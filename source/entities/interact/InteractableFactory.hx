@@ -2,6 +2,7 @@ package entities.interact;
 
 class InteractableFactory {
 	public static var defeated = new Map<String, Bool>();
+	public static var collected = new Map<String, Bool>();
 
 	public static function make(data:Entity_Interactable):Interactable {
 		var index:InteractIndex = data.f_Type.getIndex();
@@ -10,12 +11,16 @@ class InteractableFactory {
 		}
 
 		switch(index) {
+			case LOAD_TILE:
+				return new GenericInteractable(data);
 			case ALARM_CLOCK:
 				return new AlarmClock(data);
 			case POT_RUBBER:
 				return new PotRubber(data);
 			case POT_NORMAL:
 				return new PotNormal(data);
+			case CHEST:
+				return new Chest(data);
 			default:
 				throw 'unknown interactable entity ${data.f_Type.getName()}';
 		}

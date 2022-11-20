@@ -49,7 +49,7 @@ class LevelState {
             lightenShader.lightSourceY.value = [screenPosition.y];
         }
 
-        
+
         if (cludd != null) {
             distanceFromCludd = FlxMath.distanceBetween(player, cludd);
             FlxG.watch.addQuick("Cludd distance: ", distanceFromCludd);
@@ -65,7 +65,7 @@ class LevelState {
     }
 
     public function updateReferences() {
-        
+
         if (levelId == "House_Cludd_Upstairs") {
             PlayState.ME.interactables.forEach((i) -> {
                 if (Std.isOfType(i, entities.npcs.Lonk)) {
@@ -84,8 +84,10 @@ class LevelState {
             lightenShader.lightSourceY.value = [0];
             lightenShader.isShaderActive.value = [true];
             lightFilter = new ShaderFilter(lightenShader);
+            #if !disable_shader
             camera.setFilters([lightFilter]);
-            
+            #end
+
             var bigRadius = 50;
             var smallRadius = 49;
             lightenShader.lightRadius.value = [50];
