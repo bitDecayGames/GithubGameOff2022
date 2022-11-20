@@ -816,6 +816,7 @@
 			{ "id": "Pot", "tileId": 4, "color": 7373695, "__tileSrcRect": [0,50,50,50] },
 			{ "id": "Lonk", "tileId": 8, "color": 9409651, "__tileSrcRect": [0,100,50,50] },
 			{ "id": "Craftsman", "tileId": 12, "color": 11574421, "__tileSrcRect": [0,150,50,50] },
+			{ "id": "AlarmClock", "tileId": 16, "color": 3359795, "__tileSrcRect": [0,200,50,50] },
 			{ "id": "RubberPot", "tileId": 4, "color": 7833719, "__tileSrcRect": [0,50,50,50] },
 			{ "id": "Cludd", "tileId": 20, "color": 0, "__tileSrcRect": [0,250,50,50] }
 		], "iconTilesetUid": 91, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
@@ -7933,7 +7934,7 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "House_compass_2",
+			"identifier": "House_Cludd_Upstairs",
 			"iid": "1dfdf900-5110-11ed-885d-f121c4250586",
 			"uid": 33,
 			"worldX": -432,
@@ -8168,7 +8169,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 26,
-							"px": [104,38],
+							"px": [104,40],
 							"fieldInstances": [
 								{ "__identifier": "character", "__value": "Cludd", "__type": "LocalEnum.Characters", "__tile": { "tilesetUid": 91, "x": 0, "y": 250, "w": 50, "h": 50 }, "defUid": 92, "realEditorValues": [{
 									"id": "V_String",
@@ -9920,7 +9921,7 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "Cludd_Basement",
+			"identifier": "House_Cludd_Basement",
 			"iid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
 			"uid": 122,
 			"worldX": -464,
@@ -10650,7 +10651,7 @@
 			"__neighbours": [{ "levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf", "levelUid": 123, "dir": "n" }]
 		},
 		{
-			"identifier": "Level_6",
+			"identifier": "House_Cludd_Main",
 			"iid": "6b621e00-5110-11ed-b865-d126fe92abdf",
 			"uid": 123,
 			"worldX": -480,
@@ -10660,7 +10661,7 @@
 			"pxHei": 224,
 			"__bgColor": "#696A79",
 			"bgColor": null,
-			"useAutoIdentifier": true,
+			"useAutoIdentifier": false,
 			"bgRelPath": null,
 			"bgPos": null,
 			"bgPivotX": 0.5,
@@ -10686,7 +10687,7 @@
 					"layerDefUid": 18,
 					"pxOffsetX": 0,
 					"pxOffsetY": 0,
-					"visible": true,
+					"visible": false,
 					"optionalRules": [],
 					"intGridCsv": [
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -11229,7 +11230,7 @@
 						{ "px": [32,64], "src": [48,144], "f": 0, "t": 75, "d": [90] },
 						{ "px": [48,64], "src": [0,160], "f": 0, "t": 80, "d": [91] },
 						{ "px": [80,64], "src": [0,160], "f": 0, "t": 80, "d": [93] },
-						{ "px": [96,64], "src": [48,144], "f": 0, "t": 75, "d": [94] },
+						{ "px": [96,64], "src": [80,160], "f": 0, "t": 85, "d": [94] },
 						{ "px": [112,64], "src": [32,0], "f": 0, "t": 2, "d": [95] },
 						{ "px": [128,64], "src": [32,0], "f": 0, "t": 2, "d": [96] },
 						{ "px": [144,64], "src": [32,0], "f": 0, "t": 2, "d": [97] },
@@ -11464,7 +11465,7 @@
 			"__neighbours": [ { "levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99", "levelUid": 122, "dir": "s" }, { "levelIid": "3af9bba0-5110-11ed-b865-978c47b7b6e0", "levelUid": 124, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_7",
+			"identifier": "House_Cludd_Side",
 			"iid": "3af9bba0-5110-11ed-b865-978c47b7b6e0",
 			"uid": 124,
 			"worldX": -128,
@@ -11474,7 +11475,7 @@
 			"pxHei": 128,
 			"__bgColor": "#696A79",
 			"bgColor": null,
-			"useAutoIdentifier": true,
+			"useAutoIdentifier": false,
 			"bgRelPath": null,
 			"bgPos": null,
 			"bgPivotX": 0.5,
