@@ -128,12 +128,12 @@ class LevelState {
 					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 				}
 			} else if (GlobalQuestState.leftHouseFirstTime) {
-				FmodManager.PlaySong(FmodSongs.Awaken);
+				FmodManager.PlaySong(FmodSongs.AwakenSofterC);
 			}
         } else if (StringTools.startsWith(levelId, "House_Cludd")) {
 			FmodManager.PlaySong(FmodSongs.Haunted);
 		} else {
-			FmodManager.PlaySong(FmodSongs.Awaken);
+			FmodManager.PlaySong(FmodSongs.AwakenSofterC);
 		}
 	}
 }
