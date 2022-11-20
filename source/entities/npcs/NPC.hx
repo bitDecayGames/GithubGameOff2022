@@ -29,7 +29,7 @@ class NPC extends Interactable {
 	var chatIndex(default, set) = 0;
 
 	public function new(data:Entity_NPC) {
-		super(data.cx * Constants.TILE_SIZE, data.cy * Constants.TILE_SIZE, data.f_character.getIndex());
+		super(data.pixelX, data.pixelY, data.f_character.getIndex());
 		charIndex = data.f_character.getIndex();
 		loadGraphic(charIndex.getAssetPackage(), true, 26, 34);
 		setSize(16, 16);
@@ -65,6 +65,15 @@ class NPC extends Interactable {
 
 	override function interact() {
 		super.interact();
+		updateFacing();
+		updateQuestText();
+
+		// TODO: Do we want to have subclasses actually call this so that they can get the above functionality
+		// and perhaps be able to do something different besides just opening the dialog?
+		PlayState.ME.openDialog(dialogBox);
+	}
+
+	function updateFacing() {
 		var xDiff = x - PlayState.ME.player.x;
 		var yDiff = y - PlayState.ME.player.y;
 		if (Math.abs(xDiff) > Math.abs(yDiff)) {
@@ -80,7 +89,9 @@ class NPC extends Interactable {
 				facing = FlxObject.DOWN;
 			}
 		}
+	}
 
+	function updateQuestText() {
 		if (lastQuest != GlobalQuestState.getCurrentQuestKey()) {
 			lastQuest = GlobalQuestState.getCurrentQuestKey();
 			chatIndex = 0;
@@ -96,10 +107,6 @@ class NPC extends Interactable {
 			chatIndex = Math.round(FlxMath.bound(chatIndex, 0, questText.length-1));
 			dialogBox.loadDialogLine(questText[chatIndex++]);
 		}
-
-		// TODO: Do we want to have subclasses actually call this so that they can get the above functionality
-		// and perhaps be able to do something different besides just opening the dialog?
-		PlayState.ME.openDialog(dialogBox);
 	}
 
 	function addAnimation(baseName:String, frames:Array<Int>, rowLength:Int) {
