@@ -35,7 +35,7 @@ class Chest extends Interactable {
 			// TODO: Encounter code?
 			animation.play("open");
 			opened = true;
-			dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/>It<cb val=compassGet/> is glorious!<page/> <cb val=compassDrop/><pause t=1/>Oops.<pause t=1/> It is probably fine.");
+			dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/>It<cb val=compassGet/> is glorious!<page/> <cb val=compassDrop/><pause t=1/>Oops.<pause t=1/> It is probably fine.<page/>...<page/>No, it's broken");
 			PlayState.ME.openDialog(dialogBox);
 			InteractableFactory.collected.set(contentKey, true);
 			GlobalQuestState.HAS_COMPASS = true;

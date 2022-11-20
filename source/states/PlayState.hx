@@ -44,7 +44,7 @@ class PlayState extends FlxTransitionableState {
 
 	private static inline var START_LEVEL = "House_Lonk_room_boy";
 
-	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "House_Cludd_Main"];
+	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "Town_main", "House_Cludd_Main", "House_Cludd_Basement"];
 	private var levelSelectionCursor = 0;
 
 	public var player:Player;
@@ -320,7 +320,10 @@ class PlayState extends FlxTransitionableState {
 
 		levelState.update();
 
-		if (FlxG.keys.justPressed.U) {
+		if (FlxG.keys.justPressed.LBRACKET) {
+			levelSelectionCursor = FlxMath.wrap(levelSelectionCursor-1, 0, LEVEL_ARRAY.length-1);
+			loadLevel(LEVEL_ARRAY[levelSelectionCursor]);
+		} else if (FlxG.keys.justPressed.RBRACKET) {
 			levelSelectionCursor = FlxMath.wrap(levelSelectionCursor+1, 0, LEVEL_ARRAY.length-1);
 			loadLevel(LEVEL_ARRAY[levelSelectionCursor]);
 		}
