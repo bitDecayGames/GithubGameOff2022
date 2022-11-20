@@ -224,7 +224,9 @@ class Combo extends FlxSprite {
 				camera.shake();
 			}
 		}
-		// DebugDraw.ME.drawWorldRect(clipRect.x + x - offset.x, clipRect.y + y - offset.y, clipRect.width, clipRect.height);
+		#if encounter_debug
+		DebugDraw.ME.drawWorldRect(clipRect.x + x - offset.x, clipRect.y + y - offset.y, clipRect.width, clipRect.height);
+		#end
 	}
 
 	function updateClip() {

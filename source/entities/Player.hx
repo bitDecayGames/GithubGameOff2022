@@ -1,5 +1,6 @@
 package entities;
 
+import bitdecay.flixel.spacial.Cardinal;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import entities.particles.ItemParticle;
@@ -206,8 +207,9 @@ class Player extends FlxSprite {
 	override public function update(delta:Float) {
 		if (worldClip != null) {
 			clipRect = FlxRect.get(worldClip.x - x + offset.x, worldClip.y - y + offset.y, worldClip.width, worldClip.height);
+			#if door_debug
 			DebugDraw.ME.drawWorldRect(worldClip.x, worldClip.y, worldClip.width, worldClip.height);
-			// DebugDraw.ME.drawWorldRect(clipRect.x + x, clipRect.y + y, clipRect.width, clipRect.height, 0xFFFFFF);
+			#end
 		} else if (clipRect != null) {
 			clipRect = null;
 		}
@@ -252,9 +254,6 @@ class Player extends FlxSprite {
 		interactionBox.last.set(interactionBox.x, interactionBox.y);
 
 		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
-			// This seems wrong... not sure why, but it overlaps erroneously when the interaction box is to the right,
-			// or below the interactable
-			trace("attempting to interact");
 			isInteracting = false;
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
 		}
@@ -291,6 +290,11 @@ class Player extends FlxSprite {
 		}
 
 		FlxG.watch.addQuick('player set anim: ', animation.curAnim.name);
+	}
+
+	public function setIdleAnimation(dir:Cardinal) {
+		animation.play('${Characters.IDLE_ANIM}_${dir.asUDLR()}');
+		facing = dir.asFacing();
 	}
 
 	function playerInteracts(i:Interactable, other:FlxObject) {

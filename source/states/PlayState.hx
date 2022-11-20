@@ -340,6 +340,8 @@ class PlayState extends FlxTransitionableState {
 		}
 
 		DebugDraw.ME.drawCameraRect(camera.deadzone.x, camera.deadzone.y, camera.deadzone.width, camera.deadzone.height);
+		DebugDraw.ME.drawWorldRect(-5, -5, 10, 10);
+
 		FlxG.watch.addQuick("cam scroll:", camera.scroll);
 		#end
 
@@ -377,9 +379,6 @@ class PlayState extends FlxTransitionableState {
 
 		super.update(elapsed);
 
-		var cam = FlxG.camera;
-		DebugDraw.ME.drawWorldRect(-5, -5, 10, 10);
-
 		FlxG.overlap(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
 		FlxG.collide(interactables, player);
@@ -392,6 +391,12 @@ class PlayState extends FlxTransitionableState {
 		sortingLayer.sort((Order:Int, Obj1:FlxObject, Obj2:FlxObject) -> {
 			var o1RefY = Obj1.y + Obj1.height;
 			var o2RefY = Obj2.y + Obj2.height;
+
+			if (Obj1 is Door) {
+				o1RefY = Obj1.y - 2;
+			} else if (Obj2 is Door) {
+				o2RefY = Obj2.y - 2;
+			}
 
 			return FlxSort.byValues(Order, o1RefY, o2RefY);
 		});
@@ -408,6 +413,8 @@ class PlayState extends FlxTransitionableState {
 		} else if (d.accessDir.horizontal() && Math.abs(diff.y) > 1) {
 			p.oneFrameDirectionInfluence.set(0, diff.y);
 		} else {
+			// make the player face the door
+			p.setIdleAnimation(d.accessDir.opposite());
 			FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
 			transitionSignal.dispatch(d.destinationLevel);
 			playerInTransition = true;
