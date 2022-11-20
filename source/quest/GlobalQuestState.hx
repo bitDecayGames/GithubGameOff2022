@@ -1,10 +1,10 @@
 package quest;
 
 class GlobalQuestState {
-	public static var SPEEDY_DEBUG = true;
+	public static var SPEEDY_DEBUG = #if speedy_debug true #else false #end;
 
 	// Top level quest tracker
-	public static var currentQuest(default, set):QuestIndex = INTRO;
+	public static var currentQuest(default, set):QuestIndex = WAKE_UP;
 	public static var subQuest:Int = 0;
 
 	// FLAGS OUT THE WAZOO

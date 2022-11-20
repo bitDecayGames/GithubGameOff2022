@@ -10050,7 +10050,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "d8cef540-5110-11ed-be15-9bd85e340cea"
+									"worldIid": "0fc08aa0-5110-11ed-82a9-f3a25b63b41d"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -10078,7 +10078,7 @@
 									"entityIid": "1044c8d0-5110-11ed-8080-192d24f8367b",
 									"layerIid": "0230f6b0-5110-11ed-8080-1993689af92b",
 									"levelIid": "0230cfa0-5110-11ed-8080-e7a297986923",
-									"worldIid": "d8cef540-5110-11ed-be15-9bd85e340cea"
+									"worldIid": "0fc08aa0-5110-11ed-82a9-f3a25b63b41d"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1044c8d0-5110-11ed-8080-192d24f8367b"]
@@ -10106,10 +10106,7 @@
 									"id": "V_String",
 									"params": ["Lonk"]
 								}] },
-								{ "__identifier": "show_for_quests", "__value": ["intro"], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["intro"]
-								}] },
+								{ "__identifier": "show_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "hide_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 103, "realEditorValues": [] },
 								{ "__identifier": "Direction", "__value": "UP", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 113, "realEditorValues": [{
 									"id": "V_String",
@@ -10158,7 +10155,7 @@
 									"entityIid": "f82e54c0-5110-11ed-a2da-b15b111ce2ce",
 									"layerIid": "fcd02fb1-5110-11ed-9c25-59c17a37e470",
 									"levelIid": "fcd02fb0-5110-11ed-9c25-c161d5a1d5d7",
-									"worldIid": "d8cef540-5110-11ed-be15-9bd85e340cea"
+									"worldIid": "0fc08aa0-5110-11ed-82a9-f3a25b63b41d"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["f82e54c0-5110-11ed-a2da-b15b111ce2ce"]

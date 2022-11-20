@@ -8,8 +8,12 @@ class NPCTextBank {
 	//    say at that point in the game. We'll have to talk about how we want to orgainize this
 	public static var all:Map<CharacterIndex, Map<String, Array<String>>> = [
 		LONK => [
+			"wake_up" => [
+				"Are you going to leave that alarm clock beeping all day?",
+				"Please go turn off your alarm."
+			],
 			"intro_0" => [
-				"<cb val=happy />I see you're awake - Today is the big day!<page/>" +
+				"<cb val=happy />Today is the big day!<page/>" +
 				"By<cb val=neutral /> the end of the week, you'll be an adventurer just like I used to be.<page/>" +
 				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.<page/>" +
 				"<cb val=happy />You see that <color id=keyItem>rubber pot</color> over there? Attack it swiftly. Aim for the <color id=hint>weak points</color>.<page/><cb val=informed_of_rubber_pot />",

@@ -7,34 +7,40 @@ import states.battles.PotBattleState;
 import states.PlayState;
 
 class PotRubber extends Interactable {
-	
+
 	var helperArrow:FlxSprite;
 
 	public function new(data:Entity_Interactable) {
-		super(data.pixelX, data.pixelY, POT);
+		super(data.pixelX, data.pixelY, NONE);
 		loadGraphic(AssetPaths.interiorDecorations__png, true, 16, 16);
 		animation.frameIndex = 2;
 		immovable = true;
-		
+
 		PlayState.ME.eventSignal.add(handleEvent);
 
-		
+
 		if (GlobalQuestState.TALKED_TO_LONK_FIRST_TIME && !GlobalQuestState.DEFEATED_RUBBER_POT) {
 			spawnHelperArrow();
 		}
 	}
 
 	override function interact() {
-		FmodManager.StopSongImmediately();
-		FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
-		var substate = new PotBattleState(new CharacterDialog(POT, "Take your best shot"), RUBBERPOT);
-		PlayState.ME.startEncounter(substate);
-		substate.closeCallback = () -> {
-			if (substate.success) {
-				PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
-				GlobalQuestState.DEFEATED_RUBBER_POT = true;
-			}
-		};
+		if (!GlobalQuestState.TALKED_TO_LONK_FIRST_TIME) {
+			// if you haven't talked to Lonk, then this is just a pot!
+			dialogBox.loadDialogLine("It is a pot with an odd texture");
+			PlayState.ME.openDialog(dialogBox);
+		} else {
+			FmodManager.StopSongImmediately();
+			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
+			var substate = new PotBattleState(new CharacterDialog(POT, "Take your best shot"), RUBBERPOT);
+			PlayState.ME.startEncounter(substate);
+			substate.closeCallback = () -> {
+				if (substate.success) {
+					PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
+					GlobalQuestState.DEFEATED_RUBBER_POT = true;
+				}
+			};
+		}
 
 		if (helperArrow != null){
 			helperArrow.kill();

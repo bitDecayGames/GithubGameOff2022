@@ -170,6 +170,7 @@ class AlarmClockState extends EncounterBaseState {
 			});
 
 			GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+			GlobalQuestState.currentQuest = INTRO;
 		}
 	}
 
