@@ -22,7 +22,9 @@ class FmodSFX {
     public static inline var AlarmClockHit:String = "event:/SFX/Alarm/AlarmClockHit";
     public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
     public static inline var BattleStart:String = "event:/SFX/Battle/BattleStart";
+    public static inline var ChestOpen:String = "event:/SFX/Chest/ChestOpen";
     public static inline var CluddSnore:String = "event:/SFX/Cludd/CluddSnore";
+    public static inline var CompassBreak:String = "event:/SFX/Compass/CompassBreak";
     public static inline var DoorClose:String = "event:/SFX/Door/DoorClose";
     public static inline var DoorOpen:String = "event:/SFX/Door/DoorOpen";
     public static inline var PotDestroy:String = "event:/SFX/Enemies/Pot/PotDestroy";

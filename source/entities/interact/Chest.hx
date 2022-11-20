@@ -30,15 +30,16 @@ class Chest extends Interactable {
 
 	override function interact() {
 		if (!opened) {
-			// TODO SFX: chest open sound. Does this depend on the item inside?
-			FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
+			FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
 			// TODO: Encounter code?
-			animation.play("open");
-			opened = true;
-			dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/>It<cb val=compassGet/> is glorious!<page/> <cb val=compassDrop/><pause t=1/>Oops.<pause t=1/> It is probably fine.<page/>...<page/>No, it's broken");
-			PlayState.ME.openDialog(dialogBox);
-			InteractableFactory.collected.set(contentKey, true);
-			GlobalQuestState.HAS_COMPASS = true;
+			new FlxTimer().start(2, (t) -> {
+				animation.play("open");
+				opened = true;
+				dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It is probably fine.<page/>...<page/>No, it's broken");
+				PlayState.ME.openDialog(dialogBox);
+				InteractableFactory.collected.set(contentKey, true);
+				GlobalQuestState.HAS_COMPASS = true;
+			});
 		} else {
 			dialogBox.loadDialogLine("It is empty.");
 			PlayState.ME.openDialog(dialogBox);

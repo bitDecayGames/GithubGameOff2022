@@ -92,8 +92,7 @@ class Player extends FlxSprite {
 		if (e == "compassDropped") {
 			lockControls = true;
 			animation.play(STARTLED);
-			// TODO SFX: compass dropped / crash
-			FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+			FmodManager.PlaySoundOneShot(FmodSFX.CompassBreak);
 
 			if (heldItem != null) {
 				heldItem.kill();
