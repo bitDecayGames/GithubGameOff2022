@@ -227,7 +227,7 @@ class PlayState extends FlxTransitionableState {
 			throw('level ${level.identifier} has multiple spawns');
 		}
 
-		var playerStart = FlxPoint.get();
+		var playerStart = FlxVector.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
 			player = new Player(spawnData.pixelX, spawnData.pixelY);
@@ -239,18 +239,21 @@ class PlayState extends FlxTransitionableState {
 			var startDoor = matches[0];
 			startDoor.animation.play('opened');
 			playerStart.set(startDoor.x, startDoor.y);
-			var tmp = FlxVector.get();
-			playerStart.addPoint(startDoor.accessDir.opposite().asVector(tmp).scale(17));
+			var transitionStart = startDoor.accessDir.opposite().asVector().scale(17);
+			var transitionEnd = startDoor.getPosition().addPoint(startDoor.accessDir.asVector().scale(17));
+			playerStart.addPoint(transitionStart);
 			if (startDoor.accessDir == N) {
 				// make sure they walk in from fully off the screen (aka outside of the door)
 				// This number is magic and is the difference between the player hitbox height and the sprite height
 				playerStart.y += 20;
 			}
 
-			tmp.put();
-			playerStart.put();
-
 			player = new Player(playerStart.x, playerStart.y);
+
+			var walkDistance = playerStart.subtractPoint(transitionEnd).length;
+			playerStart.put();
+			transitionStart.put();
+			transitionEnd.put();
 
 			player.facing = startDoor.accessDir.asFacing();
 			player.lockControls = true;
@@ -263,7 +266,7 @@ class PlayState extends FlxTransitionableState {
 			playerInTransition = true;
 
 			// move the character slightly further than the edge of the door hitbox
-			new FlxTimer().start(37 / player.speed, (t) -> {
+			new FlxTimer().start(walkDistance / player.speed, (t) -> {
 				player.worldClip = null;
 				player.persistentDirectionInfluence.set();
 				startDoor.animation.play('close');
@@ -369,13 +372,6 @@ class PlayState extends FlxTransitionableState {
 		sortingLayer.sort((Order:Int, Obj1:FlxObject, Obj2:FlxObject) -> {
 			var o1RefY = Obj1.y + Obj1.height;
 			var o2RefY = Obj2.y + Obj2.height;
-
-			// some minor hacks to make sure doors render properly
-			if (Obj1 is Door) {
-				o1RefY = Obj1.y - 2;
-			} else if (Obj2 is Door) {
-				o2RefY = Obj2.y - 2;
-			}
 
 			return FlxSort.byValues(Order, o1RefY, o2RefY);
 		});

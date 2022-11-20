@@ -21,6 +21,8 @@ typedef ChatProgress = {
 class NPC extends Interactable {
 	private static var npcProgressTracker = new Map<CharacterIndex, ChatProgress>();
 
+	public var manualAnimations = false;
+
 	var charIndex:CharacterIndex;
 
 	// This just tracks the last quest we were on. If the quest changes, this will help us know to reset
@@ -128,7 +130,9 @@ class NPC extends Interactable {
 
 	override public function update(delta:Float) {
 		super.update(delta);
-		updateAnimations();
+		if (!manualAnimations) {
+			updateAnimations();
+		}
 	}
 
 	function updateAnimations() {
