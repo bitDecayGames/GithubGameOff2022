@@ -4225,6 +4225,42 @@
 									"params": ["DOWN"]
 								}] }
 							]
+						},
+						{
+							"__identifier": "House",
+							"__grid": [38,19],
+							"__pivot": [0.5,1],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#A279AF",
+							"iid": "2075e0e0-5110-11ed-be15-eb58fa51dfa2",
+							"width": 272,
+							"height": 96,
+							"defUid": 109,
+							"px": [616,320],
+							"fieldInstances": [
+								{ "__identifier": "HouseID", "__value": "house_cludd", "__type": "String", "__tile": null, "defUid": 110, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["house_cludd"]
+								}] },
+								{ "__identifier": "Doors", "__value": [ {
+									"entityIid": "e4822440-5110-11ed-a2cf-f5af8e0762c5",
+									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
+									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
+									"worldIid": "d8cef540-5110-11ed-be15-9bd85e340cea"
+								}, {
+									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
+									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
+									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
+									"worldIid": "d8cef540-5110-11ed-be15-9bd85e340cea"
+								} ], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [ {
+									"id": "V_String",
+									"params": ["e4822440-5110-11ed-a2cf-f5af8e0762c5"]
+								}, {
+									"id": "V_String",
+									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
+								} ] }
+							]
 						}
 					]
 				},
