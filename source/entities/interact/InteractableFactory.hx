@@ -11,6 +11,8 @@ class InteractableFactory {
 		}
 
 		switch(index) {
+			case LOAD_TILE:
+				return new GenericInteractable(data);
 			case ALARM_CLOCK:
 				return new AlarmClock(data);
 			case POT_RUBBER:

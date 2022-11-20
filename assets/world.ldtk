@@ -10,7 +10,7 @@
 	},
 	"jsonVersion": "1.1.3",
 	"appBuildId": 458364,
-	"nextUid": 125,
+	"nextUid": 126,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -572,6 +572,35 @@
 					"allowedRefs": "OnlySame",
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "Description",
+					"__type": "String",
+					"uid": 125,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "ValueOnly",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		},
@@ -821,6 +850,7 @@
 			{ "id": "Cludd", "tileId": 20, "color": 0, "__tileSrcRect": [0,250,50,50] }
 		], "iconTilesetUid": 91, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "Interactables", "uid": 96, "values": [
+			{ "id": "LoadTile", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AlarmClock", "tileId": 234, "color": 9796720, "__tileSrcRect": [160,224,16,16] },
 			{ "id": "Pot_rubber", "tileId": 270, "color": 4212048, "__tileSrcRect": [224,256,16,16] },
 			{ "id": "Pot_normal", "tileId": 272, "color": 9399401, "__tileSrcRect": [0,272,16,16] },
@@ -8182,6 +8212,78 @@
 									"params": ["LEFT"]
 								}] }
 							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [4,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "b8ab75a0-5110-11ed-a0b9-e7891b8f9095",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [64,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "A journal full of poor handwriting.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["A journal full of poor handwriting."]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [2,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "73302d80-5110-11ed-a0b9-6120938e194d",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [32,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Old bits of bacon sit alone on the side of the plate.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Old bits of bacon sit alone on the side of the plate."]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [4,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "9098dd40-5110-11ed-a0b9-05a165d5c20e",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [68,96],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "A lamp that has no bulb in it.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["A lamp that has no bulb in it."]
+								}] }
+							]
 						}
 					]
 				},
@@ -8763,7 +8865,8 @@
 								{ "__identifier": "Key", "__value": "rubber", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["rubber"]
-								}] }
+								}] },
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9270,7 +9373,8 @@
 									"id": "V_String",
 									"params": ["AlarmClock"]
 								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] }
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
 							]
 						},
 						{
@@ -10278,6 +10382,55 @@
 								{ "__identifier": "Key", "__value": "compass", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["compass"]
+								}] },
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [15,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "c4d116e0-5110-11ed-a0b9-b92aeb43dfa8",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [240,48],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "This hammer is very heavy.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["This hammer is very heavy."]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [6,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "d3dc8f70-5110-11ed-a0b9-65fa7bdc45b0",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [96,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "There is a circle without dust. Something recently left this table.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["There is a circle without dust. Something recently left this table."]
 								}] }
 							]
 						}
@@ -11015,6 +11168,30 @@
 								{ "__identifier": "AccessDirection", "__value": "LEFT", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 32, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["LEFT"]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [8,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "afe39370-5110-11ed-a0b9-3f0076d45ef2",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [128,64],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "The plate used to be clean, but it is dusty.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["The plate used to be clean, but it is dusty."]
 								}] }
 							]
 						}

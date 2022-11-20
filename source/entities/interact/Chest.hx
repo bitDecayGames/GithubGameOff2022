@@ -4,7 +4,6 @@ import flixel.util.FlxTimer;
 import flixel.FlxSprite;
 import quest.GlobalQuestState;
 import states.PlayState;
-import states.battles.AlarmClockState;
 
 class Chest extends Interactable {
 
@@ -12,7 +11,7 @@ class Chest extends Interactable {
 	var contentKey:String;
 
 	public function new(data:Entity_Interactable) {
-		super(data.pixelX, data.pixelY, ALARM_CLOCK);
+		super(data.pixelX, data.pixelY, NONE);
 		contentKey = data.f_Key;
 		loadGraphic(AssetPaths.chest__png, true, 16, 16);
 		animation.add('closed', [0]);
@@ -34,13 +33,13 @@ class Chest extends Interactable {
 			// TODO: Encounter code?
 			animation.play("open");
 			opened = true;
-			dialogBox.loadDialogLine("I am the holder of many things.");
+			dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.");
 			PlayState.ME.openDialog(dialogBox);
 			InteractableFactory.collected.set(contentKey, true);
 			GlobalQuestState.HAS_COMPASS = true;
 			PlayState.ME.eventSignal.dispatch('compassCollected');
 		} else {
-			dialogBox.loadDialogLine("I'm empty, just as you left me.");
+			dialogBox.loadDialogLine("It is empty.");
 			PlayState.ME.openDialog(dialogBox);
 		}
 	}

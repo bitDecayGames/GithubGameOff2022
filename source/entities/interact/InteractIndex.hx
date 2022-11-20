@@ -1,8 +1,9 @@
 package entities.interact;
 
 enum abstract InteractIndex(Int) to Int from Int {
-	var ALARM_CLOCK = 0;
-	var POT_RUBBER = 1;
-	var POT_NORMAL = 2;
-	var CHEST = 3;
+	var LOAD_TILE = 0;
+	var ALARM_CLOCK = 1;
+	var POT_RUBBER = 2;
+	var POT_NORMAL = 3;
+	var CHEST = 4;
 }

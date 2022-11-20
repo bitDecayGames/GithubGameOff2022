@@ -76,8 +76,8 @@ class PlayState extends FlxTransitionableState {
 		// FlxG.camera.pixelPerfectRender = true;
 
 		var dialogCamera = new FlxCamera();
-		FlxG.cameras.setDefaultDrawTarget(FlxG.camera, true);
-		// FlxG.cameras.add(dialogCamera, false);
+		dialogCamera.bgColor = FlxColor.TRANSPARENT;
+		FlxG.cameras.add(dialogCamera, false);
 
 		Lifecycle.startup.dispatch();
 
@@ -89,7 +89,8 @@ class PlayState extends FlxTransitionableState {
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
 		dialogs = new FlxGroup();
-		// dialogs.cameras = [dialogCamera];
+		// dialogs go to a second camera so shaders don't mess with them
+		dialogs.cameras = [dialogCamera];
 		add(terrain);
 		add(collisions);
 		add(uiHelpers);

@@ -84,7 +84,7 @@ class LevelState {
             lightenShader.lightSourceY.value = [0];
             lightenShader.isShaderActive.value = [true];
             lightFilter = new ShaderFilter(lightenShader);
-            // camera.setFilters([lightFilter]);
+            camera.setFilters([lightFilter]);
 
             var bigRadius = 50;
             var smallRadius = 49;
