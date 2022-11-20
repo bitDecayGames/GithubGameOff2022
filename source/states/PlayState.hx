@@ -241,7 +241,11 @@ class PlayState extends FlxTransitionableState {
 			playerStart.set(startDoor.x, startDoor.y);
 			var tmp = FlxVector.get();
 			playerStart.addPoint(startDoor.accessDir.opposite().asVector(tmp).scale(17));
-			// TODO: Likely will want to tween the player into the stage
+			if (startDoor.accessDir == N) {
+				// make sure they walk in from fully off the screen (aka outside of the door)
+				// This number is magic and is the difference between the player hitbox height and the sprite height
+				playerStart.y += 20;
+			}
 
 			tmp.put();
 			playerStart.put();
@@ -253,19 +257,10 @@ class PlayState extends FlxTransitionableState {
 			player.persistentDirectionInfluence = startDoor.accessDir.asCleanVector();
 			player.allowCollisions = FlxObject.NONE;
 
-			var clip = FlxRect.get(startDoor.x, startDoor.y, 16, 16);
-			switch(startDoor.accessDir) {
-				case N:
-					clip.y -= player.frameHeight;
-					clip.height += player.frameHeight;
-				case S:
-					clip.y += 1; // for nice pixel clipping
-					clip.height += 16;
-				default:
-					FlxG.log.warn('found a door with a unhandled access dir: ${startDoor.accessDir}');
-			}
-
+			var clip = startDoor.getClipRect();
 			player.worldClip = clip;
+
+			playerInTransition = true;
 
 			// move the character slightly further than the edge of the door hitbox
 			new FlxTimer().start(37 / player.speed, (t) -> {
@@ -366,20 +361,20 @@ class PlayState extends FlxTransitionableState {
 		FlxG.collide(collisions, player);
 		FlxG.collide(interactables, player);
 
+		sortTheSortingLayer();
+	}
+
+	function sortTheSortingLayer() {
 		// sort objects by their reference Y (typically bottom edge)
 		sortingLayer.sort((Order:Int, Obj1:FlxObject, Obj2:FlxObject) -> {
 			var o1RefY = Obj1.y + Obj1.height;
 			var o2RefY = Obj2.y + Obj2.height;
 
-			// some minor hacks to make sure doors facing north render properly
+			// some minor hacks to make sure doors render properly
 			if (Obj1 is Door) {
-				if (cast(Obj1, Door).accessDir == N) {
-					o1RefY = Obj1.y - 2;
-				}
+				o1RefY = Obj1.y - 2;
 			} else if (Obj2 is Door) {
-				if (cast(Obj2, Door).accessDir == N) {
-					o2RefY = Obj2.y - 2;
-				}
+				o2RefY = Obj2.y - 2;
 			}
 
 			return FlxSort.byValues(Order, o1RefY, o2RefY);
@@ -404,19 +399,19 @@ class PlayState extends FlxTransitionableState {
 			d.animation.finishCallback = (name) -> {
 				p.allowCollisions = FlxObject.NONE;
 				d.accessDir.opposite().asCleanVector(p.persistentDirectionInfluence);
+				var clip = d.getClipRect();
 				var walkDistance = 0.0;
-				var clip = FlxRect.get(d.x, d.y, 16, 16);
 				switch(d.accessDir) {
 					case N:
-						clip.y -= p.frameHeight;
-						clip.height += p.frameHeight;
-						walkDistance = Math.abs(clip.bottom - p.y) + p.height;
+						walkDistance = Math.abs(clip.bottom - player.y) + player.height;
+						// walkDistance = Math.abs(clip.bottom - player.y) + player.frameHeight;
 					case S:
-						clip.y += 1; // for nice pixel clipping
-						clip.height += 16;
-						walkDistance = Math.abs(clip.y - p.y) + p.height;
+						walkDistance = Math.abs(clip.y - player.y) + player.height;
+					case E:
+						walkDistance = 32;
+					case W:
+						walkDistance = 32;
 					default:
-						FlxG.log.warn('found a door with a unhandled access dir: ${d.accessDir}');
 				}
 				p.worldClip = clip;
 				new FlxTimer().start(walkDistance / p.speed, (t) -> {
