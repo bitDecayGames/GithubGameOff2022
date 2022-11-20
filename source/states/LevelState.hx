@@ -53,7 +53,7 @@ class LevelState {
         if (cludd != null) {
             distanceFromCludd = FlxMath.distanceBetween(player, cludd);
             FlxG.watch.addQuick("Cludd distance: ", distanceFromCludd);
-            distanceFromCludd-=16;
+            distanceFromCludd-=24;
             FlxG.watch.addQuick("Cludd distance adjusted: ", distanceFromCludd);
             distanceFromCludd = FlxMath.maxInt(0, distanceFromCludd);
             distanceFromCludd = FlxMath.minInt(distanceFromCludd, 100);
@@ -68,8 +68,8 @@ class LevelState {
 
         if (levelId == "House_Cludd_Upstairs") {
             PlayState.ME.interactables.forEach((i) -> {
-                if (Std.isOfType(i, entities.npcs.Lonk)) {
-                    cludd = cast(i, entities.npcs.Lonk);
+                if (Std.isOfType(i, entities.npcs.Cludd)) {
+                    cludd = cast(i, entities.npcs.Cludd);
                 }
             });
         }

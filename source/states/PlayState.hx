@@ -44,7 +44,7 @@ class PlayState extends FlxTransitionableState {
 
 	private static inline var START_LEVEL = "House_Lonk_room_boy";
 
-	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "Town_main", "House_Cludd_Main", "House_Cludd_Basement"];
+	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "Town_main", "House_Cludd_Main", "House_Cludd_Upstairs", "House_Cludd_Basement"];
 	private var levelSelectionCursor = 0;
 
 	public var player:Player;
@@ -285,6 +285,7 @@ class PlayState extends FlxTransitionableState {
 				player.worldClip = null;
 				player.persistentDirectionInfluence.set();
 				startDoor.animation.play('close');
+				FmodManager.PlaySoundOneShot(FmodSFX.DoorClose);
 				startDoor.animation.finishCallback = (n) -> {
 					startDoor.animation.play('closed');
 					playerInTransition = false;
@@ -355,7 +356,7 @@ class PlayState extends FlxTransitionableState {
 		// TODO terrible hack I sorry
 		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK && FmodManager.GetCurrentSongPath() == FmodSFX.AlarmClock) {
 			FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
-			if (level.identifier == "House_Lonk_1") {
+			if (level.identifier == "House_Lonk_1" || level.identifier == "House_Lonk_room_lonk") {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 			}
 		}

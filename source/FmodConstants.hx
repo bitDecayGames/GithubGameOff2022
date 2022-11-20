@@ -23,6 +23,7 @@ class FmodSFX {
     public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
     public static inline var BattleStart:String = "event:/SFX/Battle/BattleStart";
     public static inline var CluddSnore:String = "event:/SFX/Cludd/CluddSnore";
+    public static inline var DoorClose:String = "event:/SFX/Door/DoorClose";
     public static inline var DoorOpen:String = "event:/SFX/Door/DoorOpen";
     public static inline var PotDestroy:String = "event:/SFX/Enemies/Pot/PotDestroy";
     public static inline var PotPlayerAttemptStrike:String = "event:/SFX/Enemies/Pot/PotPlayerAttemptStrike";
@@ -41,6 +42,8 @@ class FmodSFX {
     public static inline var FootstepGrassReal:String = "event:/SFX/Player/FootstepGrassReal";
     public static inline var FootstepStone:String = "event:/SFX/Player/FootstepStone";
     public static inline var FootstepWood:String = "event:/SFX/Player/FootstepWood";
+    public static inline var StairsDown:String = "event:/SFX/Player/StairsDown";
+    public static inline var StairsUp:String = "event:/SFX/Player/StairsUp";
     public static inline var Typewriter:String = "event:/SFX/Typewriter/Typewriter";
     public static inline var TypeWriterSingleStroke:String = "event:/SFX/Typewriter/TypeWriterSingleStroke";
     public static inline var WorldCollectImportant:String = "event:/SFX/World/WorldCollectImportant";
