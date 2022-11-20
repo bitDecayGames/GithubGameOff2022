@@ -79,7 +79,9 @@ class EncounterBaseState extends FlxSubState {
 					}
 				});
 				FlxTween.num(15, 0, duration, {}, function(v) {
-					PlayState.ME.mosaicShaderManager.setStrength(v, v);
+					if (PlayState.ME != null) {
+						PlayState.ME.mosaicShaderManager.setStrength(v, v);
+					}
 				}).onComplete = (t) -> {
 					// after transition is done, remove all filters
 					camera.setFilters([]);
@@ -87,16 +89,22 @@ class EncounterBaseState extends FlxSubState {
 			}
 		});
 		// for start of transition, preserve any existing filters the game has active
-		restoreCamFilters = PlayState.ME.camera._filters;
-		var transitionFilters = restoreCamFilters.copy();
-		transitionFilters.push(PlayState.ME.mosaicFilter);
-		// start with our filter in addition to whatever the game had going
-		PlayState.ME.camera.setFilters(transitionFilters);
+		if (PlayState.ME != null) {
+			restoreCamFilters = PlayState.ME.camera._filters;
+			var transitionFilters = restoreCamFilters.copy();
+			transitionFilters.push(PlayState.ME.mosaicFilter);
+			// start with our filter in addition to whatever the game had going
+			PlayState.ME.camera.setFilters(transitionFilters);
+		}
 		FlxTween.num(0, 15, duration, {}, function(v) {
-			PlayState.ME.mosaicShaderManager.setStrength(v, v);
+			if (PlayState.ME != null) {
+				PlayState.ME.mosaicShaderManager.setStrength(v, v);
+			}
 		}).onComplete = (t) -> {
-			// once we fully 'fade out', just use our mosaic filter
-			PlayState.ME.camera.setFilters([PlayState.ME.mosaicFilter]);
+			if (PlayState.ME != null) {
+				// once we fully 'fade out', just use our mosaic filter
+				PlayState.ME.camera.setFilters([PlayState.ME.mosaicFilter]);
+			}
 		};
 	}
 
@@ -114,23 +122,31 @@ class EncounterBaseState extends FlxSubState {
 					}
 				});
 
-				var transitionFilters = restoreCamFilters.copy();
-				transitionFilters.push(PlayState.ME.mosaicFilter);
-				// Then use both filters as come back to the game
-				PlayState.ME.camera.setFilters(transitionFilters);
+				if (PlayState.ME != null) {
+					var transitionFilters = restoreCamFilters.copy();
+					transitionFilters.push(PlayState.ME.mosaicFilter);
+					// Then use both filters as come back to the game
+					PlayState.ME.camera.setFilters(transitionFilters);
+				}
 				FlxTween.num(15, 0, duration, {}, function(v) {
-					PlayState.ME.mosaicShaderManager.setStrength(v, v);
+					if (PlayState.ME != null) {
+						PlayState.ME.mosaicShaderManager.setStrength(v, v);
+					}
 				}).onComplete = (t) -> {
-					// then finally restore the filters as they were before this encounter
-					PlayState.ME.camera.setFilters(restoreCamFilters);
+					if (PlayState.ME != null) {
+						// then finally restore the filters as they were before this encounter
+						PlayState.ME.camera.setFilters(restoreCamFilters);
+					}
 				};
 			}
 		});
-		// start with just our mosaicfilter
-		PlayState.ME.camera.setFilters([PlayState.ME.mosaicFilter]);
-		FlxTween.num(0, 15, duration, {}, function(v) {
-			PlayState.ME.mosaicShaderManager.setStrength(v, v);
-		});
+		if (PlayState.ME != null) {
+			// start with just our mosaicfilter
+			PlayState.ME.camera.setFilters([PlayState.ME.mosaicFilter]);
+			FlxTween.num(0, 15, duration, {}, function(v) {
+				PlayState.ME.mosaicShaderManager.setStrength(v, v);
+			});
+		}
 	}
 
 	// var lines: [

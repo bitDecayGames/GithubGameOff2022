@@ -474,6 +474,7 @@ class PlayState extends FlxTransitionableState {
 
 	override public function closeSubState():Void {
 		super.closeSubState();
+		levelState = LevelState.LoadLevelState(level);
 	}
 
 	public function openDialog(dialog:CharacterDialog) {
