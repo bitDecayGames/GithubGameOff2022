@@ -121,7 +121,7 @@ class LevelState {
 		if (StringTools.startsWith(levelId, "House_Lonk")) {
 			if (!GlobalQuestState.WOKEN_FIRST_TIME){
 				FmodManager.PlaySongTransition(FmodSongs.AwakenLullaby);
-			} else if (!GlobalQuestState.DEFEATED_ALARM_CLOCK) {
+			} else if (!GlobalQuestState.DEFEATED_ALARM_CLOCK && FmodManager.GetCurrentSongPath() != FmodSongs.AwakenLullaby) {
 				FmodManager.PlaySongTransition(FmodSFX.AlarmClock);
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
 				if (levelId == "House_Lonk_1") {
