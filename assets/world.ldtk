@@ -4259,7 +4259,7 @@
 						},
 						{
 							"__identifier": "House",
-							"__grid": [39,19],
+							"__grid": [38,19],
 							"__pivot": [0.5,1],
 							"__tags": [],
 							"__tile": null,
@@ -4268,7 +4268,7 @@
 							"width": 240,
 							"height": 96,
 							"defUid": 109,
-							"px": [632,320],
+							"px": [616,320],
 							"fieldInstances": [
 								{ "__identifier": "HouseID", "__value": "house_cludd", "__type": "String", "__tile": null, "defUid": 110, "realEditorValues": [{
 									"id": "V_String",
