@@ -51,4 +51,16 @@ class Lonk extends NPC {
 			GlobalQuestState.subQuest++;
 		}
 	}
+
+	override function CheckDoor(d:Door):Bool {
+		// This needs more checks if we are to use it in a lot of places
+		if (!GlobalQuestState.TALKED_TO_LONK_FIRST_TIME) {
+			updateFacing(PlayState.ME.player);
+			dialogBox.loadDialogLine("Hold on there little buddy");
+			PlayState.ME.openDialog(dialogBox);
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

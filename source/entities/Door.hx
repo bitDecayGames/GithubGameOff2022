@@ -13,6 +13,8 @@ class Door extends FlxSprite {
 	public var destinationDoorID:String;
 	public var accessDir:Cardinal;
 
+	public var checks:Array<YayOrNay> = [];
+
 	public function new(data:Entity_Door) {
 		super(data.cx * 16, data.cy * 16);
 		loadGraphic(AssetPaths.doorSheet__png, true, 32, 32);
@@ -21,6 +23,8 @@ class Door extends FlxSprite {
 		destinationLevel = data.f_connection.levelIid;
 		destinationDoorID = data.f_connection.entityIid;
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
+
+		immovable = true;
 
 		switch(accessDir) {
 			case N | S:
@@ -84,5 +88,15 @@ class Door extends FlxSprite {
 				FlxG.log.warn('found a door with a unhandled access dir: ${accessDir}');
 		}
 		return clip;
+	}
+
+	// returns true if all checks pass, false otherwise
+	public function shouldPass():Bool {
+		for (ask in checks) {
+			if (!ask.CheckDoor(this)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

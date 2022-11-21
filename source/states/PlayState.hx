@@ -1,5 +1,6 @@
 package states;
 
+import flixel.text.FlxBitmapText;
 import quest.QuestIndex;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
@@ -52,7 +53,7 @@ class PlayState extends FlxTransitionableState {
 	private var levelSelectionCursor = 0;
 
 	public var player:Player;
-	public var flavorText:FlxText;
+	public var flavorText:FlxBitmapText;
 
 	// the sorting layer will hold anything we want sorted by it's positional y-value
 	public var sortingLayer:FlxTypedGroup<FlxSprite>;
@@ -125,9 +126,6 @@ class PlayState extends FlxTransitionableState {
 
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
-
-		flavorText = new FlxText(0, 0, 100, "Test String");
-		add(flavorText);
 	}
 
 	// loads the level with the given id, optionally spawning the player at the provided doorID
@@ -220,6 +218,15 @@ class PlayState extends FlxTransitionableState {
 			var npc = NPCFactory.make(eNPC);
 			if (npc != null) {
 				// we may get null back if the NPC shouldn't spawn based on the current quest
+
+				for (ownee in eNPC.f_Owns) {
+					for (door in doors) {
+						if (door.iid == ownee.entityIid) {
+							door.checks.push(npc);
+						}
+					}
+				}
+
 				interactables.add(npc);
 				sortingLayer.add(npc);
 			}
@@ -328,6 +335,11 @@ class PlayState extends FlxTransitionableState {
 		// do this so our scroll start point is respected (it gets overriden otherwise and the camera is in the wrong)
 		camera._scrollTarget.set(camera.scroll.x, camera.scroll.y);
 
+		// TODO: give this thing a nice little background thing
+		flavorText = new FlxBitmapText();
+		flavorText.scrollFactor.set();
+		uiHelpers.add(flavorText);
+
 		levelState = LevelState.LoadLevelState(level);
 	}
 
@@ -398,7 +410,7 @@ class PlayState extends FlxTransitionableState {
 
 		super.update(elapsed);
 
-		FlxG.overlap(doors, player, playerTouchDoor);
+		FlxG.collide(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
 		FlxG.collide(interactables, player);
 
@@ -440,6 +452,11 @@ class PlayState extends FlxTransitionableState {
 		} else if (d.accessDir.horizontal() && Math.abs(diff.y) > 1) {
 			p.oneFrameDirectionInfluence.set(0, diff.y);
 		} else {
+			if (!d.shouldPass()) {
+				// one of our checks failed and is preventing us from using this door
+				return;
+			}
+
 			// make the player face the door
 			p.setIdleAnimation(d.accessDir.opposite());
 			FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);

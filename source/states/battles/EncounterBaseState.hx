@@ -35,8 +35,6 @@ class EncounterBaseState extends FlxSubState {
 	override function create() {
 		super.create();
 
-		camera.bgColor = FlxColor.GRAY;
-
 		var bgImg = new FlxSprite();
 		bgImg.makeGraphic(1,1, FlxColor.BLACK);
 		bgImg.scrollFactor.set();

@@ -18,7 +18,7 @@ typedef ChatProgress = {
 	var chatIndex:Int;
 }
 
-class NPC extends Interactable {
+class NPC extends Interactable implements YayOrNay {
 	private static var npcProgressTracker = new Map<CharacterIndex, ChatProgress>();
 
 	public var manualAnimations = false;
@@ -67,7 +67,7 @@ class NPC extends Interactable {
 
 	override function interact() {
 		super.interact();
-		updateFacing();
+		updateFacing(PlayState.ME.player);
 		updateQuestText();
 
 		// TODO: Do we want to have subclasses actually call this so that they can get the above functionality
@@ -75,9 +75,9 @@ class NPC extends Interactable {
 		PlayState.ME.openDialog(dialogBox);
 	}
 
-	function updateFacing() {
-		var xDiff = x - PlayState.ME.player.x;
-		var yDiff = y - PlayState.ME.player.y;
+	function updateFacing(lookAt:FlxObject) {
+		var xDiff = x - lookAt.x;
+		var yDiff = y - lookAt.y;
 		if (Math.abs(xDiff) > Math.abs(yDiff)) {
 			if (xDiff > 0) {
 				facing = FlxObject.LEFT;
@@ -167,5 +167,10 @@ class NPC extends Interactable {
 	function set_lastQuest(value:String):String {
 		npcProgressTracker.get(charIndex).lastQuest = value;
 		return lastQuest = value;
+	}
+
+	//
+	public function CheckDoor(d:Door):Bool {
+		return false;
 	}
 }
