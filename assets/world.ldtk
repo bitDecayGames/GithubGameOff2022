@@ -10,7 +10,7 @@
 	},
 	"jsonVersion": "1.1.3",
 	"appBuildId": 458364,
-	"nextUid": 131,
+	"nextUid": 133,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -554,6 +554,64 @@
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "NameAndValue",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "QuestDoor",
+					"__type": "EntityRef",
+					"uid": 131,
+					"type": "F_EntityRef",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "RefLinkBetweenCenters",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "QuestNames",
+					"__type": "Array<String>",
+					"uid": 132,
+					"type": "F_String",
+					"isArray": true,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
 					"editorAlwaysShow": false,
 					"editorCutLongValues": true,
@@ -4542,7 +4600,20 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": {
+									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
+									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
+									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
+								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
+								}] },
+								{ "__identifier": "QuestNames", "__value": ["*"], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["*"]
+								}] }
 							]
 						},
 						{
@@ -4566,7 +4637,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -4619,7 +4690,7 @@
 									"entityIid": "abbeb5d0-5110-11ed-b865-49b30dc5cf98",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["abbeb5d0-5110-11ed-b865-49b30dc5cf98"]
@@ -4629,7 +4700,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -4653,7 +4726,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -4697,7 +4770,7 @@
 									"entityIid": "dec22d30-5110-11ed-b1a5-db7037541591",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["dec22d30-5110-11ed-b1a5-db7037541591"]
@@ -4713,7 +4786,9 @@
 								{ "__identifier": "Down", "__value": true, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [{
 									"id": "V_Bool",
 									"params": [ true ]
-								}] }
+								}] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -4753,7 +4828,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -4763,7 +4838,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -10180,7 +10257,7 @@
 									"entityIid": "1d2f15c0-5110-11ed-b865-cb3f18a680ee",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1d2f15c0-5110-11ed-b865-cb3f18a680ee"]
@@ -10190,7 +10267,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -10766,7 +10845,7 @@
 					"layerDefUid": 23,
 					"pxOffsetX": 0,
 					"pxOffsetY": 0,
-					"visible": false,
+					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [],
 					"autoLayerTiles": [],
@@ -10791,7 +10870,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -10801,7 +10880,23 @@
 									"params": ["UP"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": {
+									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
+									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
+									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
+								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
+								}] },
+								{ "__identifier": "QuestNames", "__value": [ "wake_up", "intro" ], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [ {
+									"id": "V_String",
+									"params": ["wake_up"]
+								}, {
+									"id": "V_String",
+									"params": ["intro"]
+								} ] }
 							]
 						},
 						{
@@ -10821,7 +10916,7 @@
 									"entityIid": "1044c8d0-5110-11ed-8080-192d24f8367b",
 									"layerIid": "0230f6b0-5110-11ed-8080-1993689af92b",
 									"levelIid": "0230cfa0-5110-11ed-8080-e7a297986923",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1044c8d0-5110-11ed-8080-192d24f8367b"]
@@ -10831,7 +10926,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -10861,7 +10958,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -10909,7 +11006,7 @@
 									"entityIid": "f82e54c0-5110-11ed-a2da-b15b111ce2ce",
 									"layerIid": "fcd02fb1-5110-11ed-9c25-59c17a37e470",
 									"levelIid": "fcd02fb0-5110-11ed-9c25-c161d5a1d5d7",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["f82e54c0-5110-11ed-a2da-b15b111ce2ce"]
@@ -10919,7 +11016,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -11451,7 +11550,7 @@
 									"entityIid": "0b825ec0-5110-11ed-8080-651fb30126e6",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0b825ec0-5110-11ed-8080-651fb30126e6"]
@@ -11461,7 +11560,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -11906,7 +12007,7 @@
 									"entityIid": "fabc2b90-5110-11ed-a2da-6d6fc610a053",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["fabc2b90-5110-11ed-a2da-6d6fc610a053"]
@@ -11916,7 +12017,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						}
 					]
@@ -12439,7 +12542,7 @@
 									"entityIid": "88dd6b60-5110-11ed-b865-33f1c1e64239",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["88dd6b60-5110-11ed-b865-33f1c1e64239"]
@@ -12449,7 +12552,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -12541,7 +12646,7 @@
 									"entityIid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d74202b0-5110-11ed-b1a5-37d6bd9facae"]
@@ -12554,7 +12659,9 @@
 									"id": "V_Bool",
 									"params": [ true ]
 								}] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						}
 					]
@@ -13201,7 +13308,7 @@
 									"entityIid": "8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f"]
@@ -13211,7 +13318,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -13231,7 +13340,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -13241,7 +13350,9 @@
 									"params": ["UP"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -13261,7 +13372,7 @@
 									"entityIid": "2033f150-5110-11ed-b865-ed9ae1676e1c",
 									"layerIid": "1dfe2010-5110-11ed-885d-e1f61e5a040e",
 									"levelIid": "1dfdf900-5110-11ed-885d-f121c4250586",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2033f150-5110-11ed-b865-ed9ae1676e1c"]
@@ -13271,7 +13382,9 @@
 									"params": ["DOWN"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -13291,7 +13404,7 @@
 									"entityIid": "458e2b00-5110-11ed-b865-fb521ddf4cbc",
 									"layerIid": "3af9e2b1-5110-11ed-b865-c7aef6c68607",
 									"levelIid": "3af9bba0-5110-11ed-b865-978c47b7b6e0",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["458e2b00-5110-11ed-b865-fb521ddf4cbc"]
@@ -13301,7 +13414,9 @@
 									"params": ["LEFT"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						},
 						{
@@ -13997,7 +14112,7 @@
 									"entityIid": "4359e5e0-5110-11ed-b865-95bc081880a4",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+									"worldIid": "88a22ab0-5110-11ed-a429-fd1f14d21042"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4359e5e0-5110-11ed-b865-95bc081880a4"]
@@ -14007,7 +14122,9 @@
 									"params": ["RIGHT"]
 								}] },
 								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
+								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
 							]
 						}
 					]

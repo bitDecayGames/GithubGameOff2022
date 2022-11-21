@@ -15,6 +15,9 @@ class House extends FlxSprite {
 			case "Lonk":
 				asset = GlobalQuestState.HAS_COMPASS ? AssetPaths.lonkBurned__png : AssetPaths.lonk__png;
 				yOffset = 16;
+			case "LonksNewHouse":
+				asset = AssetPaths.lonk__png;
+				yOffset = 16;
 			case "house_cludd":
 				asset = AssetPaths.cludds__png;
 				yOffset = 16;

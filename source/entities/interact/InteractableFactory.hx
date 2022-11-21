@@ -22,7 +22,8 @@ class InteractableFactory {
 			case CHEST:
 				return new Chest(data);
 			default:
-				throw 'unknown interactable entity ${data.f_Type.getName()}';
+				return new Chest(data);
+				// throw 'unknown interactable entity ${data.f_Type.getName()}';
 		}
 	}
 }
