@@ -4174,7 +4174,7 @@
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [59,28],
+							"__grid": [48,37],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": { "tilesetUid": 91, "x": 0, "y": 0, "w": 50, "h": 50 },
@@ -4183,7 +4183,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 26,
-							"px": [944,448],
+							"px": [768,592],
 							"fieldInstances": [
 								{ "__identifier": "character", "__value": "Woman", "__type": "LocalEnum.Characters", "__tile": { "tilesetUid": 91, "x": 0, "y": 0, "w": 50, "h": 50 }, "defUid": 92, "realEditorValues": [{
 									"id": "V_String",
@@ -4194,9 +4194,9 @@
 									"params": ["findLonk"]
 								}] },
 								{ "__identifier": "hide_for_quests", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "Direction", "__value": "LEFT", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 113, "realEditorValues": [{
+								{ "__identifier": "Direction", "__value": "RIGHT", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 113, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["LEFT"]
+									"params": ["RIGHT"]
 								}] },
 								{ "__identifier": "Owns", "__value": [], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [] }
 							]
