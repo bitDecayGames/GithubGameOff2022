@@ -12,7 +12,7 @@ enum abstract QuestIndex(String) to String from String {
 					case 0:
 						" ";
 					case 1:
-						"Turn off alarm";
+						buildFlavorText("Turn off alarm");
 					default:
 						"Unknown subquest";
 				}
@@ -21,23 +21,27 @@ enum abstract QuestIndex(String) to String from String {
 					case 2: // Alarm turned off
 						" ";
 					case 3: // Talked to Lonk 
-						"Fight the training pot";
+						buildFlavorText("Fight the training pot");
 					case 4: // Fought the pot
 						" ";
 					case 5: // Talked to Lonk after fighting the pot
-						"Get compass from Cludd's";
+						buildFlavorText("Get compass from Cludd's");
 					default:
 						"Unknown subquest";
 				}
 			case FIND_LONK:
 				return switch(GlobalQuestState.subQuest) {
 					case 0: // Bring the compass back to Lonk
-						"return the compass";
+						buildFlavorText("return the compass");
 					default:
-						"Unknown subquest";
+						buildFlavorText("Unknown subquest");
 				}
 			default:
 				"Unknown quest";
 		}
+	}
+
+	private function buildFlavorText(flavorText:String) {
+		return "Task: "+flavorText;
 	}
 }

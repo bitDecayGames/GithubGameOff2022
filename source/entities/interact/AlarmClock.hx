@@ -28,13 +28,14 @@ class AlarmClock extends Interactable {
 			}
 		});
 
-		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK){
-			helperArrow = new FlxSprite(x, y-56);
-			helperArrow.loadGraphic(AssetPaths.arrow_pointing__png, true, 16, 48);
-			helperArrow.animation.add("default", [0,1,2,3,4,5,6,7,8,9], 10);
-			helperArrow.animation.play("default");
-			PlayState.ME.uiHelpers.add(helperArrow);
-		}
+		// The story takes care of this information now
+		// if (!GlobalQuestState.DEFEATED_ALARM_CLOCK){
+		// 	helperArrow = new FlxSprite(x, y-56);
+		// 	helperArrow.loadGraphic(AssetPaths.arrow_pointing__png, true, 16, 48);
+		// 	helperArrow.animation.add("default", [0,1,2,3,4,5,6,7,8,9], 10);
+		// 	helperArrow.animation.play("default");
+		// 	PlayState.ME.uiHelpers.add(helperArrow);
+		// }
 	}
 
 	override function interact() {

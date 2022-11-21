@@ -45,7 +45,9 @@ class ChestBattle extends EncounterBaseState {
 		super.create();
 
 		dialog = new CharacterDialog(CharacterIndex.NONE, "A loosely latched chest sits before you.");
-		FmodManager.PlaySong(FmodSongs.Battle);
+		new FlxTimer().start(1.75, (t) -> {
+			FmodManager.PlaySong(FmodSongs.Battle);
+		});
 
 		fightGroup = new FlxGroup();
 

@@ -1,5 +1,6 @@
 package states;
 
+import flixel.util.FlxSpriteUtil;
 import flixel.text.FlxBitmapText;
 import quest.QuestIndex;
 import flixel.text.FlxText;
@@ -54,6 +55,7 @@ class PlayState extends FlxTransitionableState {
 
 	public var player:Player;
 	public var flavorText:FlxBitmapText;
+	public var flavorTextBackdrop:FlxSprite;
 
 	// the sorting layer will hold anything we want sorted by it's positional y-value
 	public var sortingLayer:FlxTypedGroup<FlxSprite>;
@@ -338,8 +340,15 @@ class PlayState extends FlxTransitionableState {
 
 		// TODO: give this thing a nice little background thing
 		flavorText = new FlxBitmapText();
+		flavorText.setPosition(5, 5);
 		flavorText.scrollFactor.set();
 		flavorText.cameras = [dialogCamera];
+
+		flavorTextBackdrop = new FlxSprite();
+		flavorTextBackdrop.visible = false;
+		flavorTextBackdrop.scrollFactor.set();
+		
+		uiHelpers.add(flavorTextBackdrop);
 		uiHelpers.add(flavorText);
 
 		levelState = LevelState.LoadLevelState(level);
@@ -347,7 +356,13 @@ class PlayState extends FlxTransitionableState {
 
 	override public function update(elapsed:Float) {
 		flavorText.text = GlobalQuestState.currentQuest.GetFlavorText();
-
+		// Todo this might be causing performance issues
+		if (flavorText.text != " "){
+			flavorTextBackdrop.makeGraphic(flavorText.frameWidth+8, flavorText.frameHeight+7, FlxColor.BLACK);
+			flavorTextBackdrop.visible = true;
+		} else {
+			flavorTextBackdrop.visible = false;
+		}
 		levelState.update();
 
 		if (FlxG.keys.justPressed.LBRACKET) {
