@@ -132,7 +132,7 @@ class PlayState extends FlxTransitionableState {
 	// loads the level with the given id, optionally spawning the player at the provided doorID
 	// Can provide either the uid int, or the iid string, but not both
 	@:access(flixel.FlxCamera)
-	function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
+	public function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
 		// clean up current level;
 		player = null;
 		// Clean up any event listeners between levels;
@@ -485,7 +485,7 @@ class PlayState extends FlxTransitionableState {
 				p.worldClip = clip;
 				new FlxTimer().start(walkDistance / p.speed, (t) -> {
 					p.persistentDirectionInfluence.set();
-					loadLevel(d.destinationLevel, d.destinationDoorID);
+					d.enter();
 					p.allowCollisions = FlxObject.ANY;
 					playerInTransition = false;
 					p.worldClip = null;

@@ -1,5 +1,7 @@
 package entities;
 
+import quest.GlobalQuestState;
+import flixel.util.FlxStringUtil;
 import flixel.FlxG;
 import flixel.math.FlxRect;
 import bitdecay.flixel.spacial.Cardinal;
@@ -20,8 +22,19 @@ class Door extends FlxSprite {
 		loadGraphic(AssetPaths.doorSheet__png, true, 32, 32);
 		setSize(16, 16);
 		iid = data.iid;
-		destinationLevel = data.f_connection.levelIid;
-		destinationDoorID = data.f_connection.entityIid;
+
+		// If we have specific quest doors, check to see if we should send the player somewhere else
+		if (data.f_QuestDoor != null) {
+			for (questName in data.f_QuestNames) {
+				if (GlobalQuestState.currentQuest == questName) {
+					destinationLevel = data.f_QuestDoor.levelIid;
+					destinationDoorID = data.f_QuestDoor.entityIid;
+				}
+			}
+		} else {
+			destinationLevel = data.f_connection.levelIid;
+			destinationDoorID = data.f_connection.entityIid;
+		}
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
 
 		immovable = true;
@@ -114,5 +127,9 @@ class Door extends FlxSprite {
 			}
 		}
 		return true;
+	}
+
+	public function enter() {
+		PlayState.ME.loadLevel(destinationLevel, destinationDoorID);
 	}
 }
