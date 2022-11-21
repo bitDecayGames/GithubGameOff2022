@@ -32,6 +32,8 @@ class Chest extends Interactable {
 	override function interact() {
 		if (!opened) {
 			var substate = new ChestBattle();
+			FmodManager.StopSongImmediately();
+			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 			PlayState.ME.startEncounter(substate);
 			substate.closeCallback = () -> {
 				if (substate.success) {

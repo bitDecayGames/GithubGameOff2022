@@ -24,10 +24,15 @@ using zero.flixel.extensions.FlxPointExt;
 class AlarmClockState extends EncounterBaseState {
 	// midpoints can only be this far apart and still count as hitting the clock
 	private static var requiredAccuracyPixels = 21;
-	private static var restSeconds = 0.75;
+	private static var restSeconds = 0.655;
 	private static var finishYOffset = 11;
 	private static var handHoverY = 30;
 	private static var handXAccel = 80;
+
+	var playerMoved:Bool = false;
+
+	var helperArrowLeft:FlxSprite;
+	var helperArrowRight:FlxSprite;
 
 	var clock:FlxSprite;
 	var clockTween:FlxTween = null;
@@ -47,7 +52,7 @@ class AlarmClockState extends EncounterBaseState {
 	override function create() {
 		super.create();
 
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=100>BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP<pause t=0.9 /> BEEP</speed>");
+		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=100>BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 />");
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
 		});
@@ -67,9 +72,25 @@ class AlarmClockState extends EncounterBaseState {
 		hand.screenCenter(X);
 		hand.y = handHoverY;
 
+		helperArrowLeft = new FlxSprite(hand.x-60, hand.y-58);
+		helperArrowLeft.angle = 90;
+		helperArrowLeft.loadGraphic(AssetPaths.arrow_pointing__png, true, 16, 48);
+		helperArrowLeft.animation.add("default", [0,1,2,3,4,5,6,7,8,9], 10);
+		helperArrowLeft.animation.play("default");
+		helperArrowLeft.visible = false;
+
+		helperArrowRight = new FlxSprite(hand.x+15, hand.y-58);
+		helperArrowRight.angle = 270;
+		helperArrowRight.loadGraphic(AssetPaths.arrow_pointing__png, true, 16, 48);
+		helperArrowRight.animation.add("default", [0,1,2,3,4,5,6,7,8,9], 10);
+		helperArrowRight.animation.play("default");
+		helperArrowRight.visible = false;
+
 		// make sure hand is over the clock
 		fightGroup.add(clock);
 		fightGroup.add(hand);
+		fightGroup.add(helperArrowLeft);
+		fightGroup.add(helperArrowRight);
 
 		battleGroup.add(fightGroup);
 		battleGroup.add(dialog);
@@ -110,12 +131,19 @@ class AlarmClockState extends EncounterBaseState {
 				FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
 				startSwipe();
 			} else if (SimpleController.pressed(LEFT)) {
+				playerMoved = true;
 				hand.velocity.x -= handXAccel * elapsed;
 			} else if (SimpleController.pressed(RIGHT)) {
+				playerMoved = true;
 				hand.velocity.x += handXAccel * elapsed;
 			} else {
 				hand.velocity.x *= 0.95;
 			}
+		}
+
+		if (playerMoved && helperArrowLeft.alive) {
+			helperArrowLeft.kill();
+			helperArrowRight.kill();
 		}
 
 		if (!FlxMath.inBounds(hand.x, 0, FlxG.width - hand.width)) {
@@ -176,7 +204,7 @@ class AlarmClockState extends EncounterBaseState {
 	}
 
 	var clockMoveTimeMin = 0.2;
-	var clockMoveTimeMax = 0.7;
+	var clockMoveTimeMax = 0.65;
 	function startClockTween(edge:Bool = false) {
 		if (fightOver) {
 			// fight is over, no more moving
@@ -205,6 +233,8 @@ class AlarmClockState extends EncounterBaseState {
 							// make sure our dialog acceptance doesn't also force a swipe
 							new FlxTimer().start(.05, (t) -> {
 								acceptInput = true;
+								helperArrowLeft.visible = true;
+								helperArrowRight.visible = true;
 							});
 						};
 						new FlxTimer().start(restSeconds + restModifier, (timer) -> {

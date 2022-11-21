@@ -54,7 +54,7 @@ class Lonk extends NPC {
 
 	override function CheckDoor(d:Door):Bool {
 		// This needs more checks if we are to use it in a lot of places
-		if (!GlobalQuestState.TALKED_TO_LONK_FIRST_TIME) {
+		if (!GlobalQuestState.TALKED_TO_LONK_FIRST_TIME && !GlobalQuestState.SPEEDY_DEBUG) {
 			updateFacing(PlayState.ME.player);
 			dialogBox.loadDialogLine("Hold on there little buddy");
 			PlayState.ME.openDialog(dialogBox);
