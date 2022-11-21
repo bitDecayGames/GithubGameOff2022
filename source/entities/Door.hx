@@ -26,22 +26,38 @@ class Door extends FlxSprite {
 
 		immovable = true;
 
-		switch(accessDir) {
-			case N | S:
-				animation.add('closed', [0]);
-				animation.add('close', [3, 2, 1], 5, false);
-				animation.add('open', [1, 2, 3], 5, false);
-				animation.add('opened', [3]);
-				// offset.set(8, 13);
-			case E | W:
-				animation.add('closed', [4]);
-				animation.add('close', [7, 6, 5], 5, false);
-				animation.add('open', [5, 6, 7], 5, false);
-				animation.add('opened', [7]);
-				// offset.set(3, 7);
-			default:
-				// nothing to do here
+		if (data.f_Stairs) {
+			if (data.f_Down) {
+				animation.add('closed', [8, 8, 8], 5, false);
+				animation.add('close', [8, 8, 8], 5, false);
+				animation.add('open', [8, 8, 8], 5, false);
+				animation.add('opened', [8, 8, 8], 5, false);
+			} else {
+				animation.add('closed', [9, 9, 9], 5, false);
+				animation.add('close', [9, 9, 9], 5, false);
+				animation.add('open', [9, 9, 9], 5, false);
+				animation.add('opened', [9, 9, 9], 5, false);
+			}
+		} else {
+			switch(accessDir) {
+				case N | S:
+					animation.add('closed', [0]);
+					animation.add('close', [3, 2, 1], 5, false);
+					animation.add('open', [1, 2, 3], 5, false);
+					animation.add('opened', [3]);
+					// offset.set(8, 13);
+				case E | W:
+					animation.add('closed', [4]);
+					animation.add('close', [7, 6, 5], 5, false);
+					animation.add('open', [5, 6, 7], 5, false);
+					animation.add('opened', [7]);
+					// offset.set(3, 7);
+				default:
+					// nothing to do here
+			}
 		}
+
+
 
 		switch(accessDir) {
 			case N:

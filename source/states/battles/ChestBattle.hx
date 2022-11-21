@@ -61,8 +61,9 @@ class ChestBattle extends EncounterBaseState {
 		flashOverlay.alpha = 0;
 
 		latch = new FlxSprite();
+		latch.loadGraphic(AssetPaths.chestLatch__png, true, 75, 100);
+		latch.animation.frameIndex = 0;
 		latch.scrollFactor.set();
-		latch.makeGraphic(75, 100, FlxColor.GREEN);
 		// latch.loadGraphic(AssetPaths.latchLarge__png, true, 30, 30);
 		// latch.animation.add('blink', [0,1], 2);
 		// latch.animation.play('blink');
@@ -167,6 +168,9 @@ class ChestBattle extends EncounterBaseState {
 			FlxTween.tween(hand, {y: latch.y}, 0.75, {
 				ease: FlxEase.quartIn,
 				onComplete: (t) -> {
+					latch.animation.frameIndex = 1;
+					latch.y -= latch.frameHeight - 19; // the 'hinge' is 19px tall
+
 					FlxTween.tween(flashOverlay, {alpha: 0}, 1);
 					FlxTween.tween(hand, {y: -hand.height}, 0.75);
 					success = true;
