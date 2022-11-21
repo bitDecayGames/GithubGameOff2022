@@ -59,13 +59,11 @@ class GateState extends EncounterBaseState {
 		dialog.textGroup.tagCallback = handleTagCallback;
 
 
-		lockBody = new FlxSprite();
-		lockBody.makeGraphic(100, 100, FlxColor.ORANGE);
+		lockBody = new FlxSprite(AssetPaths.lockBody__png);
 		lockBody.screenCenter();
 
-		lockLatch = new FlxSprite();
-		lockLatch.makeGraphic(75, 100, FlxColor.YELLOW);
-		lockLatch.setPosition(lockBody.x + 12, lockBody.y - 50);
+		lockLatch = new FlxSprite(AssetPaths.lockClasp__png);
+		lockLatch.setPosition(lockBody.x + 6, lockBody.y - 41); // 70 in open position
 
 		// load our desired combo into the lock rollers here
 		combo1 = new Combo(lockBody, 0, 5);
@@ -75,13 +73,9 @@ class GateState extends EncounterBaseState {
 		comboRollers.push(combo2);
 		comboRollers.push(combo3);
 
-		cursor = new FlxSprite();
-		cursor.y = lockBody.y + 50;
-		cursor.makeGraphic(24, 44, FlxColor.TRANSPARENT);
-		FlxSpriteUtil.drawLine(cursor, 0, 0, 0, 44);
-		FlxSpriteUtil.drawLine(cursor, 0, 0, 24, 0);
-		FlxSpriteUtil.drawLine(cursor, 24, 0, 24, 44);
-		FlxSpriteUtil.drawLine(cursor, 0, 44, 24, 44);
+		cursor = new FlxSprite(AssetPaths.tumblerSelector__png);
+		cursor.x = combo1.x - 4;
+		cursor.y = lockBody.y + 17;
 
 		battleGroup.add(lockLatch);
 		battleGroup.add(lockBody);
@@ -123,7 +117,7 @@ class GateState extends EncounterBaseState {
 				selectedCombo = combo3;
 		}
 
-		cursor.x = selectedCombo.x - 1;
+		cursor.x = selectedCombo.x - 4;
 
 		if (SimpleController.just_pressed(UP)) {
 			selectedCombo.currentNum--;
@@ -153,7 +147,7 @@ class GateState extends EncounterBaseState {
 
 	function doFail() {
 		failCount++;
-		var rattleY = lockLatch.y-5;
+		var rattleY = lockLatch.y-2;
 		FlxTween.tween(lockLatch, {y: rattleY}, 0.1, {
 			// ease: FlxEase.
 			type: FlxTweenType.PINGPONG,
@@ -178,8 +172,8 @@ class GateState extends EncounterBaseState {
 
 	function doSuccess() {
 		success = true;
-		var unlockY = lockLatch.y-50;
-		FlxTween.tween(lockLatch, {y: unlockY}, 1, {
+		var unlockY = lockBody.y-70;
+		FlxTween.tween(lockLatch, {y: unlockY}, 0.5, {
 			ease: FlxEase.sineInOut,
 			onComplete: (t) -> {
 				if (PlayState.ME != null) {
@@ -197,42 +191,66 @@ class GateState extends EncounterBaseState {
 
 class Combo extends FlxSprite {
 	public var index = 0;
-	var lastNum = -1;
+	var lastNum = 0;
 	public var currentNum = 0;
 	public var digitHeight = 16;
 	public var baseY:Float = 0;
 	public var magicNumber = 0;
 
+	// our zero is actually on the 3rd tile, so our scroll needs to be based on that position
+	var zeroY = 41 - 18; // we want the 41st pixel to be in the middle of our 35 pixel high window
+
+	var clipTmp = FlxRect.get();
+
+	var rollerTween:FlxTween;
+
 	public function new(relativeTo:FlxSprite, index:Int, magic:Int){
-		baseY = relativeTo.y + 50;
+		baseY = relativeTo.y + 22;
 		magicNumber = magic;
-		super(relativeTo.x + 15 + (5 + 20)*index, baseY, AssetPaths.lockRoller__png);
+		super(relativeTo.x + 6 + (7 + 20)*index, baseY, AssetPaths.lockRoller__png);
 		this.index = index;
-		updateClip();
+		updateDigit(true);
+		// Do this to force our clip rect to render immediately
+		update(0.01);
 	}
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
 		if (currentNum != lastNum) {
-			currentNum = FlxMath.wrap(currentNum, 0, 9);
-			updateClip();
+			updateDigit();
 			lastNum = currentNum;
-
-			if (currentNum == magicNumber) {
-				// TODO: SFX, have audio cue instead of camera shake
-				camera.shake();
-			}
 		}
+
+		updateClipRect();
+
 		#if encounter_debug
 		DebugDraw.ME.drawWorldRect(clipRect.x + x - offset.x, clipRect.y + y - offset.y, clipRect.width, clipRect.height);
 		#end
 	}
 
-	function updateClip() {
-		// our zero is actually on the 3rd tile, so our scroll needs to be based on that position
-		var zeroY = 41 - 22; // we want the 41st pixel to be in the middle of our 44 pixel high window
-		y = baseY - zeroY - currentNum * 16;
-		clipRect = FlxRect.get(0, zeroY + currentNum * 16, width, 44);
+	function updateClipRect() {
+		// TODO: Not sure why this 23 is the sauce, but I was tired of thinking
+		clipTmp.set(0, zeroY + (baseY - y) - 23, width, 35);
+		clipRect = clipTmp;
+	}
+
+	function updateDigit(instant:Bool = false) {
+		if (rollerTween != null && !rollerTween.finished) {
+			rollerTween.cancel();
+		}
+
+		var nextY = baseY - zeroY - currentNum * 16;
+		if (instant) {
+			y = baseY - zeroY - currentNum * 16;
+		} else {
+			rollerTween = FlxTween.tween(this, {y: nextY}, 0.1, {
+				onComplete: (t) -> {
+					// this makes sure we are locked nicely to our bounding sprite
+					currentNum = FlxMath.wrap(currentNum, 0, 9);
+					y = baseY - zeroY - currentNum * 16;
+				}
+			});
+		}
 	}
 }

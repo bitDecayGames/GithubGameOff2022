@@ -80,6 +80,7 @@ class PlayState extends FlxTransitionableState {
 	public var playerInTransition:Bool = false;
 
 	public var transitionSignal = new FlxTypedSignal<String->Void>();
+	var dialogCamera:FlxCamera;
 
 	// handle events for the current level. Cleared out on level load
 	public var eventSignal = new FlxTypedSignal<String->Void>();
@@ -96,7 +97,7 @@ class PlayState extends FlxTransitionableState {
 		mosaicShaderManager = new MosaicManager();
 		mosaicFilter = new ShaderFilter(mosaicShaderManager.shader);
 
-		var dialogCamera = new FlxCamera();
+		dialogCamera = new FlxCamera();
 		dialogCamera.bgColor = FlxColor.TRANSPARENT;
 		FlxG.cameras.add(dialogCamera, false);
 
@@ -338,6 +339,7 @@ class PlayState extends FlxTransitionableState {
 		// TODO: give this thing a nice little background thing
 		flavorText = new FlxBitmapText();
 		flavorText.scrollFactor.set();
+		flavorText.cameras = [dialogCamera];
 		uiHelpers.add(flavorText);
 
 		levelState = LevelState.LoadLevelState(level);
