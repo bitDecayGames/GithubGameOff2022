@@ -990,7 +990,7 @@
 					"layerDefUid": 18,
 					"pxOffsetX": 0,
 					"pxOffsetY": 0,
-					"visible": true,
+					"visible": false,
 					"optionalRules": [],
 					"intGridCsv": [
 						1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -4499,42 +4499,6 @@
 						},
 						{
 							"__identifier": "Door",
-							"__grid": [31,17],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#485F8D",
-							"iid": "e4822440-5110-11ed-a2cf-f5af8e0762c5",
-							"width": 16,
-							"height": 16,
-							"defUid": 28,
-							"px": [496,272],
-							"fieldInstances": [
-								{ "__identifier": "connection", "__value": {
-									"entityIid": "dbad6640-5110-11ed-a2cf-27860f49ee9d",
-									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
-									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
-								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["dbad6640-5110-11ed-a2cf-27860f49ee9d"]
-								}] },
-								{ "__identifier": "AccessDirection", "__value": "DOWN", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 32, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["DOWN"]
-								}] },
-								{ "__identifier": "Stairs", "__value": true, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ true ]
-								}] },
-								{ "__identifier": "Down", "__value": true, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ true ]
-								}] }
-							]
-						},
-						{
-							"__identifier": "Door",
 							"__grid": [38,19],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -4580,23 +4544,15 @@
 									"id": "V_String",
 									"params": ["house_cludd"]
 								}] },
-								{ "__identifier": "Doors", "__value": [ {
-									"entityIid": "e4822440-5110-11ed-a2cf-f5af8e0762c5",
-									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
-									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
-								}, {
+								{ "__identifier": "Doors", "__value": [{
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
 									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
-								} ], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [ {
-									"id": "V_String",
-									"params": ["e4822440-5110-11ed-a2cf-f5af8e0762c5"]
-								}, {
+								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
-								} ] }
+								}] }
 							]
 						},
 						{
@@ -4616,14 +4572,42 @@
 									"id": "V_String",
 									"params": ["cluddsBasement"]
 								}] },
-								{ "__identifier": "Doors", "__value": [{
-									"entityIid": "e4822440-5110-11ed-a2cf-f5af8e0762c5",
-									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
-									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
+								{ "__identifier": "Doors", "__value": [], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Door",
+							"__grid": [31,17],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#485F8D",
+							"iid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
+							"width": 16,
+							"height": 16,
+							"defUid": 28,
+							"px": [496,272],
+							"fieldInstances": [
+								{ "__identifier": "connection", "__value": {
+									"entityIid": "dec22d30-5110-11ed-b1a5-db7037541591",
+									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
+									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
 									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
-								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
+								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["e4822440-5110-11ed-a2cf-f5af8e0762c5"]
+									"params": ["dec22d30-5110-11ed-b1a5-db7037541591"]
+								}] },
+								{ "__identifier": "AccessDirection", "__value": "DOWN", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 32, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["DOWN"]
+								}] },
+								{ "__identifier": "Stairs", "__value": true, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Down", "__value": true, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
 								}] }
 							]
 						}
@@ -4668,6 +4652,8 @@
 						{ "px": [704,304], "src": [96,304], "f": 0, "t": 158, "d": [1697] },
 						{ "px": [720,304], "src": [80,352], "f": 0, "t": 181, "d": [1698] },
 						{ "px": [736,304], "src": [32,352], "f": 0, "t": 178, "d": [1699] },
+						{ "px": [800,304], "src": [96,144], "f": 0, "t": 78, "d": [1703] },
+						{ "px": [816,304], "src": [112,144], "f": 0, "t": 79, "d": [1704] },
 						{ "px": [512,320], "src": [96,368], "f": 0, "t": 190, "d": [1772] },
 						{ "px": [512,320], "src": [80,368], "f": 0, "t": 189, "d": [1772] },
 						{ "px": [512,320], "src": [16,112], "f": 0, "t": 57, "d": [1772] },
@@ -4685,13 +4671,32 @@
 						{ "px": [704,320], "src": [96,320], "f": 0, "t": 166, "d": [1784] },
 						{ "px": [720,320], "src": [80,368], "f": 0, "t": 189, "d": [1785] },
 						{ "px": [736,320], "src": [32,368], "f": 0, "t": 186, "d": [1786] },
+						{ "px": [784,320], "src": [96,144], "f": 0, "t": 78, "d": [1789] },
+						{ "px": [480,336], "src": [96,144], "f": 0, "t": 78, "d": [1857] },
+						{ "px": [544,336], "src": [112,112], "f": 0, "t": 63, "d": [1861] },
+						{ "px": [544,336], "src": [112,144], "f": 0, "t": 79, "d": [1861] },
 						{ "px": [560,336], "src": [32,112], "f": 0, "t": 58, "d": [1862] },
+						{ "px": [784,336], "src": [96,144], "f": 0, "t": 78, "d": [1876] },
+						{ "px": [816,336], "src": [112,144], "f": 0, "t": 79, "d": [1878] },
+						{ "px": [496,352], "src": [96,128], "f": 0, "t": 70, "d": [1945] },
+						{ "px": [560,352], "src": [112,112], "f": 0, "t": 63, "d": [1949] },
+						{ "px": [560,352], "src": [112,144], "f": 0, "t": 79, "d": [1949] },
+						{ "px": [768,352], "src": [96,144], "f": 0, "t": 78, "d": [1962] },
+						{ "px": [560,368], "src": [32,160], "f": 0, "t": 82, "d": [2036] },
+						{ "px": [560,368], "src": [0,112], "f": 0, "t": 56, "d": [2036] },
 						{ "px": [576,368], "src": [16,112], "f": 0, "t": 57, "d": [2037] },
 						{ "px": [592,368], "src": [16,112], "f": 0, "t": 57, "d": [2038] },
 						{ "px": [608,368], "src": [32,112], "f": 0, "t": 58, "d": [2039] },
+						{ "px": [800,368], "src": [112,128], "f": 0, "t": 71, "d": [2051] },
+						{ "px": [560,384], "src": [96,144], "f": 0, "t": 78, "d": [2123] },
 						{ "px": [624,384], "src": [32,112], "f": 0, "t": 58, "d": [2127] },
+						{ "px": [752,384], "src": [96,144], "f": 0, "t": 78, "d": [2135] },
+						{ "px": [784,384], "src": [112,128], "f": 0, "t": 71, "d": [2137] },
 						{ "px": [560,400], "src": [0,160], "f": 0, "t": 80, "d": [2210] },
+						{ "px": [576,400], "src": [64,128], "f": 0, "t": 68, "d": [2211] },
 						{ "px": [592,400], "src": [16,160], "f": 0, "t": 81, "d": [2212] },
+						{ "px": [608,400], "src": [96,128], "f": 0, "t": 70, "d": [2213] },
+						{ "px": [624,400], "src": [112,144], "f": 0, "t": 79, "d": [2214] },
 						{ "px": [576,416], "src": [48,160], "f": 0, "t": 83, "d": [2298] },
 						{ "px": [608,416], "src": [0,160], "f": 0, "t": 80, "d": [2300] },
 						{ "px": [624,416], "src": [32,160], "f": 0, "t": 82, "d": [2301] },
@@ -5004,7 +5009,6 @@
 						{ "px": [496,336], "src": [64,112], "f": 0, "t": 60, "d": [1858] },
 						{ "px": [512,336], "src": [64,112], "f": 0, "t": 60, "d": [1859] },
 						{ "px": [528,336], "src": [64,112], "f": 0, "t": 60, "d": [1860] },
-						{ "px": [544,336], "src": [64,112], "f": 0, "t": 60, "d": [1861] },
 						{ "px": [768,336], "src": [0,112], "f": 0, "t": 56, "d": [1875] },
 						{ "px": [784,336], "src": [64,112], "f": 0, "t": 60, "d": [1876] },
 						{ "px": [800,336], "src": [64,112], "f": 0, "t": 60, "d": [1877] },
@@ -5028,7 +5032,6 @@
 						{ "px": [512,352], "src": [64,112], "f": 0, "t": 60, "d": [1946] },
 						{ "px": [528,352], "src": [64,112], "f": 0, "t": 60, "d": [1947] },
 						{ "px": [544,352], "src": [64,112], "f": 0, "t": 60, "d": [1948] },
-						{ "px": [560,352], "src": [64,112], "f": 0, "t": 60, "d": [1949] },
 						{ "px": [752,352], "src": [0,112], "f": 0, "t": 56, "d": [1961] },
 						{ "px": [768,352], "src": [64,112], "f": 0, "t": 60, "d": [1962] },
 						{ "px": [784,352], "src": [64,112], "f": 0, "t": 60, "d": [1963] },
@@ -5048,8 +5051,6 @@
 						{ "px": [512,368], "src": [16,160], "f": 0, "t": 81, "d": [2033] },
 						{ "px": [528,368], "src": [16,160], "f": 0, "t": 81, "d": [2034] },
 						{ "px": [544,368], "src": [16,160], "f": 0, "t": 81, "d": [2035] },
-						{ "px": [560,368], "src": [32,160], "f": 0, "t": 82, "d": [2036] },
-						{ "px": [560,368], "src": [0,112], "f": 0, "t": 56, "d": [2036] },
 						{ "px": [752,368], "src": [64,112], "f": 0, "t": 60, "d": [2048] },
 						{ "px": [768,368], "src": [64,112], "f": 0, "t": 60, "d": [2049] },
 						{ "px": [784,368], "src": [64,112], "f": 0, "t": 60, "d": [2050] },
@@ -12153,36 +12154,6 @@
 					"entityInstances": [
 						{
 							"__identifier": "Door",
-							"__grid": [2,3],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#485F8D",
-							"iid": "dbad6640-5110-11ed-a2cf-27860f49ee9d",
-							"width": 16,
-							"height": 16,
-							"defUid": 28,
-							"px": [32,48],
-							"fieldInstances": [
-								{ "__identifier": "connection", "__value": {
-									"entityIid": "e4822440-5110-11ed-a2cf-f5af8e0762c5",
-									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
-									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
-								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["e4822440-5110-11ed-a2cf-f5af8e0762c5"]
-								}] },
-								{ "__identifier": "AccessDirection", "__value": "DOWN", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 32, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["DOWN"]
-								}] },
-								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
-							]
-						},
-						{
-							"__identifier": "Door",
 							"__grid": [10,1],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -12281,6 +12252,39 @@
 									"id": "V_String",
 									"params": ["There is a circle without dust. Something recently left this table."]
 								}] }
+							]
+						},
+						{
+							"__identifier": "Door",
+							"__grid": [2,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#485F8D",
+							"iid": "dec22d30-5110-11ed-b1a5-db7037541591",
+							"width": 16,
+							"height": 16,
+							"defUid": 28,
+							"px": [32,48],
+							"fieldInstances": [
+								{ "__identifier": "connection", "__value": {
+									"entityIid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
+									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
+									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
+									"worldIid": "f47a8640-5110-11ed-b1a5-c9fad855a2f9"
+								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["d74202b0-5110-11ed-b1a5-37d6bd9facae"]
+								}] },
+								{ "__identifier": "AccessDirection", "__value": "DOWN", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 32, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["DOWN"]
+								}] },
+								{ "__identifier": "Stairs", "__value": true, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] }
 							]
 						}
 					]
