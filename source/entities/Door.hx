@@ -15,6 +15,9 @@ class Door extends FlxSprite {
 	public var destinationDoorID:String;
 	public var accessDir:Cardinal;
 
+	public var isStairs:Bool = false;
+	public var isDownStairs:Bool = false;
+
 	public var checks:Array<YayOrNay> = [];
 
 	public function new(data:Entity_Door) {
@@ -40,8 +43,10 @@ class Door extends FlxSprite {
 
 		immovable = true;
 
-		if (data.f_Stairs) {
-			if (data.f_Down) {
+		isStairs = data.f_Stairs;
+		isDownStairs = data.f_Down;
+		if (isStairs) {
+			if (isDownStairs) {
 				animation.add('closed', [8, 8, 8], 5, false);
 				animation.add('close', [8, 8, 8], 5, false);
 				animation.add('open', [8, 8, 8], 5, false);
@@ -70,8 +75,6 @@ class Door extends FlxSprite {
 					// nothing to do here
 			}
 		}
-
-
 
 		switch(accessDir) {
 			case N:
@@ -131,6 +134,13 @@ class Door extends FlxSprite {
 	}
 
 	public function enter() {
+		if (isStairs) {
+			if (isDownStairs) {
+				// TODO SFX: down stair sound
+			} else {
+				// TODO SFX: up stair sound
+			}
+		}
 		PlayState.ME.loadLevel(destinationLevel, destinationDoorID);
 	}
 }
