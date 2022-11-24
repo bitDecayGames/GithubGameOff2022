@@ -32,8 +32,8 @@ class NPCTextBank {
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
 			
-			"intro_6" => [
-				"<cb val=happy/><cb val=compass_returned/>Excellent! You actually managed to stea... I mean FIND it!<page/>Good, good. Next, we need to get the map you will use for your adventure. Go to Brindle's house near the middle of town. It has the two flasks next to it. In there, you will find the map."
+			"getMap_0" => [
+				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND it!<page/>Good, good. Next, we need to get the map you will use for your adventure. Go to Brindle's house near the middle of town. It has the two flasks next to it. In there, you will find the map."
 			]
 		],
 		WOMAN => [

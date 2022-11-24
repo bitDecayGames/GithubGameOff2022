@@ -33,10 +33,10 @@ class Lonk extends NPC {
 				GlobalQuestState.subQuest++;
 			}
 
-			if (tag.parsedOptions.val == "compass_returned" && GlobalQuestState.getCurrentQuestKey() == "intro_6") {
-				GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
-				GlobalQuestState.subQuest = 0;
-			}
+			// if (tag.parsedOptions.val == "compass_returned" && GlobalQuestState.getCurrentQuestKey() == "intro_6") {
+			// 	GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
+			// 	GlobalQuestState.subQuest = 0;
+			// }
 
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
