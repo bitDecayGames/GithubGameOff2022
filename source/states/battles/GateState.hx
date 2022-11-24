@@ -61,9 +61,11 @@ class GateState extends EncounterBaseState {
 
 		lockBody = new FlxSprite(AssetPaths.lockBody__png);
 		lockBody.screenCenter();
+		lockBody.scrollFactor.set();
 
 		lockLatch = new FlxSprite(AssetPaths.lockClasp__png);
 		lockLatch.setPosition(lockBody.x + 6, lockBody.y - 41); // 70 in open position
+		lockLatch.scrollFactor.set();
 
 		// load our desired combo into the lock rollers here
 		combo1 = new Combo(lockBody, 0, 5);
@@ -76,6 +78,7 @@ class GateState extends EncounterBaseState {
 		cursor = new FlxSprite(AssetPaths.tumblerSelector__png);
 		cursor.x = combo1.x - 4;
 		cursor.y = lockBody.y + 17;
+		cursor.scrollFactor.set();
 
 		battleGroup.add(lockLatch);
 		battleGroup.add(lockBody);
@@ -212,6 +215,7 @@ class Combo extends FlxSprite {
 		updateDigit(true);
 		// Do this to force our clip rect to render immediately
 		update(0.01);
+		scrollFactor.set();
 	}
 
 	override function update(elapsed:Float) {

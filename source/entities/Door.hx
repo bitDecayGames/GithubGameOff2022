@@ -30,8 +30,7 @@ class Door extends FlxSprite {
 		setSize(16, 16);
 		iid = data.iid;
 
-		destinationLevel = data.f_connection.levelIid;
-		destinationDoorID = data.f_connection.entityIid;
+		updateDestination();
 
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
 
