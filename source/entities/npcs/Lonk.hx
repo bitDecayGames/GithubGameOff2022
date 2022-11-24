@@ -1,5 +1,6 @@
 package entities.npcs;
 
+import quest.QuestIndex;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import states.PlayState;
@@ -30,6 +31,11 @@ class Lonk extends NPC {
 
 			if (tag.parsedOptions.val == "informed_of_compass" && GlobalQuestState.getCurrentQuestKey() == "intro_4") {
 				GlobalQuestState.subQuest++;
+			}
+
+			if (tag.parsedOptions.val == "compass_returned" && GlobalQuestState.getCurrentQuestKey() == "intro_6") {
+				GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
+				GlobalQuestState.subQuest = 0;
 			}
 
 		}
