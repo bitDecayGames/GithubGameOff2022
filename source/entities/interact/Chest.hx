@@ -1,5 +1,6 @@
 package entities.interact;
 
+import quest.QuestIndex;
 import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
@@ -45,7 +46,8 @@ class Chest extends Interactable {
 						PlayState.ME.openDialog(dialogBox);
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_COMPASS = true;
-						GlobalQuestState.subQuest = 6;
+						GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
+						GlobalQuestState.subQuest = 0;
 					});
 				}
 			};

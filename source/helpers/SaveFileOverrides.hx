@@ -27,8 +27,8 @@ class SaveFileOverrides {
 		#end
 
 		#if HAVE_COMPASS_CLUDD
-		GlobalQuestState.currentQuest = INTRO;
-		GlobalQuestState.subQuest = 6;
+		GlobalQuestState.currentQuest = GET_MAP;
+		GlobalQuestState.subQuest = 0;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
 		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
@@ -38,8 +38,8 @@ class SaveFileOverrides {
 		#end
 
 		#if HAVE_COMPASS_HOME2
-		GlobalQuestState.currentQuest = INTRO;
-		GlobalQuestState.subQuest = 6;
+		GlobalQuestState.currentQuest = GET_MAP;
+		GlobalQuestState.subQuest = 0;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
 		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
