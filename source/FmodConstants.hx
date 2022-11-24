@@ -7,6 +7,7 @@ package;
 
 class FmodSongs {
     public static inline var Awaken:String = "event:/Music/Awaken";
+    public static inline var AwakenDanger:String = "event:/Music/AwakenDanger";
     public static inline var AwakenLullaby:String = "event:/Music/AwakenLullaby";
     public static inline var AwakenSofterC:String = "event:/Music/AwakenSofterC";
     public static inline var Battle:String = "event:/Music/Battle";
@@ -39,6 +40,7 @@ class FmodSFX {
     public static inline var PotRebound3:String = "event:/SFX/Enemies/Pot/PotRebound3";
     public static inline var PotRingSpawn:String = "event:/SFX/Enemies/Pot/PotRingSpawn";
     public static inline var PotTargetSpawn:String = "event:/SFX/Enemies/Pot/PotTargetSpawn";
+    public static inline var LonkHouseCollapse:String = "event:/SFX/LonkHouse/LonkHouseCollapse";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";

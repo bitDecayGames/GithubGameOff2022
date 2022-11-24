@@ -114,6 +114,8 @@ class LevelState {
 
 	// TODO Transitions when going through doors would be cool to do when link touches the door rather than when the new level is loaded
 	private function updateSong() {
+        
+        trace("playing song");
 		if(!FmodManager.IsSongPlaying()){
 			FmodManager.PlaySong(FmodSongs.Silence);
 		}
@@ -128,6 +130,7 @@ class LevelState {
 					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 				}
 			} else if (GlobalQuestState.leftHouseFirstTime) {
+                trace("awakenC");
 				FmodManager.PlaySong(FmodSongs.AwakenSofterC);
 			}
         } else if (StringTools.startsWith(levelId, "House_Cludd")) {

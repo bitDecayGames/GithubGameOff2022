@@ -383,6 +383,25 @@ class PlayState extends FlxTransitionableState {
 			loadLevel(LEVEL_ARRAY[levelSelectionCursor]);
 		}
 
+		//TODO holder for the house collapsing effects
+		if (FlxG.keys.justPressed.L) {
+			player.lockControls = true;
+			FmodManager.StopSong();
+			new FlxTimer().start(2, (t) -> {
+				new FlxTimer().start(0.4, (t) -> {
+					FlxG.camera.shake(0.0025, 2.4);
+				});
+				new FlxTimer().start(1.8, (t) -> {
+					FlxG.camera.shake(0.01, 0.5);
+				});
+				FmodManager.PlaySoundOneShot(FmodSFX.LonkHouseCollapse);
+				new FlxTimer().start(7, (t) -> {
+					player.lockControls = false;
+					FmodManager.PlaySong(FmodSongs.AwakenDanger);
+				});
+			});
+		}
+
 		#if cam_debug
 		if (FlxG.keys.pressed.J) {
 			camera.scroll.x--;
