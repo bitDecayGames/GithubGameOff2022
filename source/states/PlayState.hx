@@ -1,5 +1,6 @@
 package states;
 
+import helpers.SaveFileOverrides;
 import flixel.util.FlxSpriteUtil;
 import flixel.text.FlxBitmapText;
 import quest.QuestIndex;
@@ -49,6 +50,7 @@ class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
 	private static inline var START_LEVEL = "House_Lonk_room_boy";
+
 
 	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "Town_main", "House_Cludd_Main", "House_Cludd_Upstairs", "House_Cludd_Basement"];
 	private var levelSelectionCursor = 0;
@@ -124,7 +126,11 @@ class PlayState extends FlxTransitionableState {
 		add(uiHelpers);
 		add(dialogs);
 
+		// We will check for overrides right after the initial load
 		loadLevel(START_LEVEL);
+		// This is how we update the save file on-launch
+		SaveFileOverrides.checkForSaveFileOverrides();
+
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
 
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
