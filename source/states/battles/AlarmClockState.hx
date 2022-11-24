@@ -63,6 +63,7 @@ class AlarmClockState extends EncounterBaseState {
 		clock.scrollFactor.set();
 		clock.loadGraphic(AssetPaths.clockLarge__png, true, 30, 30);
 		clock.animation.add('blink', [0,1], 2);
+		clock.animation.add('broken', [2]);
 		clock.animation.play('blink');
 		clock.screenCenter();
 
@@ -168,6 +169,7 @@ class AlarmClockState extends EncounterBaseState {
 
 			new FlxTimer().start(.1, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+				clock.animation.play('broken');
 			});
 
 			acceptInput = false;

@@ -10,6 +10,8 @@ import helpers.LDTKEnum;
 import states.PlayState;
 
 class Door extends FlxSprite {
+	public var data:Entity_Door;
+
 	public var iid:String;
 	public var destinationLevel:String;
 	public var destinationDoorID:String;
@@ -22,23 +24,12 @@ class Door extends FlxSprite {
 
 	public function new(data:Entity_Door) {
 		super(data.cx * 16, data.cy * 16);
+		this.data = data;
+
 		loadGraphic(AssetPaths.doorSheet__png, true, 32, 32);
 		setSize(16, 16);
 		iid = data.iid;
 
-		// If we have specific quest doors, check to see if we should send the player somewhere else
-		if (data.f_QuestDoor != null) {
-			for (questName in data.f_QuestNames) {
-				if (GlobalQuestState.currentQuest == questName || questName == "*") {
-					destinationLevel = data.f_QuestDoor.levelIid;
-					destinationDoorID = data.f_QuestDoor.entityIid;
-					break;
-				}
-			}
-		} else {
-			destinationLevel = data.f_connection.levelIid;
-			destinationDoorID = data.f_connection.entityIid;
-		}
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
 
 		immovable = true;
@@ -133,6 +124,22 @@ class Door extends FlxSprite {
 		return true;
 	}
 
+	public function updateDestination() {
+		// If we have specific quest doors, check to see if we should send the player somewhere else
+		if (data.f_QuestDoor != null) {
+			for (questName in data.f_QuestNames) {
+				if (GlobalQuestState.currentQuest == questName || questName == "*") {
+					destinationLevel = data.f_QuestDoor.levelIid;
+					destinationDoorID = data.f_QuestDoor.entityIid;
+					break;
+				}
+			}
+		} else {
+			destinationLevel = data.f_connection.levelIid;
+			destinationDoorID = data.f_connection.entityIid;
+		}
+	}
+
 	public function enter() {
 		if (isStairs) {
 			if (isDownStairs) {
@@ -141,6 +148,9 @@ class Door extends FlxSprite {
 				// TODO SFX: up stair sound
 			}
 		}
+
+		// make sure we are accurate to the current state
+		updateDestination();
 		PlayState.ME.loadLevel(destinationLevel, destinationDoorID);
 	}
 }

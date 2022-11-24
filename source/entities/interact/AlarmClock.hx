@@ -14,7 +14,7 @@ class AlarmClock extends Interactable {
 		loadGraphic(AssetPaths.clock__png, true, 16, 16);
 		animation.add('steady', [0]);
 		animation.add('blink', [0,1], 2);
-		animation.add('broken', [1], 2);
+		animation.add('broken', [2]);
 		if (GlobalQuestState.DEFEATED_ALARM_CLOCK) {
 			animation.play('broken');
 		} else {
