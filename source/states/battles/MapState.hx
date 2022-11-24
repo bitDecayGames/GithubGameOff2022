@@ -35,8 +35,8 @@ class MapState extends EncounterBaseState {
 
 	var hand:FlxSprite;
 
-	var mapClothWidth = 10;
-	var mapClothHeight = 8;
+	var mapClothWidth = 4;
+	var mapClothHeight = 3;
 
 	public function new() {
 		super();
@@ -59,6 +59,7 @@ class MapState extends EncounterBaseState {
 		dialog.textGroup.tagCallback = handleTagCallback;
 
 		mapPaper = new FlxClothSprite(0, 0, AssetPaths.crappot__png);
+		mapPaper.scrollFactor.set();
 		mapPaper.screenCenter();
 		mapPaper.pinnedSide = FlxObject.NONE;
 		mapPaper.setMesh(mapClothWidth, mapClothHeight, 0, 0,
@@ -69,12 +70,13 @@ class MapState extends EncounterBaseState {
 				mapClothWidth * mapClothHeight - 1
 			]);
 		mapPaper.iterations = 8;
-		mapPaper.maxVelocity.set(0, 20);
-		mapPaper.meshVelocity.y = 20;
+		mapPaper.maxVelocity.set(1, 5);
+		mapPaper.meshVelocity.y = 5;
 
 		pins = [];
 		for (i in 0...4) {
 			var pin = new FlxSprite(AssetPaths.mapPin__png);
+			pin.scrollFactor.set();
 			pins.push(pin);
 		}
 
@@ -86,6 +88,7 @@ class MapState extends EncounterBaseState {
 		pins[3].flipX = true;
 
 		hand = new FlxSprite();
+		hand.scrollFactor.set();
 		hand.makeGraphic(10, 10, FlxColor.LIME);
 		hand.screenCenter();
 
