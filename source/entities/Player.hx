@@ -80,6 +80,18 @@ class Player extends FlxSprite {
 		switch(e) {
 			case "chestUnlocked":
 				lockControls = true;
+			case "mapCollected":
+				animation.play(ITEM_GET);
+				FmodManager.PlaySoundOneShot(FmodSFX.WorldCollectImportantDelay);
+				heldItem = new ItemParticle(x + width/2, y-24, MAP);
+				FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
+					type: FlxTweenType.PINGPONG,
+					ease: FlxEase.sineInOut,
+				});
+				PlayState.ME.uiHelpers.add(heldItem);
+				facing = FlxObject.DOWN;
+
+
 			case "compassCollected":
 				lockControls = true;
 				animation.play(ITEM_GET);
@@ -104,6 +116,14 @@ class Player extends FlxSprite {
 					lockControls = false;
 					updateAnimations(true);
 				});
+			case "lockControls":
+				lockControls = true;
+			case "restoreControl":
+				lockControls = false;
+				if (heldItem != null) {
+					heldItem.kill();
+				}
+				updateAnimations(true);
 			default:
 		}
 	}

@@ -6,4 +6,5 @@ enum abstract ItemIndex(Int) to Int from Int {
 	var BOMB = 1;
 	var KEY = 2;
 	var CANDLE = 3;
+	var MAP = 4;
 }

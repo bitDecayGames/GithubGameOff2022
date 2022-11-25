@@ -13,6 +13,7 @@ class GlobalQuestState {
 	public static var TALKED_TO_LONK_FIRST_TIME = false;
 	public static var DEFEATED_RUBBER_POT = false;
 	public static var HAS_COMPASS = false;
+	public static var HAS_MAP = false;
 
 
 	public static function getCurrentQuestKey():String {
