@@ -1052,7 +1052,7 @@
 					"layerDefUid": 18,
 					"pxOffsetX": 0,
 					"pxOffsetY": 0,
-					"visible": false,
+					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [
 						1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -14645,7 +14645,7 @@
 						},
 						{
 							"__identifier": "PlayerSpawn",
-							"__grid": [7,2],
+							"__grid": [7,1],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -14654,7 +14654,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 24,
-							"px": [120,32],
+							"px": [120,31],
 							"fieldInstances": []
 						},
 						{
