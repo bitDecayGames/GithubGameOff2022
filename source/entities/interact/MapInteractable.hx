@@ -23,7 +23,8 @@ class MapInteractable extends Interactable {
 		animation.add('present', [0]);
 		animation.add('taken', [1]);
 		immovable = true;
-		allowCollisions = FlxObject.NONE;
+
+		height = 24;
 
 		// TODO: Check global state to see if this map was already taken
 		if (InteractableFactory.collected.exists(contentKey)) {
@@ -40,9 +41,20 @@ class MapInteractable extends Interactable {
 			PlayState.ME.startEncounter(substate);
 			substate.closeCallback = () -> {
 				if (substate.success) {
-					InteractableFactory.collected.set(contentKey, true);
-					animation.play('taken');
 					opened = true;
+					animation.play('taken');
+					PlayState.ME.eventSignal.dispatch('lockControls');
+					FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
+					new FlxTimer().start(2, (t) -> {
+						opened = true;
+						dialogBox.loadDialogLine("A wrinkly old <color id=keyItem>map</color> has fallen to the floor.<page/> <cb val=mapCollected/><pause t=2.5/>It is glorious!<cb val=restoreControl/><page/>");
+						PlayState.ME.openDialog(dialogBox);
+						InteractableFactory.collected.set(contentKey, true);
+						GlobalQuestState.HAS_MAP = true;
+						// TODO: right quest update
+						GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
+						GlobalQuestState.subQuest = 0;
+					});
 				}
 			};
 		} else {
@@ -51,9 +63,22 @@ class MapInteractable extends Interactable {
 		}
 	}
 
+	var awaitingUnlockControls = false;
 	override public function handleTagCallback(tag:TagLocation) {
 		super.handleTagCallback(tag);
 		if (tag.tag == "cb") {
+			if (tag.parsedOptions.val == "mapCollected") {
+				awaitingUnlockControls = true;
+				PlayState.ME.eventSignal.dispatch('mapCollected');
+			}
+		}
+	}
+
+	override function dialogFinished() {
+		super.dialogFinished();
+		if (awaitingUnlockControls) {
+			awaitingUnlockControls = false;
+			PlayState.ME.eventSignal.dispatch("restoreControl");
 		}
 	}
 }

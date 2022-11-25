@@ -1,5 +1,7 @@
 package entities.interact;
 
+import entities.misc.Tree;
+
 class InteractableFactory {
 	public static var defeated = new Map<String, Bool>();
 	public static var collected = new Map<String, Bool>();
@@ -25,6 +27,8 @@ class InteractableFactory {
 				return new Gate(data);
 			case MAP:
 				return new MapInteractable(data);
+			case TREE:
+				return new Tree(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';
