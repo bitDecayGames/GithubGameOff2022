@@ -5979,7 +5979,7 @@
 						},
 						{
 							"__identifier": "House",
-							"__grid": [46,49],
+							"__grid": [46,48],
 							"__pivot": [0.5,1],
 							"__tags": [],
 							"__tile": null,
@@ -5988,7 +5988,7 @@
 							"width": 112,
 							"height": 64,
 							"defUid": 109,
-							"px": [744,800],
+							"px": [744,784],
 							"fieldInstances": [
 								{ "__identifier": "HouseID", "__value": "handyman", "__type": "String", "__tile": null, "defUid": 110, "realEditorValues": [{
 									"id": "V_String",
