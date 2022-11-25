@@ -109,6 +109,7 @@ class EncounterBaseState extends FlxSubState {
 	public function transitionOut(onDone:()->Void = null) {
 		complete = true;
 		var duration = 1.0;
+		FmodManager.StopSong();
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = false;

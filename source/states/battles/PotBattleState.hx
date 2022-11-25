@@ -310,7 +310,6 @@ class PotBattleState extends EncounterBaseState {
 				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I<cb val=repair/> am ok, actually. I am made of rubber after all!');
 				dialog.textGroup.finishCallback = () -> {
 					transitionOut();
-					FmodManager.StopSong();
 				};
 				dialog.revive();
 			});
