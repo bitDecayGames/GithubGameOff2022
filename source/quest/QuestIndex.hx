@@ -5,6 +5,7 @@ enum abstract QuestIndex(String) to String from String {
 	var INTRO = "intro";
 	var FIND_LONK = "findLonk";
 	var GET_MAP = "getMap";
+	var RETURN_MAP ="returnMap";
 
 	public function GetFlavorText():String {
 		return switch(this){
@@ -21,7 +22,7 @@ enum abstract QuestIndex(String) to String from String {
 				return switch(GlobalQuestState.subQuest) {
 					case 2: // Alarm turned off
 						" ";
-					case 3: // Talked to Lonk 
+					case 3: // Talked to Lonk
 						buildFlavorText("Fight the training pot");
 					case 4: // Fought the pot
 						" ";
@@ -45,6 +46,11 @@ enum abstract QuestIndex(String) to String from String {
 						buildFlavorText("Check on Lonk's house");
 					default:
 						buildFlavorText("Unknown subquest");
+				}
+			case RETURN_MAP:
+				return switch(GlobalQuestState.subQuest){
+					default:
+						buildFlavorText("return the map");
 				}
 			default:
 				"Unknown quest";

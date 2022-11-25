@@ -9,4 +9,5 @@ enum abstract InteractIndex(Int) to Int from Int {
 	var GATE = 5;
 	var MAP = 6;
 	var TREE = 7;
+	var BOULDER = 8;
 }

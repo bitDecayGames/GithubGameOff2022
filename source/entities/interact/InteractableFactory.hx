@@ -1,5 +1,6 @@
 package entities.interact;
 
+import entities.misc.Boulder;
 import entities.misc.Tree;
 
 class InteractableFactory {
@@ -29,6 +30,8 @@ class InteractableFactory {
 				return new MapInteractable(data);
 			case TREE:
 				return new Tree(data);
+			case BOULDER:
+				return new Boulder(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';
