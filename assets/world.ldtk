@@ -13709,7 +13709,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 26,
-							"px": [104,28],
+							"px": [104,31],
 							"fieldInstances": [
 								{ "__identifier": "character", "__value": "Cludd", "__type": "LocalEnum.Characters", "__tile": { "tilesetUid": 91, "x": 0, "y": 250, "w": 50, "h": 50 }, "defUid": 92, "realEditorValues": [{
 									"id": "V_String",
