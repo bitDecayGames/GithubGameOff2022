@@ -66,7 +66,11 @@ class PotBattleState extends EncounterBaseState {
 
 		randomizeAimPoints(4);
 
-		potSprite = new FlxSprite(AssetPaths.battlePot__png);
+		if (fightCharacter == RUBBERPOT) {
+			potSprite = new FlxSprite(AssetPaths.battlePot__png);
+		} else {
+			potSprite = new FlxSprite(AssetPaths.fragilePot__png);
+		}
 		potSprite.scrollFactor.set();
 		potSprite.screenCenter();
 		potSprite.y -= 9;
@@ -189,7 +193,11 @@ class PotBattleState extends EncounterBaseState {
 					{
 						ease: FlxEase.sineOut,
 						onComplete: (t) -> {
-							dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
+							if (fightCharacter == RUBBERPOT) {
+								dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
+							} else {
+								dialog.loadDialogLine('The pot seems unscathed');
+							}
 							dialog.textGroup.finishCallback = () -> {
 								transitionOut();
 							};
@@ -320,7 +328,7 @@ class PotBattleState extends EncounterBaseState {
 			});
 			new FlxTimer().start(4.5, (t) -> {
 				// TODO: This should be gotten from somewhere else.
-				dialog.loadDialogLine('I am slain... My contents loose upon the world.');
+				dialog.loadDialogLine('The pot shatters into countless pieces. It would be impossible to put it back together.');
 				dialog.textGroup.finishCallback = () -> {
 					transitionOut();
 					FmodManager.StopSong();

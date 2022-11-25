@@ -4,7 +4,7 @@ import states.PlayState;
 
 class Fireplace extends Interactable {
 	public function new(data:Entity_Interactable) {
-		super(data.pixelX, data.pixelY, NONE);
+		super(data.pixelX, data.pixelY, NONE, data.f_Description);
 		loadGraphic(AssetPaths.fire__png, true, 16, 16);
 		animation.add('burn', [for (i in 1...7) i], 5);
 		animation.play('burn');
