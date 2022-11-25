@@ -23,6 +23,8 @@ class House extends FlxSprite {
 				yOffset = 16;
 			case "cluddsBasement":
 				asset = AssetPaths.cluddsBasement__png;
+			case "handyman":
+				asset = AssetPaths.handymans__png;
 			default:
 		}
 		super(asset);

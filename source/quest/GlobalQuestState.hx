@@ -14,6 +14,7 @@ class GlobalQuestState {
 	public static var DEFEATED_RUBBER_POT = false;
 	public static var HAS_COMPASS = false;
 	public static var LONK_HOUSE_COLLAPSED = false;
+	public static var HAS_MAP = false;
 
 
 	public static function getCurrentQuestKey():String {

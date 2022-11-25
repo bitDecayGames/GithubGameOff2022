@@ -31,7 +31,7 @@ class NPCTextBank {
 			"intro_5" => [
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
-			
+
 			"getMap_0" => [
 				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND it!<page/>Good, good. Next, we need to get the map you will use for your adventure. Go to Brindle's house near the middle of town. It has the two flasks next to it. In there, you will find the map."
 			]
@@ -49,6 +49,11 @@ class NPCTextBank {
 			"intro" => [
 				"ZzzzZzzzZzzz"
 			]
+		],
+		CRAFTSMAN => [
+			"wake_up" => ["Hi"],
+			"intro" => ["Hi"],
+			"findLonk" => ["Hi"],
 		]
 	];
 }

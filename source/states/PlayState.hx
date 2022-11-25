@@ -93,7 +93,6 @@ class PlayState extends FlxTransitionableState {
 	// handle events. Please clean up after yourself as this is never emptied automatically
 	public var eventSignalPersistent = new FlxTypedSignal<String->Void>();
 
-
 	override public function create() {
 		super.create();
 		ME = this;
@@ -135,8 +134,6 @@ class PlayState extends FlxTransitionableState {
 
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
 		
-		FlxG.watch.add(player, "lockControls", "controls locked");
-		FlxG.watch.add(this, "playerInTransition", "in transition");
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
 	}
