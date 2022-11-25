@@ -4,9 +4,9 @@ import states.PlayState;
 
 class Fireplace extends Interactable {
 	public function new(data:Entity_Interactable) {
-		super(data.pixelX, data.pixelY, NONE);
+		super(data.pixelX, data.pixelY, NONE, data.f_Description);
 		loadGraphic(AssetPaths.fire__png, true, 16, 16);
-		animation.add('burn', [for (i in 1...8) i], 5);
+		animation.add('burn', [for (i in 1...7) i], 5);
 		animation.play('burn');
 	}
 
@@ -20,6 +20,21 @@ class Fireplace extends Interactable {
             var screenPosition = camera.project(getMidpoint());
             PlayState.ME.levelState.lightenShader.lightSourceFireX.value = [screenPosition.x];
             PlayState.ME.levelState.lightenShader.lightSourceFireY.value = [screenPosition.y];
+
+			switch animation.frameIndex {
+				case 1:
+					PlayState.ME.levelState.lightenShader.lightFireRadius.value = [49];
+				case 2:
+					PlayState.ME.levelState.lightenShader.lightFireRadius.value = [48];
+				case 3:
+					PlayState.ME.levelState.lightenShader.lightFireRadius.value = [50];
+				case 4:
+					PlayState.ME.levelState.lightenShader.lightFireRadius.value = [50];
+				case 5:
+					PlayState.ME.levelState.lightenShader.lightFireRadius.value = [51];
+				case 6:
+					PlayState.ME.levelState.lightenShader.lightFireRadius.value = [52];
+			}
         }
 	}
 }

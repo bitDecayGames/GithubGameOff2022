@@ -50,7 +50,7 @@ class Lighten extends FlxShader
             if (fireActive) {
                 vec2 lightSourceFireVector = vec2(floor(lightSourceFireX), floor(lightSourceFireY));
                 float dist2 = floor(length(lightSourceFireVector - uvInGameRes));
-                if (dist2 <= lightRadius) {
+                if (dist2 <= lightFireRadius) {
                     pixel = texture2D(bitmap, openfl_TextureCoordv);
                     pixel.rgb *= .45;
                 }
