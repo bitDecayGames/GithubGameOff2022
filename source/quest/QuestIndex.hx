@@ -37,6 +37,15 @@ enum abstract QuestIndex(String) to String from String {
 					default:
 						buildFlavorText("Unknown subquest");
 				}
+			case GET_MAP:
+				return switch(GlobalQuestState.subQuest) {
+					case 0: // Bring the compass back to Lonk
+						buildFlavorText("return the compass");
+					case 1: // Investigate Lonk's house (after collapse)
+						buildFlavorText("Check on Lonk's house");
+					default:
+						buildFlavorText("Unknown subquest");
+				}
 			default:
 				"Unknown quest";
 		}

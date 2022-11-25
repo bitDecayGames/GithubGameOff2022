@@ -1,5 +1,6 @@
 package states;
 
+import entities.interact.Interactable;
 import helpers.SaveFileOverrides;
 import flixel.util.FlxSpriteUtil;
 import flixel.text.FlxBitmapText;
@@ -92,6 +93,7 @@ class PlayState extends FlxTransitionableState {
 	// handle events. Please clean up after yourself as this is never emptied automatically
 	public var eventSignalPersistent = new FlxTypedSignal<String->Void>();
 
+
 	override public function create() {
 		super.create();
 		ME = this;
@@ -132,7 +134,9 @@ class PlayState extends FlxTransitionableState {
 		SaveFileOverrides.checkForSaveFileOverrides();
 
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
-
+		
+		FlxG.watch.add(player, "lockControls", "controls locked");
+		FlxG.watch.add(this, "playerInTransition", "in transition");
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
 	}
@@ -317,10 +321,47 @@ class PlayState extends FlxTransitionableState {
 				startDoor.animation.play('close');
 				FmodManager.PlaySoundOneShot(FmodSFX.DoorClose);
 				startDoor.animation.finishCallback = (n) -> {
-					startDoor.animation.play('closed');
-					playerInTransition = false;
-					player.lockControls = false;
-					player.allowCollisions = FlxObject.ANY;
+					if (n == "close"){
+						startDoor.animation.play('closed');
+						playerInTransition = false;
+						player.lockControls = false;
+						player.allowCollisions = FlxObject.ANY;
+						if (level.identifier == "Town_main" && GlobalQuestState.HAS_COMPASS && !GlobalQuestState.LONK_HOUSE_COLLAPSED){
+							player.lockControls = true;
+							GlobalQuestState.LONK_HOUSE_COLLAPSED = true;
+							FmodManager.StopSong();
+							new FlxTimer().start(2, (t) -> {
+								new FlxTimer().start(0.4, (t) -> {
+									FlxG.camera.shake(0.0025, 2.4);
+								});
+								new FlxTimer().start(1.9, (t) -> {
+									FlxG.camera.shake(0.01, 0.5);
+									player.animation.play(Player.STARTLED);
+									FlxTween.tween(player, {y: player.y - 7.5}, 0.25, {
+										onComplete: (t) -> {
+											FlxTween.tween(player, {y: player.y + 7.5}, 1);
+										},
+									});
+									new FlxTimer().start(1.5, (t) -> {
+										player.animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
+									});
+								});
+								FmodManager.PlaySoundOneShot(FmodSFX.LonkHouseCollapse);
+								new FlxTimer().start(6, (t) -> {
+									var dialogBox = new CharacterDialog(NONE, "");
+									openDialog(dialogBox);
+									dialogBox.textGroup.finishCallback = () -> {
+										closeDialog(dialogBox);
+										dialogBox.resetLastLine();
+										player.lockControls = false;
+										FmodManager.PlaySong(FmodSongs.AwakenDanger);
+										GlobalQuestState.subQuest++;
+									};
+									dialogBox.loadDialogLine("That came from Lonk's house....");
+								});
+							});
+						}
+					}
 				}
 			});
 		}
@@ -381,25 +422,6 @@ class PlayState extends FlxTransitionableState {
 		} else if (FlxG.keys.justPressed.RBRACKET) {
 			levelSelectionCursor = FlxMath.wrap(levelSelectionCursor+1, 0, LEVEL_ARRAY.length-1);
 			loadLevel(LEVEL_ARRAY[levelSelectionCursor]);
-		}
-
-		//TODO holder for the house collapsing effects
-		if (FlxG.keys.justPressed.L) {
-			player.lockControls = true;
-			FmodManager.StopSong();
-			new FlxTimer().start(2, (t) -> {
-				new FlxTimer().start(0.4, (t) -> {
-					FlxG.camera.shake(0.0025, 2.4);
-				});
-				new FlxTimer().start(1.8, (t) -> {
-					FlxG.camera.shake(0.01, 0.5);
-				});
-				FmodManager.PlaySoundOneShot(FmodSFX.LonkHouseCollapse);
-				new FlxTimer().start(7, (t) -> {
-					player.lockControls = false;
-					FmodManager.PlaySong(FmodSongs.AwakenDanger);
-				});
-			});
 		}
 
 		#if cam_debug
