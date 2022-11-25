@@ -1003,7 +1003,8 @@
 			{ "id": "Gate", "tileId": 135, "color": 4469623, "__tileSrcRect": [112,128,16,16] },
 			{ "id": "Map", "tileId": 21, "color": 11176021, "__tileSrcRect": [80,16,16,16] },
 			{ "id": "Tree", "tileId": 166, "color": 5605427, "__tileSrcRect": [96,160,16,16] },
-			{ "id": "Boulder", "tileId": 168, "color": 8934707, "__tileSrcRect": [128,160,16,16] }
+			{ "id": "Boulder", "tileId": 168, "color": 8934707, "__tileSrcRect": [128,160,16,16] },
+			{ "id": "Gameboy", "tileId": 134, "color": 10053273, "__tileSrcRect": [96,128,16,16] }
 		], "iconTilesetUid": 97, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "QuestItem", "uid": 104, "values": [{ "id": "Compass", "tileId": 420, "color": 10061926, "__tileSrcRect": [64,416,16,16] }], "iconTilesetUid": 97, "externalRelPath": null, "externalFileChecksum": null, "tags": [] },
 		{ "identifier": "GroundType", "uid": 119, "values": [
@@ -6916,6 +6917,30 @@
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
 								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [85,1],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 144, "y": 16, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "3207e610-5110-11ed-aafd-630745f21f8d",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [1360,16],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "Chest", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 144, "y": 16, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Chest"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "It's empty....", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["It's empty...."]
+								}] }
 							]
 						}
 					]
@@ -15719,9 +15744,9 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "There is a circle without dust. Something recently left this table.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "There is a dust circle here. Something recently left this table.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["There is a circle without dust. Something recently left this table."]
+									"params": ["There is a dust circle here. Something recently left this table."]
 								}] }
 							]
 						},
@@ -15758,6 +15783,30 @@
 								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [11,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "9898f580-5110-11ed-aafd-21776679a411",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [176,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Looks like Cludd has a rubber pot also.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Looks like Cludd has a rubber pot also."]
+								}] }
 							]
 						}
 					]
@@ -16533,9 +16582,9 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "The plate used to be clean, but it is dusty.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "The plate us", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["The plate used to be clean, but it is dusty."]
+									"params": ["The plate us"]
 								}] }
 							]
 						},
@@ -16562,6 +16611,30 @@
 									"params": [
 										"The fireplace is surprisingly clean, possibly even less dusty than some of the other stuff in this house."
 									]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [6,5],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "bdfccc20-5110-11ed-aafd-fd1002f0d15b",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [96,80],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "There are random useless knickknacks in the drawer.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["There are random useless knickknacks in the drawer."]
 								}] }
 							]
 						}
@@ -17468,12 +17541,12 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,
 						0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,
-						0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,
-						0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,
+						0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
+						0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,
 						0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,
 						0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
-						1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,
+						1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,0,0,0,
 						0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,
@@ -17509,17 +17582,17 @@
 						{ "px": [192,32], "src": [0,0], "f": 0, "t": 0, "d": [121,144] },
 						{ "px": [24,40], "src": [0,0], "f": 0, "t": 0, "d": [121,153] },
 						{ "px": [80,40], "src": [0,0], "f": 0, "t": 0, "d": [121,160] },
-						{ "px": [88,40], "src": [0,0], "f": 0, "t": 0, "d": [121,161] },
-						{ "px": [96,40], "src": [0,0], "f": 0, "t": 0, "d": [121,162] },
-						{ "px": [104,40], "src": [0,0], "f": 0, "t": 0, "d": [121,163] },
-						{ "px": [112,40], "src": [0,0], "f": 0, "t": 0, "d": [121,164] },
-						{ "px": [120,40], "src": [0,0], "f": 0, "t": 0, "d": [121,165] },
-						{ "px": [128,40], "src": [0,0], "f": 0, "t": 0, "d": [121,166] },
 						{ "px": [136,40], "src": [0,0], "f": 0, "t": 0, "d": [121,167] },
 						{ "px": [192,40], "src": [0,0], "f": 0, "t": 0, "d": [121,174] },
 						{ "px": [24,48], "src": [0,0], "f": 0, "t": 0, "d": [121,183] },
 						{ "px": [80,48], "src": [0,0], "f": 0, "t": 0, "d": [121,190] },
 						{ "px": [88,48], "src": [0,0], "f": 0, "t": 0, "d": [121,191] },
+						{ "px": [96,48], "src": [0,0], "f": 0, "t": 0, "d": [121,192] },
+						{ "px": [104,48], "src": [0,0], "f": 0, "t": 0, "d": [121,193] },
+						{ "px": [112,48], "src": [0,0], "f": 0, "t": 0, "d": [121,194] },
+						{ "px": [120,48], "src": [0,0], "f": 0, "t": 0, "d": [121,195] },
+						{ "px": [128,48], "src": [0,0], "f": 0, "t": 0, "d": [121,196] },
+						{ "px": [136,48], "src": [0,0], "f": 0, "t": 0, "d": [121,197] },
 						{ "px": [192,48], "src": [0,0], "f": 0, "t": 0, "d": [121,204] },
 						{ "px": [24,56], "src": [0,0], "f": 0, "t": 0, "d": [121,213] },
 						{ "px": [80,56], "src": [0,0], "f": 0, "t": 0, "d": [121,220] },
@@ -17543,9 +17616,21 @@
 						{ "px": [160,72], "src": [0,0], "f": 0, "t": 0, "d": [121,290] },
 						{ "px": [168,72], "src": [0,0], "f": 0, "t": 0, "d": [121,291] },
 						{ "px": [192,72], "src": [0,0], "f": 0, "t": 0, "d": [121,294] },
-						{ "px": [200,72], "src": [0,0], "f": 0, "t": 0, "d": [121,295] },
-						{ "px": [208,72], "src": [0,0], "f": 0, "t": 0, "d": [121,296] },
 						{ "px": [24,80], "src": [0,0], "f": 0, "t": 0, "d": [121,303] },
+						{ "px": [80,80], "src": [0,0], "f": 0, "t": 0, "d": [121,310] },
+						{ "px": [88,80], "src": [0,0], "f": 0, "t": 0, "d": [121,311] },
+						{ "px": [96,80], "src": [0,0], "f": 0, "t": 0, "d": [121,312] },
+						{ "px": [104,80], "src": [0,0], "f": 0, "t": 0, "d": [121,313] },
+						{ "px": [112,80], "src": [0,0], "f": 0, "t": 0, "d": [121,314] },
+						{ "px": [120,80], "src": [0,0], "f": 0, "t": 0, "d": [121,315] },
+						{ "px": [128,80], "src": [0,0], "f": 0, "t": 0, "d": [121,316] },
+						{ "px": [136,80], "src": [0,0], "f": 0, "t": 0, "d": [121,317] },
+						{ "px": [144,80], "src": [0,0], "f": 0, "t": 0, "d": [121,318] },
+						{ "px": [152,80], "src": [0,0], "f": 0, "t": 0, "d": [121,319] },
+						{ "px": [160,80], "src": [0,0], "f": 0, "t": 0, "d": [121,320] },
+						{ "px": [168,80], "src": [0,0], "f": 0, "t": 0, "d": [121,321] },
+						{ "px": [192,80], "src": [0,0], "f": 0, "t": 0, "d": [121,324] },
+						{ "px": [200,80], "src": [0,0], "f": 0, "t": 0, "d": [121,325] },
 						{ "px": [208,80], "src": [0,0], "f": 0, "t": 0, "d": [121,326] },
 						{ "px": [24,88], "src": [0,0], "f": 0, "t": 0, "d": [121,333] },
 						{ "px": [208,88], "src": [0,0], "f": 0, "t": 0, "d": [121,356] },
@@ -17757,6 +17842,30 @@
 								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [12,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "038453d0-5110-11ed-aafd-8f3f7e9afa70",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [192,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Just a pot, nothing fancy.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Just a pot, nothing fancy."]
+								}] }
 							]
 						}
 					]
@@ -18328,6 +18437,51 @@
 								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [4,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 272, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "6c489e50-5110-11ed-aafd-539e55c4ccf7",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [64,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "Pot_normal", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 272, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Pot_normal"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [2,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 96, "y": 128, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "f872baa0-5110-11ed-aafd-a3be01f72ccb",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [32,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "Gameboy", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 96, "y": 128, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Gameboy"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Its an old Gameboy.. The cartridge in it says \"Not part of GameOff 2022\"", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Its an old Gameboy.. The cartridge in it says \"Not part of GameOff 2022\""]
+								}] }
 							]
 						}
 					]
@@ -19190,6 +19344,30 @@
 								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [2,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "36d7a120-5110-11ed-aafd-e5e02071b72f",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [32,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "He has a register in his room... Maybe its a backup?", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["He has a register in his room... Maybe its a backup?"]
+								}] }
 							]
 						}
 					]
@@ -20116,7 +20294,7 @@
 					"layerDefUid": 23,
 					"pxOffsetX": 0,
 					"pxOffsetY": 0,
-					"visible": false,
+					"visible": true,
 					"optionalRules": [],
 					"intGridCsv": [],
 					"autoLayerTiles": [],
