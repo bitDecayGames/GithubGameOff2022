@@ -18801,7 +18801,10 @@
 									"id": "V_String",
 									"params": ["Pot_normal"]
 								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Key", "__value": "gb_blockerpot", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["gb_blockerpot"]
+								}] },
 								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
 							]
 						},
@@ -20755,7 +20758,7 @@
 						},
 						{
 							"__identifier": "Door",
-							"__grid": [3,5],
+							"__grid": [6,5],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -20764,7 +20767,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 28,
-							"px": [48,80],
+							"px": [96,80],
 							"fieldInstances": [
 								{ "__identifier": "connection", "__value": {
 									"entityIid": "2c2aff90-5110-11ed-804c-77d927432ce2",
@@ -20788,7 +20791,7 @@
 						},
 						{
 							"__identifier": "Door",
-							"__grid": [7,5],
+							"__grid": [4,5],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -20797,7 +20800,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 28,
-							"px": [112,80],
+							"px": [64,80],
 							"fieldInstances": [
 								{ "__identifier": "connection", "__value": {
 									"entityIid": "34398760-5110-11ed-804c-f31fe8c3008c",
