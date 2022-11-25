@@ -15974,7 +15974,10 @@
 									"id": "V_String",
 									"params": ["DOWN"]
 								}] },
-								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
+								{ "__identifier": "Stairs", "__value": true, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] },
@@ -16766,8 +16769,14 @@
 									"id": "V_String",
 									"params": ["DOWN"]
 								}] },
-								{ "__identifier": "Stairs", "__value": false, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [] },
-								{ "__identifier": "Down", "__value": false, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [] },
+								{ "__identifier": "Stairs", "__value": true, "__type": "Bool", "__tile": null, "defUid": 129, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
+								{ "__identifier": "Down", "__value": true, "__type": "Bool", "__tile": null, "defUid": 130, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] },
 								{ "__identifier": "QuestDoor", "__value": null, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [] },
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "Keys", "__value": [], "__type": "Array<LocalEnum.Keys>", "__tile": null, "defUid": 140, "realEditorValues": [] }
