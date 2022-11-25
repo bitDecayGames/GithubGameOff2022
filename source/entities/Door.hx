@@ -40,15 +40,15 @@ class Door extends FlxSprite {
 		isDownStairs = data.f_Down;
 		if (isStairs) {
 			if (isDownStairs) {
-				animation.add('closed', [8, 8, 8], 5, false);
-				animation.add('close', [8, 8, 8], 5, false);
-				animation.add('open', [8, 8, 8], 5, false);
-				animation.add('opened', [8, 8, 8], 5, false);
+				animation.add('closed', [8], 5, false);
+				animation.add('close', [8], 5, false);
+				animation.add('open', [8], 5, false);
+				animation.add('opened', [8], 5, false);
 			} else {
-				animation.add('closed', [9, 9, 9], 5, false);
-				animation.add('close', [9, 9, 9], 5, false);
-				animation.add('open', [9, 9, 9], 5, false);
-				animation.add('opened', [9, 9, 9], 5, false);
+				animation.add('closed', [9], 5, false);
+				animation.add('close', [9], 5, false);
+				animation.add('open', [9], 5, false);
+				animation.add('opened', [9], 5, false);
 			}
 		} else {
 			switch(accessDir) {
@@ -142,12 +142,13 @@ class Door extends FlxSprite {
 		}
 	}
 
+	// Logic for SFX put in playstate next to doors
 	public function enter() {
 		if (isStairs) {
 			if (isDownStairs) {
-				// TODO SFX: down stair sound
+
 			} else {
-				// TODO SFX: up stair sound
+
 			}
 		}
 
