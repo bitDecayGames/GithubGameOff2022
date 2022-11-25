@@ -36,7 +36,7 @@ class Door extends Interactable {
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
 
 		for (key in data.f_Keys) {
-			checks.push(new KeyYayOrNay(key.getIndex()));
+			checks.push(new KeyYayOrNay(key));
 		}
 
 		immovable = true;
