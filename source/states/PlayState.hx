@@ -134,6 +134,7 @@ class PlayState extends FlxTransitionableState {
 
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
 		
+		FlxG.watch.add(player, "speedModifier", "speed modifier");
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
 	}
@@ -316,7 +317,9 @@ class PlayState extends FlxTransitionableState {
 				player.worldClip = null;
 				player.persistentDirectionInfluence.set();
 				startDoor.animation.play('close');
-				FmodManager.PlaySoundOneShot(FmodSFX.DoorClose);
+				if (!startDoor.isStairs){
+					FmodManager.PlaySoundOneShot(FmodSFX.DoorClose);
+				}
 				startDoor.animation.finishCallback = (n) -> {
 					if (n == "close"){
 						startDoor.animation.play('closed');
@@ -448,12 +451,11 @@ class PlayState extends FlxTransitionableState {
 		// TODO terrible hack I sorry
 		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK && FmodManager.GetCurrentSongPath() == FmodSFX.AlarmClock) {
 			FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
-			if (level.identifier == "House_Lonk_1" || level.identifier == "House_Lonk_room_lonk") {
+			if (level.identifier == "House_Lonk_1" || level.identifier == "House_Lonk_room_lonk" || level.identifier == "House_Lonk_upstairs") {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 			}
 		}
 
-		FlxG.watch.addQuick("Active: ", playerActive);
 		if (!GlobalQuestState.WOKEN_FIRST_TIME){
 			GlobalQuestState.WOKEN_FIRST_TIME = true;
 			if (!GlobalQuestState.SPEEDY_DEBUG) {
@@ -524,35 +526,51 @@ class PlayState extends FlxTransitionableState {
 
 			// make the player face the door
 			p.setIdleAnimation(d.accessDir.opposite());
-			FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
+			if (!d.isStairs){
+				FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
+			} else {
+				p.speedModifier = 0.3;
+				new FlxTimer().start(0.85, (t) -> {
+					if (d.isDownStairs){
+						FmodManager.PlaySoundOneShot(FmodSFX.StairsDown);
+					} else {
+						FmodManager.PlaySoundOneShot(FmodSFX.StairsUp);
+					}
+				});
+			} 
 			transitionSignal.dispatch(d.destinationLevel);
 			playerInTransition = true;
 			d.animation.play('open');
 			d.animation.finishCallback = (name) -> {
-				p.allowCollisions = FlxObject.NONE;
-				d.accessDir.opposite().asCleanVector(p.persistentDirectionInfluence);
-				var clip = d.getClipRect();
-				var walkDistance = 0.0;
-				switch(d.accessDir) {
-					case N:
-						walkDistance = Math.abs(clip.bottom - player.y) + player.height;
-						// walkDistance = Math.abs(clip.bottom - player.y) + player.frameHeight;
-					case S:
-						walkDistance = Math.abs(clip.y - player.y) + player.height;
-					case E:
-						walkDistance = 32;
-					case W:
-						walkDistance = 32;
-					default:
+				if (name == "close" || name == "open"){
+					p.allowCollisions = FlxObject.NONE;
+					d.accessDir.opposite().asCleanVector(p.persistentDirectionInfluence);
+					var clip = d.getClipRect();
+					var walkDistance = 0.0;
+					switch(d.accessDir) {
+						case N:
+							walkDistance = Math.abs(clip.bottom - player.y) + player.height;
+							// walkDistance = Math.abs(clip.bottom - player.y) + player.frameHeight;
+						case S:
+							walkDistance = Math.abs(clip.y - player.y) + player.height;
+						case E:
+							walkDistance = 32;
+						case W:
+							walkDistance = 32;
+						default:
+					}
+					p.worldClip = clip;
+					new FlxTimer().start(walkDistance / (p.speed * p.speedModifier), (t) -> {
+						p.persistentDirectionInfluence.set();
+						p.speedModifier = 1;
+						p.hasTakenStepOnStairs1 = false;
+						p.hasTakenStepOnStairs2 = false;
+						d.enter();
+						p.allowCollisions = FlxObject.ANY;
+						playerInTransition = false;
+						p.worldClip = null;
+					});
 				}
-				p.worldClip = clip;
-				new FlxTimer().start(walkDistance / p.speed, (t) -> {
-					p.persistentDirectionInfluence.set();
-					d.enter();
-					p.allowCollisions = FlxObject.ANY;
-					playerInTransition = false;
-					p.worldClip = null;
-				});
 			};
 		}
 	}

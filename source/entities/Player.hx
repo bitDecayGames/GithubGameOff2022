@@ -33,7 +33,11 @@ class Player extends FlxSprite {
 	var playerNum = 0;
 
 	public var persistentDirectionInfluence = FlxVector.get();
+	public var speedModifier:Float = 1.0;
 	public var oneFrameDirectionInfluence = FlxVector.get();
+
+	public var hasTakenStepOnStairs1 = false;
+	public var hasTakenStepOnStairs2 = false;
 
 	var interactionBox:FlxObject;
 
@@ -132,6 +136,7 @@ class Player extends FlxSprite {
 		super.destroy();
 	}
 
+	var zero = new FlxPoint(0, 0);
 	function addAnimationCallback():Void {
 		animation.callback = (name, frameNumber, frameIndex) -> {
 			if (StringTools.contains(name, '${Characters.RUN_ANIM}')) {
@@ -193,6 +198,19 @@ class Player extends FlxSprite {
 	}
 
 	function playStepSound(type:Enum_GroundType){
+
+		
+		// Complete and utter hack to make stair SFX work
+		if(speedModifier != 1.0){ // On stairs
+			if (!hasTakenStepOnStairs1) {
+				hasTakenStepOnStairs1 = true;
+			} else if (!hasTakenStepOnStairs2) {
+				hasTakenStepOnStairs2 = true;
+			} else {
+				return;
+			}
+		} 
+
 		switch(type) {
 			case Carpet:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrass);
@@ -265,7 +283,7 @@ class Player extends FlxSprite {
 		}
 
 		// do the influence outside of the other check to allow us to do some sort of cutscenes and such
-		velocity.copyFrom(oneFrameDirectionInfluence.addPoint(persistentDirectionInfluence).normalize().scale(speed).addPoint(velocity).normalize().scale(speed));
+		velocity.copyFrom(oneFrameDirectionInfluence.addPoint(persistentDirectionInfluence).normalize().scale(speed*speedModifier).addPoint(velocity).normalize().scale(speed*speedModifier));
 		oneFrameDirectionInfluence.set();
 
 		super.update(delta);
