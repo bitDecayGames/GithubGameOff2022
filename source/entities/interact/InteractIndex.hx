@@ -10,4 +10,6 @@ enum abstract InteractIndex(Int) to Int from Int {
 	var MAP = 6;
 	var TREE = 7;
 	var BOULDER = 8;
+	var GAMEBOY = 9;
+	var FIRE = 10;
 }

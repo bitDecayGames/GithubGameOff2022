@@ -14,7 +14,7 @@ class LevelState {
 
     var camera:FlxCamera;
     var player:Player;
-	var lightenShader:Lighten;
+	public var lightenShader:Lighten;
 	var lightFilter:ShaderFilter;
 
     var cluddSnoring:Bool = false;
@@ -82,6 +82,11 @@ class LevelState {
             lightenShader.iTime.value = [0];
             lightenShader.lightSourceX.value = [0];
             lightenShader.lightSourceY.value = [0];
+
+            lightenShader.fireActive.value = [false];
+            lightenShader.lightSourceFireX.value = [-100];
+            lightenShader.lightSourceFireY.value = [-100];
+
             lightenShader.isShaderActive.value = [true];
             lightFilter = new ShaderFilter(lightenShader);
             #if !disable_shader
@@ -114,7 +119,7 @@ class LevelState {
 
 	// TODO Transitions when going through doors would be cool to do when link touches the door rather than when the new level is loaded
 	private function updateSong() {
-        
+
         trace("playing song");
 		if(!FmodManager.IsSongPlaying()){
 			FmodManager.PlaySong(FmodSongs.Silence);

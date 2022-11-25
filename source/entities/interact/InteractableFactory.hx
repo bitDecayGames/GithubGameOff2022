@@ -32,6 +32,8 @@ class InteractableFactory {
 				return new Tree(data);
 			case BOULDER:
 				return new Boulder(data);
+			case FIRE:
+				return new Fireplace(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';

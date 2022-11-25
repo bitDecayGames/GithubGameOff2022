@@ -12,6 +12,11 @@ class Lighten extends FlxShader
         uniform float lightSourceX;
         uniform float lightSourceY;
         uniform float lightRadius;
+
+        uniform bool fireActive;
+        uniform float lightSourceFireX;
+        uniform float lightSourceFireY;
+        uniform float lightFireRadius;
         uniform bool isShaderActive;
 
         void main()
@@ -27,21 +32,30 @@ class Lighten extends FlxShader
 				return;
             }
 
-            vec2 lightSourceVector = vec2(floor(lightSourceX), floor(lightSourceY));
             vec2 uvInGameRes = vec2(floor(uv.x * ingameResolution.x), floor(uv.y * ingameResolution.y));
+
+
+            vec2 lightSourceVector = vec2(floor(lightSourceX), floor(lightSourceY));
 
             // the distance from the light source as a value from 0 to 1
             // a value of (.5, .5) would mean the distance between the pixel and light source is half the distance of the entire screen
-            vec2 dist = lightSourceVector - uvInGameRes;
+            float dist = floor(length(lightSourceVector - uvInGameRes));
 
-            // Adjust for screen aspect ratio
-            float distanceFromLightSource = floor(length(dist));
-
-            if (distanceFromLightSource >= lightRadius) {
+            if (dist >= lightRadius) {
                 pixel = vec4(0, 0, 0, 1.0);
             } else {
-                pixel = pixel * 0.33;
+                pixel.rgb *= 0.33;
             }
+
+            if (fireActive) {
+                vec2 lightSourceFireVector = vec2(floor(lightSourceFireX), floor(lightSourceFireY));
+                float dist2 = floor(length(lightSourceFireVector - uvInGameRes));
+                if (dist2 <= lightRadius) {
+                    pixel = texture2D(bitmap, openfl_TextureCoordv);
+                    pixel.rgb *= .45;
+                }
+            }
+
 			gl_FragColor = pixel;
         }')
 
