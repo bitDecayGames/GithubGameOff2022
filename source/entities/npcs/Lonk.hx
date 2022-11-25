@@ -69,4 +69,9 @@ class Lonk extends NPC {
 			return true;
 		}
 	}
+
+	override function Why():String {
+		// Our check door code handles this
+		return "";
+	}
 }

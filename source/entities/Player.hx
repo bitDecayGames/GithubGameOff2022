@@ -295,6 +295,7 @@ class Player extends FlxSprite {
 		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
 			isInteracting = false;
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
+			FlxG.overlap(PlayState.ME.doors, interactionBox, playerInteracts);
 		}
 
 		updateAnimations();

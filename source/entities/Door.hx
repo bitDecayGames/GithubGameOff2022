@@ -1,5 +1,6 @@
 package entities;
 
+import entities.interact.Interactable;
 import quest.GlobalQuestState;
 import flixel.util.FlxStringUtil;
 import flixel.FlxG;
@@ -9,7 +10,7 @@ import flixel.FlxSprite;
 import helpers.LDTKEnum;
 import states.PlayState;
 
-class Door extends FlxSprite {
+class Door extends Interactable {
 	public var data:Entity_Door;
 
 	public var iid:String;
@@ -23,7 +24,7 @@ class Door extends FlxSprite {
 	public var checks:Array<YayOrNay> = [];
 
 	public function new(data:Entity_Door) {
-		super(data.cx * 16, data.cy * 16);
+		super(data.cx * 16, data.cy * 16, NONE);
 		this.data = data;
 
 		loadGraphic(AssetPaths.doorSheet__png, true, 32, 32);
@@ -33,6 +34,10 @@ class Door extends FlxSprite {
 		updateDestination();
 
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
+
+		for (key in data.f_Keys) {
+			checks.push(new KeyYayOrNay(key.getIndex()));
+		}
 
 		immovable = true;
 
@@ -155,5 +160,19 @@ class Door extends FlxSprite {
 		// make sure we are accurate to the current state
 		updateDestination();
 		PlayState.ME.loadLevel(destinationLevel, destinationDoorID);
+	}
+
+	override public function interact() {
+		if (!shouldPass()) {
+			for (ask in checks) {
+				if (!ask.CheckDoor(this)) {
+					var reason = ask.Why();
+					if (!FlxStringUtil.isNullOrEmpty(reason)) {
+						dialogBox.loadDialogLine(reason);
+						PlayState.ME.openDialog(dialogBox);
+					}
+				}
+			}
+		}
 	}
 }

@@ -133,7 +133,8 @@ class PlayState extends FlxTransitionableState {
 		SaveFileOverrides.checkForSaveFileOverrides();
 
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
-		
+
+
 		FlxG.watch.add(player, "speedModifier", "speed modifier");
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
@@ -537,7 +538,7 @@ class PlayState extends FlxTransitionableState {
 						FmodManager.PlaySoundOneShot(FmodSFX.StairsUp);
 					}
 				});
-			} 
+			}
 			transitionSignal.dispatch(d.destinationLevel);
 			playerInTransition = true;
 			d.animation.play('open');
