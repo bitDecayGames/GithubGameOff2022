@@ -52,9 +52,7 @@ class MapInteractable extends Interactable {
 						PlayState.ME.openDialog(dialogBox);
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_MAP = true;
-						// TODO: right quest update
-						GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
-						GlobalQuestState.subQuest = 0;
+						GlobalQuestState.currentQuest = QuestIndex.RETURN_MAP;
 					});
 				}
 			};
