@@ -902,8 +902,8 @@
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
-				"opaqueTiles": "111111111111101111110000000000000000",
-				"averageColors": "fc97fc98fc98fc98f787f788f787f688f897f897f897f897fa99fa99fa99fa99f343f555f453f4540000000000000000000000000000000000000000000000000000000000000000"
+				"opaqueTiles": "111111111111101111111111000000000000",
+				"averageColors": "fc97fc98fc98fc98f787f788f787f688f897f897f897f897fa99fa99fa99fa99f343f555f453f454fca9fca9fca9fca9000000000000000000000000000000000000000000000000"
 			}
 		},
 		{
@@ -14654,7 +14654,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 24,
-							"px": [120,28],
+							"px": [120,31],
 							"fieldInstances": []
 						},
 						{
@@ -20000,7 +20000,7 @@
 			"__neighbours": []
 		},
 		{
-			"identifier": "Level_13",
+			"identifier": "House_Lonk_upstairs",
 			"iid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
 			"uid": 138,
 			"worldX": -384,
@@ -20010,7 +20010,7 @@
 			"pxHei": 112,
 			"__bgColor": "#696A79",
 			"bgColor": null,
-			"useAutoIdentifier": true,
+			"useAutoIdentifier": false,
 			"bgRelPath": null,
 			"bgPos": null,
 			"bgPivotX": 0.5,
