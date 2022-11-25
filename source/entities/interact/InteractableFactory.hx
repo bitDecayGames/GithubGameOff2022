@@ -23,6 +23,8 @@ class InteractableFactory {
 				return new Chest(data);
 			case GATE:
 				return new Gate(data);
+			case MAP:
+				return new MapInteractable(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';

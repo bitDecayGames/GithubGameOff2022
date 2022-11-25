@@ -26,6 +26,8 @@ class NPCFactory {
 				return new Helper(data);
 			case CLUDD:
 				return new Cludd(data);
+			case CRAFTSMAN:
+				return new Craftsman(data);
 			default:
 				throw 'unknown npc entity ${data.f_character.getName()}';
 		}

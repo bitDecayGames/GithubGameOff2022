@@ -38,6 +38,7 @@ class Chest extends Interactable {
 			PlayState.ME.startEncounter(substate);
 			substate.closeCallback = () -> {
 				if (substate.success) {
+					PlayState.ME.eventSignal.dispatch('chestUnlocked');
 					FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
 					new FlxTimer().start(2, (t) -> {
 						animation.play("open");
