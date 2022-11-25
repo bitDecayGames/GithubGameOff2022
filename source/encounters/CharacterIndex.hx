@@ -24,6 +24,8 @@ enum abstract CharacterIndex(Int) to Int from Int {
 				return AssetPaths.oldMan__png;
 			case CLUDD:
 				return AssetPaths.cludd__png;
+			case CRAFTSMAN:
+				return AssetPaths.shopkeep__png;
 			default:
 				// TODO: Obviously this is wrong
 				return AssetPaths.player__png;

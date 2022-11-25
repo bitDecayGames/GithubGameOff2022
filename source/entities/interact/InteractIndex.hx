@@ -7,4 +7,5 @@ enum abstract InteractIndex(Int) to Int from Int {
 	var POT_NORMAL = 3;
 	var CHEST = 4;
 	var GATE = 5;
+	var MAP = 6;
 }

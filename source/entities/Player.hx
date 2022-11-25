@@ -77,31 +77,34 @@ class Player extends FlxSprite {
 	}
 
 	function handleEvent(e:String) {
-		if (e == "compassCollected") {
-			lockControls = true;
-			animation.play(ITEM_GET);
-			FmodManager.PlaySoundOneShot(FmodSFX.WorldCollectImportantDelay);
-			heldItem = new ItemParticle(x + width/2, y-24, COMPASS);
-			FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
-				type: FlxTweenType.PINGPONG,
-				ease: FlxEase.sineInOut,
-			});
-			PlayState.ME.uiHelpers.add(heldItem);
-			facing = FlxObject.DOWN;
-		}
-		if (e == "compassDropped") {
-			lockControls = true;
-			animation.play(STARTLED);
-			FmodManager.PlaySoundOneShot(FmodSFX.CompassBreak);
+		switch(e) {
+			case "chestUnlocked":
+				lockControls = true;
+			case "compassCollected":
+				lockControls = true;
+				animation.play(ITEM_GET);
+				FmodManager.PlaySoundOneShot(FmodSFX.WorldCollectImportantDelay);
+				heldItem = new ItemParticle(x + width/2, y-24, COMPASS);
+				FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
+					type: FlxTweenType.PINGPONG,
+					ease: FlxEase.sineInOut,
+				});
+				PlayState.ME.uiHelpers.add(heldItem);
+				facing = FlxObject.DOWN;
+			case "compassDropped":
+				lockControls = true;
+				animation.play(STARTLED);
+				FmodManager.PlaySoundOneShot(FmodSFX.CompassBreak);
 
-			if (heldItem != null) {
-				heldItem.kill();
-			}
+				if (heldItem != null) {
+					heldItem.kill();
+				}
 
-			new FlxTimer().start(2, (t) -> {
-				lockControls = false;
-				updateAnimations(true);
-			});
+				new FlxTimer().start(2, (t) -> {
+					lockControls = false;
+					updateAnimations(true);
+				});
+			default:
 		}
 	}
 
