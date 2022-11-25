@@ -9,7 +9,7 @@ class PotNormal extends Interactable {
 	var data:Entity_Interactable;
 
 	public function new(data:Entity_Interactable) {
-		super(data.pixelX, data.pixelY, POT);
+		super(data.pixelX, data.pixelY, NONE);
 		this.data = data;
 		loadGraphic(AssetPaths.interiorDecorations__png, true, 16, 16);
 		animation.frameIndex = 2;
@@ -19,19 +19,21 @@ class PotNormal extends Interactable {
 	override function interact() {
 		FmodManager.StopSongImmediately();
 		FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
-		var substate = new PotBattleState(new CharacterDialog(POT, "I am but a pot. Please be gentle."));
+		var substate = new PotBattleState(new CharacterDialog(NONE, "It is a basic, uninteresting pot"));
 		PlayState.ME.startEncounter(substate);
 		substate.closeCallback = () -> {
-			if (substate.success && data.f_Key == "compass") {
+			if (substate.success) {
+				if (data.f_Key == "compass") {
+					// PlayState.ME.eventSignal.dispatch('compassCollected');
+					// TODO: rejoice in your new compass!
+					// Should he drop the compass after holding it above his head? Causing it to only point west
+					// This would be a nice seque into our next quest
+					GlobalQuestState.HAS_COMPASS = true;
+					GlobalQuestState.currentQuest = FIND_LONK;
+				}
+
 				InteractableFactory.defeated.set(data.f_Key, true);
-				// TODO: How to not respawn this if they come back
 				kill();
-				// PlayState.ME.eventSignal.dispatch('compassCollected');
-				// TODO: rejoice in your new compass!
-				// Should he drop the compass after holding it above his head? Causing it to only point west
-				// This would be a nice seque into our next quest
-				GlobalQuestState.HAS_COMPASS = true;
-				GlobalQuestState.currentQuest = FIND_LONK;
 			}
 		};
 	}

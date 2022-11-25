@@ -199,7 +199,7 @@ class Player extends FlxSprite {
 
 	function playStepSound(type:Enum_GroundType){
 
-		
+
 		// Complete and utter hack to make stair SFX work
 		if(speedModifier != 1.0){ // On stairs
 			if (!hasTakenStepOnStairs1) {
@@ -209,7 +209,7 @@ class Player extends FlxSprite {
 			} else {
 				return;
 			}
-		} 
+		}
 
 		switch(type) {
 			case Carpet:
@@ -234,13 +234,19 @@ class Player extends FlxSprite {
 			frames[i] += rowLength;
 		}
 		animation.add('${baseName}_${Characters.RIGHT}', frames, Characters.BASE_FRAMERATE);
-		animation.add('${baseName}_${Characters.LEFT}', frames, Characters.BASE_FRAMERATE, true, true);
 
 		frames = frames.copy();
 		for (i in 0...frames.length) {
 			frames[i] += rowLength;
 		}
 		animation.add('${baseName}_${Characters.UP}', frames, Characters.BASE_FRAMERATE);
+
+		frames = frames.copy();
+		for (i in 0...frames.length) {
+			frames[i] += 3*rowLength;
+		}
+		animation.add('${baseName}_${Characters.LEFT}', frames, Characters.BASE_FRAMERATE, true);
+
 	}
 
 	override public function update(delta:Float) {

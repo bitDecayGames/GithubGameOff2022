@@ -32,6 +32,8 @@ class InteractableFactory {
 				return new Tree(data);
 			case BOULDER:
 				return new Boulder(data);
+			case GAMEBOY:
+				return new Gameboy(data);
 			case FIRE:
 				return new Fireplace(data);
 			default:
