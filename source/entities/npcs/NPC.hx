@@ -169,8 +169,11 @@ class NPC extends Interactable implements YayOrNay {
 		return lastQuest = value;
 	}
 
-	//
 	public function CheckDoor(d:Door):Bool {
 		return false;
+	}
+
+	public function Why():String {
+		return "";
 	}
 }

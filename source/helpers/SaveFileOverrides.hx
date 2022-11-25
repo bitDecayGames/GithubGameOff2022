@@ -5,7 +5,7 @@ import quest.GlobalQuestState;
 
 class SaveFileOverrides {
     public static function checkForSaveFileOverrides() {
-        
+
         #if LOOK_FOR_COMPASS_HOME
 		GlobalQuestState.currentQuest = INTRO;
 		GlobalQuestState.subQuest = 4;
@@ -50,6 +50,19 @@ class SaveFileOverrides {
 		GlobalQuestState.leftHouseFirstTime = true;
 		GlobalQuestState.HAS_COMPASS = true;
         PlayState.ME.loadLevel("House_Lonk_1");
+		#end
+
+		#if GO_TO_HANDYMAN_TOWN_MAIN
+		GlobalQuestState.currentQuest = GET_MAP;
+		GlobalQuestState.subQuest = 0;
+		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+		GlobalQuestState.DEFEATED_RUBBER_POT = true;
+		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+		GlobalQuestState.WOKEN_FIRST_TIME = true;
+		GlobalQuestState.leftHouseFirstTime = true;
+		GlobalQuestState.HAS_COMPASS = true;
+		GlobalQuestState.HAS_KEY_TO_HANDYMAN = true;
+        PlayState.ME.loadLevel("Town_main");
 		#end
     }
 }
