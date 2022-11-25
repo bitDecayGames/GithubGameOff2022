@@ -103,7 +103,7 @@ class NPC extends Interactable implements YayOrNay {
 		var questText = allText[GlobalQuestState.getCurrentQuestKey()];
 		if (questText == null) {
 			// if we didn't have text specific to this subtask, check for general quest text
-			questText = allText[GlobalQuestState.currentQuest];
+			questText = allText[GlobalQuestState.currentQuest.getName()];
 		}
 		if (questText != null) {
 			chatIndex = Math.round(FlxMath.bound(chatIndex, 0, questText.length-1));

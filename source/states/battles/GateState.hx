@@ -161,10 +161,10 @@ class GateState extends EncounterBaseState {
 
 					if (failCount >= 3) {
 						dialog.loadDialogLine('Only Cludd has the genius to unlock me! You will never get past me!');
-							dialog.textGroup.finishCallback = () -> {
-								transitionOut();
-							};
-							dialog.revive();
+						dialog.textGroup.finishCallback = () -> {
+							transitionOut();
+						};
+						dialog.revive();
 					} else {
 						acceptInput = true;
 					}

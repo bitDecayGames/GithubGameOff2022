@@ -29,7 +29,7 @@ class PotNormal extends Interactable {
 					// Should he drop the compass after holding it above his head? Causing it to only point west
 					// This would be a nice seque into our next quest
 					GlobalQuestState.HAS_COMPASS = true;
-					GlobalQuestState.currentQuest = FIND_LONK;
+					GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 				}
 
 				InteractableFactory.defeated.set(data.f_Key, true);

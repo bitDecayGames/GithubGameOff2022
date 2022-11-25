@@ -1,6 +1,5 @@
 package entities.npcs;
 
-import quest.QuestIndex;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import states.PlayState;
@@ -20,7 +19,7 @@ class Lonk extends NPC {
 		super.handleTagCallback(tag);
 
 		if (tag.tag == "cb") {
-			if (tag.parsedOptions.val == "turn_off_clock" && GlobalQuestState.getCurrentQuestKey() == "wake_up_0") {
+			if (tag.parsedOptions.val == "turn_off_clock" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Wake_up.subQuestKey(0)) {
 				GlobalQuestState.subQuest++;
 			}
 			if (tag.parsedOptions.val == "informed_of_rubber_pot") {
@@ -29,11 +28,11 @@ class Lonk extends NPC {
 				GlobalQuestState.subQuest++;
 			}
 
-			if (tag.parsedOptions.val == "informed_of_compass" && GlobalQuestState.getCurrentQuestKey() == "intro_4") {
+			if (tag.parsedOptions.val == "informed_of_compass" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Intro.subQuestKey(4)) {
 				GlobalQuestState.subQuest++;
 			}
 
-			// if (tag.parsedOptions.val == "compass_returned" && GlobalQuestState.getCurrentQuestKey() == "intro_6") {
+			// if (tag.parsedOptions.val == "compass_returned" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Intro.subQuestKey(6)) {
 			// 	GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
 			// 	GlobalQuestState.subQuest = 0;
 			// }
@@ -53,7 +52,7 @@ class Lonk extends NPC {
 	// }
 
 	function handleEvent(e:String) {
-		if (e == "rubberPotDefeated" && GlobalQuestState.getCurrentQuestKey() == "intro_3") {
+		if (e == "rubberPotDefeated" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Intro.subQuestKey(3)) {
 			GlobalQuestState.subQuest++;
 		}
 	}

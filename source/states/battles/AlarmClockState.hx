@@ -200,7 +200,7 @@ class AlarmClockState extends EncounterBaseState {
 			});
 
 			GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
-			GlobalQuestState.currentQuest = INTRO;
+			GlobalQuestState.currentQuest = Enum_QuestName.Intro;
 			GlobalQuestState.subQuest = 2; // starting here to make editing the old structure easier
 		}
 	}

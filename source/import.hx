@@ -12,6 +12,7 @@ import bitdecay.flixel.system.QuickLog;
 using bitdecay.flixel.extensions.FlxCameraExt;
 using bitdecay.flixel.extensions.FlxObjectExt;
 using bitdecay.flixel.extensions.FlxPointExt;
+using quest.QuestNameExt;
 
 // our level data!
 import levels.ldtk.LDTKProject;

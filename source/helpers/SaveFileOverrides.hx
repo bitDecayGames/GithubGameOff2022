@@ -7,7 +7,7 @@ class SaveFileOverrides {
     public static function checkForSaveFileOverrides() {
 
         #if FIGHT_POT_HOME
-		GlobalQuestState.currentQuest = INTRO;
+		GlobalQuestState.currentQuest = Enum_QuestName.Intro;
 		GlobalQuestState.subQuest = 4;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
@@ -17,7 +17,7 @@ class SaveFileOverrides {
 		#end
 
         #if LOOK_FOR_COMPASS_HOME
-		GlobalQuestState.currentQuest = INTRO;
+		GlobalQuestState.currentQuest = Enum_QuestName.Intro;
 		GlobalQuestState.subQuest = 4;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
@@ -28,7 +28,7 @@ class SaveFileOverrides {
 		#end
 
 		#if LOOK_FOR_COMPASS_CLUDD
-		GlobalQuestState.currentQuest = INTRO;
+		GlobalQuestState.currentQuest = Enum_QuestName.Intro;
 		GlobalQuestState.subQuest = 4;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
@@ -39,7 +39,7 @@ class SaveFileOverrides {
 		#end
 
 		#if HAVE_COMPASS_CLUDD
-		GlobalQuestState.currentQuest = GET_MAP;
+		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 		GlobalQuestState.subQuest = 0;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
@@ -51,7 +51,7 @@ class SaveFileOverrides {
 		#end
 
 		#if HAVE_COMPASS_HOME2
-		GlobalQuestState.currentQuest = GET_MAP;
+		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 		GlobalQuestState.subQuest = 0;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
@@ -63,7 +63,7 @@ class SaveFileOverrides {
 		#end
 
 		#if GO_TO_HANDYMAN_TOWN_MAIN
-		GlobalQuestState.currentQuest = GET_MAP;
+		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 		GlobalQuestState.subQuest = 0;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;

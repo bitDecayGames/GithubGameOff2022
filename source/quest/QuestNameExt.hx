@@ -1,15 +1,9 @@
 package quest;
 
-enum abstract QuestIndex(String) to String from String {
-	var WAKE_UP = "wake_up";
-	var INTRO = "intro";
-	var FIND_LONK = "findLonk";
-	var GET_MAP = "getMap";
-	var RETURN_MAP ="returnMap";
-
-	public function GetFlavorText():String {
-		return switch(this){
-			case WAKE_UP:
+class QuestNameExt {
+	public static function GetFlavorText(questName:Enum_QuestName) {
+		return switch(questName){
+			case Enum_QuestName.Wake_up:
 				return switch(GlobalQuestState.subQuest) {
 					case 0:
 						" ";
@@ -18,7 +12,7 @@ enum abstract QuestIndex(String) to String from String {
 					default:
 						"Unknown subquest";
 				}
-			case INTRO:
+			case Enum_QuestName.Intro:
 				return switch(GlobalQuestState.subQuest) {
 					case 2: // Alarm turned off
 						" ";
@@ -31,14 +25,14 @@ enum abstract QuestIndex(String) to String from String {
 					default:
 						"Unknown subquest";
 				}
-			case FIND_LONK:
+			case Enum_QuestName.Find_lonk:
 				return switch(GlobalQuestState.subQuest) {
 					case 0: // Bring the compass back to Lonk
 						buildFlavorText("return the compass");
 					default:
 						buildFlavorText("Unknown subquest");
 				}
-			case GET_MAP:
+			case Enum_QuestName.Get_map:
 				return switch(GlobalQuestState.subQuest) {
 					case 0: // Bring the compass back to Lonk
 						buildFlavorText("return the compass");
@@ -47,7 +41,7 @@ enum abstract QuestIndex(String) to String from String {
 					default:
 						buildFlavorText("Unknown subquest");
 				}
-			case RETURN_MAP:
+			case Enum_QuestName.Return_map:
 				return switch(GlobalQuestState.subQuest){
 					default:
 						buildFlavorText("return the map");
@@ -57,7 +51,11 @@ enum abstract QuestIndex(String) to String from String {
 		}
 	}
 
-	private function buildFlavorText(flavorText:String) {
+	private static function buildFlavorText(flavorText:String) {
 		return "Task: "+flavorText;
+	}
+
+	public static function subQuestKey(questName:Enum_QuestName, subQuestNum:Int):String {
+		return '${questName.getName()}_$subQuestNum';
 	}
 }

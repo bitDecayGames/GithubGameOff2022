@@ -135,7 +135,7 @@ class Door extends Interactable {
 		// If we have specific quest doors, check to see if we should send the player somewhere else
 		if (data.f_QuestDoor != null) {
 			for (questName in data.f_QuestNames) {
-				if (GlobalQuestState.currentQuest == questName || questName == "*") {
+				if (GlobalQuestState.currentQuest.getName() == questName || questName == "*") {
 					destinationLevel = data.f_QuestDoor.levelIid;
 					destinationDoorID = data.f_QuestDoor.entityIid;
 					break;

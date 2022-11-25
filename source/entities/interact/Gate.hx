@@ -2,7 +2,6 @@ package entities.interact;
 
 import flixel.FlxObject;
 import states.battles.GateState;
-import quest.QuestIndex;
 import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
@@ -32,21 +31,26 @@ class Gate extends Interactable {
 	}
 
 	override function interact() {
-		if (!opened) {
-			var substate = new GateState();
-			FmodManager.StopSongImmediately();
-			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
-			PlayState.ME.startEncounter(substate);
-			substate.closeCallback = () -> {
-				if (substate.success) {
-					InteractableFactory.collected.set(contentKey, true);
-					animation.play('opened');
-					opened = true;
-					allowCollisions = FlxObject.NONE;
-				}
-			};
+		if (!GlobalQuestState.LONK_HOUSE_COLLAPSED) {
+			dialogBox.loadDialogLine('It is a fancy locked gate, but to what?');
+			PlayState.ME.openDialog(dialogBox);
 		} else {
-			// do not interact if it is already opened
+			if (!opened) {
+				var substate = new GateState();
+				FmodManager.StopSongImmediately();
+				FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
+				PlayState.ME.startEncounter(substate);
+				substate.closeCallback = () -> {
+					if (substate.success) {
+						InteractableFactory.collected.set(contentKey, true);
+						animation.play('opened');
+						opened = true;
+						allowCollisions = FlxObject.NONE;
+					}
+				};
+			} else {
+				// do not interact if it is already opened
+			}
 		}
 	}
 

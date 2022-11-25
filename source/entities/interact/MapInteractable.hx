@@ -3,7 +3,6 @@ package entities.interact;
 import states.battles.MapState;
 import flixel.FlxObject;
 import states.battles.GateState;
-import quest.QuestIndex;
 import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
@@ -52,7 +51,7 @@ class MapInteractable extends Interactable {
 						PlayState.ME.openDialog(dialogBox);
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_MAP = true;
-						GlobalQuestState.currentQuest = QuestIndex.RETURN_MAP;
+						GlobalQuestState.currentQuest = Enum_QuestName.Return_map;
 					});
 				}
 			};

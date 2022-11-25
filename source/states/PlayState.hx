@@ -4,7 +4,6 @@ import entities.interact.Interactable;
 import helpers.SaveFileOverrides;
 import flixel.util.FlxSpriteUtil;
 import flixel.text.FlxBitmapText;
-import quest.QuestIndex;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import shaders.MosaicManager;

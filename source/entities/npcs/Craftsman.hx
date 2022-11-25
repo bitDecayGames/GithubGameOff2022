@@ -1,6 +1,5 @@
 package entities.npcs;
 
-import quest.QuestIndex;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import states.PlayState;

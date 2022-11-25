@@ -4,7 +4,7 @@ class GlobalQuestState {
 	public static var SPEEDY_DEBUG = #if speedy_debug true #else false #end;
 
 	// Top level quest tracker
-	public static var currentQuest(default, set):QuestIndex = WAKE_UP;
+	public static var currentQuest(default, set):Enum_QuestName = Enum_QuestName.Wake_up;
 	public static var subQuest:Int = 0;
 
 	// FLAGS OUT THE WAZOO
@@ -19,14 +19,14 @@ class GlobalQuestState {
 
 
 	public static function getCurrentQuestKey():String {
-		return '${GlobalQuestState.currentQuest}_${GlobalQuestState.subQuest}';
+		return '${GlobalQuestState.currentQuest.getName()}_${GlobalQuestState.subQuest}';
 	}
 
 	// misc flags to help us know when to transition quests
 	public static var leftHouseFirstTime = false;
 	public static var hasCompass = false;
 
-	static function set_currentQuest(value:QuestIndex):QuestIndex {
+	static function set_currentQuest(value:Enum_QuestName):Enum_QuestName {
 		if (currentQuest != value) {
 			subQuest = 0;
 		}
