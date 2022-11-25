@@ -44,6 +44,7 @@ class MapInteractable extends Interactable {
 					opened = true;
 					animation.play('taken');
 					PlayState.ME.eventSignal.dispatch('lockControls');
+					// TODO SFX: Proper map roll-up SFX
 					FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
 					new FlxTimer().start(2, (t) -> {
 						opened = true;
