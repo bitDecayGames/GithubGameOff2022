@@ -58,9 +58,10 @@ class MapState extends EncounterBaseState {
 
 		dialog.textGroup.tagCallback = handleTagCallback;
 
-		mapPaper = new FlxClothSprite(0, 0, AssetPaths.crappot__png);
+		mapPaper = new FlxClothSprite(0, 0, AssetPaths.bigMap__png);
 		mapPaper.scrollFactor.set();
 		mapPaper.screenCenter();
+		mapPaper.y -= 40;
 		mapPaper.pinnedSide = FlxObject.NONE;
 		mapPaper.setMesh(mapClothWidth, mapClothHeight, 0, 0,
 			[
@@ -75,16 +76,16 @@ class MapState extends EncounterBaseState {
 
 		pins = [];
 		for (i in 0...4) {
-			var pin = new FlxSprite(AssetPaths.mapPin__png);
+			var pin = new FlxSprite(AssetPaths.pushpin__png);
 			pin.scrollFactor.set();
 			pins.push(pin);
 		}
 
-		pins[0].setPositionMidpoint(mapPaper.x, mapPaper.y);
-		pins[1].setPositionMidpoint(mapPaper.x + mapPaper.width, mapPaper.y);
+		pins[0].setPositionMidpoint(mapPaper.x + 2, mapPaper.y + 2);
+		pins[1].setPositionMidpoint(mapPaper.x + mapPaper.width - 2, mapPaper.y + 2);
 		pins[1].flipX = true;
-		pins[2].setPositionMidpoint(mapPaper.x, mapPaper.y + mapPaper.height);
-		pins[3].setPositionMidpoint(mapPaper.x + mapPaper.width, mapPaper.y + mapPaper.height);
+		pins[2].setPositionMidpoint(mapPaper.x + 2, mapPaper.y + mapPaper.height - 2);
+		pins[3].setPositionMidpoint(mapPaper.x + mapPaper.width - 2, mapPaper.y + mapPaper.height - 2);
 		pins[3].flipX = true;
 
 		hand = new FlxSprite();

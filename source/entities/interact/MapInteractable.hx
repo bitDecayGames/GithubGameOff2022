@@ -44,6 +44,7 @@ class MapInteractable extends Interactable {
 					opened = true;
 					animation.play('taken');
 					PlayState.ME.eventSignal.dispatch('lockControls');
+					// TODO SFX: Proper map roll-up SFX
 					FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
 					new FlxTimer().start(2, (t) -> {
 						opened = true;
@@ -51,9 +52,7 @@ class MapInteractable extends Interactable {
 						PlayState.ME.openDialog(dialogBox);
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_MAP = true;
-						// TODO: right quest update
-						GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
-						GlobalQuestState.subQuest = 0;
+						GlobalQuestState.currentQuest = QuestIndex.RETURN_MAP;
 					});
 				}
 			};
