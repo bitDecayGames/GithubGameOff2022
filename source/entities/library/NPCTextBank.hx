@@ -36,26 +36,63 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.Get_map}' => [
 				"Please go get the map!"
+			],
+			'${Enum_QuestName.Return_map}' => [
+				"I'm guessing Brindle wasn't home? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!"
 			]
 		],
 		WOMAN => [
-			'${Enum_QuestName.Intro}_1' => [
+			'${Enum_QuestName.Wake_up}' => [
+				"You shouldn't even know I exist yet!"
+			],
+			'${Enum_QuestName.Intro}' => [
+				"I'm just hanging out. I love chatting with people. Feel free to talk if you have questions."
+			],
+			'${Enum_QuestName.Intro}_5' => [
 				"Cludd? He lives up North.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
 			],
-			'${Enum_QuestName.Find_lonk}_0' => [
-				"I'm surprised Cludd let you borrow his <color id=keyItem>compass</color>!  <speed mod=.2>...</speed>Why is it pointing West -- aren't they supposed to point North?",
-				"<cb val=sad/>Oh, the house? I heard the crash, too, and came out here to find this mess. Hard to say what happened."
+			'${Enum_QuestName.Find_lonk}' => [
+				"I'm surprised Cludd let you borrow his <color id=keyItem>compass</color>!  <speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?",
+				"<cb val=sad/>Oh, the house? I heard the crash, too, and came out here to find this mess. Hard to say what happened.",
+				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
+			],
+			'${Enum_QuestName.Find_lonk}_2' => [
+				"<cb val=neutral/>A locked gate? If Cludd knows anything, he probably took notes. That man can't remember to wake up half the time."
+			],
+			'${Enum_QuestName.Get_map}' => [
+				"A <color id=keyItem>map</color>? Brindle keeps one in his shop somewhere, but it's mostly so he knows where he needs to mail things for his long distance customers.",
+				"I'd guess the <color id=keyItem>map</color> is in the back somewhere. I've never seen it personally."
 			]
 		],
 		CLUDD => [
+			'${Enum_QuestName.Wake_up}' => [
+				"ZzzzZzzzZzzz"
+			],
 			'${Enum_QuestName.Intro}' => [
+				"ZzzzZzzzZzzz"
+			],
+			'${Enum_QuestName.Get_map}' => [
+				"ZzzzZzzzZzzz"
+			],
+			'${Enum_QuestName.Return_map}' => [
+				"ZzzzZzzzZzzz"
+			],
+			'${Enum_QuestName.Find_lonk}' => [
+				"ZzzzZzzzZzzz"
+			],
+			'${Enum_QuestName.Return_map}' => [
 				"ZzzzZzzzZzzz"
 			]
 		],
 		CRAFTSMAN => [
 			'${Enum_QuestName.Wake_up}' => ["Hi"],
 			'${Enum_QuestName.Intro}' => ["Hi"],
-			'${Enum_QuestName.Find_lonk}' => ["Hi"],
+			'${Enum_QuestName.Get_map}' => [
+				"How'd you get in here? Who gave you that key?"
+			],
+			'${Enum_QuestName.Return_map}' => [
+				"Can I help you? I have the finest wares in the land -- Tell your friends!"
+			],
 		]
 	];
 }

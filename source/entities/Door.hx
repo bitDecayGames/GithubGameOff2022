@@ -134,8 +134,10 @@ class Door extends Interactable {
 	}
 
 	public function updateDestination() {
-		destinationLevel = data.f_connection.levelIid;
-		destinationDoorID = data.f_connection.entityIid;
+		if (data.f_connection != null) {
+			destinationLevel = data.f_connection.levelIid;
+			destinationDoorID = data.f_connection.entityIid;
+		}
 
 		// If we have specific quest doors, check to see if we should send the player somewhere else
 		if (data.f_QuestDoor != null) {

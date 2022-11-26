@@ -42,6 +42,7 @@ class AlarmClockState extends EncounterBaseState {
 	var fightOver = false;
 
 	var firstSwipe = true;
+	var secondSwipe = false;
 	var handSwiping = false;
 	var hand:FlxSprite;
 	var handTween:FlxTween = null;
@@ -207,7 +208,7 @@ class AlarmClockState extends EncounterBaseState {
 
 	var clockMoveTimeMin = 0.2;
 	var clockMoveTimeMax = 0.65;
-	function startClockTween(edge:Bool = false) {
+	function startClockTween(edge:Bool = false, repeat:Bool = false) {
 		if (fightOver) {
 			// fight is over, no more moving
 			return;
@@ -216,19 +217,33 @@ class AlarmClockState extends EncounterBaseState {
 		var moveTime = FlxG.random.float(clockMoveTimeMin, clockMoveTimeMax);
 		if (edge) {
 			nextX = FlxG.random.bool() ? 0 : Math.round(FlxG.width - clock.width);
+
+			if (secondSwipe) {
+				if (clock.x < FlxG.width / 2) {
+					nextX = Math.round(FlxG.width - clock.width);
+				} else {
+					nextX = 0;
+				}
+				moveTime = clockMoveTimeMin;
+
+			}
+
 			moveTime = clockMoveTimeMin;
 		}
+
 		clockTweenCount++;
 		restModifier = Math.round(clockTweenCount / 5) * 0.1;
+		var mockPlayer = firstSwipe;
+		var shouldRepeat = repeat;
 		clockTween = FlxTween.linearMotion(clock, clock.x, clock.y, nextX, clock.y,
 			moveTime,
 			{
 				ease: FlxEase.quadInOut,
 				onComplete: (t) -> {
-					if (edge) {
+					if (mockPlayer) {
 						acceptInput = false;
 						dialog.revive();
-						dialog.loadDialogLine("<cb val=mad />You'll have to be faster than that!");
+						dialog.loadDialogLine("<cb val=mad />You'll have to be faster than that! Come and get me!");
 						dialog.textGroup.finishCallback = () -> {
 							dialog.kill();
 
@@ -239,14 +254,13 @@ class AlarmClockState extends EncounterBaseState {
 								helperArrowRight.visible = true;
 							});
 						};
-						new FlxTimer().start(restSeconds + restModifier, (timer) -> {
-							startClockTween();
-						});
-					}
-					else {
+						// new FlxTimer().start(restSeconds + restModifier, (timer) -> {
+						// 	startClockTween();
+						// });
+					} else if (shouldRepeat) {
 						// if you take out this var (even though it's unused) it errors
 						var test = new FlxTimer().start(restSeconds + restModifier, (timer) -> {
-							startClockTween();
+							startClockTween(false, true);
 						});
 					}
 				}
@@ -255,8 +269,12 @@ class AlarmClockState extends EncounterBaseState {
 
 	function startSwipe() {
 		if (firstSwipe) {
-			startClockTween(true);
+			startClockTween(true, false);
 			firstSwipe = false;
+			secondSwipe = true;
+		} else if (secondSwipe) {
+			startClockTween(true, true);
+			secondSwipe = false;
 		}
 		// hand.velocity.set();
 		handSwiping = true;
