@@ -46,7 +46,11 @@ class MapState extends EncounterBaseState {
 		super.create();
 
 		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "I can show you the world! A hand drawn, pixely splendor!");
-		FmodManager.PlaySong(FmodSongs.Battle);
+		
+
+		new FlxTimer().start(1.75, (t) -> {
+			FmodManager.PlaySong(FmodSongs.Battle);
+		});
 
 		dialog.textGroup.finishCallback = () -> {
 			dialog.kill();

@@ -24,6 +24,7 @@
 		</relationship>
 		<relationship name="markerTracks">
 			<destination>{490b00db-0373-4d44-b1cc-3144d6079828}</destination>
+			<destination>{6c4e48b1-2b4d-4573-a566-5ff7c2f2bb37}</destination>
 		</relationship>
 		<relationship name="groupTracks">
 			<destination>{1f94e798-3429-44b3-a501-e65e3744b33f}</destination>
@@ -56,8 +57,13 @@
 			<destination>{40c4223a-8ffc-4670-9117-448edcd107e0}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{2a375a4a-b69f-4583-85f0-0543ab477d9b}" />
+	<object class="EventAutomatableProperties" id="{2a375a4a-b69f-4583-85f0-0543ab477d9b}">
+		<property name="priority">
+			<value>4</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{490b00db-0373-4d44-b1cc-3144d6079828}" />
+	<object class="MarkerTrack" id="{6c4e48b1-2b4d-4573-a566-5ff7c2f2bb37}" />
 	<object class="GroupTrack" id="{1f94e798-3429-44b3-a501-e65e3744b33f}">
 		<relationship name="modules">
 			<destination>{c2f71124-456b-4c97-9568-98ea252cd28d}</destination>
@@ -72,6 +78,7 @@
 		</relationship>
 		<relationship name="markers">
 			<destination>{afe7a91a-168c-4913-9f27-566f46be97c7}</destination>
+			<destination>{7e80965d-341c-4b00-9aa3-ed5853620c08}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{f91a0a27-4b93-4b5a-b7d7-f72ef42c5040}">
@@ -96,7 +103,7 @@
 	<object class="MixerBusPanner" id="{e7fbedf5-c41f-4deb-abcf-a3fe0818f248}" />
 	<object class="SingleSound" id="{c2f71124-456b-4c97-9568-98ea252cd28d}">
 		<property name="length">
-			<value>72.528000000000006</value>
+			<value>98.040000000000006</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{1de4ceb9-dc2c-40c2-8d34-6ae8dd3b156d}</destination>
@@ -128,6 +135,20 @@
 		</relationship>
 		<relationship name="markerTrack">
 			<destination>{490b00db-0373-4d44-b1cc-3144d6079828}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{7e80965d-341c-4b00-9aa3-ed5853620c08}">
+		<property name="position">
+			<value>34</value>
+		</property>
+		<property name="length">
+			<value>64</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{7bd4292a-6abd-4dec-b3ca-08afe86a474c}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{6c4e48b1-2b4d-4573-a566-5ff7c2f2bb37}</destination>
 		</relationship>
 	</object>
 	<object class="ADSRModulator" id="{9fe86340-cc68-4deb-b309-d5185b27a0b1}">

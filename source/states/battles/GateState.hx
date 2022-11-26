@@ -46,7 +46,11 @@ class GateState extends EncounterBaseState {
 		super.create();
 
 		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
-		FmodManager.PlaySong(FmodSongs.Battle);
+		
+
+		new FlxTimer().start(1.75, (t) -> {
+			FmodManager.PlaySong(FmodSongs.Battle);
+		});
 
 		dialog.textGroup.finishCallback = () -> {
 			dialog.kill();
@@ -105,8 +109,10 @@ class GateState extends EncounterBaseState {
 
 		if (SimpleController.just_pressed(LEFT)) {
 			comboIndex--;
+			FmodManager.PlaySoundOneShot(FmodSFX.PadlockSelect);
 		} else if (SimpleController.just_pressed(RIGHT)) {
 			comboIndex++;
+			FmodManager.PlaySoundOneShot(FmodSFX.PadlockSelect);
 		}
 
 		comboIndex = FlxMath.wrap(comboIndex, 0, 2);
@@ -124,8 +130,10 @@ class GateState extends EncounterBaseState {
 
 		if (SimpleController.just_pressed(UP)) {
 			selectedCombo.currentNum--;
+			FmodManager.PlaySoundOneShot(FmodSFX.PadlockUp2);
 		} else if (SimpleController.just_pressed(DOWN)) {
 			selectedCombo.currentNum++;
+			FmodManager.PlaySoundOneShot(FmodSFX.PadlockDown2);
 		}
 
 		if (SimpleController.just_pressed(A)) {
@@ -156,6 +164,11 @@ class GateState extends EncounterBaseState {
 			type: FlxTweenType.PINGPONG,
 			onComplete: (t) -> {
 				// 6 is 3 cycles of open->close
+				if (t.executions % 2 == 0){
+					FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailDown);
+				} else {
+					FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailUp);
+				}
 				if (t.executions == 6) {
 					t.cancel();
 

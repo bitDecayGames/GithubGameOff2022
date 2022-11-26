@@ -23,6 +23,10 @@ class FmodSFX {
     public static inline var AlarmClockHit:String = "event:/SFX/Alarm/AlarmClockHit";
     public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
     public static inline var BattleStart:String = "event:/SFX/Battle/BattleStart";
+    public static inline var ChestBattleOpen:String = "event:/SFX/Chest/ChestBattleOpen";
+    public static inline var ChestBattleOpen2:String = "event:/SFX/Chest/ChestBattleOpen2";
+    public static inline var ChestBattleOpen3:String = "event:/SFX/Chest/ChestBattleOpen3";
+    public static inline var ChestBattleOpenInitialImpact:String = "event:/SFX/Chest/ChestBattleOpenInitialImpact";
     public static inline var ChestOpen:String = "event:/SFX/Chest/ChestOpen";
     public static inline var ChestOpenSimple:String = "event:/SFX/Chest/ChestOpenSimple";
     public static inline var CluddSnore:String = "event:/SFX/Cludd/CluddSnore";
@@ -43,6 +47,13 @@ class FmodSFX {
     public static inline var LonkHouseCollapse:String = "event:/SFX/LonkHouse/LonkHouseCollapse";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
+    public static inline var PadlockDown:String = "event:/SFX/Padlock/PadlockDown";
+    public static inline var PadlockDown2:String = "event:/SFX/Padlock/PadlockDown2";
+    public static inline var PadlockFailDown:String = "event:/SFX/Padlock/PadlockFailDown";
+    public static inline var PadlockFailUp:String = "event:/SFX/Padlock/PadlockFailUp";
+    public static inline var PadlockSelect:String = "event:/SFX/Padlock/PadlockSelect";
+    public static inline var PadlockUp:String = "event:/SFX/Padlock/PadlockUp";
+    public static inline var PadlockUp2:String = "event:/SFX/Padlock/PadlockUp2";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";
     public static inline var FootstepGrassReal:String = "event:/SFX/Player/FootstepGrassReal";
     public static inline var FootstepStone:String = "event:/SFX/Player/FootstepStone";
