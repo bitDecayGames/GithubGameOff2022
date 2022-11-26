@@ -43,6 +43,7 @@ class Gate extends Interactable {
 				substate.closeCallback = () -> {
 					if (substate.success) {
 						InteractableFactory.collected.set(contentKey, true);
+						FmodManager.PlaySoundOneShot(FmodSFX.GateOpen);
 						animation.play('opened');
 						opened = true;
 						allowCollisions = FlxObject.NONE;
