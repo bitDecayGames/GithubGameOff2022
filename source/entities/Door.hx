@@ -72,6 +72,10 @@ class Door extends Interactable {
 			}
 		}
 
+		if (data.f_Cave) {
+			visible = false;
+		}
+
 		switch(accessDir) {
 			case N:
 				flipY = true;

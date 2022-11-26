@@ -66,11 +66,18 @@ class PotBattleState extends EncounterBaseState {
 
 		randomizeAimPoints(4);
 
+		potSprite = new FlxSprite();
 		if (fightCharacter == RUBBERPOT) {
-			potSprite = new FlxSprite(AssetPaths.battlePot__png);
+			potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
+			potSprite.animation.add('good', [0]);
+			potSprite.animation.add('bad', [0]);
 		} else {
-			potSprite = new FlxSprite(AssetPaths.fragilePot__png);
+			potSprite.loadGraphic(AssetPaths.battlePot2__png, true, 80, 80);
+			potSprite.animation.add('good', [0]);
+			potSprite.animation.add('bad', [1]);
 		}
+		potSprite.animation.play('good');
+
 		potSprite.scrollFactor.set();
 		potSprite.screenCenter();
 		potSprite.y -= 9;
@@ -324,6 +331,7 @@ class PotBattleState extends EncounterBaseState {
 		} else {
 			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+				potSprite.animation.play('bad');
 			});
 			new FlxTimer().start(4.5, (t) -> {
 				// TODO: This should be gotten from somewhere else.
