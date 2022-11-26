@@ -16,6 +16,7 @@ class GlobalQuestState {
 	public static var LONK_HOUSE_COLLAPSED = false;
 	public static var HAS_KEY_TO_HANDYMAN = false;
 	public static var HAS_MAP = false;
+	public static var HAS_INTERACTED_WITH_GATE = false;
 
 
 	public static function getCurrentQuestKey():String {

@@ -36,6 +36,8 @@ class InteractableFactory {
 				return new Gameboy(data);
 			case FIRE:
 				return new Fireplace(data);
+			case JOURNAL:
+				return new Journal(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';

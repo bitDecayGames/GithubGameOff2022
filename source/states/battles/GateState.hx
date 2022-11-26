@@ -44,9 +44,9 @@ class GateState extends EncounterBaseState {
 
 	override function create() {
 		super.create();
-
+		GlobalQuestState.HAS_INTERACTED_WITH_GATE = true;
 		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
-		
+
 
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.Battle);
@@ -173,7 +173,7 @@ class GateState extends EncounterBaseState {
 					t.cancel();
 
 					if (failCount >= 3) {
-						dialog.loadDialogLine('Only Cludd has the genius to unlock me! You will never get past me!');
+						dialog.loadDialogLine('Only Cludd has the genius to unlock me! However, he is a forgetful man.');
 						dialog.textGroup.finishCallback = () -> {
 							transitionOut();
 						};
