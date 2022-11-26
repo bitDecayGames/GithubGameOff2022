@@ -38,6 +38,8 @@ class InteractableFactory {
 				return new Fireplace(data);
 			case JOURNAL:
 				return new Journal(data);
+			case OWNABLE_TRIGGER:
+				return new OwnableTrigger(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';

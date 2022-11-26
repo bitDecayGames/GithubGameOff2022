@@ -31,8 +31,6 @@ class Door extends Interactable {
 		setSize(16, 16);
 		iid = data.iid;
 
-		updateDestination();
-
 		accessDir = LDTKEnum.asCardinal(data.f_AccessDirection);
 
 		for (key in data.f_Keys) {
