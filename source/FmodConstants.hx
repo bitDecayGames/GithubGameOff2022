@@ -45,6 +45,7 @@ class FmodSFX {
     public static inline var PotRebound3:String = "event:/SFX/Enemies/Pot/PotRebound3";
     public static inline var PotRingSpawn:String = "event:/SFX/Enemies/Pot/PotRingSpawn";
     public static inline var PotTargetSpawn:String = "event:/SFX/Enemies/Pot/PotTargetSpawn";
+    public static inline var GateOpen:String = "event:/SFX/Gate/GateOpen";
     public static inline var LonkHouseCollapse:String = "event:/SFX/LonkHouse/LonkHouseCollapse";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
@@ -55,6 +56,8 @@ class FmodSFX {
     public static inline var PadlockFailUp:String = "event:/SFX/Padlock/PadlockFailUp";
     public static inline var PadlockSelect:String = "event:/SFX/Padlock/PadlockSelect";
     public static inline var PadlockSuccessMetal:String = "event:/SFX/Padlock/PadlockSuccessMetal";
+    public static inline var PadlockSuccessMetal2:String = "event:/SFX/Padlock/PadlockSuccessMetal2";
+    public static inline var PadlockSuccessMetal3:String = "event:/SFX/Padlock/PadlockSuccessMetal3";
     public static inline var PadlockSuccessTone:String = "event:/SFX/Padlock/PadlockSuccessTone";
     public static inline var PadlockUp:String = "event:/SFX/Padlock/PadlockUp";
     public static inline var PadlockUp2:String = "event:/SFX/Padlock/PadlockUp2";

@@ -191,14 +191,14 @@ class GateState extends EncounterBaseState {
 
 	function doSuccess() {
 		success = true;
-		FmodManager.PlaySoundOneShot(FmodSFX.PadlockSuccessMetal);
-		FlxTween.tween(lockLatch, {y: lockLatch.y+5}, 0.1, {
+		FmodManager.PlaySoundOneShot(FmodSFX.PadlockSuccessMetal3);
+		FlxTween.tween(lockLatch, {y: lockLatch.y+5}, 0.05, {
 			onComplete: (t) -> {
 				var unlockY = lockBody.y-70;
 				new FlxTimer().start(0.6, (t) -> {
 					FmodManager.PlaySoundOneShot(FmodSFX.PadlockSuccessTone);
 				});
-				FlxTween.tween(lockLatch, {y: unlockY}, 0.4, {
+				FlxTween.tween(lockLatch, {y: unlockY}, 0.45, {
 					ease: FlxEase.sineInOut,
 					onComplete: (t) -> {
 						if (PlayState.ME != null) {

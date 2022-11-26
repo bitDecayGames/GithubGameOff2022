@@ -1,5 +1,6 @@
 package states;
 
+import helpers.Profiler;
 import entities.npcs.NPC;
 import flixel.tweens.FlxEase;
 import entities.interact.Interactable;
@@ -49,6 +50,7 @@ using extension.CardinalExt;
 using states.FlxStateExt;
 
 @:access(flixel.FlxCamera)
+@:access(ldtk.Layer_Tiles)
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
@@ -145,9 +147,16 @@ class PlayState extends FlxTransitionableState {
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
 	}
 
+
+	var groundTileCache:Array<FlxSprite> = new Array<FlxSprite>();
+	var collisionTileCache:Array<FlxSprite> = new Array<FlxSprite>();
+
 	// loads the level with the given id, optionally spawning the player at the provided doorID
 	// Can provide either the uid int, or the iid string, but not both
 	public function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
+
+		var profiler = new Profiler();
+
 		// clean up current level;
 		player = null;
 		// Clean up any event listeners between levels;
@@ -157,8 +166,13 @@ class PlayState extends FlxTransitionableState {
 		});
 		doors.clear();
 		npcs.clear();
+		
 		terrain.forEach((e) -> {
-			e.destroy();
+			if (level != null && level.identifier != "Town_main"){
+				e.destroy();
+			} else {
+				e.kill();
+			}
 		});
 		terrain.clear();
 		entities.forEach((e) -> {
@@ -166,7 +180,11 @@ class PlayState extends FlxTransitionableState {
 		});
 		entities.clear();
 		collisions.forEach((c) -> {
-			c.destroy();
+			if (level != null && level.identifier != "Town_main"){
+				c.destroy();
+			} else {
+				c.kill();
+			}
 		});
 		collisions.clear();
 		interactables.forEach((c) -> {
@@ -178,6 +196,8 @@ class PlayState extends FlxTransitionableState {
 		});
 		uiHelpers.clear();
 		sortingLayer.clear();
+
+		profiler.checkpoint("cleared old level");
 
 		level = project.getLevel(uid, id);
 		if (level == null) {
@@ -191,6 +211,8 @@ class PlayState extends FlxTransitionableState {
 				}
 			}
 		}
+		
+		profiler.checkpoint("pulled new level from project");
 
 		var collisionLayer = level.l_Collisions;
 		// NOTE: We do stuff in screen space, so we need to make sure at least our raw screen coords are within
@@ -201,7 +223,15 @@ class PlayState extends FlxTransitionableState {
 		trace(FlxG.worldBounds);
 		addCollisionsToWorld(collisionLayer);
 
-		level.l_Ground.render(terrain);
+		profiler.checkpoint("loaded collisions");
+
+		if (level.identifier != "Town_main"){
+			level.l_Ground.render(terrain);
+		} else {
+			cachedRender(terrain, level.l_Ground, groundTileCache);
+		}
+
+		profiler.checkpoint("render terrain");
 
 		for (eHouse in level.l_Entities.all_House) {
 			var house = new House(eHouse);
@@ -212,6 +242,8 @@ class PlayState extends FlxTransitionableState {
 				sortingLayer.add(door);
 			}
 		}
+
+		profiler.checkpoint("load houses");
 
 		for (eDoor in level.l_Entities.all_Door) {
 			var found = false;
@@ -230,6 +262,8 @@ class PlayState extends FlxTransitionableState {
 			doors.add(door);
 			sortingLayer.add(door);
 		}
+
+		profiler.checkpoint("load doors");
 
 		for (eNPC in level.l_Entities.all_NPC) {
 			var npc = NPCFactory.make(eNPC);
@@ -250,8 +284,12 @@ class PlayState extends FlxTransitionableState {
 			}
 		}
 
+		profiler.checkpoint("load NPCs");
+
 		// the BottomDecor layer is treated as terrain so that it renders underneath all entities
 		level.l_BottomDecor.render(terrain);
+
+		profiler.checkpoint("load decor");
 
 		// The other decor layers are injected directly into our sorting group so they behave like world objects
 		var group = level.l_Decor.render();
@@ -259,6 +297,8 @@ class PlayState extends FlxTransitionableState {
 		for (decorSprite in group.members) {
 			sortingLayer.add(decorSprite);
 		}
+
+		profiler.checkpoint("load more decor");
 
 		for (eInteract in level.l_Entities.all_Interactable) {
 			// TODO: need to come up with a proper way to parse out unique interactables
@@ -272,6 +312,8 @@ class PlayState extends FlxTransitionableState {
 			sortingLayer.add(interact);
 		}
 
+		profiler.checkpoint("load interactables");
+
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
 			throw('level ${level.identifier} has multiple spawns');
 		}
@@ -279,6 +321,8 @@ class PlayState extends FlxTransitionableState {
 		for (npc in npcs) {
 			npc.UpdateOwnership();
 		}
+
+		profiler.checkpoint("Update NPC ownership");
 
 		var playerStart = FlxVector.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
@@ -378,6 +422,8 @@ class PlayState extends FlxTransitionableState {
 		entities.add(player);
 		sortingLayer.add(player);
 
+		profiler.checkpoint("setup player movement out of the last door");
+
 		if (firstLoad) {
 			firstLoad = false;
 			camera.scroll.y = -FlxG.height;
@@ -391,6 +437,8 @@ class PlayState extends FlxTransitionableState {
 			setCameraFollow();
 		}
 
+		profiler.checkpoint("set camera");
+
 		// TODO: give this thing a nice little background thing
 		flavorText = new FlxBitmapText();
 		flavorText.setPosition(5, 5);
@@ -401,10 +449,15 @@ class PlayState extends FlxTransitionableState {
 		flavorTextBackdrop.visible = false;
 		flavorTextBackdrop.scrollFactor.set();
 
+		profiler.checkpoint("Setup flavor text for quests");
+
 		uiHelpers.add(flavorTextBackdrop);
 		uiHelpers.add(flavorText);
 
 		levelState = LevelState.LoadLevelState(level);
+
+		profiler.checkpoint("Load level state");
+		profiler.printSummary();
 	}
 
 	private function setCameraFollow() {
@@ -623,40 +676,142 @@ class PlayState extends FlxTransitionableState {
 	}
 
 	function addCollisionsToWorld(collisionLayer:levels.ldtk.Layer_Collisions) {
-		var checkPoint = FlxPoint.get();
-		var result = 0;
-		collisionLayer.render().forEach((s) -> {
-			s.immovable = true;
-			s.updateHitbox();
-			// Comment this line out if you want to render/debug collisions
-			s.visible = false;
+		if (level.identifier != "Town_main"){
+			var checkPoint = FlxPoint.get();
+			var result = 0;
+			collisionLayer.render().forEach((s) -> {
+				s.immovable = true;
+				s.updateHitbox();
+				// Comment this line out if you want to render/debug collisions
+				s.visible = false;
+				collisions.add(s);
+				s.allowCollisions = FlxObject.ANY;
+				checkPoint.set(Std.int(s.x/8) + 1, Std.int(s.y/8));
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the right, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.RIGHT;
+				}
+				checkPoint.set(Std.int(s.x/8) - 1, Std.int(s.y/8));
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the left, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.LEFT;
+				}
+				checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) + 1);
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the bottom, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.DOWN;
+				}
+				checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) - 1);
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the top, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.UP;
+				}
+			});
+		} else {
+			cachedCollisionRender(collisionLayer, collisionTileCache);
+		}
+	} 
+
+	function cachedRender(spriteGroup:FlxSpriteGroup, ground:Layer_Ground, cache:Array<FlxSprite>) {
+		
+		if( spriteGroup==null ) {
+			spriteGroup = new FlxSpriteGroup();
+			spriteGroup.active = false;
+		}
+
+		var firstPass = false;
+		if (cache.length == 0){
+			firstPass = true;
+		}
+
+		trace("first pass rendering ground layer: " + firstPass);
+
+		var cursorIndex = 0;
+		for( cy in 0...ground.cHei )
+		for( cx in 0...ground.cWid )
+			if( ground.hasAnyTileAt(cx,cy) )
+				for( tile in ground.getTileStackAt(cx,cy) ) {
+					var s:flixel.FlxSprite;
+					if (firstPass) {
+						s = new flixel.FlxSprite(cx*ground.gridSize + ground.pxTotalOffsetX, cy*ground.gridSize + ground.pxTotalOffsetY);
+						s.flipX = tile.flipBits & 1 != 0;
+						s.flipY = tile.flipBits & 2 != 0;
+						s.frame = ground.untypedTileset.getFrame(tile.tileId);
+						s.width = ground.gridSize;
+						s.height = ground.gridSize;
+						cache.insert(cursorIndex, s);
+					} else {
+						s = cache[cursorIndex];
+						s.revive();
+					}
+					cursorIndex++;
+					spriteGroup.add(s);
+				}
+	}
+
+	function cachedCollisionRender(collisionLayer:Layer_Collisions, cache:Array<FlxSprite>) {
+
+		var firstPass = false;
+		if (cache.length == 0){
+			firstPass = true;
+		}
+
+		trace("first pass rendering collisions layer: " + firstPass);
+
+		var cursorIndex = 0;
+
+		for( autoTile in collisionLayer.autoTiles ) {
+			var s:flixel.FlxSprite;
+			if (firstPass) {
+				s = new flixel.FlxSprite(autoTile.renderX, autoTile.renderY);
+				s.flipX = autoTile.flips & 1 != 0;
+				s.flipY = autoTile.flips & 2 != 0;
+				s.frame = collisionLayer.untypedTileset.getFrame(autoTile.tileId);
+				var checkPoint = FlxPoint.get();
+				var result = 0;
+				s.immovable = true;
+				s.updateHitbox();
+				// Comment this line out if you want to render/debug collisions
+				s.visible = false;
+				collisions.add(s);
+				s.allowCollisions = FlxObject.ANY;
+				checkPoint.set(Std.int(s.x/8) + 1, Std.int(s.y/8));
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the right, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.RIGHT;
+				}
+				checkPoint.set(Std.int(s.x/8) - 1, Std.int(s.y/8));
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the left, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.LEFT;
+				}
+				checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) + 1);
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the bottom, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.DOWN;
+				}
+				checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) - 1);
+				result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
+				if (result > 0) {
+					//collision to the top, so clean up this collision edge
+					s.allowCollisions = s.allowCollisions & ~FlxObject.UP;
+				}
+
+				cache.insert(cursorIndex, s);
+			} else {
+				s = cache[cursorIndex];
+				s.revive();
+			}
+			cursorIndex++;
 			collisions.add(s);
-			s.allowCollisions = FlxObject.ANY;
-			checkPoint.set(Std.int(s.x/8) + 1, Std.int(s.y/8));
-			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
-			if (result > 0) {
-				//collision to the right, so clean up this collision edge
-				s.allowCollisions = s.allowCollisions & ~FlxObject.RIGHT;
-			}
-			checkPoint.set(Std.int(s.x/8) - 1, Std.int(s.y/8));
-			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
-			if (result > 0) {
-				//collision to the left, so clean up this collision edge
-				s.allowCollisions = s.allowCollisions & ~FlxObject.LEFT;
-			}
-			checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) + 1);
-			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
-			if (result > 0) {
-				//collision to the bottom, so clean up this collision edge
-				s.allowCollisions = s.allowCollisions & ~FlxObject.DOWN;
-			}
-			checkPoint.set(Std.int(s.x/8) , Std.int(s.y/8) - 1);
-			result = collisionLayer.getInt(Std.int(checkPoint.x), Std.int(checkPoint.y));
-			if (result > 0) {
-				//collision to the top, so clean up this collision edge
-				s.allowCollisions = s.allowCollisions & ~FlxObject.UP;
-			}
-		});
+		}
 	}
 
 	override public function onFocusLost() {
