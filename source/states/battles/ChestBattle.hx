@@ -165,9 +165,10 @@ class ChestBattle extends EncounterBaseState {
 
 			hand.y = latch.y + latch.height;
 			FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpenInitialImpact);
+			FlxG.camera.shake(0.01, 0.25);
 			new FlxTimer().start(0.50, (t) -> {
 				FlxTween.tween(flashOverlay, {alpha: 1}, 0.25);
-				FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpen3);
+				FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpen4);
 				FmodManager.SetEventParameterOnSong("ChestLowPass", 1);
 				FlxTween.tween(hand, {y: latch.y}, 0.75, {
 					ease: FlxEase.quartIn,

@@ -26,6 +26,7 @@ class FmodSFX {
     public static inline var ChestBattleOpen:String = "event:/SFX/Chest/ChestBattleOpen";
     public static inline var ChestBattleOpen2:String = "event:/SFX/Chest/ChestBattleOpen2";
     public static inline var ChestBattleOpen3:String = "event:/SFX/Chest/ChestBattleOpen3";
+    public static inline var ChestBattleOpen4:String = "event:/SFX/Chest/ChestBattleOpen4";
     public static inline var ChestBattleOpenInitialImpact:String = "event:/SFX/Chest/ChestBattleOpenInitialImpact";
     public static inline var ChestOpen:String = "event:/SFX/Chest/ChestOpen";
     public static inline var ChestOpenSimple:String = "event:/SFX/Chest/ChestOpenSimple";
@@ -50,8 +51,11 @@ class FmodSFX {
     public static inline var PadlockDown:String = "event:/SFX/Padlock/PadlockDown";
     public static inline var PadlockDown2:String = "event:/SFX/Padlock/PadlockDown2";
     public static inline var PadlockFailDown:String = "event:/SFX/Padlock/PadlockFailDown";
+    public static inline var PadlockFailTone:String = "event:/SFX/Padlock/PadlockFailTone";
     public static inline var PadlockFailUp:String = "event:/SFX/Padlock/PadlockFailUp";
     public static inline var PadlockSelect:String = "event:/SFX/Padlock/PadlockSelect";
+    public static inline var PadlockSuccessMetal:String = "event:/SFX/Padlock/PadlockSuccessMetal";
+    public static inline var PadlockSuccessTone:String = "event:/SFX/Padlock/PadlockSuccessTone";
     public static inline var PadlockUp:String = "event:/SFX/Padlock/PadlockUp";
     public static inline var PadlockUp2:String = "event:/SFX/Padlock/PadlockUp2";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";

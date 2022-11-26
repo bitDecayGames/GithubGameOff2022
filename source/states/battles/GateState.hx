@@ -158,44 +158,57 @@ class GateState extends EncounterBaseState {
 
 	function doFail() {
 		failCount++;
-		var rattleY = lockLatch.y-2;
-		FlxTween.tween(lockLatch, {y: rattleY}, 0.1, {
-			// ease: FlxEase.
-			type: FlxTweenType.PINGPONG,
-			onComplete: (t) -> {
-				// 6 is 3 cycles of open->close
-				if (t.executions % 2 == 0){
-					FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailDown);
-				} else {
-					FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailUp);
-				}
-				if (t.executions == 6) {
-					t.cancel();
-
-					if (failCount >= 3) {
-						dialog.loadDialogLine('Only Cludd has the genius to unlock me! However, he is a forgetful man.');
-						dialog.textGroup.finishCallback = () -> {
-							transitionOut();
-						};
-						dialog.revive();
+		FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailTone);
+		new FlxTimer().start(0.5, (t) -> {
+			var rattleY = lockLatch.y-2;
+			FlxTween.tween(lockLatch, {y: rattleY}, 0.1, {
+				// ease: FlxEase.
+				type: FlxTweenType.PINGPONG,
+				onComplete: (t) -> {
+					// 6 is 3 cycles of open->close
+					if (t.executions % 2 == 0){
+						FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailDown);
 					} else {
-						acceptInput = true;
+						FmodManager.PlaySoundOneShot(FmodSFX.PadlockFailUp);
+					}
+					if (t.executions == 6) {
+						t.cancel();
+
+						if (failCount >= 3) {
+							dialog.loadDialogLine('Only Cludd has the genius to unlock me! However, he is a forgetful man.');
+							dialog.textGroup.finishCallback = () -> {
+								transitionOut();
+							};
+							dialog.revive();
+						} else {
+							acceptInput = true;
+						}
 					}
 				}
-			}
+			});
 		});
 	}
 
 	function doSuccess() {
 		success = true;
-		var unlockY = lockBody.y-70;
-		FlxTween.tween(lockLatch, {y: unlockY}, 0.5, {
-			ease: FlxEase.sineInOut,
+		FmodManager.PlaySoundOneShot(FmodSFX.PadlockSuccessMetal);
+		FlxTween.tween(lockLatch, {y: lockLatch.y+5}, 0.1, {
 			onComplete: (t) -> {
-				if (PlayState.ME != null) {
-					PlayState.ME.eventSignal.dispatch("gate_unlocked");
-				}
-				transitionOut();
+				var unlockY = lockBody.y-70;
+				new FlxTimer().start(0.6, (t) -> {
+					FmodManager.PlaySoundOneShot(FmodSFX.PadlockSuccessTone);
+				});
+				FlxTween.tween(lockLatch, {y: unlockY}, 0.4, {
+					ease: FlxEase.sineInOut,
+					onComplete: (t) -> {
+						if (PlayState.ME != null) {
+							PlayState.ME.eventSignal.dispatch("gate_unlocked");
+						}
+						new FlxTimer().start(1, (t) -> {
+							transitionOut();
+						});
+					}
+				});
 			}
 		});
 	}
