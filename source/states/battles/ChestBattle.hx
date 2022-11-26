@@ -164,26 +164,31 @@ class ChestBattle extends EncounterBaseState {
 			}
 
 			hand.y = latch.y + latch.height;
-			FlxTween.tween(flashOverlay, {alpha: 1}, 0.75);
-			FlxTween.tween(hand, {y: latch.y}, 0.75, {
-				ease: FlxEase.quartIn,
-				onComplete: (t) -> {
-					latch.animation.frameIndex = 1;
-					latch.y -= latch.frameHeight - 19; // the 'hinge' is 19px tall
-
-					FlxTween.tween(flashOverlay, {alpha: 0}, 1);
-					FlxTween.tween(hand, {y: -hand.height}, 0.75);
-					success = true;
-					dialog.revive();
-					dialog.loadDialogLine("The latch flies open.");
-					dialog.textGroup.finishCallback = () -> {
-						dialog.kill();
-
-						new FlxTimer().start(1, (t) -> {
-							transitionOut();
-						});
-					};
-				}
+			FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpenInitialImpact);
+			new FlxTimer().start(0.50, (t) -> {
+				FlxTween.tween(flashOverlay, {alpha: 1}, 0.25);
+				FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpen3);
+				FmodManager.SetEventParameterOnSong("ChestLowPass", 1);
+				FlxTween.tween(hand, {y: latch.y}, 0.75, {
+					ease: FlxEase.quartIn,
+					onComplete: (t) -> {
+						latch.animation.frameIndex = 1;
+						latch.y -= latch.frameHeight - 19; // the 'hinge' is 19px tall
+	
+						FlxTween.tween(flashOverlay, {alpha: 0}, 1);
+						FlxTween.tween(hand, {y: -hand.height}, 0.75);
+						success = true;
+						dialog.revive();
+						dialog.loadDialogLine("The latch flies open.");
+						dialog.textGroup.finishCallback = () -> {
+							dialog.kill();
+							FmodManager.SetEventParameterOnSong("ChestLowPass", 0);
+							new FlxTimer().start(1, (t) -> {
+								transitionOut();
+							});
+						};
+					}
+				});
 			});
 		}
 	}

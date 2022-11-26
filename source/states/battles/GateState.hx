@@ -46,7 +46,11 @@ class GateState extends EncounterBaseState {
 		super.create();
 
 		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
-		FmodManager.PlaySong(FmodSongs.Battle);
+		
+
+		new FlxTimer().start(1.75, (t) -> {
+			FmodManager.PlaySong(FmodSongs.Battle);
+		});
 
 		dialog.textGroup.finishCallback = () -> {
 			dialog.kill();

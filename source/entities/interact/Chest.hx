@@ -42,7 +42,7 @@ class Chest extends Interactable {
 					new FlxTimer().start(2, (t) -> {
 						animation.play("open");
 						opened = true;
-						dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It fell...<pause t=1/> It is probably fine.<page/>...<page/>No, it's broken");
+						dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It fell...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken");
 						PlayState.ME.openDialog(dialogBox);
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_COMPASS = true;

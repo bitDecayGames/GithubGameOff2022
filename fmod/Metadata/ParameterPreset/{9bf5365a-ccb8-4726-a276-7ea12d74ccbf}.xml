@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{9bf5365a-ccb8-4726-a276-7ea12d74ccbf}">
+		<property name="name">
+			<value>ChestLowPass</value>
+		</property>
+		<relationship name="folder">
+			<destination>{da9bea1d-65f6-4eb5-8299-adf0fee0fa69}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{76459997-6c6f-48a2-a780-b7678ac07cea}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{76459997-6c6f-48a2-a780-b7678ac07cea}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
