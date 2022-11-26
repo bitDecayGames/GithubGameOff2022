@@ -1,5 +1,7 @@
 package states;
 
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
 import config.Configure;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -18,7 +20,8 @@ class SplashScreenState extends FlxState {
 	var splashImages:Array<FlxSprite> = [];
 
 	var timer = 0.0;
-	var splashDuration = 6.0;
+	var tweenTime = 1.5;
+	var splashDuration = 2.0;
 
 	var currentTween:FlxTween = null;
 	var splashesOver:Bool = false;
@@ -32,7 +35,8 @@ class SplashScreenState extends FlxState {
 		// List splash screen image paths here
 		loadSplashImages([
 			new SplashImage(AssetPaths.bitdecaygamesinverted__png),
-			new SplashImage(AssetPaths.ld_logo__png)
+			new SplashImage(AssetPaths.ld_logo__png),
+			new SplashImage(AssetPaths.titleScreen__png)
 		]);
 
 		timer = splashDuration;
@@ -56,38 +60,56 @@ class SplashScreenState extends FlxState {
 	}
 
 	private function loadSplashImages(splashes:Array<SplashImage>) {
-		for (s in splashes) {
+		for (i in 0...splashes.length) {
+			var s = splashes[i];
+			s.y = -(FlxG.height * splashes.length) + (i * FlxG.height);
 			add(s);
-			s.alpha = 0;
+			s.alpha = 1;
 			splashImages.push(s);
 		}
+		camera.scroll.y = -FlxG.height * (splashes.length + 1);
 	}
 
 	override public function update(elapsed:Float):Void {
+		FlxG.watch.addQuick('cam scroll:', camera.scroll);
 		super.update(elapsed);
 		timer -= elapsed;
-		var playerSkipped = !fadingOut && !splashesOver && Configure.config.splashScreens.allowClickToSkip && checkForSkip();
-		if (timer < 0 || playerSkipped) {
+		if (timer < 0) {
 			nextSplash();
 		}
 	}
 
 	private function getFadeIn(index:Int):VarTween {
-		var splash = splashImages[index];
-		var fadeInTween = FlxTween.tween(splash, {alpha: 1}, 1);
+		var fadeInTween:VarTween = null;
+		if (index >= splashImages.length) {
+			fadeInTween = FlxTween.tween(camera.scroll, {y: 0}, tweenTime, {
+				ease: FlxEase.quadInOut
+			});
+		} else {
+			var splash = splashImages[index];
+			fadeInTween = FlxTween.tween(camera.scroll, {y: splash.y}, tweenTime, {
+				ease: FlxEase.quadInOut
+			});
+			if (splash.animation.getByName(PLAY_ANIMATION) != null) {
+				fadeInTween.onComplete = (t) -> splash.animation.play(PLAY_ANIMATION);
+				splash.animation.callback = (name, frameNumber, frameIndex) -> {
+					// Can add sfx or other things here
+				};
+			}
+		}
+
+		fadeInTween.onComplete = (t) -> {
+			timer = index < splashImages.length ? splashDuration : 1;
+		}
+
 		fadeInTween.onStart = (t) -> {
 			fadingOut = false;
 		};
-		if (splash.animation.getByName(PLAY_ANIMATION) != null) {
-			fadeInTween.onComplete = (t) -> splash.animation.play(PLAY_ANIMATION);
-			splash.animation.callback = (name, frameNumber, frameIndex) -> {
-				// Can add sfx or other things here
-			};
-		}
 		return fadeInTween;
 	}
 
 	public function nextSplash() {
+		timer = 1000; // just do this to hold us over for now
 		if (splashesOver) {
 			// nothing more to do
 			return;
@@ -98,18 +120,12 @@ class SplashScreenState extends FlxState {
 		}
 
 		fadingOut = true;
-		currentTween = FlxTween.tween(splashImages[index], {alpha: 0}, 0.5);
-
 		index += 1;
-		timer = splashDuration;
-
-		if (index < splashImages.length) {
-			currentTween.then(getFadeIn(index));
+		if (index <= splashImages.length) {
+			getFadeIn(index);
 		} else {
 			splashesOver = true;
-			currentTween.onComplete = (t) -> {
-				FmodFlxUtilities.TransitionToState(new PlayState());
-			};
+			FmodFlxUtilities.TransitionToState(new PlayState());
 		}
 	}
 

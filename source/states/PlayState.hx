@@ -1,5 +1,6 @@
 package states;
 
+import flixel.tweens.FlxEase;
 import entities.interact.Interactable;
 import helpers.SaveFileOverrides;
 import flixel.util.FlxSpriteUtil;
@@ -46,11 +47,13 @@ import signals.Lifecycle;
 using extension.CardinalExt;
 using states.FlxStateExt;
 
+@:access(flixel.FlxCamera)
 class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
 	private static inline var START_LEVEL = "House_Lonk_room_boy";
 
+	private static var firstLoad = true;
 
 	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "Town_main", "House_Cludd_Main", "House_Cludd_Upstairs", "House_Cludd_Basement"];
 	private var levelSelectionCursor = 0;
@@ -141,7 +144,6 @@ class PlayState extends FlxTransitionableState {
 
 	// loads the level with the given id, optionally spawning the player at the provided doorID
 	// Can provide either the uid int, or the iid string, but not both
-	@:access(flixel.FlxCamera)
 	public function loadLevel(?uid:Null<Int>, ?id:Null<String>, doorID:String = null) {
 		// clean up current level;
 		player = null;
@@ -368,6 +370,36 @@ class PlayState extends FlxTransitionableState {
 		entities.add(player);
 		sortingLayer.add(player);
 
+		if (firstLoad) {
+			firstLoad = false;
+			camera.scroll.y = -FlxG.height;
+			camera.scroll.x = -(FlxG.width - level.pxWid) / 2;
+			var destScrollY = -(FlxG.height - level.pxHei) / 2;
+			FlxTween.tween(camera.scroll, {y: destScrollY}, 2, {
+				ease: FlxEase.quadOut,
+				onComplete: (t) -> {setCameraFollow();}
+			});
+		} else {
+			setCameraFollow();
+		}
+
+		// TODO: give this thing a nice little background thing
+		flavorText = new FlxBitmapText();
+		flavorText.setPosition(5, 5);
+		flavorText.scrollFactor.set();
+		flavorText.cameras = [dialogCamera];
+
+		flavorTextBackdrop = new FlxSprite();
+		flavorTextBackdrop.visible = false;
+		flavorTextBackdrop.scrollFactor.set();
+
+		uiHelpers.add(flavorTextBackdrop);
+		uiHelpers.add(flavorText);
+
+		levelState = LevelState.LoadLevelState(level);
+	}
+
+	private function setCameraFollow() {
 		camera.follow(player, FlxCameraFollowStyle.TOPDOWN_TIGHT);
 
 		if (level.pxWid <= camera.width) {
@@ -384,21 +416,6 @@ class PlayState extends FlxTransitionableState {
 
 		// do this so our scroll start point is respected (it gets overriden otherwise and the camera is in the wrong)
 		camera._scrollTarget.set(camera.scroll.x, camera.scroll.y);
-
-		// TODO: give this thing a nice little background thing
-		flavorText = new FlxBitmapText();
-		flavorText.setPosition(5, 5);
-		flavorText.scrollFactor.set();
-		flavorText.cameras = [dialogCamera];
-
-		flavorTextBackdrop = new FlxSprite();
-		flavorTextBackdrop.visible = false;
-		flavorTextBackdrop.scrollFactor.set();
-
-		uiHelpers.add(flavorTextBackdrop);
-		uiHelpers.add(flavorText);
-
-		levelState = LevelState.LoadLevelState(level);
 	}
 
 	override public function update(elapsed:Float) {
@@ -461,7 +478,7 @@ class PlayState extends FlxTransitionableState {
 			if (!GlobalQuestState.SPEEDY_DEBUG) {
 				player.lockControls = true;
 				player.animation.play(Player.SLEEP);
-				new FlxTimer().start(6.75, (t) -> {
+				new FlxTimer().start(5.95, (t) -> {
 					eventSignal.dispatch('alarmStart');
 					FmodManager.PlaySong(FmodSFX.AlarmClock);
 					player.animation.play(Player.STARTLED);
