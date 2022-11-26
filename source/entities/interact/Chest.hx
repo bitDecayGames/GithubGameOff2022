@@ -46,7 +46,7 @@ class Chest extends Interactable {
 						PlayState.ME.openDialog(dialogBox);
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_COMPASS = true;
-						GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
+						GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 						GlobalQuestState.subQuest = 0;
 					});
 				}

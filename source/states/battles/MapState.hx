@@ -46,7 +46,7 @@ class MapState extends EncounterBaseState {
 		super.create();
 
 		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "I can show you the world! A hand drawn, pixely splendor!");
-		
+
 
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.Battle);
@@ -81,21 +81,32 @@ class MapState extends EncounterBaseState {
 		pins = [];
 		for (i in 0...4) {
 			var pin = new FlxSprite(AssetPaths.pushpin__png);
+			pin.setSize(32, 32);
 			pin.scrollFactor.set();
 			pins.push(pin);
 		}
 
-		pins[0].setPositionMidpoint(mapPaper.x + 2, mapPaper.y + 2);
-		pins[1].setPositionMidpoint(mapPaper.x + mapPaper.width - 2, mapPaper.y + 2);
+		pins[0].setPositionMidpoint(mapPaper.x - 14, mapPaper.y - 14);
+
+		pins[1].offset.set(32, 0);
+		pins[1].setPositionMidpoint(mapPaper.x + mapPaper.width + 14, mapPaper.y - 14);
 		pins[1].flipX = true;
-		pins[2].setPositionMidpoint(mapPaper.x + 2, mapPaper.y + mapPaper.height - 2);
-		pins[3].setPositionMidpoint(mapPaper.x + mapPaper.width - 2, mapPaper.y + mapPaper.height - 2);
+
+		pins[2].setPositionMidpoint(mapPaper.x - 14, mapPaper.y + mapPaper.height - 18);
+
+		pins[3].offset.set(32, 0);
+		pins[3].setPositionMidpoint(mapPaper.x + mapPaper.width + 14, mapPaper.y + mapPaper.height - 18);
 		pins[3].flipX = true;
 
 		hand = new FlxSprite();
+		hand.loadGraphic(AssetPaths.pinchers__png, true, 57, 42);
+		hand.animation.frameIndex = 0;
 		hand.scrollFactor.set();
-		hand.makeGraphic(10, 10, FlxColor.LIME);
 		hand.screenCenter();
+		hand.x = FlxG.width - hand.frameWidth;
+		hand.y += 50;
+		hand.setSize(10, 10);
+		hand.offset.set(6, 26);
 
 		battleGroup.add(mapPaper);
 		for (pin in pins) {
@@ -176,6 +187,10 @@ class MapState extends EncounterBaseState {
 	function pluck() {
 		// TODO: Animate pluck
 		hand.velocity.set();
+		hand.animation.frameIndex = 1;
+		new FlxTimer().start(0.1, (t) -> {
+			hand.animation.frameIndex = 0;
+		});
 		for (i in 0...pins.length) {
 			var pin = pins[i];
 			if (pin.alive && FlxG.overlap(hand, pin)) {

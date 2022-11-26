@@ -26,7 +26,7 @@ class MapInteractable extends Interactable {
 		height = 24;
 
 		// TODO: Check global state to see if this map was already taken
-		if (InteractableFactory.collected.exists(contentKey)) {
+		if (GlobalQuestState.HAS_MAP) {
 			animation.play('taken');
 			opened = true;
 		}
@@ -49,6 +49,7 @@ class MapInteractable extends Interactable {
 						opened = true;
 						dialogBox.loadDialogLine("A wrinkly old <color id=keyItem>map</color> has fallen to the floor.<page/> <cb val=mapCollected/><pause t=2.5/>It is glorious!<cb val=restoreControl/><page/>");
 						PlayState.ME.openDialog(dialogBox);
+						GlobalQuestState.HAS_MAP = true;
 						InteractableFactory.collected.set(contentKey, true);
 						GlobalQuestState.HAS_MAP = true;
 						GlobalQuestState.currentQuest = Enum_QuestName.Return_map;
@@ -68,6 +69,10 @@ class MapInteractable extends Interactable {
 			if (tag.parsedOptions.val == "mapCollected") {
 				awaitingUnlockControls = true;
 				PlayState.ME.eventSignal.dispatch('mapCollected');
+			}
+
+			if (tag.parsedOptions.val == "restoreControl") {
+				PlayState.ME.eventSignal.dispatch("restoreControl");
 			}
 		}
 	}

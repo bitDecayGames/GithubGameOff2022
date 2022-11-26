@@ -31,9 +31,11 @@ class NPCTextBank {
 			'${Enum_QuestName.Intro}_5' => [
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
-
-			'${Enum_QuestName.Get_map}_0' => [
-				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND it!<page/>Good, good. Next, we need to get the map you will use for your adventure. Go to Brindle's house near the middle of town. It has the two flasks next to it. In there, you will find the map."
+			'${Enum_QuestName.Find_lonk}' => [
+				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND it!<page/>Good, good. Next, we need to get the map you will use for your adventure.<page/>Go to Brindle's house near the middle of town. Here's a key to get inside. You will find the map in there somewhere.<cb val=findMap/>"
+			],
+			'${Enum_QuestName.Get_map}' => [
+				"Please go get the map!"
 			]
 		],
 		WOMAN => [

@@ -32,11 +32,10 @@ class Lonk extends NPC {
 				GlobalQuestState.subQuest++;
 			}
 
-			// if (tag.parsedOptions.val == "compass_returned" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Intro.subQuestKey(6)) {
-			// 	GlobalQuestState.currentQuest = QuestIndex.GET_MAP;
-			// 	GlobalQuestState.subQuest = 0;
-			// }
-
+			if (tag.parsedOptions.val == "findMap" && GlobalQuestState.currentQuest != Enum_QuestName.Get_map) {
+				GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
+				GlobalQuestState.HAS_KEY_TO_HANDYMAN = true;
+			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`

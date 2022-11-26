@@ -1,5 +1,6 @@
 package entities.npcs;
 
+import flixel.util.FlxStringUtil;
 import flixel.math.FlxMath;
 import entities.library.NPCTextBank;
 import quest.GlobalQuestState;
@@ -124,7 +125,12 @@ class NPC extends Interactable implements YayOrNay {
 		}
 		if (questText != null) {
 			chatIndex = Math.round(FlxMath.bound(chatIndex, 0, questText.length-1));
-			dialogBox.loadDialogLine(questText[chatIndex++]);
+			var textLine = questText[chatIndex++];
+			if (FlxStringUtil.isNullOrEmpty(textLine)) {
+				FlxG.log.warn('text line was empty for ${GlobalQuestState.getCurrentQuestKey()}');
+				textLine = "I have nothing to say. Devs forgot to give me text here.";
+			}
+			dialogBox.loadDialogLine(textLine);
 		}
 	}
 

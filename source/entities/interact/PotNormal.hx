@@ -23,14 +23,14 @@ class PotNormal extends Interactable {
 		PlayState.ME.startEncounter(substate);
 		substate.closeCallback = () -> {
 			if (substate.success) {
-				if (data.f_Key == "compass") {
-					// PlayState.ME.eventSignal.dispatch('compassCollected');
-					// TODO: rejoice in your new compass!
-					// Should he drop the compass after holding it above his head? Causing it to only point west
-					// This would be a nice seque into our next quest
-					GlobalQuestState.HAS_COMPASS = true;
-					GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
-				}
+				// if (data.f_Key == "compass") {
+				// 	// PlayState.ME.eventSignal.dispatch('compassCollected');
+				// 	// TODO: rejoice in your new compass!
+				// 	// Should he drop the compass after holding it above his head? Causing it to only point west
+				// 	// This would be a nice seque into our next quest
+				// 	GlobalQuestState.HAS_COMPASS = true;
+				// 	GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
+				// }
 
 				InteractableFactory.defeated.set(data.f_Key, true);
 				kill();

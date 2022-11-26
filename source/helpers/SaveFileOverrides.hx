@@ -41,6 +41,7 @@ class SaveFileOverrides {
 		#if FIND_LONK_TOWN_MAIN
 		GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 		GlobalQuestState.subQuest = 0;
+		GlobalQuestState.LONK_HOUSE_COLLAPSED = true;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;
 		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
