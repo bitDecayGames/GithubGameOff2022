@@ -10,6 +10,7 @@ import states.PlayState;
 import flixel.FlxG;
 import encounters.CharacterIndex;
 import entities.interact.Interactable;
+import entities.interact.OwnableTrigger;
 
 using extension.CardinalExt;
 
@@ -30,8 +31,11 @@ class NPC extends Interactable implements YayOrNay {
 	var lastQuest(default, set):String = "";
 	var chatIndex(default, set) = 0;
 
+	var data:Entity_NPC;
+
 	public function new(data:Entity_NPC) {
 		super(data.pixelX, data.pixelY, data.f_character.getIndex());
+		this.data = data;
 		charIndex = data.f_character.getIndex();
 		loadGraphic(charIndex.getAssetPackage(), true, 26, 34);
 		setSize(16, 16);
@@ -63,6 +67,19 @@ class NPC extends Interactable implements YayOrNay {
 
 		lastQuest = npcProgressTracker.get(charIndex).lastQuest;
 		chatIndex = npcProgressTracker.get(charIndex).chatIndex;
+	}
+
+	public function UpdateOwnership() {
+		for (owned in data.f_Owns) {
+			PlayState.ME.interactables.forEachAlive((s) -> {
+				if (s is OwnableTrigger) {
+					var ot = cast(s, OwnableTrigger);
+					if (owned.entityIid == ot.data.iid) {
+						ot.owner = this;
+					}
+				}
+			});
+		}
 	}
 
 	override function interact() {

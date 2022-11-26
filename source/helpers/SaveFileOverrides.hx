@@ -38,6 +38,17 @@ class SaveFileOverrides {
         PlayState.ME.loadLevel("House_Cludd_Main");
 		#end
 
+		#if FIND_LONK_TOWN_MAIN
+		GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
+		GlobalQuestState.subQuest = 0;
+		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+		GlobalQuestState.DEFEATED_RUBBER_POT = true;
+		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+		GlobalQuestState.leftHouseFirstTime = true;
+		GlobalQuestState.WOKEN_FIRST_TIME = true;
+        PlayState.ME.loadLevel("Town_main");
+		#end
+
 		#if HAVE_COMPASS_CLUDD
 		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 		GlobalQuestState.subQuest = 0;

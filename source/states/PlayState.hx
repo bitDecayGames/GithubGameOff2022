@@ -1,5 +1,6 @@
 package states;
 
+import entities.npcs.NPC;
 import flixel.tweens.FlxEase;
 import entities.interact.Interactable;
 import helpers.SaveFileOverrides;
@@ -68,6 +69,7 @@ class PlayState extends FlxTransitionableState {
 	public var terrain:FlxSpriteGroup;
 	public var entities:FlxTypedGroup<FlxSprite>;
 	public var doors:FlxTypedGroup<Door>;
+	public var npcs:FlxTypedGroup<NPC>;
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
 	public var uiHelpers:FlxTypedGroup<FlxSprite>;
@@ -117,6 +119,7 @@ class PlayState extends FlxTransitionableState {
 		entities = new FlxTypedGroup<FlxSprite>();
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
+		npcs = new FlxTypedGroup<NPC>();
 		dialogs = new FlxGroup();
 		// dialogs go to a second camera so shaders don't mess with them
 		dialogs.cameras = [dialogCamera];
@@ -153,6 +156,7 @@ class PlayState extends FlxTransitionableState {
 			d.destroy();
 		});
 		doors.clear();
+		npcs.clear();
 		terrain.forEach((e) -> {
 			e.destroy();
 		});
@@ -242,6 +246,7 @@ class PlayState extends FlxTransitionableState {
 
 				interactables.add(npc);
 				sortingLayer.add(npc);
+				npcs.add(npc);
 			}
 		}
 
@@ -254,7 +259,6 @@ class PlayState extends FlxTransitionableState {
 		for (decorSprite in group.members) {
 			sortingLayer.add(decorSprite);
 		}
-
 
 		for (eInteract in level.l_Entities.all_Interactable) {
 			// TODO: need to come up with a proper way to parse out unique interactables
@@ -270,6 +274,10 @@ class PlayState extends FlxTransitionableState {
 
 		if (level.l_Entities.all_PlayerSpawn.length > 1) {
 			throw('level ${level.identifier} has multiple spawns');
+		}
+
+		for (npc in npcs) {
+			npc.UpdateOwnership();
 		}
 
 		var playerStart = FlxVector.get();
