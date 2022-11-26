@@ -62,6 +62,19 @@ class SaveFileOverrides {
         PlayState.ME.loadLevel("House_Lonk_1");
 		#end
 
+		#if GO_UNLOCK_GATE_TOWN_MAIN
+		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
+		GlobalQuestState.subQuest = 0;
+		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+		GlobalQuestState.DEFEATED_RUBBER_POT = true;
+		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+		GlobalQuestState.WOKEN_FIRST_TIME = true;
+		GlobalQuestState.leftHouseFirstTime = true;
+		GlobalQuestState.HAS_COMPASS = true;
+        GlobalQuestState.LONK_HOUSE_COLLAPSED = true;
+        PlayState.ME.loadLevel("Town_main");
+		#end
+
 		#if GO_TO_HANDYMAN_TOWN_MAIN
 		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 		GlobalQuestState.subQuest = 0;
