@@ -63,7 +63,7 @@ class NPCTextBank {
 
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
 			],
-			'${Enum_QuestName.Find_lonk}_2' => [
+			'${Enum_QuestName.Find_lonk}_3' => [
 				"<cb val=neutral/>A locked gate? If Cludd knows anything, he probably took notes. That man can't remember to wake up half the time."
 			],
 			'${Enum_QuestName.Get_map}' => [

@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.FlxG;
 import flixel.FlxObject;
 import states.battles.GateState;
 import states.battles.ChestBattle;
@@ -35,6 +36,15 @@ class Gate extends Interactable {
 			dialogBox.loadDialogLine('It is a fancy locked gate, but to what?');
 			PlayState.ME.openDialog(dialogBox);
 		} else {
+			if (!GlobalQuestState.HAS_INTERACTED_WITH_GATE) {
+				GlobalQuestState.HAS_INTERACTED_WITH_GATE = true;
+				if (GlobalQuestState.currentQuest == Find_lonk) {
+					GlobalQuestState.subQuest = 3;
+				} else {
+					FlxG.log.warn('somehow interacted with gate on quest ${GlobalQuestState.currentQuest}');
+				}
+			}
+
 			if (!opened) {
 				var substate = new GateState();
 				FmodManager.StopSongImmediately();
