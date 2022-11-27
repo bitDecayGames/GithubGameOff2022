@@ -52,8 +52,8 @@ class NPCTextBank {
 				"Cludd? He lives up North.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
-				"I'm surprised Cludd let you borrow his <color id=keyItem>compass</color>!  <speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?",
-				"<cb val=sad/>Oh, the house? I heard the crash, too, and came out here to find this mess. Hard to say what happened.",
+				"<cb val=sad/>I heard the crash, too, and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened. <page/>" +
+				"<cb val=neutral/>Is that Cludd's <color id=keyItem>compass</color>? I'm surprised he let you borrow it!  <speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?",
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
 			],
 			'${Enum_QuestName.Find_lonk}_2' => [

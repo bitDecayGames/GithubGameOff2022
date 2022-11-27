@@ -30,7 +30,7 @@ class QuestNameExt {
 					case 0: // Bring the compass back to Lonk
 						buildFlavorText("return the compass");
 					case 1: // Investigate Lonk's house (after collapse)
-						buildFlavorText("Check on Lonk's house");
+						buildFlavorText("Check on home");
 					default:
 						buildFlavorText("Unknown subquest");
 				}

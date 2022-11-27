@@ -5,7 +5,7 @@ import quest.GlobalQuestState;
 import flixel.FlxSprite;
 
 class House extends FlxSprite {
-	var eData:Entity_House;
+	public var eData:Entity_House;
 
 	public function new(data:Entity_House) {
 		// TODO: Put a filler for when a thing isn't found
@@ -26,6 +26,9 @@ class House extends FlxSprite {
 			case "handyman":
 				asset = AssetPaths.handymans__png;
 				yOffset = 16;
+			case "Random":
+				asset = AssetPaths.rando1__png;
+				// yOffset = 16;
 			default:
 		}
 		super(asset);

@@ -72,6 +72,7 @@ class PlayState extends FlxTransitionableState {
 	public var entities:FlxTypedGroup<FlxSprite>;
 	public var doors:FlxTypedGroup<Door>;
 	public var npcs:FlxTypedGroup<NPC>;
+	public var houses:FlxTypedGroup<House>;
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
 	public var uiHelpers:FlxTypedGroup<FlxSprite>;
@@ -122,6 +123,7 @@ class PlayState extends FlxTransitionableState {
 		interactables = new FlxTypedGroup<FlxSprite>();
 		doors = new FlxTypedGroup<Door>();
 		npcs = new FlxTypedGroup<NPC>();
+		houses = new FlxTypedGroup<House>();
 		dialogs = new FlxGroup();
 		// dialogs go to a second camera so shaders don't mess with them
 		dialogs.cameras = [dialogCamera];
@@ -166,7 +168,8 @@ class PlayState extends FlxTransitionableState {
 		});
 		doors.clear();
 		npcs.clear();
-		
+		houses.clear();
+
 		terrain.forEach((e) -> {
 			if (level != null && level.identifier != "Town_main"){
 				e.destroy();
@@ -211,7 +214,7 @@ class PlayState extends FlxTransitionableState {
 				}
 			}
 		}
-		
+
 		profiler.checkpoint("pulled new level from project");
 
 		var collisionLayer = level.l_Collisions;
@@ -236,6 +239,7 @@ class PlayState extends FlxTransitionableState {
 		for (eHouse in level.l_Entities.all_House) {
 			var house = new House(eHouse);
 			sortingLayer.add(house);
+			houses.add(house);
 
 			for (door in house.getDoors()) {
 				doors.add(door);
@@ -411,7 +415,7 @@ class PlayState extends FlxTransitionableState {
 										FmodManager.PlaySong(FmodSongs.AwakenDanger);
 										GlobalQuestState.subQuest++;
 									};
-									dialogBox.loadDialogLine("That came from Lonk's house....");
+									dialogBox.loadDialogLine("That came from home....");
 								});
 							});
 						}
@@ -714,10 +718,10 @@ class PlayState extends FlxTransitionableState {
 		} else {
 			cachedCollisionRender(collisionLayer, collisionTileCache);
 		}
-	} 
+	}
 
 	function cachedRender(spriteGroup:FlxSpriteGroup, ground:Layer_Ground, cache:Array<FlxSprite>) {
-		
+
 		if( spriteGroup==null ) {
 			spriteGroup = new FlxSpriteGroup();
 			spriteGroup.active = false;

@@ -51,7 +51,7 @@ class SaveFileOverrides {
 		#end
 
 		#if HAVE_COMPASS_CLUDD
-		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
+		GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 		GlobalQuestState.subQuest = 0;
 		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
 		GlobalQuestState.DEFEATED_RUBBER_POT = true;

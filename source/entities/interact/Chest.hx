@@ -42,18 +42,28 @@ class Chest extends Interactable {
 					new FlxTimer().start(2, (t) -> {
 						animation.play("open");
 						opened = true;
-						dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It fell...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken");
-						PlayState.ME.openDialog(dialogBox);
-						InteractableFactory.collected.set(contentKey, true);
-						GlobalQuestState.HAS_COMPASS = true;
-						GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
-						GlobalQuestState.subQuest = 0;
+						doOpenLogic();
 					});
 				}
 			};
 		} else {
 			dialogBox.loadDialogLine("It is empty.");
 			PlayState.ME.openDialog(dialogBox);
+		}
+	}
+
+	function doOpenLogic() {
+		switch contentKey {
+			case "compass":
+				dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It fell...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken");
+				PlayState.ME.openDialog(dialogBox);
+				InteractableFactory.collected.set(contentKey, true);
+				GlobalQuestState.HAS_COMPASS = true;
+				GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
+				GlobalQuestState.subQuest = 0;
+			default:
+				dialogBox.loadDialogLine("<cb val=restoreControl/>It is empty, that's odd. Maybe it's a bait chest.");
+				PlayState.ME.openDialog(dialogBox);
 		}
 	}
 
@@ -66,6 +76,10 @@ class Chest extends Interactable {
 
 			if (tag.parsedOptions.val == "compassDrop") {
 				PlayState.ME.eventSignal.dispatch('compassDropped');
+			}
+
+			if (tag.parsedOptions.val == "restoreControl") {
+				PlayState.ME.eventSignal.dispatch("restoreControl");
 			}
 		}
 	}
