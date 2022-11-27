@@ -39,6 +39,7 @@ class Player extends FlxSprite {
 
 	public var hasTakenStepOnStairs1 = false;
 	public var hasTakenStepOnStairs2 = false;
+	public var muteNextStep = false;
 
 	var interactionBox:FlxObject;
 
@@ -209,12 +210,16 @@ class Player extends FlxSprite {
 		if(speedModifier != 1.0){ // On stairs
 			if (!hasTakenStepOnStairs1) {
 				hasTakenStepOnStairs1 = true;
-				return;
 			} else if (!hasTakenStepOnStairs2) {
 				hasTakenStepOnStairs2 = true;
 			} else {
 				return;
 			}
+		}
+
+		if(muteNextStep){
+			muteNextStep = false;
+			return;
 		}
 
 		switch(type) {

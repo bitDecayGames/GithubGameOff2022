@@ -381,6 +381,11 @@ class PlayState extends FlxTransitionableState {
 			player.worldClip = clip;
 
 			playerInTransition = true;
+			
+			if (startDoor.isStairs){
+				//This mutes one step after stairs to make it sound better
+				player.muteNextStep = true;
+			}
 
 			// move the character slightly further than the edge of the door hitbox
 			new FlxTimer().start(walkDistance / player.speed, (t) -> {
