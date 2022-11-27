@@ -32,9 +32,20 @@ class Helper extends NPC {
 					FlxG.camera.followLerp = 100; // this will get auto-capped at the default for us;
 				});
 			}
+			if (tag.parsedOptions.val == "lonk_ok") {
+				FmodManager.StopSong();
+			}
 			if (tag.parsedOptions.val == "exploreWest") {
 				GlobalQuestState.subQuest = 2;
 			}
+		}
+	}
+	
+
+	override function dialogFinished() {
+		super.dialogFinished();
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Find_lonk){
+			FmodManager.PlaySong(FmodSongs.AwakenSofterC);
 		}
 	}
 }
