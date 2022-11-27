@@ -1,5 +1,6 @@
 package entities;
 
+import entities.particles.ItemIndex;
 import bitdecay.flixel.spacial.Cardinal;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -94,19 +95,10 @@ class Player extends FlxSprite {
 				});
 				PlayState.ME.uiHelpers.add(heldItem);
 				facing = FlxObject.DOWN;
-
-
 			case "compassCollected":
-				lockControls = true;
-				animation.play(ITEM_GET);
-				FmodManager.PlaySoundOneShot(FmodSFX.WorldCollectImportantDelay);
-				heldItem = new ItemParticle(x + width/2, y-24, COMPASS);
-				FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
-					type: FlxTweenType.PINGPONG,
-					ease: FlxEase.sineInOut,
-				});
-				PlayState.ME.uiHelpers.add(heldItem);
-				facing = FlxObject.DOWN;
+				getItemSequence(COMPASS);
+			case "keyCollected":
+				getItemSequence(KEY);
 			case "compassDropped":
 				lockControls = true;
 				animation.play(STARTLED);
@@ -130,6 +122,19 @@ class Player extends FlxSprite {
 				updateAnimations(true);
 			default:
 		}
+	}
+
+	function getItemSequence(item:ItemIndex) {
+		lockControls = true;
+		animation.play(ITEM_GET);
+		FmodManager.PlaySoundOneShot(FmodSFX.WorldCollectImportantDelay);
+		heldItem = new ItemParticle(x + width/2, y-24, item);
+		FlxTween.tween(heldItem, {y: heldItem.y + 5}, 0.5, {
+			type: FlxTweenType.PINGPONG,
+			ease: FlxEase.sineInOut,
+		});
+		PlayState.ME.uiHelpers.add(heldItem);
+		facing = FlxObject.DOWN;
 	}
 
 	override function destroy() {
@@ -351,6 +356,25 @@ class Player extends FlxSprite {
 		}
 		i.interact();
 		isInteracting = true;
+	}
+
+	public function updateFacingToLookAt(lookAt:FlxObject) {
+		var xDiff = x - lookAt.x;
+		var yDiff = y - lookAt.y;
+		if (Math.abs(xDiff) > Math.abs(yDiff)) {
+			if (xDiff > 0) {
+				facing = FlxObject.LEFT;
+			} else {
+				facing = FlxObject.RIGHT;
+			}
+		} else {
+			if (yDiff > 0) {
+				facing = FlxObject.UP;
+			} else {
+				facing = FlxObject.DOWN;
+			}
+		}
+		animation.play('${Characters.IDLE_ANIM}_${CardinalExt.fromFacing(facing).asUDLR()}');
 	}
 
 	#if FLX_DEBUG

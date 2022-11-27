@@ -62,6 +62,18 @@ class SaveFileOverrides {
         PlayState.ME.loadLevel("House_Cludd_Basement");
 		#end
 
+		#if HAVE_COMPASS_LONK
+		GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
+		GlobalQuestState.subQuest = 0;
+		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+		GlobalQuestState.DEFEATED_RUBBER_POT = true;
+		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+		GlobalQuestState.WOKEN_FIRST_TIME = true;
+		GlobalQuestState.leftHouseFirstTime = true;
+		GlobalQuestState.HAS_COMPASS = true;
+        PlayState.ME.loadLevel("House_Lonk_1");
+		#end
+
 		#if HAVE_COMPASS_HOME2
 		GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 		GlobalQuestState.subQuest = 0;

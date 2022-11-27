@@ -1,5 +1,6 @@
 package entities.npcs;
 
+import flixel.util.FlxTimer;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import states.PlayState;
@@ -35,6 +36,17 @@ class Lonk extends NPC {
 			if (tag.parsedOptions.val == "findMap" && GlobalQuestState.currentQuest != Enum_QuestName.Get_map) {
 				GlobalQuestState.currentQuest = Enum_QuestName.Get_map;
 				GlobalQuestState.HAS_KEY_TO_HANDYMAN = true;
+			}
+
+			if (tag.parsedOptions.val == "keyCollected") {
+				PlayState.ME.eventSignal.dispatch('keyCollected');
+			}
+
+			if (tag.parsedOptions.val == "restoreControl") {
+				PlayState.ME.eventSignal.dispatch("restoreControl");
+			}
+			if (tag.parsedOptions.val == "faceme") {
+				PlayState.ME.player.updateFacingToLookAt(this);
 			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
