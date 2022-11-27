@@ -44,7 +44,7 @@ class MapInteractable extends Interactable {
 					animation.play('taken');
 					PlayState.ME.eventSignal.dispatch('lockControls');
 					// TODO SFX: Proper map roll-up SFX
-					FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
+					// FmodManager.PlaySoundOneShot(FmodSFX.ChestOpen);
 					new FlxTimer().start(2, (t) -> {
 						opened = true;
 						dialogBox.loadDialogLine("A wrinkly old <color id=keyItem>map</color> has fallen to the floor.<page/> <cb val=mapCollected/><pause t=2.5/>It is glorious!<cb val=restoreControl/><page/>");

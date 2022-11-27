@@ -209,6 +209,7 @@ class Player extends FlxSprite {
 		if(speedModifier != 1.0){ // On stairs
 			if (!hasTakenStepOnStairs1) {
 				hasTakenStepOnStairs1 = true;
+				return;
 			} else if (!hasTakenStepOnStairs2) {
 				hasTakenStepOnStairs2 = true;
 			} else {
@@ -303,7 +304,7 @@ class Player extends FlxSprite {
 		interactionBox.setPositionMidpoint(tmp.x, tmp.y);
 		interactionBox.last.set(interactionBox.x, interactionBox.y);
 
-		if (PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
+		if (!lockControls && PlayState.ME.playerActive && SimpleController.just_pressed(Button.A, playerNum)) {
 			isInteracting = false;
 			FlxG.overlap(PlayState.ME.interactables, interactionBox, playerInteracts);
 			FlxG.overlap(PlayState.ME.doors, interactionBox, playerInteracts);

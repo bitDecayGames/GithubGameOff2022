@@ -63,15 +63,15 @@ class PotBattleState extends EncounterBaseState {
 
 		ring.screenCenter();
 		ring.alpha = 0;
-
-		randomizeAimPoints(4);
-
+		
 		potSprite = new FlxSprite();
 		if (fightCharacter == RUBBERPOT) {
+			randomizeAimPoints(4);
 			potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
 			potSprite.animation.add('good', [0]);
 			potSprite.animation.add('bad', [0]);
 		} else {
+			randomizeAimPoints(5);
 			potSprite.loadGraphic(AssetPaths.battlePot2__png, true, 80, 80);
 			potSprite.animation.add('good', [0]);
 			potSprite.animation.add('bad', [1]);
@@ -111,13 +111,11 @@ class PotBattleState extends EncounterBaseState {
 			fightGroup.active = true;
 
 			new FlxTimer().start(0.5, (t) -> {
-				// TODO: SFX guide ring fades in
 				FlxTween.tween(ring, { alpha: 1 }, 0.5, {
 					onStart: (t) -> {FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);},
 					onComplete: (t) -> {
 						var delay = 0.0;
 						weakPointsGroup.forEach((wp) -> {
-							// TODO: SFX single weakpoint fades in
 							new FlxTimer().start(delay, (t) -> {
 								FmodManager.PlaySoundOneShot(FmodSFX.PotTargetSpawn);
 								FlxTween.tween(wp, { alpha: 1}, 0.5);
@@ -127,7 +125,6 @@ class PotBattleState extends EncounterBaseState {
 						// give a solid delay between the weak points and the player cursor
 						delay += .5;
 						new FlxTimer().start(delay, (t) -> {
-							// TODO: SFX attack cursor fades in
 							FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerCursorSpawn3);
 							FlxTween.tween(cursor, { alpha: 1}, 0.5, {
 								onComplete: (t) -> {

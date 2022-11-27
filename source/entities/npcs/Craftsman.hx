@@ -7,6 +7,8 @@ import states.PlayState;
 class Craftsman extends NPC {
 	public function new(data:Entity_NPC) {
 		super(data);
+		width = getHitbox().width;
+		height = getHitbox().height+4;
 	}
 
 	override function interact() {

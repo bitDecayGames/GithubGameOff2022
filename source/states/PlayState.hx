@@ -500,6 +500,8 @@ class PlayState extends FlxTransitionableState {
 
 		if (boundCamera) {
 			camera.setScrollBoundsRect(0, 0, level.pxWid, level.pxHei);
+		} else {
+			camera.setScrollBounds(null, null, null, null);
 		}
 
 		// do this so our scroll start point is respected (it gets overriden otherwise and the camera is in the wrong)
