@@ -69,12 +69,14 @@ class PlayState extends FlxTransitionableState {
 	public var sortingLayer:FlxTypedGroup<FlxSprite>;
 
 	public var terrain:FlxSpriteGroup;
+	public var terrainMainTown:FlxSpriteGroup;
 	public var entities:FlxTypedGroup<FlxSprite>;
 	public var doors:FlxTypedGroup<Door>;
 	public var npcs:FlxTypedGroup<NPC>;
 	public var houses:FlxTypedGroup<House>;
 	public var interactables:FlxTypedGroup<FlxSprite>;
 	public var collisions:FlxTypedGroup<FlxSprite>;
+	public var collisionsMainTown:FlxTypedGroup<FlxSprite>;
 	public var uiHelpers:FlxTypedGroup<FlxSprite>;
 	public var dialogs:FlxGroup;
 	public var level:LDTKProject_Level;
@@ -117,7 +119,9 @@ class PlayState extends FlxTransitionableState {
 
 		sortingLayer = new FlxTypedGroup<FlxSprite>();
 		terrain = new FlxSpriteGroup();
+		terrainMainTown = new FlxSpriteGroup();
 		collisions = new FlxTypedGroup<FlxSprite>();
+		collisionsMainTown = new FlxTypedGroup<FlxSprite>();
 		uiHelpers = new FlxTypedGroup<FlxSprite>();
 		entities = new FlxTypedGroup<FlxSprite>();
 		interactables = new FlxTypedGroup<FlxSprite>();
@@ -127,7 +131,9 @@ class PlayState extends FlxTransitionableState {
 		dialogs = new FlxGroup();
 		// dialogs go to a second camera so shaders don't mess with them
 		dialogs.cameras = [dialogCamera];
+		add(terrainMainTown);
 		add(terrain);
+		add(collisionsMainTown);
 		add(collisions);
 		// add(entities);
 		// add(interactables);
@@ -178,6 +184,9 @@ class PlayState extends FlxTransitionableState {
 			}
 		});
 		terrain.clear();
+		terrainMainTown.forEach((e) -> {
+			e.kill();
+		});
 		entities.forEach((e) -> {
 			e.destroy();
 		});
@@ -190,6 +199,9 @@ class PlayState extends FlxTransitionableState {
 			}
 		});
 		collisions.clear();
+		collisionsMainTown.forEach((c) -> {
+			c.kill();
+		});
 		interactables.forEach((c) -> {
 			c.destroy();
 		});
@@ -231,7 +243,7 @@ class PlayState extends FlxTransitionableState {
 		if (level.identifier != "Town_main"){
 			level.l_Ground.render(terrain);
 		} else {
-			cachedRender(terrain, level.l_Ground, groundTileCache);
+			cachedRender(terrainMainTown, level.l_Ground, groundTileCache);
 		}
 
 		profiler.checkpoint("render terrain");
@@ -561,6 +573,7 @@ class PlayState extends FlxTransitionableState {
 
 		FlxG.collide(doors, player, playerTouchDoor);
 		FlxG.collide(collisions, player);
+		FlxG.collide(collisionsMainTown, player);
 		FlxG.collide(interactables, player);
 
 		sortTheSortingLayer();
@@ -735,12 +748,12 @@ class PlayState extends FlxTransitionableState {
 		trace("first pass rendering ground layer: " + firstPass);
 
 		var cursorIndex = 0;
+		if (firstPass) {
 		for( cy in 0...ground.cHei )
 		for( cx in 0...ground.cWid )
 			if( ground.hasAnyTileAt(cx,cy) )
 				for( tile in ground.getTileStackAt(cx,cy) ) {
 					var s:flixel.FlxSprite;
-					if (firstPass) {
 						s = new flixel.FlxSprite(cx*ground.gridSize + ground.pxTotalOffsetX, cy*ground.gridSize + ground.pxTotalOffsetY);
 						s.flipX = tile.flipBits & 1 != 0;
 						s.flipY = tile.flipBits & 2 != 0;
@@ -748,13 +761,14 @@ class PlayState extends FlxTransitionableState {
 						s.width = ground.gridSize;
 						s.height = ground.gridSize;
 						cache.insert(cursorIndex, s);
-					} else {
-						s = cache[cursorIndex];
-						s.revive();
+						cursorIndex++;
+						spriteGroup.add(s);
 					}
-					cursorIndex++;
-					spriteGroup.add(s);
-				}
+		} else {
+			for (sprite in cache) {
+				sprite.revive();
+			}
+		}
 	}
 
 	function cachedCollisionRender(collisionLayer:Layer_Collisions, cache:Array<FlxSprite>) {
@@ -768,9 +782,10 @@ class PlayState extends FlxTransitionableState {
 
 		var cursorIndex = 0;
 
-		for( autoTile in collisionLayer.autoTiles ) {
-			var s:flixel.FlxSprite;
-			if (firstPass) {
+		
+		if (firstPass) {
+			for( autoTile in collisionLayer.autoTiles ) {
+				var s:flixel.FlxSprite;
 				s = new flixel.FlxSprite(autoTile.renderX, autoTile.renderY);
 				s.flipX = autoTile.flips & 1 != 0;
 				s.flipY = autoTile.flips & 2 != 0;
@@ -809,12 +824,13 @@ class PlayState extends FlxTransitionableState {
 				}
 
 				cache.insert(cursorIndex, s);
-			} else {
-				s = cache[cursorIndex];
-				s.revive();
+				cursorIndex++;
+				collisionsMainTown.add(s);
 			}
-			cursorIndex++;
-			collisions.add(s);
+		} else {
+			for (sprite in cache) {
+				sprite.revive();
+			}
 		}
 	}
 

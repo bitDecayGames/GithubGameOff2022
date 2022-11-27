@@ -32,7 +32,7 @@ class NPCTextBank {
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
 			'${Enum_QuestName.Find_lonk}' => [
-				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND it!<page/>Good, good. Next, we need to get the map you will use for your adventure.<page/>Go to Brindle's house near the middle of town. Here's a key to get inside. You will find the map in there somewhere.<cb val=findMap/>"
+				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND the <color id=keyItem>compass</color>!<page/>Good, good. Next, we need to get the map you will use for your adventure.<page/>Go to Brindle's house near the middle of town. Here's a key to get inside. You will find the map in there somewhere.<cb val=findMap/>"
 			],
 			'${Enum_QuestName.Get_map}' => [
 				"Please go get the map!"
