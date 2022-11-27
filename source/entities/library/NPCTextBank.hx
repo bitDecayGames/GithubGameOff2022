@@ -26,16 +26,16 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.Intro}_4' => [
 				"<cb val=happy />Well done, Boy! You're ready to begin preparations. I need you to collect my <color id=keyItem>compass</color> from Cludd's house on the " +
-				"north side of town.<cb val=informed_of_compass />"
+				"<color id=hint>North</color> side of town.<cb val=informed_of_compass />"
 			],
 			'${Enum_QuestName.Intro}_5' => [
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
 			'${Enum_QuestName.Find_lonk}' => [
-				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND the <color id=keyItem>compass</color>!<page/>Good, good. Next, we need to get the map you will use for your adventure.<page/>Go to Brindle's house near the middle of town. Here's a key to get inside. You will find the map in there somewhere.<cb val=findMap/>"
+				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND the <color id=keyItem>compass</color>!<page/>Good, good. Next, we need to get the <color id=keyItem>map</color> you will use for your adventure.<page/>Go to Brindle's house near the middle of town. Here's a <color id=keyItem>key</color> to get inside. You will find the <color id=keyItem>map</color> in there somewhere.<cb val=findMap/>"
 			],
 			'${Enum_QuestName.Get_map}' => [
-				"Please go get the map!"
+				"Please go get the <color id=keyItem>map</color>!"
 			],
 			'${Enum_QuestName.Return_map}' => [
 				"I'm guessing Brindle wasn't home? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!"
@@ -49,11 +49,12 @@ class NPCTextBank {
 				"I'm just hanging out. I love chatting with people. Feel free to talk if you have questions."
 			],
 			'${Enum_QuestName.Intro}_5' => [
-				"Cludd? He lives up North.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
+				"Cludd? He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
-				"<cb val=sad/>I heard the crash, too, and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened. <page/>" +
+				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened. <page/>" +
 				"<cb val=neutral/>Is that Cludd's <color id=keyItem>compass</color>? I'm surprised he let you borrow it!  <speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?",
+
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
 			],
 			'${Enum_QuestName.Find_lonk}_2' => [

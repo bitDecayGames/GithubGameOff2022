@@ -28,7 +28,7 @@ class KeyYayOrNay implements YayOrNay {
 			case Enum_Keys.Handyman:
 				return "The door is locked";
 			case Enum_Keys.Cludd_frontdoor:
-				return "There is no knob... It's just painted to look like a doorknob. Strange.";
+				return "There is no knob... It's just painted to look like a doorknob. Strange.<page/>This is definitely Cludd's house, there must be another way in.";
 			default:
 				return "The door is locked";
 		}
