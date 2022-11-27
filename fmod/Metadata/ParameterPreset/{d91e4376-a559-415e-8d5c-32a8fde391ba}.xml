@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{d91e4376-a559-415e-8d5c-32a8fde391ba}">
+		<property name="name">
+			<value>PotTickPitchBend</value>
+		</property>
+		<relationship name="folder">
+			<destination>{da9bea1d-65f6-4eb5-8299-adf0fee0fa69}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{83e70328-3958-416e-81a1-d53e748b716e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{83e70328-3958-416e-81a1-d53e748b716e}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

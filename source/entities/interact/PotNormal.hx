@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.FlxG;
 import flixel.util.FlxTimer;
 import shaders.BlinkHelper;
 import quest.GlobalQuestState;
@@ -33,15 +34,27 @@ class PotNormal extends Interactable {
 				// 	GlobalQuestState.HAS_COMPASS = true;
 				// 	GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 				// }
-
-				InteractableFactory.defeated.set(data.f_Key, true);
-				var blinkTiming = 0.2;
-				var blinkCount = 5;
-				BlinkHelper.Blink(this, blinkTiming, blinkCount);
-				new FlxTimer().start(blinkTiming * blinkCount, (t) -> {
-					kill();
-				});
+				defeat();
 			}
 		};
+	}
+
+	public function defeat() {
+		InteractableFactory.defeated.set(data.f_Key, true);
+		var blinkTiming = 0.2;
+		var blinkCount = 5;
+		BlinkHelper.Blink(this, blinkTiming, blinkCount, (blinksOccured) -> {
+			//TODO setting event parameters on this sound isn't working, so I am hacking it
+			FmodManager.PlaySoundOneShot("event:/SFX/Pot/PotTick"+blinksOccured);
+		});
+		new FlxTimer().start(blinkTiming * blinkCount, (t) -> {
+			var explosion = new PotExplosion(getGraphicMidpoint().x, getGraphicMidpoint().y);
+			explosion.scrollFactor.set();
+			PlayState.ME.add(explosion);
+			visible = false;
+			new FlxTimer().start(.75, (t) -> {
+				kill();
+			});
+		});
 	}
 }

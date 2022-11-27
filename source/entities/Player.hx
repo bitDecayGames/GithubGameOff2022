@@ -1,5 +1,6 @@
 package entities;
 
+import entities.interact.PotNormal;
 import entities.particles.ItemIndex;
 import bitdecay.flixel.spacial.Cardinal;
 import flixel.tweens.FlxEase;
@@ -360,7 +361,13 @@ class Player extends FlxSprite {
 			// I guess this is a known issue
 			return;
 		}
-		i.interact();
+
+		//TODO make this generic and use the save file to instance kill things instead of interacting with them
+		// if (Std.is(i, PotNormal)){
+			// cast (i, PotNormal).defeat();
+		// } else {
+			i.interact();
+		// }
 		isInteracting = true;
 	}
 

@@ -69,6 +69,13 @@ class FmodSFX {
     public static inline var FootstepWood:String = "event:/SFX/Player/FootstepWood";
     public static inline var StairsDown:String = "event:/SFX/Player/StairsDown";
     public static inline var StairsUp:String = "event:/SFX/Player/StairsUp";
+    public static inline var PotExplode:String = "event:/SFX/Pot/PotExplode";
+    public static inline var PotTick1:String = "event:/SFX/Pot/PotTick1";
+    public static inline var PotTick2:String = "event:/SFX/Pot/PotTick2";
+    public static inline var PotTick3:String = "event:/SFX/Pot/PotTick3";
+    public static inline var PotTick4:String = "event:/SFX/Pot/PotTick4";
+    public static inline var PotTick5:String = "event:/SFX/Pot/PotTick5";
+    public static inline var PotTickUp:String = "event:/SFX/Pot/PotTickUp";
     public static inline var Typewriter:String = "event:/SFX/Typewriter/Typewriter";
     public static inline var TypeWriterSingleStroke:String = "event:/SFX/Typewriter/TypeWriterSingleStroke";
     public static inline var WorldCollectImportant:String = "event:/SFX/World/WorldCollectImportant";
