@@ -1,5 +1,6 @@
 package misc;
 
+import flixel.text.FlxBitmapText;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -37,9 +38,22 @@ class FlxTextFactory {
 	 * @param size  `Optional` The font size if something other than default is desired
 	 * @param align `Optional` The font alignment
 	**/
-	public static function make(text:String, ?x:Float, ?y:Float, ?size:Int, ?align:Null<FlxTextAlign>, ?color:Int):FlxText {
-		var txt = new FlxText(x, y, text);
-		txt.setFormat(defaultFont, size == null ? defaultSize : size, color == null ? defaultColor : color, align == null ? defaultAlign : align);
+	public static function make(text:String, ?x:Float, ?y:Float, ?size:Int, ?align:Null<FlxTextAlign>, ?color:Int):FlxBitmapText {
+		var txt = new FlxBitmapText();
+		txt.text = text;
+		txt.setPosition(x, y);
+
+		if (align != null) {
+			txt.alignment = align;
+		}
+
+		if (size > 0) {
+			var scale = 1.0 * size / txt.height;
+			txt.scale.set(scale, scale);
+		}
+		txt.updateHitbox();
+
+		// txt.setFormat(defaultFont, size == null ? defaultSize : size, color == null ? defaultColor : color, align == null ? defaultAlign : align);
 		return txt;
 	}
 }

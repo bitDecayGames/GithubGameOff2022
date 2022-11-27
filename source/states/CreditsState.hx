@@ -1,11 +1,12 @@
 package states;
 
+import flixel.text.FlxText.FlxTextAlign;
+import flixel.text.FlxBitmapText;
 import config.Configure;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.addons.ui.FlxUIState;
-import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import haxefmod.flixel.FmodFlxUtilities;
@@ -19,17 +20,20 @@ class CreditsState extends FlxUIState {
 
 	var _btnMainMenu:FlxButton;
 
-	var _txtCreditsTitle:FlxText;
-	var _txtThankYou:FlxText;
-	var _txtRole:Array<FlxText>;
-	var _txtCreator:Array<FlxText>;
+	var _txtCreditsTitle:FlxBitmapText;
+	var _txtThankYou:FlxBitmapText;
+	var _txtRole:Array<FlxBitmapText>;
+	var _txtCreator:Array<FlxBitmapText>;
 
 	// Quick appearance variables
 	private var backgroundColor = FlxColor.BLACK;
 
-	static inline var entryLeftMargin = 50;
-	static inline var entryRightMargin = 50;
+	static inline var entryLeftMargin = 10;
+	static inline var entryRightMargin = 10;
 	static inline var entryVerticalSpacing = 25;
+
+	var scrollSpeedSecondsPerScreen = 6.0;
+	var fastForwardScaler = 3.0;
 
 	var toolingImages = [
 		AssetPaths.FLStudioLogo__png,
@@ -43,13 +47,6 @@ class CreditsState extends FlxUIState {
 		bgColor = backgroundColor;
 		camera.pixelPerfectRender = true;
 
-		// Button
-
-		_btnMainMenu = UiHelpers.createMenuButton("Main Menu", clickMainMenu);
-		_btnMainMenu.setPosition(FlxG.width - _btnMainMenu.width, FlxG.height - _btnMainMenu.height);
-		_btnMainMenu.updateHitbox();
-		add(_btnMainMenu);
-
 		// Credits
 
 		_allCreditElements = new Array<FlxSprite>();
@@ -58,8 +55,8 @@ class CreditsState extends FlxUIState {
 		center(_txtCreditsTitle);
 		add(_txtCreditsTitle);
 
-		_txtRole = new Array<FlxText>();
-		_txtCreator = new Array<FlxText>();
+		_txtRole = new Array<FlxBitmapText>();
+		_txtCreator = new Array<FlxBitmapText>();
 
 		_allCreditElements.push(_txtCreditsTitle);
 
@@ -74,7 +71,7 @@ class CreditsState extends FlxUIState {
 			creditsVerticalOffset += entryVerticalSpacing;
 		}
 
-		creditsVerticalOffset = FlxG.height;
+		creditsVerticalOffset = FlxG.height + entryVerticalSpacing;
 
 		for (flxText in _txtCreator) {
 			flxText.setPosition(FlxG.width - flxText.width - entryRightMargin, creditsVerticalOffset);
@@ -99,32 +96,36 @@ class CreditsState extends FlxUIState {
 			_allCreditElements.push(display);
 		}
 
-		_txtThankYou = FlxTextFactory.make("Thank you!", FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2, 40, FlxTextAlign.CENTER);
+		_txtThankYou = FlxTextFactory.make("Thank you!", FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2, 24, FlxTextAlign.CENTER);
 		_txtThankYou.alignment = FlxTextAlign.CENTER;
 		center(_txtThankYou);
 		add(_txtThankYou);
 		_allCreditElements.push(_txtThankYou);
 	}
 
-	private function AddSectionToCreditsTextArrays(role:String, creators:Array<String>, finalRoleArray:Array<FlxText>, finalCreatorsArray:Array<FlxText>) {
+	private function AddSectionToCreditsTextArrays(role:String, creators:Array<String>, finalRoleArray:Array<FlxBitmapText>, finalCreatorsArray:Array<FlxBitmapText>) {
 		var roleText = FlxTextFactory.make(role, 0, 0, 15);
 		add(roleText);
 		finalRoleArray.push(roleText);
 		_allCreditElements.push(roleText);
 
 		if (finalCreatorsArray.length != 0) {
-			finalCreatorsArray.push(new FlxText());
+			finalCreatorsArray.push(new FlxBitmapText());
 		}
 
 		for (creator in creators) {
 			// Make an offset entry for the roles array
-			finalRoleArray.push(new FlxText());
+			finalRoleArray.push(new FlxBitmapText());
 
 			var creatorText = FlxTextFactory.make(creator, 0, 0, 15, FlxTextAlign.RIGHT);
 			add(creatorText);
 			finalCreatorsArray.push(creatorText);
 			_allCreditElements.push(creatorText);
 		}
+
+		// put some padding under to space out the next section
+		finalRoleArray.push(new FlxBitmapText());
+		finalCreatorsArray.push(new FlxBitmapText());
 	}
 
 	override public function update(elapsed:Float):Void {
@@ -135,12 +136,13 @@ class CreditsState extends FlxUIState {
 			return;
 		}
 
+		var scrollMod = FlxG.height / scrollSpeedSecondsPerScreen * elapsed;
+		if (FlxG.keys.pressed.SPACE || FlxG.mouse.pressed) {
+			scrollMod *= fastForwardScaler;
+		}
+
 		for (element in _allCreditElements) {
-			if (FlxG.keys.pressed.SPACE || FlxG.mouse.pressed) {
-				element.y -= 2;
-			} else {
-				element.y -= .5;
-			}
+			element.y -= scrollMod;
 		}
 	}
 
