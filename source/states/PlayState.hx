@@ -493,6 +493,8 @@ class PlayState extends FlxTransitionableState {
 
 		// do this so our scroll start point is respected (it gets overriden otherwise and the camera is in the wrong)
 		camera._scrollTarget.set(camera.scroll.x, camera.scroll.y);
+
+		camera.setScrollBoundsRect(0, 0, level.pxWid, level.pxHei);
 	}
 
 	override public function update(elapsed:Float) {
