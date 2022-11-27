@@ -58,6 +58,7 @@ class FmodSFX {
     public static inline var PadlockSuccessMetal:String = "event:/SFX/Padlock/PadlockSuccessMetal";
     public static inline var PadlockSuccessMetal2:String = "event:/SFX/Padlock/PadlockSuccessMetal2";
     public static inline var PadlockSuccessMetal3:String = "event:/SFX/Padlock/PadlockSuccessMetal3";
+    public static inline var PadlockSuccessMetal4:String = "event:/SFX/Padlock/PadlockSuccessMetal4";
     public static inline var PadlockSuccessTone:String = "event:/SFX/Padlock/PadlockSuccessTone";
     public static inline var PadlockUp:String = "event:/SFX/Padlock/PadlockUp";
     public static inline var PadlockUp2:String = "event:/SFX/Padlock/PadlockUp2";
