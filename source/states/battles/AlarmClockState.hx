@@ -132,10 +132,10 @@ class AlarmClockState extends EncounterBaseState {
 			if (SimpleController.just_pressed(A)) {
 				FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
 				startSwipe();
-			} else if (SimpleController.pressed(LEFT)) {
+			} else if (SimpleController.pressed(LEFT) && !firstSwipe) {
 				playerMoved = true;
 				hand.velocity.x -= handXAccel * elapsed;
-			} else if (SimpleController.pressed(RIGHT)) {
+			} else if (SimpleController.pressed(RIGHT) && !firstSwipe) {
 				playerMoved = true;
 				hand.velocity.x += handXAccel * elapsed;
 			} else {
