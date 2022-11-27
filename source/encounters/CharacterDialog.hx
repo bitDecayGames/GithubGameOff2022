@@ -19,18 +19,25 @@ class CharacterDialog extends FlxGroup {
 	public var options:TypeOptions;
 
 	public var faster = false;
-	public var skipFirstPressCheck = true;
+
+	// for cleaner input handling
+	public var skipOneUpdate = false;
 
 	var portraitMargins:Array<Float> = [5, 5, 60, 5];
 	var noPortraitMargins:Array<Float> = [5, 5, 5, 5];
 
-	// TODO: need to handle dialog with no portrait
 	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
 
 		options = new TypeOptions(AssetPaths.battleMenuSlice__png, [4, 4, 7, 8], expressionIndex != NONE ? portraitMargins : noPortraitMargins, 10);
 		options.checkPageConfirm = (delta) -> {
-			return SimpleController.just_pressed(A);
+			if (SimpleController.just_pressed(A)) {
+				// we don't want their press to go to the next page to also start fast-forwarding the next page
+				skipOneUpdate = true;
+				return true;
+			}
+
+			return false;
 		};
 		options.nextIconMaker = () -> {
 			var nextIcon = new FlxSprite();
@@ -51,7 +58,7 @@ class CharacterDialog extends FlxGroup {
 			FmodManager.PlaySoundOneShot(FmodSFX.TypeWriterSingleStroke);
 		};
 		textGroup.pageCallback = () -> {
-			skipFirstPressCheck = true;
+			skipOneUpdate = true;
 			faster = false;
 			textGroup.options.modOps.speedMultiplier = 1;
 		}
@@ -78,25 +85,26 @@ class CharacterDialog extends FlxGroup {
 
 	public function loadDialogLine(text:String) {
 		textGroup.loadText(text);
-		skipFirstPressCheck = true;
+		skipOneUpdate = true;
 	}
 
 	public function resetLastLine() {
 		// TODO: Obviously not efficient, but works for now
 		textGroup.loadText(textGroup.rawText);
-		skipFirstPressCheck = true;
+		skipOneUpdate = true;
 	}
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
+		if (skipOneUpdate) {
+			skipOneUpdate = false;
+			return;
+		}
+
 		if (SimpleController.just_pressed(A) && !faster) {
-			if (skipFirstPressCheck) {
-				skipFirstPressCheck = false;
-			} else {
-				faster = true;
-				textGroup.options.modOps.speedMultiplier = 3;
-			}
+			faster = true;
+			textGroup.options.modOps.speedMultiplier = 3;
 		}
 
 		if (!SimpleController.pressed(A) && faster) {
