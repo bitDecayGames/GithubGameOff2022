@@ -32,8 +32,10 @@ class NPCTextBank {
 				"Come back here once you have my <color id=keyItem>compass</color>"
 			],
 			'${Enum_QuestName.Find_lonk}' => [
-				"<cb val=happy/>Excellent! You actually managed to stea... I mean FIND the <color id=keyItem>compass</color>!<page/>Good, good. Next, we need to get the <color id=keyItem>map</color> you will use for your adventure.<page/>" +
-				"Go to Brindle's house near the middle of town. <page/>" +
+				"<cb val=neutral/>I see you've found the new house! The old one...<pause t=1/> was due for replacement, we'll say.<pause t=1/> The payout should cover this place nicely.<page/>" +
+				"Conveniently, I moved all of our stuff here before the 'accident' occurred. Anyways...<pause t=2/> <page/>" +
+				"Oh <cb val=happy/>yeah, the <color id=keyItem>compass</color>! You actually managed to stea... I mean FIND it!<page/>Good<cb val=neutral/>, good. Next, we need to get the <color id=keyItem>map</color> you will use for your adventure.<page/>" +
+				"Go to Brindle's shop near the middle of town. <page/>" +
 				"Here's a <color id=keyItem>key</color> to get inside.<pause t=1/> <cb val=keyCollected/><page/>" +
 				"You<cb val=restoreControl/><cb val=faceme/> will find the <color id=keyItem>map</color> in there somewhere.<cb val=findMap/>"
 			],
@@ -55,7 +57,8 @@ class NPCTextBank {
 				"Cludd? He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
-				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened. <page/>" +
+				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened.<page/>" +
+				"I saw your grandpa leaving right before it happened. I think he's OK, but I don't know where he went.<page/>" +
 				"<cb val=neutral/>Is that Cludd's <color id=keyItem>compass</color>? I'm surprised he let you borrow it!  <speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?<cb val=exploreWest/>",
 
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
@@ -95,7 +98,7 @@ class NPCTextBank {
 				"How'd you get in here? Who gave you that key?"
 			],
 			'${Enum_QuestName.Return_map}' => [
-				"Can I help you? I have the finest wares in the land -- Tell your friends!"
+				"Can I help you? I would appreciate it if you left."
 			],
 		]
 	];
