@@ -41,10 +41,18 @@ class ChestBattle extends EncounterBaseState {
 
 	var flashOverlay:FlxSprite;
 
+	var fightCharacter:CharacterIndex;
+
+	public function new(foe:CharacterDialog, character:CharacterIndex = NONE) {
+		super();
+
+		dialog = foe;
+		fightCharacter = character;
+	}
+
 	override function create() {
 		super.create();
 
-		dialog = new CharacterDialog(CharacterIndex.NONE, "A loosely latched chest sits before you.");
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.Battle);
 		});
@@ -61,7 +69,12 @@ class ChestBattle extends EncounterBaseState {
 		flashOverlay.alpha = 0;
 
 		latch = new FlxSprite();
-		latch.loadGraphic(AssetPaths.chestLatch__png, true, 75, 100);
+		switch fightCharacter {
+			case LONK:
+				latch.loadGraphic(AssetPaths.uppercut__png, true, 30, 30);
+			default:
+				latch.loadGraphic(AssetPaths.chestLatch__png, true, 75, 100);
+		}
 		latch.animation.frameIndex = 0;
 		latch.scrollFactor.set();
 		// latch.loadGraphic(AssetPaths.latchLarge__png, true, 30, 30);
@@ -175,12 +188,12 @@ class ChestBattle extends EncounterBaseState {
 					onComplete: (t) -> {
 						latch.animation.frameIndex = 1;
 						latch.y -= latch.frameHeight - 19; // the 'hinge' is 19px tall
-	
+
 						FlxTween.tween(flashOverlay, {alpha: 0}, 1);
 						FlxTween.tween(hand, {y: -hand.height}, 0.75);
 						success = true;
 						dialog.revive();
-						dialog.loadDialogLine("The latch flies open.");
+						dialog.loadDialogLine("UUGUGHHHHH");
 						dialog.textGroup.finishCallback = () -> {
 							dialog.kill();
 							FmodManager.SetEventParameterOnSong("ChestLowPass", 0);

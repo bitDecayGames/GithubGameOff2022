@@ -44,7 +44,7 @@ class GateState extends EncounterBaseState {
 
 	override function create() {
 		super.create();
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
+		dialog = new CharacterDialog(CharacterIndex.GATE, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
 
 
 		new FlxTimer().start(1.75, (t) -> {
@@ -204,7 +204,7 @@ class GateState extends EncounterBaseState {
 							PlayState.ME.eventSignal.dispatch("gate_unlocked");
 						}
 						new FlxTimer().start(1, (t) -> {
-							
+
 							dialog.revive();
 							dialog.loadDialogLine("Well done! You know Cludd well.");
 							dialog.textGroup.finishCallback = () -> {

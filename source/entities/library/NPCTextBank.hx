@@ -43,7 +43,7 @@ class NPCTextBank {
 				"Please go get the <color id=keyItem>map</color>!"
 			],
 			'${Enum_QuestName.Return_map}' => [
-				"I'm guessing Brindle wasn't home? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!"
+				"I'm guessing Brindle wasn't at his shop? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!"
 			]
 		],
 		WOMAN => [

@@ -45,7 +45,7 @@ class MapState extends EncounterBaseState {
 	override function create() {
 		super.create();
 
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "I can show you the world! A hand drawn, pixely splendor!");
+		dialog = new CharacterDialog(CharacterIndex.MAP, "I can show you the world! A hand drawn, pixely splendor!");
 
 
 		new FlxTimer().start(1.75, (t) -> {

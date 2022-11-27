@@ -1,5 +1,7 @@
 package entities.interact;
 
+import encounters.CharacterIndex;
+import encounters.CharacterDialog;
 import flixel.util.FlxStringUtil;
 import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
@@ -34,7 +36,7 @@ class Chest extends Interactable {
 
 	override function interact() {
 		if (!opened) {
-			var substate = new ChestBattle();
+			var substate = new ChestBattle(new CharacterDialog(CharacterIndex.CHEST, "Only Cludd may open me. Who are you?"));
 			FmodManager.StopSongImmediately();
 			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 			PlayState.ME.startEncounter(substate);

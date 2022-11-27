@@ -64,17 +64,27 @@ class PotBattleState extends EncounterBaseState {
 		ring.alpha = 0;
 
 		potSprite = new FlxSprite();
-		if (fightCharacter == RUBBERPOT) {
-			randomizeAimPoints(4);
-			potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
-			potSprite.animation.add('good', [0]);
-			potSprite.animation.add('bad', [0]);
-		} else {
-			randomizeAimPoints(5);
-			potSprite.loadGraphic(AssetPaths.battlePot2__png, true, 80, 80);
-			potSprite.animation.add('good', [0]);
-			potSprite.animation.add('bad', [1]);
+		switch fightCharacter {
+			case LONK:
+				transInTime = 0.2;
+				randomizeAimPoints(7);
+				attackLimit = 7;
+				maxSpinSpeed = 270;
+				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);
+				potSprite.animation.add('good', [0]);
+				potSprite.animation.add('bad', [1]);
+			case RUBBERPOT:
+				randomizeAimPoints(4);
+				potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
+				potSprite.animation.add('good', [0]);
+				potSprite.animation.add('bad', [0]);
+			default:
+				randomizeAimPoints(5);
+				potSprite.loadGraphic(AssetPaths.battlePot2__png, true, 80, 80);
+				potSprite.animation.add('good', [0]);
+				potSprite.animation.add('bad', [1]);
 		}
+
 		potSprite.animation.play('good');
 
 		potSprite.scrollFactor.set();
@@ -202,7 +212,7 @@ class PotBattleState extends EncounterBaseState {
 								dialog.loadDialogLine('The pot seems unscathed');
 							}
 							dialog.textGroup.finishCallback = () -> {
-								transitionOut();
+								transitionOut(fightCharacter == LONK ? 0.2 : 1.0);
 							};
 							dialog.revive();
 						}
@@ -331,9 +341,14 @@ class PotBattleState extends EncounterBaseState {
 			});
 			new FlxTimer().start(4.5, (t) -> {
 				// TODO: This should be gotten from somewhere else.
-				dialog.loadDialogLine('The pot shatters into countless pieces. It would be impossible to put it back together.');
+				switch fightCharacter {
+					case LONK:
+						dialog.loadDialogLine('<bigger><fade>OOF...</fade></bigger><pause t=1/> Is that the best you can do?');
+					default:
+						dialog.loadDialogLine('The pot shatters into countless pieces. It would be impossible to put it back together.');
+				}
 				dialog.textGroup.finishCallback = () -> {
-					transitionOut();
+					transitionOut(fightCharacter == LONK ? 0.2 : 1.0);
 					FmodManager.StopSong();
 				};
 				dialog.revive();

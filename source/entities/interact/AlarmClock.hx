@@ -1,5 +1,7 @@
 package entities.interact;
 
+import encounters.CharacterIndex;
+import encounters.CharacterDialog;
 import flixel.FlxSprite;
 import quest.GlobalQuestState;
 import states.PlayState;
@@ -47,7 +49,9 @@ class AlarmClock extends Interactable {
 
 		FmodManager.StopSongImmediately();
 		FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
-		var substate = new AlarmClockState();
+		var substate = new AlarmClockState(new CharacterDialog(
+			CharacterIndex.ALARM_CLOCK,
+			"<speed mod=100>BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 />"));
 		substate.closeCallback = () -> {
 			if (substate.success) {
 				animation.play('broken');

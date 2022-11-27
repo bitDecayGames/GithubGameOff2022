@@ -46,7 +46,7 @@ class QuestNameExt {
 			case Enum_QuestName.Return_map:
 				return switch(GlobalQuestState.subQuest){
 					default:
-						buildFlavorText("return the map");
+						buildFlavorText("Return the map");
 				}
 			default:
 				"Unknown quest";

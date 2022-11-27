@@ -28,6 +28,8 @@ class EncounterBaseState extends FlxSubState {
 
 	var restoreCamFilters:Array<BitmapFilter>;
 
+	var transInTime = 1.0;
+
 	public function new() {
 		super();
 	}
@@ -55,16 +57,14 @@ class EncounterBaseState extends FlxSubState {
 		add(battleGroup);
 		add(transition);
 
-		transitionIn();
+		transitionIn(transInTime);
 	}
 
 	// gives us access to the camera's internal filter list so we can restore it later
 	@:access(flixel.FlxCamera)
-	public function transitionIn(onDone:()->Void = null) {
+	public function transitionIn(onDone:()->Void = null, duration:Float = 1.0) {
 		battleGroup.visible = false;
 		battleGroup.active = false;
-
-		var duration = 1.0;
 
 		// we do two separate tweens
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
@@ -106,9 +106,8 @@ class EncounterBaseState extends FlxSubState {
 		};
 	}
 
-	public function transitionOut(onDone:()->Void = null) {
+	public function transitionOut(onDone:()->Void = null, duration:Float = 1.0) {
 		complete = true;
-		var duration = 1.0;
 		FmodManager.StopSong();
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {

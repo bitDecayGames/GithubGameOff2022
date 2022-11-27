@@ -29,6 +29,10 @@ class AlarmClockState extends EncounterBaseState {
 	private static var handHoverY = 30;
 	private static var handXAccel = 80;
 
+	var clockMoveTimeMin = 0.2;
+	var clockMoveTimeMax = 0.65;
+	var moveTimeModifier = 1.0;
+
 	var playerMoved:Bool = false;
 
 	var helperArrowLeft:FlxSprite;
@@ -50,10 +54,17 @@ class AlarmClockState extends EncounterBaseState {
 	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
+	var fightCharacter:CharacterIndex;
+
+	public function new(foe:CharacterDialog, character:CharacterIndex = ALARM_CLOCK) {
+		super();
+		dialog = foe;
+		fightCharacter = character;
+	}
+
 	override function create() {
 		super.create();
 
-		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "<speed mod=100>BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 /> BEEP<pause t=0.65 />");
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
 		});
@@ -62,7 +73,14 @@ class AlarmClockState extends EncounterBaseState {
 
 		clock = new FlxSprite();
 		clock.scrollFactor.set();
-		clock.loadGraphic(AssetPaths.clockLarge__png, true, 30, 30);
+		switch fightCharacter {
+			case LONK:
+				clock.loadGraphic(AssetPaths.headsmash__png, true, 30, 30);
+				restSeconds *= 0.66;
+				moveTimeModifier *= .75;
+			default:
+				clock.loadGraphic(AssetPaths.clockLarge__png, true, 30, 30);
+		}
 		clock.animation.add('blink', [0,1], 2);
 		clock.animation.add('broken', [2]);
 		clock.animation.play('blink');
@@ -190,7 +208,12 @@ class AlarmClockState extends EncounterBaseState {
 			new FlxTimer().start(2, (t) -> {
 				success = true;
 				dialog.revive();
-				dialog.loadDialogLine("<cb val=sad />....You win this time...<page/>I will see you tomorrow...");
+				switch fightCharacter {
+					case LONK:
+						dialog.loadDialogLine("<cb val=mad /><shake>HOW?!</shake>");
+					default:
+						dialog.loadDialogLine("<cb val=sad />....You win this time...<page/>I will see you tomorrow...");
+				}
 				dialog.textGroup.finishCallback = () -> {
 					dialog.kill();
 
@@ -206,8 +229,6 @@ class AlarmClockState extends EncounterBaseState {
 		}
 	}
 
-	var clockMoveTimeMin = 0.2;
-	var clockMoveTimeMax = 0.65;
 	function startClockTween(edge:Bool = false, repeat:Bool = false) {
 		if (fightOver) {
 			// fight is over, no more moving
@@ -243,7 +264,12 @@ class AlarmClockState extends EncounterBaseState {
 					if (mockPlayer) {
 						acceptInput = false;
 						dialog.revive();
-						dialog.loadDialogLine("<cb val=mad />You'll have to be faster than that! Come and get me!");
+						switch fightCharacter {
+							case LONK:
+								dialog.loadDialogLine("<cb val=happy/>You're as slow as ever.<pause t=2> <cb val=mad/>Give me what is rightfully mine.");
+							default:
+								dialog.loadDialogLine("<cb val=mad/>You'll have to be faster than that! Come and get me!");
+						}
 						dialog.textGroup.finishCallback = () -> {
 							dialog.kill();
 

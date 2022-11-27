@@ -22,7 +22,7 @@ class PotNormal extends Interactable {
 	override function interact() {
 		FmodManager.StopSongImmediately();
 		FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
-		var substate = new PotBattleState(new CharacterDialog(NONE, "It is a basic, uninteresting pot"));
+		var substate = new PotBattleState(new CharacterDialog(POT, "I am a pot."));
 		PlayState.ME.startEncounter(substate);
 		substate.closeCallback = () -> {
 			if (substate.success) {
