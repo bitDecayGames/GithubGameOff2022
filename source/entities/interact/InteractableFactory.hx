@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.util.FlxStringUtil;
 import entities.misc.Boulder;
 import entities.misc.Tree;
 
@@ -9,9 +10,10 @@ class InteractableFactory {
 
 	public static function make(data:Entity_Interactable):Interactable {
 		var index:InteractIndex = data.f_Type.getIndex();
-		if (defeated.exists(data.f_Key)) {
+		if (!FlxStringUtil.isNullOrEmpty(data.f_Key) && defeated.exists(data.f_Key)) {
 			return null;
 		}
+
 
 		switch(index) {
 			case LOAD_TILE:

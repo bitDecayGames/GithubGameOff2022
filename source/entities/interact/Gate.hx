@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.util.FlxStringUtil;
 import flixel.FlxG;
 import flixel.FlxObject;
 import states.battles.GateState;
@@ -24,10 +25,12 @@ class Gate extends Interactable {
 		immovable = true;
 
 		// TODO: Check global state to see if this chest was opened already
-		if (InteractableFactory.collected.exists(contentKey)) {
-			animation.play('opened');
-			opened = true;
-			allowCollisions = FlxObject.NONE;
+		if (!FlxStringUtil.isNullOrEmpty(contentKey)) {
+			if (InteractableFactory.collected.exists(contentKey)) {
+				animation.play('opened');
+				opened = true;
+				allowCollisions = FlxObject.NONE;
+			}
 		}
 	}
 
