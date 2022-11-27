@@ -44,7 +44,6 @@ class GateState extends EncounterBaseState {
 
 	override function create() {
 		super.create();
-		GlobalQuestState.HAS_INTERACTED_WITH_GATE = true;
 		dialog = new CharacterDialog(CharacterIndex.ALARM_CLOCK, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
 
 
