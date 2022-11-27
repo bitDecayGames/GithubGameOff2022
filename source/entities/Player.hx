@@ -200,7 +200,7 @@ class Player extends FlxSprite {
 				}
 			}
 		}
-		return Dirt;
+		return Cobble;
 	}
 
 	function playStepSound(type:Enum_GroundType){
@@ -230,7 +230,7 @@ class Player extends FlxSprite {
 			case Grass:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepGrassReal);
 			case Dirt:
-				FmodManager.PlaySoundOneShot(FmodSFX.FootstepStone);
+				FmodManager.PlaySoundOneShot(FmodSFX.FootstepDirt);
 			case Wood:
 				FmodManager.PlaySoundOneShot(FmodSFX.FootstepWood);
 		};

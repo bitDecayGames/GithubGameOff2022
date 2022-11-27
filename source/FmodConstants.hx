@@ -62,6 +62,7 @@ class FmodSFX {
     public static inline var PadlockSuccessTone:String = "event:/SFX/Padlock/PadlockSuccessTone";
     public static inline var PadlockUp:String = "event:/SFX/Padlock/PadlockUp";
     public static inline var PadlockUp2:String = "event:/SFX/Padlock/PadlockUp2";
+    public static inline var FootstepDirt:String = "event:/SFX/Player/FootstepDirt";
     public static inline var FootstepGrass:String = "event:/SFX/Player/FootstepGrass";
     public static inline var FootstepGrassReal:String = "event:/SFX/Player/FootstepGrassReal";
     public static inline var FootstepStone:String = "event:/SFX/Player/FootstepStone";

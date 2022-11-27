@@ -381,7 +381,7 @@ class PlayState extends FlxTransitionableState {
 			player.worldClip = clip;
 
 			playerInTransition = true;
-			
+
 			if (startDoor.isStairs){
 				//This mutes one step after stairs to make it sound better
 				player.muteNextStep = true;
@@ -478,7 +478,7 @@ class PlayState extends FlxTransitionableState {
 		levelState = LevelState.LoadLevelState(level);
 
 		profiler.checkpoint("Load level state");
-		profiler.printSummary();
+		// profiler.printSummary();
 	}
 
 	private function setCameraFollow() {
