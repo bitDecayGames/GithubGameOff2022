@@ -28,7 +28,7 @@ class QuestNameExt {
 			case Enum_QuestName.Find_lonk:
 				return switch(GlobalQuestState.subQuest) {
 					case 0: // Bring the compass back to Lonk
-						buildFlavorText("return the compass");
+						buildFlavorText("Return the compass");
 					case 1: // Investigate Lonk's house (after collapse)
 						buildFlavorText("Check on home");
 					case 2:

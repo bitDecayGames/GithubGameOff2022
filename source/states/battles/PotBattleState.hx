@@ -37,7 +37,6 @@ class PotBattleState extends EncounterBaseState {
 	var weakPointsGroup = new FlxTypedGroup<FlxSprite>();
 	var attackGroup = new FlxTypedGroup<FlxSprite>();
 
-	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
 	var fightCharacter:CharacterIndex;
@@ -63,7 +62,7 @@ class PotBattleState extends EncounterBaseState {
 
 		ring.screenCenter();
 		ring.alpha = 0;
-		
+
 		potSprite = new FlxSprite();
 		if (fightCharacter == RUBBERPOT) {
 			randomizeAimPoints(4);
@@ -341,5 +340,13 @@ class PotBattleState extends EncounterBaseState {
 			});
 		}
 
+	}
+
+	override function destroy() {
+		if (dialog.characterIndex == LONK) {
+			// keep our dialog from being destroyed
+			battleGroup.remove(dialog);
+		}
+		super.destroy();
 	}
 }

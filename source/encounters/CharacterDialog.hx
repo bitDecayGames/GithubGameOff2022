@@ -14,6 +14,8 @@ class CharacterDialog extends FlxGroup {
 
 	public var characterIndex:CharacterIndex;
 
+	var internalRowIndex:Int;
+
 	public var textGroup:TypingGroup;
 	public var portrait:FlxSprite;
 	public var options:TypeOptions;
@@ -28,6 +30,8 @@ class CharacterDialog extends FlxGroup {
 
 	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
+
+		characterIndex = expressionIndex;
 
 		options = new TypeOptions(AssetPaths.battleMenuSlice__png, [4, 4, 7, 8], expressionIndex != NONE ? portraitMargins : noPortraitMargins, 10);
 		options.checkPageConfirm = (delta) -> {
@@ -70,8 +74,8 @@ class CharacterDialog extends FlxGroup {
 			portrait.scrollFactor.set();
 			portrait.loadGraphic(expressionsAsset, true, 50, 50);
 			var rowLength = Std.int(portrait.graphic.width / 50);
-			characterIndex = expressionIndex * rowLength;
-			portrait.animation.frameIndex = characterIndex;
+			internalRowIndex = expressionIndex * rowLength;
+			portrait.animation.frameIndex = internalRowIndex;
 			add(portrait);
 		}
 	}
@@ -80,7 +84,7 @@ class CharacterDialog extends FlxGroup {
 		if (portrait == null) {
 			return;
 		}
-		portrait.animation.frameIndex = characterIndex + e.asIndex();
+		portrait.animation.frameIndex = internalRowIndex + e.asIndex();
 	}
 
 	public function loadDialogLine(text:String) {

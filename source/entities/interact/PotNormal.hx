@@ -48,9 +48,8 @@ class PotNormal extends Interactable {
 			FmodManager.PlaySoundOneShot("event:/SFX/Pot/PotTick"+blinksOccured);
 		});
 		new FlxTimer().start(blinkTiming * blinkCount, (t) -> {
-			var explosion = new PotExplosion(getGraphicMidpoint().x, getGraphicMidpoint().y);
-			explosion.scrollFactor.set();
-			PlayState.ME.add(explosion);
+			var explosion = new PotExplosion(x, y);
+			PlayState.ME.uiHelpers.add(explosion);
 			visible = false;
 			new FlxTimer().start(.75, (t) -> {
 				kill();

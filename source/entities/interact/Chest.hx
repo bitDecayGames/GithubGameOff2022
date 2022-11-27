@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.util.FlxStringUtil;
 import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
@@ -23,9 +24,11 @@ class Chest extends Interactable {
 		immovable = true;
 
 		// TODO: Check global state to see if this chest was opened already
-		if (InteractableFactory.collected.exists(contentKey)) {
-			animation.play('opened');
-			opened = true;
+		if (!FlxStringUtil.isNullOrEmpty(contentKey)) {
+			if (InteractableFactory.collected.exists(contentKey)) {
+				animation.play('opened');
+				opened = true;
+			}
 		}
 	}
 

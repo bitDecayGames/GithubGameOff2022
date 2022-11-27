@@ -69,12 +69,19 @@ class Lonk extends NPC {
 	}
 
 	override function CheckDoor(d:Door):Bool {
-		// This needs more checks if we are to use it in a lot of places
-		if (!GlobalQuestState.TALKED_TO_LONK_FIRST_TIME && !GlobalQuestState.SPEEDY_DEBUG) {
-			return false;
-		} else {
+		if (GlobalQuestState.SPEEDY_DEBUG) {
 			return true;
 		}
+
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Wake_up) {
+			return false;
+		} else if (GlobalQuestState.currentQuest == Enum_QuestName.Intro) {
+			if (GlobalQuestState.subQuest < 5) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	override function Why():String {
