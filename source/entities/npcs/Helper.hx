@@ -32,6 +32,9 @@ class Helper extends NPC {
 					FlxG.camera.followLerp = 100; // this will get auto-capped at the default for us;
 				});
 			}
+			if (tag.parsedOptions.val == "exploreWest") {
+				GlobalQuestState.subQuest = 2;
+			}
 		}
 	}
 }

@@ -616,6 +616,7 @@ class PlayState extends FlxTransitionableState {
 		} else {
 			if (!d.shouldPass()) {
 				// one of our checks failed and is preventing us from using this door
+				d.interact();
 				return;
 			}
 
@@ -782,7 +783,7 @@ class PlayState extends FlxTransitionableState {
 
 		var cursorIndex = 0;
 
-		
+
 		if (firstPass) {
 			for( autoTile in collisionLayer.autoTiles ) {
 				var s:flixel.FlxSprite;
