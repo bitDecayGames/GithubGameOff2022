@@ -25,6 +25,9 @@ class LevelState {
 
     var levelId:String;
 
+    var bigRadius = 50;
+    var smallRadius = 49;
+
     public function new(_levelId:String){
         camera = PlayState.ME.camera;
         player = PlayState.ME.player;
@@ -38,12 +41,22 @@ class LevelState {
         levelState.updateShaders();
         levelState.updateSfx();
         levelState.updateSong();
+        skipRadiusFrames = 3;
         return levelState;
     }
+
+    public static var skipRadiusFrames = 3;
 
     public function update(){
         if (lightenShader != null){
             //TODO optimize
+            if (lightenShader.lightRadius.value[0] == 0) {
+                if (skipRadiusFrames > 0) {
+                    skipRadiusFrames--;
+                } else {
+                    lightenShader.lightRadius.value = [bigRadius];
+                }
+            }
             var screenPosition = camera.project(player.getMidpoint().subtract(1,4));
             lightenShader.lightSourceX.value = [screenPosition.x];
             lightenShader.lightSourceY.value = [screenPosition.y];
@@ -52,14 +65,22 @@ class LevelState {
 
         if (cludd != null) {
             distanceFromCludd = FlxMath.distanceBetween(player, cludd);
+            #if cludd_debug
             FlxG.watch.addQuick("Cludd distance: ", distanceFromCludd);
+            #end
             distanceFromCludd-=24;
+            #if cludd_debug
             FlxG.watch.addQuick("Cludd distance adjusted: ", distanceFromCludd);
+            #end
             distanceFromCludd = FlxMath.maxInt(0, distanceFromCludd);
             distanceFromCludd = FlxMath.minInt(distanceFromCludd, 100);
+            #if cludd_debug
             FlxG.watch.addQuick("Cludd distance bound: ", distanceFromCludd);
+            #end
             snoreVolumeModifier = cast(1, Float) - (cast(distanceFromCludd, Float)/cast(100, Float));
+            #if cludd_debug
             FlxG.watch.addQuick("Cludd sound modifer final: ", snoreVolumeModifier);
+            #end
             FmodManager.SetEventParameterOnSound(cluddId, "SnoreVolume", snoreVolumeModifier);
         }
     }
@@ -93,9 +114,8 @@ class LevelState {
             camera.setFilters([lightFilter]);
             #end
 
-            var bigRadius = 50;
-            var smallRadius = 49;
-            lightenShader.lightRadius.value = [50];
+            // start this at zero so we have one frame to make sure the light is aligned with the player
+            lightenShader.lightRadius.value = [0];
 
             // Make the light flicker
             new FlxTimer().start(0.33, (t) -> {

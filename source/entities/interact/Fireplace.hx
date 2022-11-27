@@ -1,5 +1,6 @@
 package entities.interact;
 
+import states.LevelState;
 import states.PlayState;
 
 class Fireplace extends Interactable {
@@ -17,9 +18,13 @@ class Fireplace extends Interactable {
 		if (PlayState.ME.levelState.lightenShader != null){
 			PlayState.ME.levelState.lightenShader.fireActive.value = [true];
             //TODO optimize
-            var screenPosition = camera.project(getMidpoint());
-            PlayState.ME.levelState.lightenShader.lightSourceFireX.value = [screenPosition.x];
-            PlayState.ME.levelState.lightenShader.lightSourceFireY.value = [screenPosition.y];
+
+			if (LevelState.skipRadiusFrames == 0) {
+				// XXX: only set this position if we are outside of the skip frames
+				var screenPosition = camera.project(getMidpoint());
+				PlayState.ME.levelState.lightenShader.lightSourceFireX.value = [screenPosition.x];
+				PlayState.ME.levelState.lightenShader.lightSourceFireY.value = [screenPosition.y];
+			}
 
 			switch animation.frameIndex {
 				case 1:
