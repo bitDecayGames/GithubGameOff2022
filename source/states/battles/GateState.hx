@@ -205,7 +205,16 @@ class GateState extends EncounterBaseState {
 							PlayState.ME.eventSignal.dispatch("gate_unlocked");
 						}
 						new FlxTimer().start(1, (t) -> {
-							transitionOut();
+							
+							dialog.revive();
+							dialog.loadDialogLine("Well done! You know Cludd well.");
+							dialog.textGroup.finishCallback = () -> {
+								dialog.kill();
+
+								new FlxTimer().start(1, (t) -> {
+									transitionOut();
+								});
+							};
 						});
 					}
 				});
