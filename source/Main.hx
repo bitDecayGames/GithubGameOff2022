@@ -30,6 +30,9 @@ import states.TestEncounterState;
 #if credits
 import states.CreditsState;
 #end
+#if lonk_fight
+import states.LonkFinalFightState;
+#end
 
 class Main extends Sprite {
 	public function new() {
@@ -56,6 +59,10 @@ class Main extends Sprite {
 
 		#if credits
 		startingState = CreditsState;
+		#end
+
+		#if lonk_fight
+		startingState = LonkFinalFightState;
 		#end
 
 		addChild(new FlxGame(256, 244, startingState, 1, 60, 60, true, false));

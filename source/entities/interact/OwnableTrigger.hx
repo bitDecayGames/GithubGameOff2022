@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.util.FlxStringUtil;
 import flixel.FlxObject;
 import states.PlayState;
 
@@ -25,12 +26,16 @@ class OwnableTrigger extends GenericInteractable {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
-		if (InteractableFactory.collected.exists(triggerKey)) {
-			kill();
+		if (!FlxStringUtil.isNullOrEmpty(triggerKey)) {
+			if (InteractableFactory.collected.exists(triggerKey)) {
+				kill();
+			}
 		}
 
 		if (owner != null && PlayState.ME.player.overlaps(this)) {
-			InteractableFactory.collected.set(triggerKey, true);
+			if (!FlxStringUtil.isNullOrEmpty(triggerKey)) {
+				InteractableFactory.collected.set(triggerKey, true);
+			}
 			owner.interact();
 			// TODO: is this bad
 			kill();

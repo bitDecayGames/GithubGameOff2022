@@ -29,6 +29,8 @@ class CharacterDialog extends FlxGroup {
 	public function new(expressionIndex:CharacterIndex, initialText:String) {
 		super();
 
+		characterIndex = expressionIndex;
+
 		options = new TypeOptions(AssetPaths.battleMenuSlice__png, [4, 4, 7, 8], expressionIndex != NONE ? portraitMargins : noPortraitMargins, 10);
 		options.checkPageConfirm = (delta) -> {
 			if (SimpleController.just_pressed(A)) {
@@ -71,7 +73,7 @@ class CharacterDialog extends FlxGroup {
 			portrait.loadGraphic(expressionsAsset, true, 50, 50);
 			var rowLength = Std.int(portrait.graphic.width / 50);
 			characterIndex = expressionIndex * rowLength;
-			portrait.animation.frameIndex = characterIndex;
+			portrait.animation.frameIndex = expressionIndex * rowLength;
 			add(portrait);
 		}
 	}
