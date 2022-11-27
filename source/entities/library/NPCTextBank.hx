@@ -59,8 +59,9 @@ class NPCTextBank {
 			'${Enum_QuestName.Find_lonk}' => [
 				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened.<page/>" +
 				"I saw your grandpa leaving right before the collapse.<page/>I think he's OK.<cb val=lonk_ok/><page/>But I don't know where he went.<page/>" +
-				"<cb val=neutral/>Is that Cludd's <color id=keyItem>compass</color>? I'm surprised he let you borrow it!<page/><speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?<cb val=exploreWest/>",
-
+				"<cb val=neutral/>Is that Cludd's <color id=keyItem>compass</color>? I'm surprised he let you borrow it!<page/><speed mod=.2>...</speed>Why is it pointing <color id=hint>West</color> -- aren't they supposed to point North?<cb val=exploreWest/>"
+			],
+			'${Enum_QuestName.Find_lonk}_2' => [
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
 			],
 			'${Enum_QuestName.Find_lonk}_3' => [

@@ -14,7 +14,7 @@ class PotNormal extends Interactable {
 		super(data.pixelX, data.pixelY, NONE);
 		this.data = data;
 		loadGraphic(AssetPaths.interiorDecorations__png, true, 16, 16);
-		animation.frameIndex = 2;
+		animation.frameIndex = 3;
 		immovable = true;
 	}
 
