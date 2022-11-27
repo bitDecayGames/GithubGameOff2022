@@ -479,22 +479,31 @@ class PlayState extends FlxTransitionableState {
 	private function setCameraFollow() {
 		camera.follow(player, FlxCameraFollowStyle.TOPDOWN_TIGHT);
 
+		var boundCamera = true;
+
 		if (level.pxWid <= camera.width) {
+			boundCamera = false;
 			camera.deadzone.x = 1;
 			camera.deadzone.width = FlxG.width - 2;
 			camera.scroll.x = -(FlxG.width - level.pxWid) / 2;
 		}
 
 		if (level.pxHei <= camera.height) {
+			boundCamera = false;
 			camera.deadzone.y = 1;
 			camera.deadzone.height = FlxG.height - 2;
 			camera.scroll.y = -(FlxG.height - level.pxHei) / 2;
 		}
 
+		trace(level.pxWid);
+		trace(level.pxHei);
+
+		if (boundCamera) {
+			camera.setScrollBoundsRect(0, 0, level.pxWid, level.pxHei);
+		}
+
 		// do this so our scroll start point is respected (it gets overriden otherwise and the camera is in the wrong)
 		camera._scrollTarget.set(camera.scroll.x, camera.scroll.y);
-
-		camera.setScrollBoundsRect(0, 0, level.pxWid, level.pxHei);
 	}
 
 	override public function update(elapsed:Float) {
