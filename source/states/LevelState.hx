@@ -135,7 +135,6 @@ class LevelState {
 					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
 				}
 			} else if (GlobalQuestState.leftHouseFirstTime) {
-                trace("awakenC");
 				FmodManager.PlaySong(FmodSongs.AwakenSofterC);
 			}
         } else if (StringTools.startsWith(levelId, "House_Cludd")) {

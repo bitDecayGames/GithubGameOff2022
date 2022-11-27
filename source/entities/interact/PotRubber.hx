@@ -1,5 +1,6 @@
 package entities.interact;
 
+import shaders.BlinkHelper;
 import flixel.FlxSprite;
 import quest.GlobalQuestState;
 import encounters.CharacterDialog;
@@ -38,6 +39,7 @@ class PotRubber extends Interactable {
 				if (substate.success) {
 					PlayState.ME.eventSignal.dispatch('rubberPotDefeated');
 					GlobalQuestState.DEFEATED_RUBBER_POT = true;
+					BlinkHelper.Blink(this, 0.2, 5);
 				}
 			};
 		}

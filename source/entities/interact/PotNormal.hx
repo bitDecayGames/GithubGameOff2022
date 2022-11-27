@@ -1,5 +1,7 @@
 package entities.interact;
 
+import flixel.util.FlxTimer;
+import shaders.BlinkHelper;
 import quest.GlobalQuestState;
 import encounters.CharacterDialog;
 import states.battles.PotBattleState;
@@ -33,7 +35,12 @@ class PotNormal extends Interactable {
 				// }
 
 				InteractableFactory.defeated.set(data.f_Key, true);
-				kill();
+				var blinkTiming = 0.2;
+				var blinkCount = 5;
+				BlinkHelper.Blink(this, blinkTiming, blinkCount);
+				new FlxTimer().start(blinkTiming * blinkCount, (t) -> {
+					kill();
+				});
 			}
 		};
 	}
