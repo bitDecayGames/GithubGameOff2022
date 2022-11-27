@@ -10,10 +10,13 @@ class OwnableTrigger extends GenericInteractable {
 
 	public var data:Entity_Interactable;
 
+	var triggerKey:String;
+
 	public function new(data:Entity_Interactable) {
 		super(data);
 		this.data = data;
 		allowCollisions = FlxObject.NONE;
+		triggerKey = data.f_Key;
 	}
 
 	override function interact() {
@@ -22,8 +25,12 @@ class OwnableTrigger extends GenericInteractable {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+		if (InteractableFactory.collected.exists(triggerKey)) {
+			kill();
+		}
 
 		if (owner != null && PlayState.ME.player.overlaps(this)) {
+			InteractableFactory.collected.set(triggerKey, true);
 			owner.interact();
 			// TODO: is this bad
 			kill();
