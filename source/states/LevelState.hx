@@ -25,8 +25,8 @@ class LevelState {
 
     var levelId:String;
 
-    var bigRadius = 50;
-    var smallRadius = 49;
+    var bigRadius = 44;
+    var smallRadius = 43;
 
     public function new(_levelId:String){
         camera = PlayState.ME.camera;

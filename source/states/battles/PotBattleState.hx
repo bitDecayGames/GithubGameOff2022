@@ -211,10 +211,13 @@ class PotBattleState extends EncounterBaseState {
 					{
 						ease: FlxEase.sineOut,
 						onComplete: (t) -> {
-							if (dialog.characterIndex == RUBBERPOT) {
-								dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
-							} else {
-								dialog.loadDialogLine('The pot seems unscathed');
+							switch dialog.characterIndex {
+								case RUBBERPOT:
+									dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
+								case LONK:
+									dialog.loadDialogLine('Pathetic');
+								default:
+									dialog.loadDialogLine('The pot seems unscathed');
 							}
 							dialog.textGroup.finishCallback = () -> {
 								transitionOut();

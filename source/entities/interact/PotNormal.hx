@@ -49,7 +49,7 @@ class PotNormal extends Interactable {
 		});
 		new FlxTimer().start(blinkTiming * blinkCount, (t) -> {
 			var explosion = new PotExplosion(x, y);
-			PlayState.ME.uiHelpers.add(explosion);
+			PlayState.ME.sortingLayer.add(explosion);
 			visible = false;
 			new FlxTimer().start(.75, (t) -> {
 				kill();

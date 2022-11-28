@@ -38,14 +38,13 @@ class GateState extends EncounterBaseState {
 	var selectedCombo:Combo;
 	var cursor:FlxSprite;
 
-	public function new() {
+	public function new(foe:CharacterDialog) {
 		super();
+		dialog = foe;
 	}
 
 	override function create() {
 		super.create();
-		dialog = new CharacterDialog(CharacterIndex.GATE, "With 1000 possible combinations, I highly doubt you'll be able to unlock me.");
-
 
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.Battle);

@@ -48,6 +48,8 @@ class QuestNameExt {
 					default:
 						buildFlavorText("Return the map");
 				}
+			case Enum_QuestName.End_game:
+				buildFlavorText("Survive");
 			default:
 				"Unknown quest";
 		}

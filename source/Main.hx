@@ -84,8 +84,8 @@ class Main extends Sprite {
 		#end
 
 		// Set up basic transitions. To override these see `transOut` and `transIn` on any FlxTransitionable states
-		FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 0.35);
-		FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.35);
+		// FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 0.35);
+		// FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.35);
 
 		FlxTextFactory.defaultFont = AssetPaths.Brain_Slab_8__ttf;
 
