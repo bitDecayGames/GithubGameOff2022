@@ -62,8 +62,13 @@ class Lonk extends NPC {
 			if (tag.parsedOptions.val == "stopMusic") {
 				FmodManager.StopSong();
 			}
+			if (tag.parsedOptions.val == "startMusic") {
+				FmodManager.PlaySong(FmodSongs.BeforeTheEnd);
+			}
 			if (tag.parsedOptions.val == "startEndgame") {
 				GlobalQuestState.currentQuest = Enum_QuestName.End_game;
+			}
+			if (tag.parsedOptions.val == "battleTime") {
 			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
@@ -89,6 +94,8 @@ class Lonk extends NPC {
 		super.dialogFinished();
 
 		if (triggerEnding) {
+			FmodManager.StopSongImmediately();
+			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 			var transition = new EncounterBaseState();
 			transition.dialog = new CharacterDialog(NONE, "");
 			transition.onTransInDone = () -> FlxG.switchState(new LonkFinalFightState());
