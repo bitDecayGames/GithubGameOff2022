@@ -16,13 +16,13 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.Intro}_2' => [
 				"<cb val=happy />Today is the big day!<page/>" +
-				"By<cb val=neutral /> the end of the week, you'll be an adventurer just like I used to be.<page/>" +
-				"I used to <cb val=mad /><shake>destroy</shake><cb val=neutral /> pottery. Today, I'd love to teach you the ancient art.<page/>" +
+				"By<cb val=neutral /> the end of the week, we'll be ready for adventure just like the old days!<page/>" +
+				"I used to <shake>destroy</shake> pottery. Today, I'd love to teach you the ancient art.<page/>" +
 				"<cb val=happy />You see that <color id=keyItem>rubber pot</color> over there? Attack it swiftly. Aim for the <color id=hint>weak points</color>.<page/><cb val=informed_of_rubber_pot />",
 			],
 			'${Enum_QuestName.Intro}_3' => [
 				"<cb val=mad /><shake>Obliterate it!</shake>",
-				"<cb val=neutral/>Keep trying until you've proven you can break it"
+				"<cb val=neutral/>Keep trying until you've proven you can break it."
 			],
 			'${Enum_QuestName.Intro}_4' => [
 				"<cb val=happy />Well done, Boy! You're ready to begin preparations. I need you to collect my <color id=keyItem>compass</color> from Cludd's house on the " +

@@ -25,6 +25,7 @@ class EncounterBaseState extends FlxSubState {
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();
 	var transition:FlxSprite;
+	var bgImg:FlxSprite;
 
 	var restoreCamFilters:Array<BitmapFilter>;
 
@@ -79,7 +80,9 @@ class EncounterBaseState extends FlxSubState {
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						battleGroup.active = true;
-						if (onTransInDone != null) onTransInDone();
+						if (onTransInDone != null) {
+							onTransInDone();
+						}
 					}
 				});
 				FlxTween.num(15, 0, duration, {}, function(v) {
@@ -131,7 +134,9 @@ class EncounterBaseState extends FlxSubState {
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						close();
-						if (onTransOutDone != null) onTransOutDone();
+						if (onTransOutDone != null) {
+							onTransOutDone();
+						}
 					}
 				});
 

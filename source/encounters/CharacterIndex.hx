@@ -11,8 +11,7 @@ enum abstract CharacterIndex(Int) to Int from Int {
 	var CHEST = 6;
 	var MAP = 7;
 	var GATE = 8;
-
-	var RUBBERPOT = 1;
+	var RUBBERPOT = 9;
 
 	public function getAssetPackage():String {
 		switch(this) {

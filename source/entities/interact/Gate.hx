@@ -1,10 +1,12 @@
 package entities.interact;
 
+import encounters.CharacterIndex;
 import flixel.util.FlxStringUtil;
 import flixel.FlxG;
 import flixel.FlxObject;
 import states.battles.GateState;
 import states.battles.ChestBattle;
+import encounters.CharacterDialog;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
 import flixel.FlxSprite;
@@ -49,7 +51,7 @@ class Gate extends Interactable {
 			}
 
 			if (!opened) {
-				var substate = new GateState();
+				var substate = new GateState(new CharacterDialog(CharacterIndex.GATE, "With 1000 possible combinations, I highly doubt you'll be able to unlock me."));
 				FmodManager.StopSongImmediately();
 				FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 				PlayState.ME.startEncounter(substate);

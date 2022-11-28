@@ -16985,7 +16985,7 @@
 						},
 						{
 							"__identifier": "PlayerSpawn",
-							"__grid": [7,2],
+							"__grid": [7,1],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -16994,7 +16994,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 24,
-							"px": [120,32],
+							"px": [120,31],
 							"fieldInstances": [{ "__identifier": "Direction", "__value": "DOWN", "__type": "LocalEnum.Direction", "__tile": null, "defUid": 144, "realEditorValues": [{
 								"id": "V_String",
 								"params": ["DOWN"]
