@@ -46,7 +46,7 @@ class NPCTextBank {
 				#if speedy_debug
 				"TIME TO DIE<cb val=triggerEnding/>"
 				#else
-				"I'm guessing Brindle wasn't at his shop? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!<page/>" +
+				"<cb val=startEndgame/>I'm guessing Brindle wasn't at his shop? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!<page/>" +
 				"Now that you've collected everything I need, I'll be taking it and going on my own adventure!<cb val=stopMusic/><pause t=2/> <page/>
 				What's wrong?<pause t=0.5/>
 				 <cb val=mad/>You thought this was all for you?<page/>
@@ -57,6 +57,9 @@ class NPCTextBank {
 				<cb val=happy/>Ok then.<page/>
 				<cb val=mad/><bigger><shake>I will take it!</shake></bigger> <cb val=triggerEnding/>"
 				#end
+			],
+			'${Enum_QuestName.End_game}' => [
+				"Ready for more? Give them to me. <cb val=triggerEnding/>"
 			]
 		],
 		WOMAN => [

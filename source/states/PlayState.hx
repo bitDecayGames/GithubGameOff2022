@@ -55,6 +55,7 @@ class PlayState extends FlxTransitionableState {
 	public static var ME:PlayState;
 
 	private static inline var START_LEVEL = "House_Lonk_room_boy";
+	var startLevelOverride:String = null;
 
 	private static var firstLoad = true;
 
@@ -102,6 +103,13 @@ class PlayState extends FlxTransitionableState {
 	// handle events. Please clean up after yourself as this is never emptied automatically
 	public var eventSignalPersistent = new FlxTypedSignal<String->Void>();
 
+	public function new(startingLevel:String = null) {
+		super();
+		if (startingLevel != null) {
+			startLevelOverride = startingLevel;
+		}
+	}
+
 	override public function create() {
 		super.create();
 		ME = this;
@@ -143,9 +151,13 @@ class PlayState extends FlxTransitionableState {
 		add(dialogs);
 
 		// We will check for overrides right after the initial load
-		loadLevel(START_LEVEL);
-		// This is how we update the save file on-launch
-		SaveFileOverrides.checkForSaveFileOverrides();
+		loadLevel(startLevelOverride != null ? startLevelOverride : START_LEVEL);
+
+		if (onlyLoadOverridesOnce) {
+			// This is how we update the save file on-launch
+			SaveFileOverrides.checkForSaveFileOverrides();
+			onlyLoadOverridesOnce = false;
+		}
 
 		// add(Achievements.ACHIEVEMENT_NAME_HERE.toToast(true, true));
 
@@ -154,6 +166,8 @@ class PlayState extends FlxTransitionableState {
 		FlxG.watch.add(GlobalQuestState, "currentQuest", "quest");
 		FlxG.watch.add(GlobalQuestState, "subQuest", "subQuest");
 	}
+
+	static var onlyLoadOverridesOnce = true;
 
 
 	var groundTileCache:Array<FlxSprite> = new Array<FlxSprite>();
@@ -345,6 +359,16 @@ class PlayState extends FlxTransitionableState {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
 			if (spawnData != null){
 				player = new Player(spawnData.pixelX, spawnData.pixelY);
+				switch(spawnData.f_Direction) {
+					case UP:
+						player.facing = FlxObject.UP;
+					case DOWN:
+						player.facing = FlxObject.DOWN;
+					case LEFT:
+						player.facing = FlxObject.LEFT;
+					case RIGHT:
+						player.facing = FlxObject.RIGHT;
+				}
 			} else {
 				player = new Player(level.pxWid/2, level.pxHei/2);
 			}

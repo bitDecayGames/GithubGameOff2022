@@ -63,6 +63,8 @@ class LonkFinalFightState extends FlxState {
 				new FlxTimer().start(0.1, (t) -> {
 					nextPhase();
 				});
+			} else {
+				FlxG.switchState(new PlayState("House_Lonk_1"));
 			}
 		};
 	}

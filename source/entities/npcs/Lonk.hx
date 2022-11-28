@@ -62,6 +62,9 @@ class Lonk extends NPC {
 			if (tag.parsedOptions.val == "stopMusic") {
 				FmodManager.StopSong();
 			}
+			if (tag.parsedOptions.val == "startEndgame") {
+				GlobalQuestState.currentQuest = Enum_QuestName.End_game;
+			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`
@@ -98,7 +101,7 @@ class Lonk extends NPC {
 			return true;
 		}
 
-		if (GlobalQuestState.currentQuest == Enum_QuestName.Wake_up) {
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Wake_up || GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			return false;
 		} else if (GlobalQuestState.currentQuest == Enum_QuestName.Intro) {
 			if (GlobalQuestState.subQuest < 5) {
@@ -111,7 +114,11 @@ class Lonk extends NPC {
 
 	override function Why():String {
 		updateFacing(PlayState.ME.player);
-		dialogBox.loadDialogLine("Hold on there little buddy");
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+			dialogBox.loadDialogLine("We have unfinished business. Come here and finish what you started.");
+		} else {
+			dialogBox.loadDialogLine("Hold on there little buddy");
+		}
 		PlayState.ME.openDialog(dialogBox);
 		return "";
 	}
