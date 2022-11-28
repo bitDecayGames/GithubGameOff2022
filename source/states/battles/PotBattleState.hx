@@ -41,19 +41,26 @@ class PotBattleState extends EncounterBaseState {
 
 	var fightCharacter:CharacterIndex;
 
-	public function new(foe:CharacterDialog, character:CharacterIndex = POT) {
+	var isFinalBattle:Bool;
+
+	public function new(foe:CharacterDialog, character:CharacterIndex = POT, ?finalBattle:Bool = false) {
 		super();
 		dialog = foe;
 		dialog.textGroup.tagCallback = potTagHandle;
 		fightCharacter = character;
+		isFinalBattle = finalBattle;
 	}
 
 	override function create() {
 		super.create();
 
-		new FlxTimer().start(1.75, (t) -> {
-			FmodManager.PlaySong(FmodSongs.Battle);
-		});
+		if (isFinalBattle) {
+			FmodManager.PlaySong(FmodSongs.Lonk);
+		} else {
+			new FlxTimer().start(1.75, (t) -> {
+				FmodManager.PlaySong(FmodSongs.Battle);
+			});
+		}
 
 		fightGroup = new FlxGroup();
 

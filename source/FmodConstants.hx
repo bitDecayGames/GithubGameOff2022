@@ -14,6 +14,7 @@ class FmodSongs {
     public static inline var BattleWithAlarm:String = "event:/Music/BattleWithAlarm";
     public static inline var Haunted:String = "event:/Music/Haunted";
     public static inline var LetsGo:String = "event:/Music/LetsGo";
+    public static inline var Lonk:String = "event:/Music/Lonk";
     public static inline var Silence:String = "event:/Music/Silence";
 }
 
@@ -75,7 +76,6 @@ class FmodSFX {
     public static inline var PotTick3:String = "event:/SFX/Pot/PotTick3";
     public static inline var PotTick4:String = "event:/SFX/Pot/PotTick4";
     public static inline var PotTick5:String = "event:/SFX/Pot/PotTick5";
-    public static inline var PotTickUp:String = "event:/SFX/Pot/PotTickUp";
     public static inline var Typewriter:String = "event:/SFX/Typewriter/Typewriter";
     public static inline var TypeWriterSingleStroke:String = "event:/SFX/Typewriter/TypeWriterSingleStroke";
     public static inline var WorldCollectImportant:String = "event:/SFX/World/WorldCollectImportant";
