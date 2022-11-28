@@ -49,7 +49,7 @@ class NPCTextBank {
 				"<cb val=startEndgame/>I'm guessing Brindle wasn't at his shop? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!<page/>" +
 				"Now that you've collected everything I need, I'll be taking it and going on my own adventure!<cb val=stopMusic/><pause t=2/> <page/>
 				What's wrong?<pause t=0.5/>
-				 <cb val=mad/>You thought this was all for you?<page/>
+				 <cb val=mad/><cb val=startMusic/>You thought this was all for you?<page/>
 				<cb val=happy/>Dear child<speed mod=.2>...</speed><page/>
 				<cb val=neutral/>You were never fit for adventure.<pause t=0.5/> You are too small.<pause t=0.25/> Too weak.<page/>
 				<cb val=neutral/>Now give everything to me before I get impatient<speed mod=.05>...</speed><page/>
