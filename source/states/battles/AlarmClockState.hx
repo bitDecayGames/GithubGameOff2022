@@ -54,12 +54,9 @@ class AlarmClockState extends EncounterBaseState {
 	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
-	var fightCharacter:CharacterIndex;
-
-	public function new(foe:CharacterDialog, character:CharacterIndex = ALARM_CLOCK) {
+	public function new(foe:CharacterDialog) {
 		super();
 		dialog = foe;
-		fightCharacter = character;
 	}
 
 	override function create() {
@@ -73,7 +70,7 @@ class AlarmClockState extends EncounterBaseState {
 
 		clock = new FlxSprite();
 		clock.scrollFactor.set();
-		switch fightCharacter {
+		switch dialog.characterIndex {
 			case LONK:
 				clock.loadGraphic(AssetPaths.headsmash__png, true, 30, 30);
 				restSeconds *= 0.66;
@@ -208,7 +205,7 @@ class AlarmClockState extends EncounterBaseState {
 			new FlxTimer().start(2, (t) -> {
 				success = true;
 				dialog.revive();
-				switch fightCharacter {
+				switch dialog.characterIndex {
 					case LONK:
 						dialog.loadDialogLine("<cb val=mad /><shake>HOW?!</shake>");
 					default:
@@ -264,7 +261,7 @@ class AlarmClockState extends EncounterBaseState {
 					if (mockPlayer) {
 						acceptInput = false;
 						dialog.revive();
-						switch fightCharacter {
+						switch dialog.characterIndex {
 							case LONK:
 								dialog.loadDialogLine("<cb val=happy/>You're as slow as ever.<pause t=2> <cb val=mad/>Give me what is rightfully mine.");
 							default:

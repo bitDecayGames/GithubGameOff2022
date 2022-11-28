@@ -33,7 +33,7 @@ class PotRubber extends Interactable {
 		} else {
 			FmodManager.StopSongImmediately();
 			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
-			var substate = new PotBattleState(new CharacterDialog(RUBBERPOT, "Take your best shot"), RUBBERPOT);
+			var substate = new PotBattleState(new CharacterDialog(RUBBERPOT, "Take your best shot"));
 			PlayState.ME.startEncounter(substate);
 			substate.closeCallback = () -> {
 				if (substate.success) {

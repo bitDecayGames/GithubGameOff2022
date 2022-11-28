@@ -39,15 +39,12 @@ class PotBattleState extends EncounterBaseState {
 
 	var fightGroup:FlxGroup;
 
-	var fightCharacter:CharacterIndex;
-
 	var isFinalBattle:Bool;
 
-	public function new(foe:CharacterDialog, character:CharacterIndex = POT, ?finalBattle:Bool = false) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false) {
 		super();
 		dialog = foe;
 		dialog.textGroup.tagCallback = potTagHandle;
-		fightCharacter = character;
 		isFinalBattle = finalBattle;
 	}
 
@@ -71,9 +68,8 @@ class PotBattleState extends EncounterBaseState {
 		ring.alpha = 0;
 
 		potSprite = new FlxSprite();
-		switch fightCharacter {
+		switch dialog.characterIndex {
 			case LONK:
-				transInTime = 0.2;
 				randomizeAimPoints(7);
 				attackLimit = 7;
 				maxSpinSpeed = 270;
@@ -213,13 +209,13 @@ class PotBattleState extends EncounterBaseState {
 					{
 						ease: FlxEase.sineOut,
 						onComplete: (t) -> {
-							if (fightCharacter == RUBBERPOT) {
+							if (dialog.characterIndex == RUBBERPOT) {
 								dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
 							} else {
 								dialog.loadDialogLine('The pot seems unscathed');
 							}
 							dialog.textGroup.finishCallback = () -> {
-								transitionOut(fightCharacter == LONK ? 0.2 : 1.0);
+								transitionOut();
 							};
 							dialog.revive();
 						}
@@ -325,7 +321,7 @@ class PotBattleState extends EncounterBaseState {
 	}
 
 	function finishFight() {
-		if (fightCharacter == RUBBERPOT) {
+		if (dialog.characterIndex == RUBBERPOT) {
 			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
 
@@ -348,27 +344,19 @@ class PotBattleState extends EncounterBaseState {
 			});
 			new FlxTimer().start(4.5, (t) -> {
 				// TODO: This should be gotten from somewhere else.
-				switch fightCharacter {
+				switch dialog.characterIndex {
 					case LONK:
 						dialog.loadDialogLine('<bigger><fade>OOF...</fade></bigger><pause t=1/> Is that the best you can do?');
 					default:
 						dialog.loadDialogLine('The pot shatters into countless pieces. It would be impossible to put it back together.');
 				}
 				dialog.textGroup.finishCallback = () -> {
-					transitionOut(fightCharacter == LONK ? 0.2 : 1.0);
+					transitionOut();
 					FmodManager.StopSong();
 				};
 				dialog.revive();
 			});
 		}
 
-	}
-
-	override function destroy() {
-		if (dialog.characterIndex == LONK) {
-			// keep our dialog from being destroyed
-			battleGroup.remove(dialog);
-		}
-		super.destroy();
 	}
 }

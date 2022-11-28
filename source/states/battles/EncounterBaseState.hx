@@ -28,8 +28,6 @@ class EncounterBaseState extends FlxSubState {
 
 	var restoreCamFilters:Array<BitmapFilter>;
 
-	var transInTime = 1.0;
-
 	public function new() {
 		super();
 	}
@@ -57,12 +55,17 @@ class EncounterBaseState extends FlxSubState {
 		add(battleGroup);
 		add(transition);
 
-		transitionIn(transInTime);
+		transitionIn();
 	}
 
 	// gives us access to the camera's internal filter list so we can restore it later
 	@:access(flixel.FlxCamera)
-	public function transitionIn(onDone:()->Void = null, duration:Float = 1.0) {
+	public function transitionIn(onDone:()->Void = null) {
+		var duration = 1.0;
+		if (dialog.characterIndex == LONK) {
+			duration = 0.1;
+		}
+
 		battleGroup.visible = false;
 		battleGroup.active = false;
 
@@ -70,7 +73,7 @@ class EncounterBaseState extends FlxSubState {
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
-				FlxTween.tween(transition, { alpha: 0}, {
+				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						battleGroup.active = true;
 						if (onDone != null) onDone();
@@ -106,14 +109,18 @@ class EncounterBaseState extends FlxSubState {
 		};
 	}
 
-	public function transitionOut(onDone:()->Void = null, duration:Float = 1.0) {
+	public function transitionOut(onDone:()->Void = null) {
+		var duration = 1.0;
+		if (dialog.characterIndex == LONK) {
+			duration = 0.1;
+		}
 		complete = true;
 		FmodManager.StopSong();
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = false;
 				battleGroup.active = false;
-				FlxTween.tween(transition, { alpha: 0}, {
+				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						close();
 						if (onDone != null) onDone();
@@ -169,5 +176,13 @@ class EncounterBaseState extends FlxSubState {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+	}
+
+	override function destroy() {
+		if (dialog.characterIndex == LONK) {
+			// keep our dialog from being destroyed
+			battleGroup.remove(dialog);
+		}
+		super.destroy();
 	}
 }

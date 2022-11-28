@@ -28,6 +28,8 @@ class ChestBattle extends EncounterBaseState {
 	private static var handHoverY = 175;
 
 	var latch:FlxSprite;
+	// the 'hinge' is 19px tall for the default image
+	var openLatchOffset = 19;
 
 	var fightOver = false;
 
@@ -41,13 +43,9 @@ class ChestBattle extends EncounterBaseState {
 
 	var flashOverlay:FlxSprite;
 
-	var fightCharacter:CharacterIndex;
-
-	public function new(foe:CharacterDialog, character:CharacterIndex = NONE) {
+	public function new(foe:CharacterDialog) {
 		super();
-
 		dialog = foe;
-		fightCharacter = character;
 	}
 
 	override function create() {
@@ -69,17 +67,19 @@ class ChestBattle extends EncounterBaseState {
 		flashOverlay.alpha = 0;
 
 		latch = new FlxSprite();
-		switch fightCharacter {
+		switch dialog.characterIndex {
 			case LONK:
 				latch.loadGraphic(AssetPaths.uppercut__png, true, 30, 30);
+				latch.animation.add('closed', [0]);
+				latch.animation.add('open', [1,2], 5);
+				openLatchOffset = 0;
 			default:
 				latch.loadGraphic(AssetPaths.chestLatch__png, true, 75, 100);
+				latch.animation.add('closed', [0]);
+				latch.animation.add('open', [1]);
 		}
-		latch.animation.frameIndex = 0;
+		latch.animation.play('closed');
 		latch.scrollFactor.set();
-		// latch.loadGraphic(AssetPaths.latchLarge__png, true, 30, 30);
-		// latch.animation.add('blink', [0,1], 2);
-		// latch.animation.play('blink');
 		latch.screenCenter();
 		latch.y = 50;
 		latch.setSize(30, 30);
@@ -186,14 +186,19 @@ class ChestBattle extends EncounterBaseState {
 				FlxTween.tween(hand, {y: latch.y}, 0.75, {
 					ease: FlxEase.quartIn,
 					onComplete: (t) -> {
-						latch.animation.frameIndex = 1;
-						latch.y -= latch.frameHeight - 19; // the 'hinge' is 19px tall
+						latch.animation.play('open');
+						latch.y -= latch.frameHeight - openLatchOffset;
 
 						FlxTween.tween(flashOverlay, {alpha: 0}, 1);
 						FlxTween.tween(hand, {y: -hand.height}, 0.75);
 						success = true;
 						dialog.revive();
-						dialog.loadDialogLine("UUGUGHHHHH");
+						switch dialog.characterIndex {
+							case LONK:
+								dialog.loadDialogLine("This<pause/> isn't<pause/> possible<slower>...</slower>");
+							default:
+								dialog.loadDialogLine("UUGUGHHHHH");
+						}
 						dialog.textGroup.finishCallback = () -> {
 							dialog.kill();
 							FmodManager.SetEventParameterOnSong("ChestLowPass", 0);

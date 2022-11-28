@@ -40,13 +40,9 @@ class LonkBattleState {
 	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
-	var fightCharacter:CharacterIndex;
-
-	public function new(foe:CharacterDialog, character:CharacterIndex = POT) {
+	public function new(foe:CharacterDialog,) {
 		super();
 		dialog = foe;
-		// dialog.textGroup.tagCallback = potTagHandle;
-		fightCharacter = character;
 
 
 	}
@@ -69,7 +65,7 @@ class LonkBattleState {
 		randomizeAimPoints(4);
 
 		potSprite = new FlxSprite();
-		if (fightCharacter == RUBBERPOT) {
+		if (dialog.characterIndex == RUBBERPOT) {
 			potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
 			potSprite.animation.add('good', [0]);
 			potSprite.animation.add('bad', [0]);
@@ -202,7 +198,7 @@ class LonkBattleState {
 					{
 						ease: FlxEase.sineOut,
 						onComplete: (t) -> {
-							if (fightCharacter == RUBBERPOT) {
+							if (dialog.characterIndex == RUBBERPOT) {
 								dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
 							} else {
 								dialog.loadDialogLine('The pot seems unscathed');
@@ -314,7 +310,7 @@ class LonkBattleState {
 	}
 
 	function finishFight() {
-		if (fightCharacter == RUBBERPOT) {
+		if (dialog.characterIndex == RUBBERPOT) {
 			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
 

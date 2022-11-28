@@ -1,5 +1,7 @@
 package states;
 
+import flixel.FlxG;
+import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
@@ -16,10 +18,12 @@ class LonkFinalFightState extends FlxState {
 
 	var phaseIndex = 0;
 
+	var fightEnded = false;
+
 	override function create() {
 		super.create();
 
-		
+
 		// var test = new FlxSprite();
 		// test.makeGraphic(32, 32, FlxColor.BROWN);
 		// test.screenCenter();
@@ -29,10 +33,10 @@ class LonkFinalFightState extends FlxState {
 		#if skip_to_fight
 		nextPhase();
 		#end
-		
+
 		dialog = new CharacterDialog(LONK, "Now that you've collected everything I need, I'll be taking it and going on my own adventure!<page/>
 		What's wrong?<pause t=0.5/>
-		 <cb val=mad/>You thought this was all for you?<page/> 
+		 <cb val=mad/>You thought this was all for you?<page/>
 		<cb val=happy/>Dear child<speed mod=.2>...</speed><page/>
 		<cb val=neutral/>You were never fit for adventure.<pause t=0.5/> You are too small.<pause t=0.25/> Too weak.<page/>
 		<cb val=neutral/>Now give everything to me before I get impatient<speed mod=.05>...</speed><page/>
@@ -46,7 +50,13 @@ class LonkFinalFightState extends FlxState {
 
 	function dialogFinished() {
 		dialog.kill();
-		nextPhase();
+
+		if (fightEnded) {
+			// transition to whatever the ending is
+			FlxG.switchState(new CreditsState());
+		} else {
+			nextPhase();
+		}
 	}
 
 	function openBattle(phase:EncounterBaseState) {
@@ -69,12 +79,17 @@ class LonkFinalFightState extends FlxState {
 		switch phaseIndex {
 			case 1:
 				battleDialog.loadDialogLine("Give me the <color id=keyItem>map</color> and the <color id=keyItem>compass</color>.");
-				openBattle(new PotBattleState(battleDialog, LONK, true));
+				openBattle(new PotBattleState(battleDialog, true));
 			case 2:
 				battleDialog.loadDialogLine("This is <shake>MY ADVENTURE</shake>.");
-				openBattle(new AlarmClockState(battleDialog, LONK));
+				openBattle(new AlarmClockState(battleDialog));
 			case 3:
-				// TODO: Done, roll credits
+				battleDialog.loadDialogLine("TEXT NEEDED HERE!");
+				openBattle(new ChestBattle(battleDialog));
+			case 4:
+				fightEnded = true;
+				dialog.revive();
+				dialog.loadDialogLine("I can't believe this 'yatta yatta'. I am slain.");
 			default:
 		}
 	}
@@ -83,7 +98,7 @@ class LonkFinalFightState extends FlxState {
 		if (tag.tag == "cb") {
 
 			if (false) {
-
+				// handle other callbacks if we want them
 			} else {
 				dialog.setExpression(tag.parsedOptions.val);
 			}
