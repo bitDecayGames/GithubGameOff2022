@@ -53,18 +53,24 @@ class AlarmClockState extends EncounterBaseState {
 
 	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
+	var finalBattle = false;
 
-	public function new(foe:CharacterDialog) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false) {
 		super();
 		dialog = foe;
+		this.finalBattle = finalBattle;
 	}
 
 	override function create() {
 		super.create();
 
-		new FlxTimer().start(1.75, (t) -> {
-			FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
-		});
+		if (finalBattle) {
+			FmodManager.PlaySong(FmodSongs.Lonk);
+		} else {
+			new FlxTimer().start(1.75, (t) -> {
+				FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
+			});
+		}
 
 		fightGroup = new FlxGroup();
 
@@ -179,9 +185,11 @@ class AlarmClockState extends EncounterBaseState {
 			camera.flash(FlxColor.WHITE, 0.5);
 
 
-			new FlxTimer().start(2, (t) -> {
-				FmodManager.StopSong();
-			});
+			if (!finalBattle) {
+				new FlxTimer().start(2, (t) -> {
+					FmodManager.StopSong();
+				});
+			}
 
 			new FlxTimer().start(.1, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);

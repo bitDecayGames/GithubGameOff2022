@@ -124,5 +124,19 @@ class SaveFileOverrides {
 		GlobalQuestState.HAS_KEY_TO_HANDYMAN = true;
         PlayState.ME.loadLevel("House_map_spare");
 		#end
+
+		#if HAVE_MAP_LONK_HOUSE
+		GlobalQuestState.currentQuest = Enum_QuestName.Return_map;
+		GlobalQuestState.subQuest = 0;
+		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+		GlobalQuestState.DEFEATED_RUBBER_POT = true;
+		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+		GlobalQuestState.WOKEN_FIRST_TIME = true;
+		GlobalQuestState.leftHouseFirstTime = true;
+		GlobalQuestState.HAS_COMPASS = true;
+		GlobalQuestState.HAS_KEY_TO_HANDYMAN = true;
+		GlobalQuestState.HAS_MAP = true;
+        PlayState.ME.loadLevel("House_Lonk_1");
+		#end
     }
 }

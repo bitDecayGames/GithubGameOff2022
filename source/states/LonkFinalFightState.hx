@@ -34,18 +34,13 @@ class LonkFinalFightState extends FlxState {
 		nextPhase();
 		#end
 
-		dialog = new CharacterDialog(LONK, "Now that you've collected everything I need, I'll be taking it and going on my own adventure!<page/>
-		What's wrong?<pause t=0.5/>
-		 <cb val=mad/>You thought this was all for you?<page/>
-		<cb val=happy/>Dear child<speed mod=.2>...</speed><page/>
-		<cb val=neutral/>You were never fit for adventure.<pause t=0.5/> You are too small.<pause t=0.25/> Too weak.<page/>
-		<cb val=neutral/>Now give everything to me before I get impatient<speed mod=.05>...</speed><page/>
-		No?<page/>
-		<cb val=happy/>Ok then.<page/>
-		<cb val=mad/><bigger><shake>I will take it!</shake></bigger>");
+		dialog = new CharacterDialog(LONK, "");
 		dialog.textGroup.finishCallback = dialogFinished;
 		dialog.textGroup.tagCallback = handleTagCallback;
+		dialog.kill();
 		add(dialog);
+
+		nextPhase();
 	}
 
 	function dialogFinished() {
@@ -82,10 +77,10 @@ class LonkFinalFightState extends FlxState {
 				openBattle(new PotBattleState(battleDialog, true));
 			case 2:
 				battleDialog.loadDialogLine("This is <shake>MY ADVENTURE</shake>.");
-				openBattle(new AlarmClockState(battleDialog));
+				openBattle(new AlarmClockState(battleDialog, true));
 			case 3:
 				battleDialog.loadDialogLine("TEXT NEEDED HERE!");
-				openBattle(new ChestBattle(battleDialog));
+				openBattle(new ChestBattle(battleDialog, true));
 			case 4:
 				fightEnded = true;
 				dialog.revive();

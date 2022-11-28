@@ -1,11 +1,19 @@
 package entities.npcs;
 
+import encounters.CharacterDialog;
+import states.battles.EncounterBaseState;
+import flixel.tweens.FlxTween;
+import states.LonkFinalFightState;
+import flixel.FlxG;
 import flixel.util.FlxTimer;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import states.PlayState;
 
 class Lonk extends NPC {
+
+	var triggerEnding = false;
+
 	public function new(data:Entity_NPC) {
 		super(data);
 
@@ -48,6 +56,12 @@ class Lonk extends NPC {
 			if (tag.parsedOptions.val == "faceme") {
 				PlayState.ME.player.updateFacingToLookAt(this);
 			}
+			if (tag.parsedOptions.val == "triggerEnding") {
+				triggerEnding = true;
+			}
+			if (tag.parsedOptions.val == "stopMusic") {
+				FmodManager.StopSong();
+			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`
@@ -65,6 +79,17 @@ class Lonk extends NPC {
 	function handleEvent(e:String) {
 		if (e == "rubberPotDefeated" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Intro.subQuestKey(3)) {
 			GlobalQuestState.subQuest++;
+		}
+	}
+
+	override function dialogFinished() {
+		super.dialogFinished();
+
+		if (triggerEnding) {
+			var transition = new EncounterBaseState();
+			transition.dialog = new CharacterDialog(NONE, "");
+			transition.onTransInDone = () -> FlxG.switchState(new LonkFinalFightState());
+			FlxG.state.openSubState(transition);
 		}
 	}
 

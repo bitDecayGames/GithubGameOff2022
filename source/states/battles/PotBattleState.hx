@@ -22,6 +22,7 @@ using zero.flixel.extensions.FlxPointExt;
 
 class PotBattleState extends EncounterBaseState {
 	var potSprite:FlxSprite;
+	var potOffsetY = 9;
 	var ring:FlxSprite;
 	var cursor:FlxSprite;
 	var cursorAngle = 0.0;
@@ -76,6 +77,7 @@ class PotBattleState extends EncounterBaseState {
 				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);
 				potSprite.animation.add('good', [0]);
 				potSprite.animation.add('bad', [1]);
+				potOffsetY = 30;
 			case RUBBERPOT:
 				randomizeAimPoints(4);
 				potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
@@ -92,7 +94,7 @@ class PotBattleState extends EncounterBaseState {
 
 		potSprite.scrollFactor.set();
 		potSprite.screenCenter();
-		potSprite.y -= 9;
+		potSprite.y -= potOffsetY;
 		potY = potSprite.y;
 		battleGroup.add(potSprite);
 
@@ -160,7 +162,7 @@ class PotBattleState extends EncounterBaseState {
 			var aim = new FlxSprite();
 			aim.scrollFactor.set();
 			aim.makeGraphic(10, 10, FlxColor.TRANSPARENT);
-			FlxSpriteUtil.drawCircle(aim, -1, -1, -1, FlxColor.PINK);
+			FlxSpriteUtil.drawCircle(aim, -1, -1, -1, (isFinalBattle ? FlxColor.WHITE : FlxColor.PINK));
 
 			aim.setPositionMidpoint(point.x, point.y);
 			point.put();
@@ -352,7 +354,6 @@ class PotBattleState extends EncounterBaseState {
 				}
 				dialog.textGroup.finishCallback = () -> {
 					transitionOut();
-					FmodManager.StopSong();
 				};
 				dialog.revive();
 			});

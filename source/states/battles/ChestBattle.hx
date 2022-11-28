@@ -42,18 +42,24 @@ class ChestBattle extends EncounterBaseState {
 	var fightGroup:FlxGroup;
 
 	var flashOverlay:FlxSprite;
+	var isFinalBattle = false;
 
-	public function new(foe:CharacterDialog) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false) {
 		super();
 		dialog = foe;
+		isFinalBattle = finalBattle;
 	}
 
 	override function create() {
 		super.create();
 
-		new FlxTimer().start(1.75, (t) -> {
-			FmodManager.PlaySong(FmodSongs.Battle);
-		});
+		if (isFinalBattle) {
+			FmodManager.PlaySong(FmodSongs.Lonk);
+		} else {
+			new FlxTimer().start(1.75, (t) -> {
+				FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
+			});
+		}
 
 		fightGroup = new FlxGroup();
 
@@ -91,6 +97,11 @@ class ChestBattle extends EncounterBaseState {
 		hand.angle = 90;
 		hand.screenCenter(X);
 		hand.y = handHoverY;
+
+		if (dialog.characterIndex == LONK) {
+			hand.setSize(30, 30);
+			hand.centerOffsets();
+		}
 
 		// make sure hand is over the latch
 		fightGroup.add(latch);
@@ -152,15 +163,6 @@ class ChestBattle extends EncounterBaseState {
 
 		if (hand.overlaps(latch) && Math.abs(latch.getMidpoint().x - hand.getMidpoint().x) <= requiredAccuracyPixels) {
 			fightOver = true;
-			// camera.flash(FlxColor.WHITE, 0.5);
-
-		// 	new FlxTimer().start(2, (t) -> {
-		// 		FmodManager.StopSong();
-		// 	});
-
-		// 	new FlxTimer().start(.1, (t) -> {
-		// 		FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
-		// 	});
 
 			acceptInput = false;
 			if (handTween != null) {

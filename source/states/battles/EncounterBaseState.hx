@@ -20,13 +20,16 @@ class EncounterBaseState extends FlxSubState {
 	// a flag to let us know when the state is done in regards to user input
 	public var complete = false;
 
-	var dialog:CharacterDialog;
+	public var dialog:CharacterDialog;
 
 	// put everything into this group, and the trasition will handle it nicely
 	var battleGroup:FlxGroup = new FlxGroup();
 	var transition:FlxSprite;
 
 	var restoreCamFilters:Array<BitmapFilter>;
+
+	public var onTransInDone:()->Void;
+	public var onTransOutDone:()->Void;
 
 	public function new() {
 		super();
@@ -60,7 +63,7 @@ class EncounterBaseState extends FlxSubState {
 
 	// gives us access to the camera's internal filter list so we can restore it later
 	@:access(flixel.FlxCamera)
-	public function transitionIn(onDone:()->Void = null) {
+	public function transitionIn() {
 		var duration = 1.0;
 		if (dialog.characterIndex == LONK) {
 			duration = 0.1;
@@ -76,7 +79,7 @@ class EncounterBaseState extends FlxSubState {
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						battleGroup.active = true;
-						if (onDone != null) onDone();
+						if (onTransInDone != null) onTransInDone();
 					}
 				});
 				FlxTween.num(15, 0, duration, {}, function(v) {
@@ -92,6 +95,9 @@ class EncounterBaseState extends FlxSubState {
 		// for start of transition, preserve any existing filters the game has active
 		if (PlayState.ME != null) {
 			restoreCamFilters = PlayState.ME.camera._filters;
+			if (restoreCamFilters == null) {
+				restoreCamFilters = [];
+			}
 			var transitionFilters = restoreCamFilters.copy();
 			transitionFilters.push(PlayState.ME.mosaicFilter);
 			// start with our filter in addition to whatever the game had going
@@ -109,13 +115,15 @@ class EncounterBaseState extends FlxSubState {
 		};
 	}
 
-	public function transitionOut(onDone:()->Void = null) {
+	public function transitionOut() {
 		var duration = 1.0;
 		if (dialog.characterIndex == LONK) {
 			duration = 0.1;
 		}
 		complete = true;
-		FmodManager.StopSong();
+		if (dialog.characterIndex != LONK) {
+			FmodManager.StopSong();
+		}
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = false;
@@ -123,7 +131,7 @@ class EncounterBaseState extends FlxSubState {
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						close();
-						if (onDone != null) onDone();
+						if (onTransOutDone != null) onTransOutDone();
 					}
 				});
 
@@ -153,26 +161,6 @@ class EncounterBaseState extends FlxSubState {
 			});
 		}
 	}
-
-	// var lines: [
-	// 	"hello, I might repeat myself!",
-	// 	"hello, I might repeat myself!",
-	// 	"hello, I might repeat myself!",
-	// 	"Who now, how many times you gunna make me say that?"
-	// ];
-
-	// var dialogIndex = 0;
-	// function dialogComplete() {
-	// 	switch(dialogIndex) {
-	// 		case 0:
-	// 			dialogTest.loadDialogLine( "Welcome to the thunder dome. A pot stands before you. It <wave height=2>gazes</wave> <speed mod=0.1>deeeeply</speed> into your soul, as if to ask you to join it. You hear a quiet whisper, \"Do you yield, <cb val=camred /><shake dist=1><rainbow>MORTAL?</rainbow></shake><pause/>\"<cb val=camgrey />");
-	// 		case 1:
-	// 			close();
-	// 		default:
-	// 			trace('no dialog past this point');
-	// 		dialogIndex++;
-	// 	}
-	// }
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
