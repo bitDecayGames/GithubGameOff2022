@@ -57,7 +57,7 @@ class ChestBattle extends EncounterBaseState {
 			FmodManager.PlaySong(FmodSongs.Lonk);
 		} else {
 			new FlxTimer().start(1.75, (t) -> {
-				FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
+				FmodManager.PlaySong(FmodSongs.Battle);
 			});
 		}
 
