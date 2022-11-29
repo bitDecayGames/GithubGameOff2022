@@ -26,6 +26,16 @@ class PotRubber extends Interactable {
 	}
 
 	override function interact() {
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
+			var dialog = new CharacterDialog(NONE, "It is grandpa's old pot");
+			dialog.textGroup.finishCallback = () -> {
+				PlayState.ME.closeDialog(dialog);
+				dialog.resetLastLine();
+			};
+			PlayState.ME.openDialog(dialog);
+			return;
+		}
+
 		if (!GlobalQuestState.TALKED_TO_LONK_FIRST_TIME) {
 			// if you haven't talked to Lonk, then this is just a pot!
 			dialogBox.loadDialogLine("It is a pot with an odd texture");

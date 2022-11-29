@@ -14,6 +14,8 @@ class Lonk extends NPC {
 
 	var triggerEnding = false;
 
+	var finalDoor:Door = null;
+
 	public function new(data:Entity_NPC) {
 		super(data);
 
@@ -70,6 +72,9 @@ class Lonk extends NPC {
 			}
 			if (tag.parsedOptions.val == "battleTime") {
 			}
+			if (tag.parsedOptions.val == "goToSchool") {
+				GlobalQuestState.subQuest++;
+			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`
@@ -101,6 +106,12 @@ class Lonk extends NPC {
 			transition.onTransInDone = () -> FlxG.switchState(new LonkFinalFightState());
 			FlxG.state.openSubState(transition);
 		}
+
+		if (PlayState.ME.triggerFinalFade) {
+			// after we say to have a nice day, we force the player through the door
+			PlayState.ME.playerActive = true;
+			PlayState.ME.playerTouchDoor(finalDoor, PlayState.ME.player);
+		}
 	}
 
 	override function CheckDoor(d:Door):Bool {
@@ -109,9 +120,12 @@ class Lonk extends NPC {
 		}
 
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
-			updateFacing(PlayState.ME.player);
-			PlayState.ME.triggerFinalFade = true;
-			return true;
+			finalDoor = d;
+			if (!PlayState.ME.triggerFinalFade) {
+				return false;
+			} else {
+				return true;
+			}
 		}
 
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Wake_up || GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
@@ -127,8 +141,16 @@ class Lonk extends NPC {
 
 	override function Why():String {
 		updateFacing(PlayState.ME.player);
-		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
-			// TODO: Do we want to have him stop the boy here?
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
+			if (GlobalQuestState.subQuest == 0) {
+				dialogBox.loadDialogLine("At least come say hello to me!");
+			} else {
+				dialogBox.loadDialogLine("Have a good day!");
+				// updateFacing(PlayState.ME.player);
+				PlayState.ME.triggerFinalFade = true;
+				PlayState.ME.lonk = this;
+			}
+
 		} else if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			dialogBox.loadDialogLine("We have unfinished business. Come here and finish what you started.");
 		} else {
