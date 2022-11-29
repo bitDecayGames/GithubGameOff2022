@@ -359,7 +359,7 @@ class PotBattleState extends EncounterBaseState {
 						dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger><page/>
 						Is that the best you can do?');
 					default:
-						dialog.loadDialogLine('The pot shatters into countless pieces. It would be impossible to put it back together.');
+						dialog.loadDialogLine('<cb val=sad/>I have shattered into countless pieces. It would be impossible to put me back together.');
 				}
 				dialog.textGroup.finishCallback = () -> {
 					transitionOut();

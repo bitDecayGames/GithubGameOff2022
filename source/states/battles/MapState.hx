@@ -38,15 +38,13 @@ class MapState extends EncounterBaseState {
 	var mapClothWidth = 4;
 	var mapClothHeight = 3;
 
-	public function new() {
+	public function new(foe:CharacterDialog) {
 		super();
+		dialog = foe;
 	}
 
 	override function create() {
 		super.create();
-
-		dialog = new CharacterDialog(CharacterIndex.MAP, "I can show you the world! A hand drawn, pixely splendor!");
-
 
 		new FlxTimer().start(1.75, (t) -> {
 			FmodManager.PlaySong(FmodSongs.Battle);

@@ -22,19 +22,19 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.Intro}_3' => [
 				"<cb val=mad /><shake>Obliterate it!</shake>",
-				"<cb val=neutral/>Keep trying until you've proven you can break it."
+				"<cb val=neutral/>Keep trying until you've proven you can defeat it."
 			],
 			'${Enum_QuestName.Intro}_4' => [
 				"<cb val=happy />Well done, Boy! You're ready to begin preparations. I need you to collect my <color id=keyItem>compass</color> from Cludd's house on the " +
 				"<color id=hint>North</color> side of town.<cb val=informed_of_compass />"
 			],
 			'${Enum_QuestName.Intro}_5' => [
-				"Come back here once you have my <color id=keyItem>compass</color>"
+				"Come back here once you have my <color id=keyItem>compass</color>."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
 				"<cb val=neutral/>I see you've found the new house! The old one...<pause t=1/> was due for replacement, we'll say.<pause t=1/> The payout should cover this place nicely.<page/>" +
-				"Conveniently, I moved all of our stuff here before the 'accident' occurred. Anyways...<pause t=2/> <page/>" +
-				"Oh <cb val=happy/>yeah, the <color id=keyItem>compass</color>! You actually managed to stea... I mean FIND it!<page/>Good<cb val=neutral/>, good. Next, we need to get the <color id=keyItem>map</color> you will use for your adventure.<page/>" +
+				"Conveniently, I moved all of our stuff here before the 'accident' occurred. Anyways<speed mod=0.1>...</speed><page/>" +
+				"Oh <cb val=happy/>yeah, the <color id=keyItem>compass</color>! You actually managed to stea... I mean FIND it!<page/>Good<cb val=neutral/>, good. Next, we need to get the <color id=keyItem>map</color> for the adventure.<page/>" +
 				"Go to Brindle's shop near the middle of town. <page/>" +
 				"Here's a <color id=keyItem>key</color> to get inside.<pause t=1/> <cb val=keyCollected/><page/>" +
 				"You<cb val=restoreControl/><cb val=faceme/> will find the <color id=keyItem>map</color> in there somewhere.<cb val=findMap/>"
@@ -71,10 +71,10 @@ class NPCTextBank {
 				"You shouldn't even know I exist yet!"
 			],
 			'${Enum_QuestName.Intro}' => [
-				"I'm just hanging out. I love chatting with people. Feel free to talk if you have questions."
+				"I'm just hanging out. I love talking with people. Feel free to chat with me if you have questions."
 			],
 			'${Enum_QuestName.Intro}_5' => [
-				"Cludd? He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. Quite an uncommon device."
+				"Cludd? He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. I'm sure he'd be happy to show it to you."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
 				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened.<page/>" +
@@ -85,11 +85,11 @@ class NPCTextBank {
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
 			],
 			'${Enum_QuestName.Find_lonk}_3' => [
-				"<cb val=neutral/>A locked gate? If Cludd knows anything, he probably took notes. That man can't remember to wake up half the time."
+				"<cb val=neutral/>A locked gate? If Cludd knows anything, he probably took <color id=hint>notes</color>. That man can't remember to get out of bed half of the time."
 			],
 			'${Enum_QuestName.Get_map}' => [
 				"A <color id=keyItem>map</color>? Brindle keeps one in his shop somewhere, but it's mostly so he knows where he needs to mail things for his long distance customers.",
-				"I'd guess the <color id=keyItem>map</color> is in the back somewhere. I've never seen it personally."
+				"I'd guess the <color id=keyItem>map</color> is in the <color id=hint>back</color> somewhere, but I've never seen it personally."
 			]
 		],
 		CLUDD => [
