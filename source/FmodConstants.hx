@@ -50,6 +50,8 @@ class FmodSFX {
     public static inline var GateOpen:String = "event:/SFX/Gate/GateOpen";
     public static inline var LonkLaugh:String = "event:/SFX/Lonk/LonkLaugh";
     public static inline var LonkLaugh2:String = "event:/SFX/Lonk/LonkLaugh2";
+    public static inline var LonkLaugh3:String = "event:/SFX/Lonk/LonkLaugh3";
+    public static inline var Undertone:String = "event:/SFX/Lonk/Undertone";
     public static inline var LonkHouseCollapse:String = "event:/SFX/LonkHouse/LonkHouseCollapse";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";

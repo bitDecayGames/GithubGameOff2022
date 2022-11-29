@@ -1,5 +1,6 @@
 package states.battles;
 
+import quest.GlobalQuestState;
 import openfl.filters.BitmapFilter;
 import openfl.filters.ShaderFilter;
 import encounters.CharacterDialog;
@@ -66,6 +67,9 @@ class EncounterBaseState extends FlxSubState {
 	@:access(flixel.FlxCamera)
 	public function transitionIn() {
 		var duration = 1.0;
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game){
+			duration = 3.25;
+		}
 		if (dialog.characterIndex == LONK) {
 			duration = 0.1;
 		}

@@ -157,6 +157,11 @@ class LevelState {
 			}
 		}
 
+        if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning){
+            FmodManager.StopSongImmediately();
+            return;
+        }
+
 		if (StringTools.startsWith(levelId, "House_Lonk")) {
 			if (!GlobalQuestState.WOKEN_FIRST_TIME){
 				FmodManager.PlaySongTransition(FmodSongs.AwakenLullaby);

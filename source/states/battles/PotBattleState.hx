@@ -215,7 +215,7 @@ class PotBattleState extends EncounterBaseState {
 								case RUBBERPOT:
 									dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
 								case LONK:
-									dialog.loadDialogLine('Pathetic');
+									dialog.loadDialogLine('<cb val=mad/>Pathetic');
 								default:
 									dialog.loadDialogLine('The pot seems unscathed');
 							}
@@ -321,6 +321,11 @@ class PotBattleState extends EncounterBaseState {
 					ease: FlxEase.bounceOut,
 				});
 				FmodManager.PlaySoundOneShot(FmodSFX.PotRebound3);
+			} else {			
+				// only handle the emotions we know we support
+				if (['happy', 'mad', 'neutral', 'sad'].contains(tag.parsedOptions.val)) {
+					dialog.setExpression(tag.parsedOptions.val);
+				}
 			}
 		}
 	}
@@ -351,7 +356,7 @@ class PotBattleState extends EncounterBaseState {
 				// TODO: This should be gotten from somewhere else.
 				switch dialog.characterIndex {
 					case LONK:
-						dialog.loadDialogLine('<bigger><fade>OOF...</fade></bigger><pause t=1/><page/>
+						dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger><page/>
 						Is that the best you can do?');
 					default:
 						dialog.loadDialogLine('<cb val=sad/>I have shattered into countless pieces. It would be impossible to put me back together.');

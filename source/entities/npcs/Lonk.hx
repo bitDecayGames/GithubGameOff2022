@@ -111,11 +111,14 @@ class Lonk extends NPC {
 
 		if (triggerEnding) {
 			FmodManager.StopSongImmediately();
-			FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh2);
-			var transition = new EncounterBaseState();
-			transition.dialog = new CharacterDialog(NONE, "");
-			transition.onTransInDone = () -> FlxG.switchState(new LonkFinalFightState());
-			FlxG.state.openSubState(transition);
+			FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh3);
+			PlayState.ME.playerInTransition = true;
+			new FlxTimer().start(0.01, (t) -> {
+				var transition = new EncounterBaseState();
+				transition.dialog = new CharacterDialog(NONE, "");
+				transition.onTransInDone = () -> FlxG.switchState(new LonkFinalFightState());
+				FlxG.state.openSubState(transition);
+			});
 		}
 
 		if (PlayState.ME.triggerFinalFade) {
