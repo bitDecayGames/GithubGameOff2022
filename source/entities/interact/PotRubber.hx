@@ -27,7 +27,7 @@ class PotRubber extends Interactable {
 
 	override function interact() {
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
-			var dialog = new CharacterDialog(NONE, "It is grandpa's old pot");
+			var dialog = new CharacterDialog(NONE, "It is grandpa's old pot.");
 			dialog.textGroup.finishCallback = () -> {
 				PlayState.ME.closeDialog(dialog);
 				dialog.resetLastLine();

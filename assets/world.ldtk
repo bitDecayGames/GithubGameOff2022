@@ -16196,7 +16196,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d20979c0-5110-11ed-a5a5-89e3cfc9463f"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -16211,7 +16211,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d20979c0-5110-11ed-a5a5-89e3cfc9463f"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -16265,7 +16265,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d20979c0-5110-11ed-a5a5-89e3cfc9463f"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16338,9 +16338,9 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "An empty plate waiting for dinner.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "An empty plate waiting for the next meal.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["An empty plate waiting for dinner."]
+									"params": ["An empty plate waiting for the next meal."]
 								}] }
 							]
 						},
@@ -16385,7 +16385,7 @@
 									"entityIid": "1a495c90-5110-11ed-804c-17bfce3ba94d",
 									"layerIid": "bac4ffe2-5110-11ed-804c-b5aaf9550008",
 									"levelIid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d20979c0-5110-11ed-a5a5-89e3cfc9463f"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1a495c90-5110-11ed-804c-17bfce3ba94d"]
@@ -16434,7 +16434,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d20979c0-5110-11ed-a5a5-89e3cfc9463f"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16473,7 +16473,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d20979c0-5110-11ed-a5a5-89e3cfc9463f"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16496,6 +16496,30 @@
 								"id": "V_String",
 								"params": ["LEFT"]
 							}] }]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [4,5],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "17df96a0-5110-11ed-a5a5-c55f5d9ddc57",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [64,80],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "A poorly washed plate. There are specs of something stuck to it.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["A poorly washed plate. There are specs of something stuck to it."]
+								}] }
+							]
 						}
 					]
 				},

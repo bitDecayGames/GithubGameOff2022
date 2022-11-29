@@ -35,7 +35,7 @@ class CreditsState extends FlxUIState {
 	var scrollSpeedSecondsPerScreen = 6.0;
 	var fastForwardScaler = 3.0;
 
-	var initialScrollDelay = 5.0;
+	var initialScrollDelay = 0.5;
 
 	var toolingImages = [
 		AssetPaths.FLStudioLogo__png,
@@ -103,6 +103,11 @@ class CreditsState extends FlxUIState {
 		center(_txtThankYou);
 		add(_txtThankYou);
 		_allCreditElements.push(_txtThankYou);
+
+		// we want them to start off the bottom and come onto the screen
+		for (e in _allCreditElements) {
+			e.y += FlxG.height;
+		}
 	}
 
 	private function AddSectionToCreditsTextArrays(role:String, creators:Array<String>, finalRoleArray:Array<FlxBitmapText>, finalCreatorsArray:Array<FlxBitmapText>) {

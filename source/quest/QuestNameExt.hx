@@ -50,6 +50,9 @@ class QuestNameExt {
 				}
 			case Enum_QuestName.End_game:
 				buildFlavorText("Survive");
+			case Enum_QuestName.Final_morning:
+				// XXX: Final morning has no hint text
+				return "";
 			default:
 				"Unknown quest";
 		}

@@ -26,7 +26,10 @@ class Interactable extends FlxSprite {
 
 	public function handleTagCallback(tag:TagLocation) {
 		if (tag.tag == "cb") {
-			dialogBox.setExpression(tag.parsedOptions.val);
+			// only handle the emotions we know we support
+			if (['happy', 'mad', 'neutral', 'sad'].contains(tag.parsedOptions.val)) {
+				dialogBox.setExpression(tag.parsedOptions.val);
+			}
 		}
 	}
 
