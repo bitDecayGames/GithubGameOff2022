@@ -60,6 +60,10 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.End_game}' => [
 				"Ready for more? Give them to me. <cb val=triggerEnding/>"
+			],
+			'${Enum_QuestName.Final_morning}' => [
+				"<cb val=happy/>Dreaming of adventure again? I could hear you tossing and turning all night.<page/>" +
+				"There will be plenty of time for that when you're older. For now, you have to get ready for school."
 			]
 		],
 		WOMAN => [

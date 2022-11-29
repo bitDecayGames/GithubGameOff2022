@@ -140,9 +140,15 @@ class LevelState {
 	// TODO Transitions when going through doors would be cool to do when link touches the door rather than when the new level is loaded
 	private function updateSong() {
 
-        trace("playing song");
 		if(!FmodManager.IsSongPlaying()){
 			FmodManager.PlaySong(FmodSongs.Silence);
+		}
+
+        if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning && levelId == "House_Lonk_room_boy") {
+			if (!GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM) {
+				FmodManager.PlaySong(FmodSFX.AlarmClock);
+                return;
+			}
 		}
 
 		if (StringTools.startsWith(levelId, "House_Lonk")) {

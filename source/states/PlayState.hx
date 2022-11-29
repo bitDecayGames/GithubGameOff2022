@@ -103,6 +103,8 @@ class PlayState extends FlxTransitionableState {
 	// handle events. Please clean up after yourself as this is never emptied automatically
 	public var eventSignalPersistent = new FlxTypedSignal<String->Void>();
 
+	public var triggerFinalFade = false;
+
 	public function new(startingLevel:String = null) {
 		super();
 		if (startingLevel != null) {
@@ -585,7 +587,11 @@ class PlayState extends FlxTransitionableState {
 		playerActive = dialogCount == 0 && !playerInTransition;
 
 		// TODO terrible hack I sorry
-		if (!GlobalQuestState.DEFEATED_ALARM_CLOCK && FmodManager.GetCurrentSongPath() == FmodSFX.AlarmClock) {
+		var alarmShouldBlare = !GlobalQuestState.DEFEATED_ALARM_CLOCK;
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning && !GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM) {
+			alarmShouldBlare = true;
+		}
+		if (alarmShouldBlare && FmodManager.GetCurrentSongPath() == FmodSFX.AlarmClock) {
 			FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
 			if (level.identifier == "House_Lonk_1" || level.identifier == "House_Lonk_room_lonk" || level.identifier == "House_Lonk_upstairs") {
 				FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
@@ -699,6 +705,11 @@ class PlayState extends FlxTransitionableState {
 					}
 					p.worldClip = clip;
 					new FlxTimer().start(walkDistance / (p.speed * p.speedModifier), (t) -> {
+						if (triggerFinalFade) {
+							FlxG.switchState(new CreditsState());
+							return;
+						}
+
 						p.persistentDirectionInfluence.set();
 						p.speedModifier = 1;
 						p.hasTakenStepOnStairs1 = false;

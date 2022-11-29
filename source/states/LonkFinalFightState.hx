@@ -1,5 +1,6 @@
 package states;
 
+import quest.GlobalQuestState;
 import flixel.FlxG;
 import states.battles.ChestBattle;
 import com.bitdecay.lucidtext.parse.TagLocation;
@@ -48,7 +49,9 @@ class LonkFinalFightState extends FlxState {
 
 		if (fightEnded) {
 			// transition to whatever the ending is
-			FlxG.switchState(new CreditsState());
+			GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
+			FlxG.switchState(new PlayState('House_Lonk_room_boy'));
+			// FlxG.switchState(new CreditsState());
 		} else {
 			nextPhase();
 		}

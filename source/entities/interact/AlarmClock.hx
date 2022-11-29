@@ -17,7 +17,14 @@ class AlarmClock extends Interactable {
 		animation.add('steady', [0]);
 		animation.add('blink', [0,1], 2);
 		animation.add('broken', [2]);
-		if (GlobalQuestState.DEFEATED_ALARM_CLOCK) {
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
+			// XXX: special handling for final morning
+			if (GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM) {
+				animation.play('steady');
+			} else {
+				animation.play('blink');
+			}
+		} else if (GlobalQuestState.DEFEATED_ALARM_CLOCK) {
 			animation.play('broken');
 		} else {
 			animation.play('steady');
@@ -29,18 +36,19 @@ class AlarmClock extends Interactable {
 				animation.play('blink');
 			}
 		});
-
-		// The story takes care of this information now
-		// if (!GlobalQuestState.DEFEATED_ALARM_CLOCK){
-		// 	helperArrow = new FlxSprite(x, y-56);
-		// 	helperArrow.loadGraphic(AssetPaths.arrow_pointing__png, true, 16, 48);
-		// 	helperArrow.animation.add("default", [0,1,2,3,4,5,6,7,8,9], 10);
-		// 	helperArrow.animation.play("default");
-		// 	PlayState.ME.uiHelpers.add(helperArrow);
-		// }
 	}
 
 	override function interact() {
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
+			// TODO SFX: Click off noise
+			FmodManager.PlaySoundOneShot(FmodSFX.MenuSelect);
+			GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM = true;
+			animation.play('steady');
+			FmodManager.StopSongImmediately();
+			return;
+		}
+
+
 		if (GlobalQuestState.DEFEATED_ALARM_CLOCK) {
 			dialogBox.loadDialogLine("<cb val=happy/>ZZZZZZZZZZZZ");
 			PlayState.ME.openDialog(dialogBox);

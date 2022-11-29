@@ -18,6 +18,8 @@ class GlobalQuestState {
 	public static var HAS_MAP = false;
 	public static var HAS_INTERACTED_WITH_GATE = false;
 
+	public static var FINAL_MORNING_TURNED_OFF_ALARM = false;
+
 
 	public static function getCurrentQuestKey():String {
 		return '${GlobalQuestState.currentQuest.getName()}_${GlobalQuestState.subQuest}';

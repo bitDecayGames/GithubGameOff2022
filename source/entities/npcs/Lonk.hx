@@ -108,6 +108,12 @@ class Lonk extends NPC {
 			return true;
 		}
 
+		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
+			updateFacing(PlayState.ME.player);
+			PlayState.ME.triggerFinalFade = true;
+			return true;
+		}
+
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Wake_up || GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			return false;
 		} else if (GlobalQuestState.currentQuest == Enum_QuestName.Intro) {
@@ -122,6 +128,8 @@ class Lonk extends NPC {
 	override function Why():String {
 		updateFacing(PlayState.ME.player);
 		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+			// TODO: Do we want to have him stop the boy here?
+		} else if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			dialogBox.loadDialogLine("We have unfinished business. Come here and finish what you started.");
 		} else {
 			dialogBox.loadDialogLine("Hold on there little buddy");

@@ -138,5 +138,18 @@ class SaveFileOverrides {
 		GlobalQuestState.HAS_MAP = true;
         PlayState.ME.loadLevel("House_Lonk_1");
 		#end
+
+		#if FINAL_MORNING
+		GlobalQuestState.WOKEN_FIRST_TIME;
+		GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+		GlobalQuestState.DEFEATED_RUBBER_POT = true;
+		GlobalQuestState.TALKED_TO_LONK_FIRST_TIME = true;
+		GlobalQuestState.WOKEN_FIRST_TIME = true;
+		GlobalQuestState.HAS_COMPASS = true;
+		GlobalQuestState.HAS_KEY_TO_HANDYMAN = true;
+		GlobalQuestState.HAS_MAP = true;
+		GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
+        PlayState.ME.loadLevel("House_Lonk_room_boy");
+		#end
     }
 }
