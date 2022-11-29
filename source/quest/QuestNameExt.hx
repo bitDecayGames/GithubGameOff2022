@@ -17,7 +17,7 @@ class QuestNameExt {
 					case 2: // Alarm turned off
 						" ";
 					case 3: // Talked to Lonk
-						buildFlavorText("Fight the training pot");
+						buildFlavorText("Defeat the training pot");
 					case 4: // Fought the pot
 						" ";
 					case 5: // Talked to Lonk after fighting the pot
