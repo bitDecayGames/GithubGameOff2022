@@ -173,7 +173,7 @@ class GateState extends EncounterBaseState {
 						t.cancel();
 
 						if (failCount >= 3) {
-							dialog.loadDialogLine('Only Cludd has the genius to unlock me! However, he is a forgetful man.');
+							dialog.loadDialogLine('Only <color id=hint>Cludd</color> has the genius to unlock me! However, he is a forgetful man.');
 							dialog.textGroup.finishCallback = () -> {
 								transitionOut();
 							};

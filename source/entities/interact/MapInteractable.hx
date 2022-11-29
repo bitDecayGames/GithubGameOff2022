@@ -1,5 +1,7 @@
 package entities.interact;
 
+import encounters.CharacterIndex;
+import encounters.CharacterDialog;
 import states.battles.MapState;
 import flixel.FlxObject;
 import states.battles.GateState;
@@ -34,7 +36,7 @@ class MapInteractable extends Interactable {
 
 	override function interact() {
 		if (!opened) {
-			var substate = new MapState();
+			var substate = new MapState(new CharacterDialog(CharacterIndex.MAP, "I can show you the world! A hand drawn, pixely splendor!"));
 			FmodManager.StopSongImmediately();
 			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 			PlayState.ME.startEncounter(substate);

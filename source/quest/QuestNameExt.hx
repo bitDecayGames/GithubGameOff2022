@@ -33,6 +33,8 @@ class QuestNameExt {
 						buildFlavorText("Check on home");
 					case 2:
 						buildFlavorText("Explore West");
+					case 3:
+						buildFlavorText("Find gate code");
 					default:
 						buildFlavorText("Unknown subquest");
 				}

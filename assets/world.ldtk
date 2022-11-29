@@ -7706,7 +7706,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -7740,7 +7740,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -7776,7 +7776,7 @@
 									"entityIid": "4edb4150-5110-11ed-849f-192d5d5d6de1",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4edb4150-5110-11ed-849f-192d5d5d6de1"]
@@ -7800,7 +7800,7 @@
 									"entityIid": "abbeb5d0-5110-11ed-b865-49b30dc5cf98",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["abbeb5d0-5110-11ed-b865-49b30dc5cf98"]
@@ -7841,7 +7841,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -7869,7 +7869,7 @@
 									"entityIid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d74202b0-5110-11ed-b1a5-37d6bd9facae"]
@@ -7893,7 +7893,7 @@
 									"entityIid": "dec22d30-5110-11ed-b1a5-db7037541591",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["dec22d30-5110-11ed-b1a5-db7037541591"]
@@ -7937,7 +7937,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -7961,7 +7961,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -8023,7 +8023,7 @@
 									"entityIid": "d44517d0-5110-11ed-804c-7dc85d364c77",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d44517d0-5110-11ed-804c-7dc85d364c77"]
@@ -8047,7 +8047,7 @@
 									"entityIid": "db728e70-5110-11ed-804c-27612179b6d9",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["db728e70-5110-11ed-804c-27612179b6d9"]
@@ -9164,7 +9164,7 @@
 									"entityIid": "0db231c0-5110-11ed-849f-f1782bfd56c0",
 									"layerIid": "27e097b1-5110-11ed-849f-4dce6e6436c3",
 									"levelIid": "27e070a0-5110-11ed-849f-11e374012409",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "d0cc01a0-5110-11ed-9503-1f8a7f85b8f0"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0db231c0-5110-11ed-849f-f1782bfd56c0"]
@@ -9338,6 +9338,30 @@
 									"params": ["pot_block_cludd_basement"]
 								}] },
 								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [53,34],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "d6b9cc50-5110-11ed-9503-b1c9fd629f10",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [848,552],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "The rubble has completely blocked the doorway", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["The rubble has completely blocked the doorway"]
+								}] }
 							]
 						}
 					]
@@ -16196,7 +16220,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "8dc857f0-5110-11ed-a38b-abe1614dc1e4"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -16211,7 +16235,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "8dc857f0-5110-11ed-a38b-abe1614dc1e4"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -16265,7 +16289,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "8dc857f0-5110-11ed-a38b-abe1614dc1e4"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16322,7 +16346,7 @@
 						},
 						{
 							"__identifier": "Interactable",
-							"__grid": [4,6],
+							"__grid": [4,5],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
@@ -16331,7 +16355,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 34,
-							"px": [64,96],
+							"px": [64,88],
 							"fieldInstances": [
 								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
 									"id": "V_String",
@@ -16385,7 +16409,7 @@
 									"entityIid": "1a495c90-5110-11ed-804c-17bfce3ba94d",
 									"layerIid": "bac4ffe2-5110-11ed-804c-b5aaf9550008",
 									"levelIid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
-									"worldIid": "8dc857f0-5110-11ed-a38b-abe1614dc1e4"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1a495c90-5110-11ed-804c-17bfce3ba94d"]
@@ -16434,7 +16458,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "8dc857f0-5110-11ed-a38b-abe1614dc1e4"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16473,7 +16497,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "8dc857f0-5110-11ed-a38b-abe1614dc1e4"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16496,30 +16520,6 @@
 								"id": "V_String",
 								"params": ["LEFT"]
 							}] }]
-						},
-						{
-							"__identifier": "Interactable",
-							"__grid": [4,5],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
-							"__smartColor": "#E20F0F",
-							"iid": "17df96a0-5110-11ed-a5a5-c55f5d9ddc57",
-							"width": 16,
-							"height": 16,
-							"defUid": 34,
-							"px": [64,80],
-							"fieldInstances": [
-								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["LoadTile"]
-								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "A poorly washed plate. There are specs of something stuck to it.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["A poorly washed plate. There are specs of something stuck to it."]
-								}] }
-							]
 						}
 					]
 				},
@@ -17435,7 +17435,7 @@
 									"entityIid": "31b610d0-5110-11ed-804c-a349493c8bc8",
 									"layerIid": "bac4ffe2-5110-11ed-804c-b5aaf9550008",
 									"levelIid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["31b610d0-5110-11ed-804c-a349493c8bc8"]
@@ -17450,6 +17450,30 @@
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "Keys", "__value": [], "__type": "Array<LocalEnum.Keys>", "__tile": null, "defUid": 140, "realEditorValues": [] },
 								{ "__identifier": "Cave", "__value": false, "__type": "Bool", "__tile": null, "defUid": 143, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [7,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "96847d80-5110-11ed-8394-9963d6a693dc",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [112,96],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Grandpa always was drawn to pottery.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Grandpa always was drawn to pottery."]
+								}] }
 							]
 						}
 					]
@@ -19922,7 +19946,7 @@
 					"layerDefUid": 18,
 					"pxOffsetX": 0,
 					"pxOffsetY": 0,
-					"visible": true,
+					"visible": false,
 					"optionalRules": [],
 					"intGridCsv": [
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -20150,7 +20174,7 @@
 									"entityIid": "d44517d0-5110-11ed-804c-7dc85d364c77",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d44517d0-5110-11ed-804c-7dc85d364c77"]
@@ -20184,7 +20208,7 @@
 									"entityIid": "6cfc2090-5110-11ed-804c-f98c75d4a23e",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["6cfc2090-5110-11ed-804c-f98c75d4a23e"]
@@ -20221,7 +20245,7 @@
 									"entityIid": "8c655b40-5110-11ed-804c-39441f64fbec",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8c655b40-5110-11ed-804c-39441f64fbec"]
@@ -20262,6 +20286,54 @@
 								{ "__identifier": "Description", "__value": "Just a pot, nothing fancy.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Just a pot, nothing fancy."]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [8,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "071e7aa0-5110-11ed-8394-630931612c9d",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [128,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Better to eat on the job than to go hungry.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Better to eat on the job than to go hungry."]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [11,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "1afbc690-5110-11ed-8394-6baf035d5a53",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [176,64],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "It's probably closed for a reason.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["It's probably closed for a reason."]
 								}] }
 							]
 						}
@@ -21261,7 +21333,7 @@
 									"entityIid": "71c45920-5110-11ed-804c-11782dc9ae59",
 									"layerIid": "90e7cdb2-5110-11ed-804c-7bc13c778a21",
 									"levelIid": "90e7cdb0-5110-11ed-804c-ad843d842332",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["71c45920-5110-11ed-804c-11782dc9ae59"]
@@ -21295,7 +21367,7 @@
 									"entityIid": "7a4ccbe0-5110-11ed-804c-69ca9eae913e",
 									"layerIid": "8c075451-5110-11ed-804c-df6c917ea293",
 									"levelIid": "8c072d40-5110-11ed-804c-93debfdb8e26",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["7a4ccbe0-5110-11ed-804c-69ca9eae913e"]
@@ -21329,7 +21401,7 @@
 									"entityIid": "2281f710-5110-11ed-804c-ff8536962bae",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2281f710-5110-11ed-804c-ff8536962bae"]
@@ -21391,6 +21463,30 @@
 								{ "__identifier": "Description", "__value": "So fresh and so clean clean!", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["So fresh and so clean clean!"]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [4,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "c2a75180-5110-11ed-8394-fb8cbc3bf472",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [64,32],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "The faucet has a slow drip.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["The faucet has a slow drip."]
 								}] }
 							]
 						}
@@ -22259,7 +22355,7 @@
 									"entityIid": "1ebba040-5110-11ed-804c-0d02f54f9da1",
 									"layerIid": "8f8b7202-5110-11ed-804c-2dd6ed8d69aa",
 									"levelIid": "8f8b7200-5110-11ed-804c-31acc0c751fd",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1ebba040-5110-11ed-804c-0d02f54f9da1"]
@@ -22293,7 +22389,7 @@
 									"entityIid": "3e466cb0-5110-11ed-804c-57eaf17bdad6",
 									"layerIid": "90e7cdb2-5110-11ed-804c-7bc13c778a21",
 									"levelIid": "90e7cdb0-5110-11ed-804c-ad843d842332",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["3e466cb0-5110-11ed-804c-57eaf17bdad6"]
@@ -22327,7 +22423,7 @@
 									"entityIid": "4aeb93a0-5110-11ed-804c-c9dc000e1d5b",
 									"layerIid": "8c075451-5110-11ed-804c-df6c917ea293",
 									"levelIid": "8c072d40-5110-11ed-804c-93debfdb8e26",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4aeb93a0-5110-11ed-804c-c9dc000e1d5b"]
@@ -22361,7 +22457,7 @@
 									"entityIid": "7df3b1b0-5110-11ed-804c-77591d2417f2",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["7df3b1b0-5110-11ed-804c-77591d2417f2"]
@@ -22395,7 +22491,7 @@
 									"entityIid": "8686abc0-5110-11ed-804c-0bc6469458ce",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8686abc0-5110-11ed-804c-0bc6469458ce"]
@@ -22410,6 +22506,54 @@
 								{ "__identifier": "QuestNames", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "Keys", "__value": [], "__type": "Array<LocalEnum.Keys>", "__tile": null, "defUid": 140, "realEditorValues": [] },
 								{ "__identifier": "Cave", "__value": false, "__type": "Bool", "__tile": null, "defUid": 143, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [9,4],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "d6d7c680-5110-11ed-8394-cf7899cb7542",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [154,64],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Who leaves this much junk in the middle of a hallway?", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Who leaves this much junk in the middle of a hallway?"]
+								}] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [9,2],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "f16590e0-5110-11ed-8394-fbdf6993012a",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [144,40],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["LoadTile"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Not sure how he even got this thing here in the first place.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Not sure how he even got this thing here in the first place."]
+								}] }
 							]
 						}
 					]
