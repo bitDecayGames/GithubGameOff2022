@@ -43,19 +43,21 @@ class ChestBattle extends EncounterBaseState {
 
 	var flashOverlay:FlxSprite;
 	var isFinalBattle = false;
+	var isEndingSequence = false;
 
-	public function new(foe:CharacterDialog, ?finalBattle:Bool = false) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?endingSequence:Bool) {
 		super();
 		dialog = foe;
 		isFinalBattle = finalBattle;
+		isEndingSequence = endingSequence;
 	}
 
 	override function create() {
 		super.create();
 
-		if (isFinalBattle) {
+		if (isFinalBattle && !isEndingSequence) {
 			FmodManager.PlaySong(FmodSongs.Lonk);
-		} else {
+		} else if (!isFinalBattle) {
 			new FlxTimer().start(1.75, (t) -> {
 				FmodManager.PlaySong(FmodSongs.Battle);
 			});
@@ -96,6 +98,7 @@ class ChestBattle extends EncounterBaseState {
 		hand.loadRotatedGraphic(AssetPaths.crappyHand__png, 4);
 		hand.angle = 90;
 		hand.screenCenter(X);
+		hand.x += hand.width/4;
 		hand.y = handHoverY;
 
 		if (dialog.characterIndex == LONK) {
@@ -121,16 +124,18 @@ class ChestBattle extends EncounterBaseState {
 
 			// TODO: move speed? Do we want random? Do we want pauses?
 			// start by moving over to the side
-			handTweenX = FlxTween.tween(hand, {x: FlxG.width - hand.width}, 0.5, {
-				ease: FlxEase.sineOut,
-				onComplete: (t) -> {
-					// then just slide back and forth
-					handTweenX = FlxTween.tween(hand, {x: 0}, {
-						type: FlxTweenType.PINGPONG,
-						ease: FlxEase.sineInOut,
-					});
-				}
-			});
+			if (!isEndingSequence){
+				handTweenX = FlxTween.tween(hand, {x: FlxG.width - hand.width}, 0.5, {
+					ease: FlxEase.sineOut,
+					onComplete: (t) -> {
+						// then just slide back and forth
+						handTweenX = FlxTween.tween(hand, {x: 0}, {
+							type: FlxTweenType.PINGPONG,
+							ease: FlxEase.sineInOut,
+						});
+					}
+				});
+			}
 		};
 	}
 
@@ -150,7 +155,9 @@ class ChestBattle extends EncounterBaseState {
 
 		if (!handSwiping) {
 			if (SimpleController.just_pressed(A)) {
-				FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
+				if (!isEndingSequence) {
+					FmodManager.PlaySoundOneShot(FmodSFX.AlarmSwing);
+				}
 				startSwipe();
 			}
 		}
@@ -179,11 +186,20 @@ class ChestBattle extends EncounterBaseState {
 			}
 
 			hand.y = latch.y + latch.height;
-			FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpenInitialImpact);
-			FlxG.camera.shake(0.01, 0.25);
+			if (!isEndingSequence) {
+				FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpenInitialImpact);
+				FlxG.camera.shake(0.01, 0.25);
+			}
 			new FlxTimer().start(0.50, (t) -> {
 				FlxTween.tween(flashOverlay, {alpha: 1}, 0.25);
-				FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpen4);
+				if(!isFinalBattle){
+					FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpen4);
+				} else if (isEndingSequence){
+					GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
+					FlxG.switchState(new PlayState('House_Lonk_room_boy'));
+				} else {
+					FmodManager.PlaySoundOneShot(FmodSFX.AlarmClockHit);
+				}
 				FmodManager.SetEventParameterOnSong("ChestLowPass", 1);
 				FlxTween.tween(hand, {y: latch.y}, 0.75, {
 					ease: FlxEase.quartIn,
@@ -192,7 +208,7 @@ class ChestBattle extends EncounterBaseState {
 						latch.y -= latch.frameHeight - openLatchOffset;
 
 						FlxTween.tween(flashOverlay, {alpha: 0}, 1);
-						FlxTween.tween(hand, {y: -hand.height}, 0.75);
+						FlxTween.tween(hand, {y: -hand.height-10}, 0.75);
 						success = true;
 						dialog.revive();
 						switch dialog.characterIndex {
@@ -215,21 +231,34 @@ class ChestBattle extends EncounterBaseState {
 	}
 
 	function startSwipe() {
-		handSwiping = true;
-		handTween = FlxTween.tween(hand, {y: -hand.height}, 0.3, {
-			ease: FlxEase.cubeIn,
-			onComplete: (t) -> {
-				new FlxTimer().start(0.3, (t) -> {
-					hand.y = FlxG.height;
-					handTween = FlxTween.tween(hand, {y: handHoverY}, 0.3, {
-						ease: FlxEase.sineOut,
-						onComplete: (t) -> {
-							handSwiping = false;
-						}
+		if (!isEndingSequence){
+			handSwiping = true;
+			handTween = FlxTween.tween(hand, {y: -hand.height-10}, 0.3, {
+				ease: FlxEase.cubeIn,
+				onComplete: (t) -> {
+					new FlxTimer().start(0.3, (t) -> {
+						hand.y = FlxG.height;
+						handTween = FlxTween.tween(hand, {y: handHoverY}, 0.3, {
+							ease: FlxEase.sineOut,
+							onComplete: (t) -> {
+								handSwiping = false;
+							}
+						});
 					});
+				}
+			});
+		} else {
+			handSwiping = true;
+			handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
+				ease: FlxEase.quintIn
+			});
+			
+			new FlxTimer().start(1.5, (t) -> {
+				FlxTween.tween(flashOverlay, {alpha: 1}, 0.475, {
+					ease: FlxEase.quadIn
 				});
-			}
-		});
+			});
+		}
 	}
 
 	function checkSuccess():Bool {

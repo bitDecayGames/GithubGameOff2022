@@ -71,7 +71,7 @@ class PotBattleState extends EncounterBaseState {
 		potSprite = new FlxSprite();
 		switch dialog.characterIndex {
 			case LONK:
-				randomizeAimPoints(7);
+				randomizeAimPoints(6);
 				attackLimit = 7;
 				maxSpinSpeed = 270;
 				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);

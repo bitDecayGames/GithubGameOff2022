@@ -21,6 +21,8 @@ class LonkFinalFightState extends FlxState {
 
 	var fightEnded = false;
 
+	var hitpoints = 6;
+
 	override function create() {
 		super.create();
 
@@ -87,9 +89,17 @@ class LonkFinalFightState extends FlxState {
 				battleDialog.loadDialogLine("TEXT NEEDED HERE!");
 				openBattle(new ChestBattle(battleDialog, true));
 			case 4:
-				fightEnded = true;
-				dialog.revive();
-				dialog.loadDialogLine("I can't believe this 'yatta yatta'. I am slain.");
+				FmodManager.StopSong();
+				battleDialog.loadDialogLine("You are stronger than I thought<speed mod=0.2>...</speed><page/>Go ahead, give me everything you've got<speed mod=0.2>...</speed>");
+				openBattle(new ChestBattle(battleDialog, true, true));
+			case 5:
+				// fightEnded = true;
+				// dialog.revive();
+				// dialog.loadDialogLine("I can't believe this 'yatta yatta'. I am slain.");
+				
+				// Put in the chest game
+				// GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
+				// FlxG.switchState(new PlayState('House_Lonk_room_boy'));
 			default:
 		}
 	}

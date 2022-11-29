@@ -66,6 +66,8 @@ class AlarmClockState extends EncounterBaseState {
 
 		if (finalBattle) {
 			FmodManager.PlaySong(FmodSongs.Lonk);
+			firstSwipe = false;
+			secondSwipe = false;
 		} else {
 			new FlxTimer().start(1.75, (t) -> {
 				FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
@@ -88,6 +90,10 @@ class AlarmClockState extends EncounterBaseState {
 		clock.animation.add('broken', [2]);
 		clock.animation.play('blink');
 		clock.screenCenter();
+		if (finalBattle) {
+			startClockTween(false, true);
+		}
+
 
 		hand = new FlxSprite();
 		hand.scrollFactor.set();
@@ -112,8 +118,11 @@ class AlarmClockState extends EncounterBaseState {
 		// make sure hand is over the clock
 		fightGroup.add(clock);
 		fightGroup.add(hand);
-		fightGroup.add(helperArrowLeft);
-		fightGroup.add(helperArrowRight);
+		
+		if (!finalBattle) {
+			fightGroup.add(helperArrowLeft);
+			fightGroup.add(helperArrowRight);
+		}
 
 		battleGroup.add(fightGroup);
 		battleGroup.add(dialog);
@@ -192,7 +201,9 @@ class AlarmClockState extends EncounterBaseState {
 			}
 
 			new FlxTimer().start(.1, (t) -> {
-				FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+				if(!finalBattle){
+					FmodManager.PlaySoundOneShot(FmodSFX.AlarmBreak);
+				}
 				clock.animation.play('broken');
 			});
 
@@ -210,7 +221,12 @@ class AlarmClockState extends EncounterBaseState {
 				}
 				handTween = null;
 			}
-			new FlxTimer().start(2, (t) -> {
+
+			var delay = 2.0;
+			if(finalBattle){
+				delay = 0.5;
+			}
+			new FlxTimer().start(delay, (t) -> {
 				success = true;
 				dialog.revive();
 				switch dialog.characterIndex {
@@ -228,9 +244,11 @@ class AlarmClockState extends EncounterBaseState {
 				};
 			});
 
-			GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
-			GlobalQuestState.currentQuest = Enum_QuestName.Intro;
-			GlobalQuestState.subQuest = 2; // starting here to make editing the old structure easier
+			if(!finalBattle){
+				GlobalQuestState.DEFEATED_ALARM_CLOCK = true;
+				GlobalQuestState.currentQuest = Enum_QuestName.Intro;
+				GlobalQuestState.subQuest = 2; // starting here to make editing the old structure easier
+			}
 		}
 	}
 

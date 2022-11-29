@@ -81,14 +81,27 @@ class EncounterBaseState extends FlxSubState {
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
-				FlxTween.tween(transition, { alpha: 0}, duration, {
-					onComplete: (t) -> {
-						battleGroup.active = true;
-						if (onTransInDone != null) {
-							onTransInDone();
+				
+				if (GlobalQuestState.currentQuest == Enum_QuestName.End_game){
+					battleGroup.active = true;
+					FlxTween.tween(transition, { alpha: 0}, 1, {
+						onComplete: (t) -> {
+							battleGroup.active = true;
+							if (onTransInDone != null) {
+								onTransInDone();
+							}
 						}
-					}
-				});
+					});
+				} else {
+					FlxTween.tween(transition, { alpha: 0}, duration, {
+						onComplete: (t) -> {
+							battleGroup.active = true;
+							if (onTransInDone != null) {
+								onTransInDone();
+							}
+						}
+					});
+				}
 				FlxTween.num(15, 0, duration, {}, function(v) {
 					if (PlayState.ME != null) {
 						PlayState.ME.mosaicShaderManager.setStrength(v, v);
