@@ -43,6 +43,7 @@ class AlarmClock extends Interactable {
 			// TODO SFX: Click off noise
 			FmodManager.PlaySoundOneShot(FmodSFX.MenuSelect);
 			GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM = true;
+			GlobalQuestState.subQuest = 2;
 			animation.play('steady');
 			FmodManager.StopSongImmediately();
 			return;

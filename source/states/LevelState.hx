@@ -150,9 +150,13 @@ class LevelState {
             return;
         }
 
-        if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning && levelId == "House_Lonk_room_boy") {
+        if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
 			if (!GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM) {
-				FmodManager.PlaySong(FmodSFX.AlarmClock);
+				FmodManager.PlaySongTransition(FmodSFX.AlarmClock);
+                FmodManager.SetEventParameterOnSong("AlarmLowPass", 0);
+				if (levelId == "House_Lonk_1") {
+					FmodManager.SetEventParameterOnSong("AlarmLowPass", 1);
+				}
                 return;
 			}
 		}

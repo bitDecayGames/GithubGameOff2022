@@ -102,20 +102,23 @@ class Door extends Interactable {
 				clip.x -= 16;
 				clip.width += 32;
 				clip.y -= player.frameHeight;
+				clip.y -= 3; // for nice pixel clipping
 				clip.height += player.frameHeight;
 			case S:
 				clip.x -= 16;
 				clip.width += 32;
-				clip.y += 1; // for nice pixel clipping
+				clip.y += 3; // for nice pixel clipping
 				clip.height += player.frameHeight;
 			case E:
 				clip.width += player.frameWidth;
 				clip.y -= 16;
 				clip.height += 32;
+				clip.x += 3; // for nice pixel clipping
 			case W:
 				clip.y -= 16;
 				clip.height += 32;
 				clip.x -= player.frameWidth;
+				clip.x -= 3; // for nice pixel clipping
 				clip.width += player.frameWidth;
 			default:
 				FlxG.log.warn('found a door with a unhandled access dir: ${accessDir}');

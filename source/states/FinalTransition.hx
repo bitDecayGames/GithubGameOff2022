@@ -70,7 +70,11 @@ class FinalTransition extends FlxSubState {
 			onComplete: (t) -> {
 				new FlxTimer().start(4, (t) -> {
 					// TODO: Play eye animation for anime-esque disappearance, then when done, go to credits
-					FlxG.switchState(new CreditsState());
+					FlxTween.tween(eyes, { alpha: 0 }, 0.1, {
+						onComplete: (t) -> {
+							FlxG.switchState(new CreditsState());
+						}
+					});
 				});
 			}
 		});

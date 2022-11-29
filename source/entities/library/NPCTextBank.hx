@@ -61,7 +61,13 @@ class NPCTextBank {
 			'${Enum_QuestName.End_game}_0' => [
 				"<cb val=mad/>MORE<cb val=triggerEnding/><cb val=mad/>"
 			],
-			'${Enum_QuestName.Final_morning}' => [
+			'${Enum_QuestName.Final_morning}_0' => [
+				"Are you going to leave that alarm clock beeping all day?<cb val=turn_off_clock />"
+			],
+			'${Enum_QuestName.Final_morning}_1' => [
+				"Go turn off your alarm..."
+			],
+			'${Enum_QuestName.Final_morning}_2' => [
 				"<cb val=happy/>Good Morning! Dreaming of adventure again? I could hear you tossing and turning all night.<page/>" +
 				"There will be plenty of time for that when you're older. For now, you have to go to school.<cb val=goToSchool/>"
 			]

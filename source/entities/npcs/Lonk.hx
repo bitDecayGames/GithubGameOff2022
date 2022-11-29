@@ -41,6 +41,9 @@ class Lonk extends NPC {
 		super.handleTagCallback(tag);
 
 		if (tag.tag == "cb") {
+			if (tag.parsedOptions.val == "turn_off_clock" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Final_morning.subQuestKey(0)) {
+				GlobalQuestState.subQuest++;
+			}
 			if (tag.parsedOptions.val == "turn_off_clock" && GlobalQuestState.getCurrentQuestKey() == Enum_QuestName.Wake_up.subQuestKey(0)) {
 				GlobalQuestState.subQuest++;
 			}
