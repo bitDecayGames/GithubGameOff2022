@@ -351,7 +351,8 @@ class PotBattleState extends EncounterBaseState {
 				// TODO: This should be gotten from somewhere else.
 				switch dialog.characterIndex {
 					case LONK:
-						dialog.loadDialogLine('<bigger><fade>OOF...</fade></bigger><pause t=1/> Is that the best you can do?');
+						dialog.loadDialogLine('<bigger><fade>OOF...</fade></bigger><pause t=1/><page/>
+						Is that the best you can do?');
 					default:
 						dialog.loadDialogLine('The pot shatters into countless pieces. It would be impossible to put it back together.');
 				}

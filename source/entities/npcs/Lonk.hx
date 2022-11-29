@@ -1,5 +1,7 @@
 package entities.npcs;
 
+import flixel.FlxObject;
+import constants.Characters;
 import encounters.CharacterDialog;
 import states.battles.EncounterBaseState;
 import flixel.tweens.FlxTween;
@@ -18,8 +20,17 @@ class Lonk extends NPC {
 
 	public function new(data:Entity_NPC) {
 		super(data);
-
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+			facing = FlxObject.RIGHT;
+		}
 		PlayState.ME.eventSignal.add(handleEvent);
+
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+			new FlxTimer().start(1, (t) -> {
+				dialogBox.loadDialogLine("<cb val=happy />Don't fall back too far!<page/>I<cb val=mad /> am just getting started");
+				PlayState.ME.openDialog(dialogBox);
+			});
+		}
 	}
 
 	override function interact() {
@@ -100,7 +111,7 @@ class Lonk extends NPC {
 
 		if (triggerEnding) {
 			FmodManager.StopSongImmediately();
-			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
+			FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh2);
 			var transition = new EncounterBaseState();
 			transition.dialog = new CharacterDialog(NONE, "");
 			transition.onTransInDone = () -> FlxG.switchState(new LonkFinalFightState());
