@@ -62,8 +62,8 @@ class NPCTextBank {
 				"<cb val=mad/>MORE<cb val=triggerEnding/><cb val=mad/>"
 			],
 			'${Enum_QuestName.Final_morning}' => [
-				"<cb val=happy/>Dreaming of adventure again? I could hear you tossing and turning all night.<page/>" +
-				"There will be plenty of time for that when you're older. For now, you have to get ready for school."
+				"<cb val=happy/>Good Morning! Dreaming of adventure again? I could hear you tossing and turning all night.<page/>" +
+				"There will be plenty of time for that when you're older. For now, you have to go to school.<cb val=goToSchool/>"
 			]
 		],
 		WOMAN => [

@@ -1,5 +1,7 @@
 package states;
 
+import entities.npcs.Lonk;
+import states.FinalTransition;
 import helpers.Profiler;
 import entities.npcs.NPC;
 import flixel.tweens.FlxEase;
@@ -104,6 +106,8 @@ class PlayState extends FlxTransitionableState {
 	public var eventSignalPersistent = new FlxTypedSignal<String->Void>();
 
 	public var triggerFinalFade = false;
+	// XXX: Oh god it's horrible
+	public var lonk:Lonk = null;
 
 	public function new(startingLevel:String = null) {
 		super();
@@ -651,7 +655,7 @@ class PlayState extends FlxTransitionableState {
 		});
 	}
 
-	function playerTouchDoor(d:Door, p:Player) {
+	public function playerTouchDoor(d:Door, p:Player) {
 		if (!playerActive) {
 			return;
 		}
@@ -706,7 +710,7 @@ class PlayState extends FlxTransitionableState {
 					p.worldClip = clip;
 					new FlxTimer().start(walkDistance / (p.speed * p.speedModifier), (t) -> {
 						if (triggerFinalFade) {
-							FlxG.switchState(new CreditsState());
+							openSubState(new FinalTransition(lonk));
 							return;
 						}
 

@@ -35,6 +35,8 @@ class CreditsState extends FlxUIState {
 	var scrollSpeedSecondsPerScreen = 6.0;
 	var fastForwardScaler = 3.0;
 
+	var initialScrollDelay = 5.0;
+
 	var toolingImages = [
 		AssetPaths.FLStudioLogo__png,
 		AssetPaths.FmodLogoWhite__png,
@@ -130,6 +132,11 @@ class CreditsState extends FlxUIState {
 
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
+
+		if (initialScrollDelay > 0) {
+			initialScrollDelay -= elapsed;
+			return;
+		}
 
 		// Stop scrolling when "Thank You" text is in the center of the screen
 		if (_txtThankYou.y + _txtThankYou.height / 2 < FlxG.height / 2) {
