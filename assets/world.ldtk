@@ -9358,7 +9358,7 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "The rubble has completely blocked the doorway", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "The rubble has completely blocked the doorway.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["The rubble has completely blocked the doorway"]
 								}] }
@@ -18150,7 +18150,7 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "Looks like Cludd has a rubber pot also.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "Looks like Cludd also has a rubber pot.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Looks like Cludd has a rubber pot also."]
 								}] }
@@ -19721,7 +19721,7 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "Its just a random book", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "Its just a random book.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Its just a random book"]
 								}] }
