@@ -44,7 +44,7 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.Return_map}' => [
 				#if speedy_debug
-				"TIME TO DIE<cb val=triggerEnding/>"
+				"TIME TO DIE<cb val=startEndgame/><cb val=triggerEnding/>"
 				#else
 				"<cb val=startEndgame/>I'm guessing Brindle wasn't at his shop? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!<page/>" +
 				"Now that you've collected everything I need, I'll be taking it and going on my own adventure!<cb val=stopMusic/><pause t=2/> <page/>
@@ -58,8 +58,8 @@ class NPCTextBank {
 				<cb val=mad/><bigger><shake>I will take it!</shake></bigger> <cb val=triggerEnding/>"
 				#end
 			],
-			'${Enum_QuestName.End_game}' => [
-				"Ready for more? Give them to me. <cb val=triggerEnding/>"
+			'${Enum_QuestName.End_game}_0' => [
+				"<cb val=mad/>MORE<cb val=triggerEnding/><cb val=mad/>"
 			],
 			'${Enum_QuestName.Final_morning}' => [
 				"<cb val=happy/>Dreaming of adventure again? I could hear you tossing and turning all night.<page/>" +

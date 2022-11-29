@@ -142,7 +142,13 @@ class LevelState {
 
 		if(!FmodManager.IsSongPlaying()){
 			FmodManager.PlaySong(FmodSongs.Silence);
-		}
+
+        }
+        // If you are on the final fight, no music outside the battle when you lose
+        if (GlobalQuestState.currentQuest == Enum_QuestName.End_game){
+            FmodManager.StopSongImmediately();
+            return;
+        }
 
         if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning && levelId == "House_Lonk_room_boy") {
 			if (!GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM) {

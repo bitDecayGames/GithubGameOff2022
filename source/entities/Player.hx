@@ -1,5 +1,6 @@
 package entities;
 
+import shaders.BlinkHelper;
 import entities.interact.PotNormal;
 import entities.particles.ItemIndex;
 import bitdecay.flixel.spacial.Cardinal;
@@ -77,6 +78,17 @@ class Player extends FlxSprite {
 
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+			animation.play('${Characters.IDLE_ANIM}_${Characters.LEFT}');
+			BlinkHelper.Blink(this, .2, 5);
+			var tweenDuration = 1.0;
+			FlxTween.tween(this, {x: x+16}, tweenDuration);
+			FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerAttemptStrike);
+			lockControls = true;
+			new FlxTimer().start(tweenDuration, (t) -> {
+				lockControls = false;
+			});
+		}
 
 		interactionBox = new FlxObject(0, 0, 10, 10);
 
