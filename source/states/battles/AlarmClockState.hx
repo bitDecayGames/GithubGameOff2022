@@ -1,6 +1,7 @@
 package states.battles;
 
 import flixel.util.FlxStringUtil;
+import shaders.Redden;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import flixel.math.FlxMath;
@@ -55,11 +56,13 @@ class AlarmClockState extends EncounterBaseState {
 	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 	var finalBattle = false;
+	var isFinalPhase:Bool;
 
-	public function new(foe:CharacterDialog, ?finalBattle:Bool = false) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false) {
 		super();
 		dialog = foe;
 		this.finalBattle = finalBattle;
+		isFinalPhase = finalPhase;
 	}
 
 	override function create() {
@@ -93,6 +96,11 @@ class AlarmClockState extends EncounterBaseState {
 		clock.screenCenter();
 		if (finalBattle) {
 			startClockTween(false, true);
+		}
+
+		if (isFinalPhase) {
+			var reddenShader = new Redden();
+			clock.shader = reddenShader;
 		}
 
 
@@ -165,6 +173,11 @@ class AlarmClockState extends EncounterBaseState {
 
 		if (!acceptInput) {
 			return;
+		}
+
+		if(FlxG.keys.justPressed.P){
+			success = true;
+			transitionOut();
 		}
 
 		if (!handSwiping) {

@@ -1,6 +1,8 @@
 package states.battles;
 
 import flixel.util.FlxStringUtil;
+import flixel.input.keyboard.FlxKey;
+import shaders.Redden;
 import quest.GlobalQuestState;
 import shaders.BlinkHelper;
 import encounters.CharacterIndex;
@@ -42,12 +44,16 @@ class PotBattleState extends EncounterBaseState {
 	var fightGroup:FlxGroup;
 
 	var isFinalBattle:Bool;
+	var isFinalPhase:Bool;
+	var isFinalPhaseHarder:Bool;
 
-	public function new(foe:CharacterDialog, ?finalBattle:Bool = false) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false, ?finalPhaseHarder:Bool = false) {
 		super();
 		dialog = foe;
 		dialog.textGroup.tagCallback = potTagHandle;
 		isFinalBattle = finalBattle;
+		isFinalPhase = finalPhase;
+		isFinalPhaseHarder = finalPhaseHarder;
 	}
 
 	override function create() {
@@ -72,8 +78,18 @@ class PotBattleState extends EncounterBaseState {
 		potSprite = new FlxSprite();
 		switch dialog.characterIndex {
 			case LONK:
-				randomizeAimPoints(6);
-				attackLimit = 7;
+				if (isFinalPhaseHarder) {
+					randomizeAimPoints(1);
+					attackLimit = 5;
+				}
+				else if (isFinalPhase) {
+					randomizeAimPoints(7);
+					attackLimit = 8;
+				}
+				else if (isFinalBattle) {
+					randomizeAimPoints(6);
+					attackLimit = 7;
+				}
 				maxSpinSpeed = 270;
 				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);
 				potSprite.animation.add('good', [0]);
@@ -89,6 +105,11 @@ class PotBattleState extends EncounterBaseState {
 				potSprite.loadGraphic(AssetPaths.battlePot2__png, true, 80, 80);
 				potSprite.animation.add('good', [0]);
 				potSprite.animation.add('bad', [1]);
+		}
+
+		if (isFinalPhase) {
+			var reddenShader = new Redden();
+			potSprite.shader = reddenShader;
 		}
 
 		potSprite.animation.play('good');
@@ -191,6 +212,11 @@ class PotBattleState extends EncounterBaseState {
 		cursor.setPositionMidpoint(point.x, point.y);
 		point.put();
 
+		if(FlxG.keys.justPressed.P){
+			success = true;
+			transitionOut();
+		}
+
 		if (!acceptInput) {
 			return;
 		}
@@ -260,8 +286,6 @@ class PotBattleState extends EncounterBaseState {
 		var success = true;
 		weakPointsGroup.forEach((weakness) -> {
 			if (!FlxG.overlap(weakness, attackGroup)) {
-				// found one that doesn't align
-				trace(FlxG.worldBounds);
 				success = false;
 			}
 		});
@@ -284,7 +308,7 @@ class PotBattleState extends EncounterBaseState {
 				attackTweens.push(() -> {
 					var t = new FlxTimer().start(localDelay, (t) -> {
 						FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerStrikeFinal);
-						BlinkHelper.Blink(potSprite, .1, 1);
+						BlinkHelper.Blink(potSprite, .1, 1, potSprite.shader);
 						FlxG.camera.shake(0.02, 0.1);
 						// camera.flash(0.05);
 						var particle = new Slash(a.x, a.y);
@@ -365,8 +389,12 @@ class PotBattleState extends EncounterBaseState {
 				// TODO: This should be gotten from somewhere else.
 				switch dialog.characterIndex {
 					case LONK:
-						dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger><page/>
-						Is that the best you can do?');
+						if (!isFinalPhase) {
+							dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger><page/>
+							Is that the best you can do?');
+						} else {
+							dialog.loadDialogLine('<cb val=mad />Give up!');
+						}
 					default:
 						dialog.loadDialogLine('<cb val=sad/>I have shattered into countless pieces. It would be impossible to put me back together.');
 				}

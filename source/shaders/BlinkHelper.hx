@@ -1,5 +1,6 @@
 package shaders;
 
+import flixel.system.FlxAssets.FlxShader;
 import flixel.util.FlxTimer;
 import flixel.FlxSprite;
 
@@ -10,7 +11,7 @@ enum BlinkType {
 }
 
 class BlinkHelper {
-    public static function Blink(sprite:FlxSprite, ?blinkSpeed:Float = .1, ?blinkCount:Int = 3, ?blinkCallback:(blinkCount:Int) -> Void) {
+    public static function Blink(sprite:FlxSprite, ?blinkSpeed:Float = .1, ?blinkCount:Int = 3, ?blinkCallback:(blinkCount:Int) -> Void, ?existingShader:FlxShader) {
         var realBlinkSpeed = blinkSpeed/2;
         var realBlinkCount = blinkCount*2;
 		var blinkShader = new Whiten();
@@ -28,6 +29,9 @@ class BlinkHelper {
 				}
 			}
 			blinkShader.isShaderActive.value = [isShaderActive];
+			if (blinkCount == realBlinkCount-1 && existingShader != null) {
+				sprite.shader = existingShader;
+			}
 		}, realBlinkCount);
     }
 }

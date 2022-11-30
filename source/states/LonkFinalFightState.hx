@@ -83,15 +83,27 @@ class LonkFinalFightState extends FlxState {
 				battleDialog.loadDialogLine("Give me the <color id=keyItem>map</color> and the <color id=keyItem>compass</color>.");
 				openBattle(new PotBattleState(battleDialog, true));
 			case 2:
-				battleDialog.loadDialogLine("This is <shake>MY ADVENTURE</shake>.");
+				battleDialog.loadDialogLine("You are tougher than you look, but how fast are you!?");
 				openBattle(new AlarmClockState(battleDialog, true));
 			case 3:
-				battleDialog.loadDialogLine("TEXT NEEDED HERE!");
+				battleDialog.loadDialogLine("This is <shake>MY ADVENTURE</shake>.");
 				openBattle(new ChestBattle(battleDialog, true));
 			case 4:
+				battleDialog.loadDialogLine("I'm getting <bigger>angry!</bigger>");
+				openBattle(new PotBattleState(battleDialog, true, true));
+			case 5:
+				battleDialog.loadDialogLine("Give up!");
+				openBattle(new AlarmClockState(battleDialog, true, true));
+			case 6:
+				battleDialog.loadDialogLine("I...");
+				openBattle(new ChestBattle(battleDialog, true, true));
+			case 7:
+				battleDialog.loadDialogLine(".....");
+				openBattle(new PotBattleState(battleDialog, true, true, true));
+			case 8:
 				FmodManager.StopSong();
 				battleDialog.loadDialogLine("You are stronger than I thought<speed mod=0.2>...</speed><page/>Go ahead, give me everything you've got<speed mod=0.2>...</speed>");
-				openBattle(new ChestBattle(battleDialog, true, true));
+				openBattle(new ChestBattle(battleDialog, true, false, true));
 			case 5:
 				// fightEnded = true;
 				// dialog.revive();
