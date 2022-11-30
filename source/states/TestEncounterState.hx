@@ -1,5 +1,6 @@
 package states;
 
+import states.battles.AlarmClockState;
 import states.battles.MapState;
 import states.battles.ChestBattle;
 import states.battles.GateState;
@@ -14,7 +15,7 @@ class TestEncounterState extends FlxState {
 		super.create();
 
 		// openSubState(new PotBattleState(new CharacterDialog(POT, "POT")));
-		openSubState(new ChestBattle(new CharacterDialog(LONK, "hi")));
+		openSubState(new AlarmClockState(new CharacterDialog(LONK, "")));
 	}
 
 	override public function update(elapsed:Float):Void {
