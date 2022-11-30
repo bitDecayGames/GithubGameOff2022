@@ -27,9 +27,10 @@ class AlarmClockState extends EncounterBaseState {
 	// midpoints can only be this far apart and still count as hitting the clock
 	private static var requiredAccuracyPixels = 21;
 	private static var restSeconds = 0.655;
-	private static var finishYOffset = 11;
 	private static var handHoverY = 30;
 	private var handXAccel = 80;
+
+	private var finishYOffset = 11;
 
 	var clockMoveTimeMin = 0.2;
 	var clockMoveTimeMax = 0.65;
@@ -85,14 +86,17 @@ class AlarmClockState extends EncounterBaseState {
 		clock.scrollFactor.set();
 		switch dialog.characterIndex {
 			case LONK:
-				clock.loadGraphic(AssetPaths.headsmash__png, true, 30, 30);
+				clock.loadGraphic(AssetPaths.headsmash__png, true, 65, 65);
 				restSeconds *= 0.66;
 				moveTimeModifier *= .75;
+				clock.animation.add('blink', [0]);
+				clock.animation.add('broken', [2]);
+				finishYOffset = 16;
 			default:
 				clock.loadGraphic(AssetPaths.clockLarge__png, true, 30, 30);
+				clock.animation.add('blink', [0,1], 2);
+				clock.animation.add('broken', [2]);
 		}
-		clock.animation.add('blink', [0,1], 2);
-		clock.animation.add('broken', [2]);
 		clock.animation.play('blink');
 		clock.screenCenter();
 		if (finalBattle) {

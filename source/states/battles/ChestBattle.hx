@@ -84,10 +84,10 @@ class ChestBattle extends EncounterBaseState {
 		latch = new FlxSprite();
 		switch dialog.characterIndex {
 			case LONK:
-				latch.loadGraphic(AssetPaths.uppercut__png, true, 30, 30);
+				latch.loadGraphic(AssetPaths.uppercut__png, true, 65, 65);
 				latch.animation.add('closed', [0]);
 				latch.animation.add('open', [1,2], 5);
-				openLatchOffset = 0;
+				openLatchOffset = 20;
 			default:
 				latch.loadGraphic(AssetPaths.chestLatch__png, true, 75, 100);
 				latch.animation.add('closed', [0]);
