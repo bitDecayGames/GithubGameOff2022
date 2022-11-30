@@ -166,15 +166,17 @@ class Lonk extends NPC {
 	override function Why():String {
 		updateFacing(PlayState.ME.player);
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
-			if (GlobalQuestState.subQuest == 0) {
-				dialogBox.loadDialogLine("At least come say hello to me!");
-			} else {
+			if (GlobalQuestState.subQuest == 3) {
 				manualAnimations = true;
 				animation.play('smile');
 				dialogBox.loadDialogLine("Have a good day!");
 				// updateFacing(PlayState.ME.player);
 				PlayState.ME.triggerFinalFade = true;
 				PlayState.ME.lonk = this;
+			} else if (GlobalQuestState.subQuest == 1) {
+				dialogBox.loadDialogLine("Seriously, go turn of your alarm.");
+			} else {
+				dialogBox.loadDialogLine("At least come say hello to me!");
 			}
 
 		} else if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
