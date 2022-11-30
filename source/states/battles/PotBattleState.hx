@@ -67,6 +67,10 @@ class PotBattleState extends EncounterBaseState {
 			});
 		}
 
+		if (isFinalPhaseHarder) {
+			FmodManager.SetEventParameterOnSong("LowPassLonk", 1);
+		}
+
 		fightGroup = new FlxGroup();
 
 		ring = new FlxSprite(AssetPaths.ring__png);
@@ -80,17 +84,19 @@ class PotBattleState extends EncounterBaseState {
 			case LONK:
 				if (isFinalPhaseHarder) {
 					randomizeAimPoints(1);
-					attackLimit = 5;
+					attackLimit = 100;
+					maxSpinSpeed = 100;
 				}
 				else if (isFinalPhase) {
-					randomizeAimPoints(7);
-					attackLimit = 8;
+					randomizeAimPoints(8);
+					attackLimit = 9;
+					maxSpinSpeed = 270;
 				}
 				else if (isFinalBattle) {
 					randomizeAimPoints(6);
 					attackLimit = 7;
+					maxSpinSpeed = 270;
 				}
-				maxSpinSpeed = 270;
 				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);
 				potSprite.animation.add('good', [0]);
 				potSprite.animation.add('bad', [1]);
@@ -205,6 +211,8 @@ class PotBattleState extends EncounterBaseState {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+
+		FmodManager.Update();
 
 		cursorAngle += spinSpeed * elapsed;
 		cursorAngle = cursorAngle % 360;
@@ -384,6 +392,9 @@ class PotBattleState extends EncounterBaseState {
 			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
 				potSprite.animation.play('bad');
+				if (isFinalPhase){
+					FmodManager.StopSongImmediately();
+				}
 			});
 			new FlxTimer().start(4.5, (t) -> {
 				// TODO: This should be gotten from somewhere else.
@@ -392,7 +403,7 @@ class PotBattleState extends EncounterBaseState {
 						if (!isFinalPhase) {
 							dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger>');
 						} else {
-							dialog.loadDialogLine('<cb val=mad /><bigger><fade>Gahhhhh...</fade></bigger>');
+							dialog.loadDialogLine('<cb val=mad />......');
 						}
 					default:
 						dialog.loadDialogLine('<cb val=sad/>I have shattered into countless pieces. It would be impossible to put me back together.');

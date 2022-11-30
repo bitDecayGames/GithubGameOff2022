@@ -98,11 +98,11 @@ class LonkFinalFightState extends FlxState {
 				battleDialog.loadDialogLine("I...");
 				openBattle(new ChestBattle(battleDialog, true, true));
 			case 7:
-				battleDialog.loadDialogLine("........");
+				battleDialog.loadDialogLine("<speed mod=0.2>...you....can't...beat...me...</speed>");
 				openBattle(new PotBattleState(battleDialog, true, true, true));
 			case 8:
 				FmodManager.StopSong();
-				battleDialog.loadDialogLine("You are stronger than I thought<speed mod=0.2>...</speed><page/>Go ahead, give me everything you've got<speed mod=0.2>...</speed>");
+				battleDialog.loadDialogLine("<speed mod=0.2>You win...</speed><page/>Go ahead, give me everything you've got<speed mod=0.2>...</speed>");
 				openBattle(new ChestBattle(battleDialog, true, false, true));
 			case 5:
 				// fightEnded = true;
