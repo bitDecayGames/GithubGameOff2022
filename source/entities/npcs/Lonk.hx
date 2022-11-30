@@ -22,7 +22,7 @@ class Lonk extends NPC {
 		super(data);
 
 		animation.add('smile', [24, 25, 26, 27], 10, false);
-		animation.add('becomeEvil', [28, 29, 30, 31], 5, false);
+		animation.add('becomeEvil', [28, 29, 30, 31, 32, 33, 34, 35], 5, false);
 
 		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			facing = FlxObject.RIGHT;
