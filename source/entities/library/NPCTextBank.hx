@@ -58,7 +58,7 @@ class NPCTextBank {
 				<cb val=mad/><bigger><shake>I will take it!</shake></bigger> <cb val=triggerEnding/><cb val=bumpSubQuest/>"
 				#end
 			],
-			'${Enum_QuestName.End_game}_0' => [
+			'${Enum_QuestName.End_game}' => [
 				"<cb val=mad/>MORE<cb val=triggerEnding/><cb val=mad/>"
 			],
 			'${Enum_QuestName.Final_morning}_0' => [

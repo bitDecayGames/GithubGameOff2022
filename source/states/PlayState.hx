@@ -545,9 +545,10 @@ class PlayState extends FlxTransitionableState {
 
 	override public function update(elapsed:Float) {
 		// easter egg: put this into a gameboy hidden in the world
-		// if (FlxG.keys.justPressed.O) {
+		if (FlxG.keys.justPressed.O) {
+			SaveFileOverrides.forEric();
 		// 	openfl.Lib.getURL(new URLRequest("https://bitdecaygames.itch.io/odd-verdure"));
-		// }
+		}
 		flavorText.text = GlobalQuestState.currentQuest.GetFlavorText();
 		// Todo this might be causing performance issues
 		if (flavorText.text != " "){
