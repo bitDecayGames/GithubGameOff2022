@@ -82,7 +82,12 @@ class PotBattleState extends EncounterBaseState {
 		potSprite = new FlxSprite();
 		switch dialog.characterIndex {
 			case LONK:
+				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);
+				potSprite.animation.add('good', [0]);
+				potSprite.animation.add('bad', [1]);
+				potOffsetY = 30;
 				if (isFinalPhaseHarder) {
+					potSprite.animation.add('good', [2]);
 					randomizeAimPoints(1);
 					attackLimit = 100;
 					maxSpinSpeed = 100;
@@ -97,10 +102,6 @@ class PotBattleState extends EncounterBaseState {
 					attackLimit = 7;
 					maxSpinSpeed = 270;
 				}
-				potSprite.loadGraphic(AssetPaths.bodypunch__png, true, 80, 120);
-				potSprite.animation.add('good', [0]);
-				potSprite.animation.add('bad', [1]);
-				potOffsetY = 30;
 			case RUBBERPOT:
 				randomizeAimPoints(4);
 				potSprite.loadGraphic(AssetPaths.battlePot__png, true, 80, 80);
