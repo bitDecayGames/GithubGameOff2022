@@ -15,8 +15,8 @@ class KeyYayOrNay implements YayOrNay {
 			case Enum_Keys.Handyman:
 				return GlobalQuestState.HAS_KEY_TO_HANDYMAN;
 			case Enum_Keys.Cludd_frontdoor:
-				// Player can never get into cludd's front door
-				return false;
+				// only once they've come out of his door is it unlocked
+				return GlobalQuestState.HAS_USED_CLUDDS_DOOR;
 			default:
 				FlxG.log.warn('unknown key check for key $myKey');
 				return false;
@@ -28,7 +28,7 @@ class KeyYayOrNay implements YayOrNay {
 			case Enum_Keys.Handyman:
 				return "The door is locked";
 			case Enum_Keys.Cludd_frontdoor:
-				return "There is no knob... It's just painted to look like a doorknob. Strange.<page/>This is definitely Cludd's house, there must be another way in.";
+				return "This is Cludd's house, but the door is locked.<page/>There must be another way inside.";
 			default:
 				return "The door is locked";
 		}

@@ -385,6 +385,12 @@ class PlayState extends FlxTransitionableState {
 			}
 			var startDoor = matches[0];
 			startDoor.animation.play('opened');
+
+			if (startDoor.data.f_Keys.contains(Enum_Keys.Cludd_frontdoor)) {
+				// once they come OUT of cludd's house, it is unlocked
+				GlobalQuestState.HAS_USED_CLUDDS_DOOR = true;
+			}
+
 			playerStart.set(startDoor.x, startDoor.y);
 			var transitionStart = startDoor.accessDir.opposite().asVector().scale(17);
 			var transitionEnd = startDoor.getPosition().addPoint(startDoor.accessDir.asVector().scale(17));
