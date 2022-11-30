@@ -710,18 +710,20 @@ class PlayState extends FlxTransitionableState {
 					p.worldClip = clip;
 					new FlxTimer().start(walkDistance / (p.speed * p.speedModifier), (t) -> {
 						if (triggerFinalFade) {
-							openSubState(new FinalTransition(lonk));
-							return;
+							new FlxTimer().start(2, (t) -> {
+								openSubState(new FinalTransition(lonk));
+							});
+							player.kill();
+						} else {
+							p.persistentDirectionInfluence.set();
+							p.speedModifier = 1;
+							p.hasTakenStepOnStairs1 = false;
+							p.hasTakenStepOnStairs2 = false;
+							d.enter();
+							p.allowCollisions = FlxObject.ANY;
+							playerInTransition = false;
+							p.worldClip = null;
 						}
-
-						p.persistentDirectionInfluence.set();
-						p.speedModifier = 1;
-						p.hasTakenStepOnStairs1 = false;
-						p.hasTakenStepOnStairs2 = false;
-						d.enter();
-						p.allowCollisions = FlxObject.ANY;
-						playerInTransition = false;
-						p.worldClip = null;
 					});
 				}
 			};

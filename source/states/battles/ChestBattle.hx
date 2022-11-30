@@ -221,14 +221,14 @@ class ChestBattle extends EncounterBaseState {
 			if (!isEndingSequence) {
 				FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpenInitialImpact);
 				FlxG.camera.shake(0.01, 0.25);
+			} else {
+				GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
+				FlxG.switchState(new PlayState('House_Lonk_room_boy'));
 			}
 			new FlxTimer().start(0.50, (t) -> {
 				FlxTween.tween(flashOverlay, {alpha: 1}, 0.25);
 				if(!isFinalBattle){
 					FmodManager.PlaySoundOneShot(FmodSFX.ChestBattleOpen4);
-				} else if (isEndingSequence){
-					GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
-					FlxG.switchState(new PlayState('House_Lonk_room_boy'));
 				} else {
 					FmodManager.PlaySoundOneShot(FmodSFX.AlarmClockHit);
 				}
@@ -285,6 +285,7 @@ class ChestBattle extends EncounterBaseState {
 			});
 		} else {
 			handSwiping = true;
+			FmodManager.PlaySoundOneShot(FmodSFX.LonkFinalHit);
 			handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
 				ease: FlxEase.quintIn
 			});

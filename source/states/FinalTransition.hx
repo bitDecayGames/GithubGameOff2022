@@ -83,6 +83,7 @@ class FinalTransition extends FlxSubState {
 			lonk.animation.play('becomeEvil');
 		});
 
+		FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);
 		FlxTween.tween(eyes, { alpha: 1 }, duration * 3, {
 			onComplete: (t) -> {
 				// FlxTween.tween(eyes, {y: eyes.y + 2}, 0.5, {

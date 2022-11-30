@@ -21,6 +21,7 @@ class FmodSongs {
 
 class FmodSFX {
     public static inline var AlarmBreak:String = "event:/SFX/Alarm/AlarmBreak";
+    public static inline var AlarmClick:String = "event:/SFX/Alarm/AlarmClick";
     public static inline var AlarmClock:String = "event:/SFX/Alarm/AlarmClock";
     public static inline var AlarmClockHit:String = "event:/SFX/Alarm/AlarmClockHit";
     public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
@@ -48,6 +49,7 @@ class FmodSFX {
     public static inline var PotRingSpawn:String = "event:/SFX/Enemies/Pot/PotRingSpawn";
     public static inline var PotTargetSpawn:String = "event:/SFX/Enemies/Pot/PotTargetSpawn";
     public static inline var GateOpen:String = "event:/SFX/Gate/GateOpen";
+    public static inline var LonkFinalHit:String = "event:/SFX/Lonk/LonkFinalHit";
     public static inline var LonkLaugh:String = "event:/SFX/Lonk/LonkLaugh";
     public static inline var LonkLaugh2:String = "event:/SFX/Lonk/LonkLaugh2";
     public static inline var LonkLaugh3:String = "event:/SFX/Lonk/LonkLaugh3";
