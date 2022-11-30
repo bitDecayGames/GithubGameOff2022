@@ -14,7 +14,7 @@ class TestEncounterState extends FlxState {
 		super.create();
 
 		// openSubState(new PotBattleState(new CharacterDialog(POT, "POT")));
-		openSubState(new GateState());
+		openSubState(new ChestBattle(new CharacterDialog(LONK, "hi")));
 	}
 
 	override public function update(elapsed:Float):Void {

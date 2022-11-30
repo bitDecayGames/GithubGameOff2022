@@ -25,6 +25,7 @@ using zero.flixel.extensions.FlxPointExt;
 class ChestBattle extends EncounterBaseState {
 	// midpoints can only be this far apart and still count as hitting the latch
 	private static var requiredAccuracyPixels = 20;
+	private static var heightAccuracyScalar = 0.25;
 	private static var handHoverY = 175;
 
 	var latch:FlxSprite;
@@ -144,7 +145,7 @@ class ChestBattle extends EncounterBaseState {
 
 		#if encounter_debug
 		var handMid = hand.getMidpoint();
-		DebugDraw.ME.drawCameraLine(handMid.x - requiredAccuracyPixels, hand.y + hand.height, handMid.x + requiredAccuracyPixels, hand.y + hand.height);
+		DebugDraw.ME.drawCameraLine(handMid.x - requiredAccuracyPixels, hand.y, handMid.x + requiredAccuracyPixels, hand.y);
 		var latchMid = latch.getMidpoint();
 		DebugDraw.ME.drawCameraLine(latchMid.x, latchMid.y - 10, latchMid.x, latchMid.y + 10);
 		#end
@@ -168,7 +169,13 @@ class ChestBattle extends EncounterBaseState {
 		}
 
 
-		if (hand.overlaps(latch) && Math.abs(latch.getMidpoint().x - hand.getMidpoint().x) <= requiredAccuracyPixels) {
+		if (hand.overlaps(latch)) {
+			if (Math.abs(latch.getMidpoint().x - hand.getMidpoint().x) > requiredAccuracyPixels) {
+				return;
+			}
+			if (Math.abs(hand.y - (latch.y + latch.height)) > requiredAccuracyPixels * heightAccuracyScalar) {
+				return;
+			}
 			fightOver = true;
 
 			acceptInput = false;
@@ -252,7 +259,7 @@ class ChestBattle extends EncounterBaseState {
 			handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
 				ease: FlxEase.quintIn
 			});
-			
+
 			new FlxTimer().start(1.5, (t) -> {
 				FlxTween.tween(flashOverlay, {alpha: 1}, 0.475, {
 					ease: FlxEase.quadIn
