@@ -34,7 +34,7 @@ class QuestNameExt {
 					case 2:
 						buildFlavorText("Explore West");
 					case 3:
-						buildFlavorText("Find gate code");
+						buildFlavorText("Find Cludd's lock combo");
 					default:
 						buildFlavorText("Unknown subquest");
 				}
