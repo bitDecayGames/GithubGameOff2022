@@ -1,5 +1,6 @@
 package entities.interact;
 
+import flixel.math.FlxMath;
 import flixel.util.FlxStringUtil;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import encounters.CharacterIndex;
@@ -10,12 +11,13 @@ import flixel.FlxSprite;
 
 class Interactable extends FlxSprite {
 	var dialogBox:CharacterDialog;
-	var text:String;
+	var text:Array<String> = [];
+	var textIndex = -1;
 
 	public function new(X:Float, Y:Float, charIndex:CharacterIndex, defaultText:String = "") {
 		super(X, Y);
 		makeGraphic(Constants.TILE_SIZE, Constants.TILE_SIZE, FlxColor.YELLOW);
-		text = defaultText;
+		text.push(defaultText);
 		immovable = true;
 
 		dialogBox = new CharacterDialog(charIndex, "");
@@ -40,9 +42,12 @@ class Interactable extends FlxSprite {
 
 
 	public function interact() {
-		if (!FlxStringUtil.isNullOrEmpty(text)) {
-			dialogBox.loadDialogLine(text);
-			PlayState.ME.openDialog(dialogBox);
+		if (text.length > 0) {
+			textIndex = FlxMath.maxAdd(textIndex, 1, text.length - 1, 0);
+			if (!FlxStringUtil.isNullOrEmpty(text[textIndex])) {
+				dialogBox.loadDialogLine(text[textIndex]);
+				PlayState.ME.openDialog(dialogBox);
+			}
 		}
 	}
 }

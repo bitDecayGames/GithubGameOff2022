@@ -10,7 +10,7 @@
 	},
 	"jsonVersion": "1.1.3",
 	"appBuildId": 458364,
-	"nextUid": 145,
+	"nextUid": 146,
 	"identifierStyle": "Capitalize",
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -787,6 +787,35 @@
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "ValueOnly",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "MultiDescript",
+					"__type": "Array<String>",
+					"uid": 145,
+					"type": "F_String",
+					"isArray": true,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
 					"editorDisplayPos": "Above",
 					"editorAlwaysShow": false,
 					"editorCutLongValues": true,
@@ -7706,7 +7735,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -7740,7 +7769,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -7776,7 +7805,7 @@
 									"entityIid": "4edb4150-5110-11ed-849f-192d5d5d6de1",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4edb4150-5110-11ed-849f-192d5d5d6de1"]
@@ -7800,7 +7829,7 @@
 									"entityIid": "abbeb5d0-5110-11ed-b865-49b30dc5cf98",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["abbeb5d0-5110-11ed-b865-49b30dc5cf98"]
@@ -7841,7 +7870,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -7869,7 +7898,7 @@
 									"entityIid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d74202b0-5110-11ed-b1a5-37d6bd9facae"]
@@ -7893,7 +7922,7 @@
 									"entityIid": "dec22d30-5110-11ed-b1a5-db7037541591",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["dec22d30-5110-11ed-b1a5-db7037541591"]
@@ -7937,7 +7966,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -7961,7 +7990,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -7999,7 +8028,8 @@
 									"id": "V_String",
 									"params": ["gate"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8023,7 +8053,7 @@
 									"entityIid": "d44517d0-5110-11ed-804c-7dc85d364c77",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d44517d0-5110-11ed-804c-7dc85d364c77"]
@@ -8047,7 +8077,7 @@
 									"entityIid": "db728e70-5110-11ed-804c-27612179b6d9",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["db728e70-5110-11ed-804c-27612179b6d9"]
@@ -8085,7 +8115,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8106,7 +8137,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8127,7 +8159,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8148,7 +8181,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8169,7 +8203,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8190,7 +8225,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8211,7 +8247,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8232,7 +8269,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8253,7 +8291,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8274,7 +8313,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8295,7 +8335,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8316,7 +8357,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8337,7 +8379,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8358,7 +8401,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8379,7 +8423,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8400,7 +8445,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8421,7 +8467,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8442,7 +8489,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8463,7 +8511,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8484,7 +8533,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8505,7 +8555,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8526,7 +8577,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8547,7 +8599,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8568,7 +8621,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8589,7 +8643,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8610,7 +8665,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8631,7 +8687,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8652,7 +8709,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8673,7 +8731,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8694,7 +8753,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8715,7 +8775,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8736,7 +8797,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8757,7 +8819,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8778,7 +8841,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8799,7 +8863,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8820,7 +8885,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8841,7 +8907,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8862,7 +8929,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8883,7 +8951,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8904,7 +8973,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8925,7 +8995,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8949,7 +9020,8 @@
 								{ "__identifier": "Description", "__value": "I.... I can't pull it out... Maybe grandpa knows something about this.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["I.... I can't pull it out... Maybe grandpa knows something about this."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8973,7 +9045,8 @@
 								{ "__identifier": "Description", "__value": "\"The Master Sword\".... They probably should have called it \"The Main Sword\"", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["\"The Master Sword\".... They probably should have called it \"The Main Sword\""]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -8994,7 +9067,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9015,7 +9089,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9036,7 +9111,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9057,7 +9133,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9078,7 +9155,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9099,7 +9177,8 @@
 									"params": ["Tree"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9120,7 +9199,8 @@
 									"params": ["Boulder"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9144,7 +9224,8 @@
 								{ "__identifier": "Description", "__value": "It's empty....", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["It's empty...."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9164,7 +9245,7 @@
 									"entityIid": "0db231c0-5110-11ed-849f-f1782bfd56c0",
 									"layerIid": "27e097b1-5110-11ed-849f-4dce6e6436c3",
 									"levelIid": "27e070a0-5110-11ed-849f-11e374012409",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0db231c0-5110-11ed-849f-f1782bfd56c0"]
@@ -9205,7 +9286,8 @@
 									"id": "V_String",
 									"params": ["lonk_house_cutscene"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9337,7 +9419,8 @@
 									"id": "V_String",
 									"params": ["pot_block_cludd_basement"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -9361,7 +9444,8 @@
 								{ "__identifier": "Description", "__value": "The rubble has completely blocked the doorway", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["The rubble has completely blocked the doorway"]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -15580,7 +15664,7 @@
 									"entityIid": "1d2f15c0-5110-11ed-b865-cb3f18a680ee",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1d2f15c0-5110-11ed-b865-cb3f18a680ee"]
@@ -15649,7 +15733,8 @@
 								{ "__identifier": "Description", "__value": "It's a journal full of poor handwriting. I don't know what I'm looking for.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["It's a journal full of poor handwriting. I don't know what I'm looking for."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -15673,7 +15758,21 @@
 								{ "__identifier": "Description", "__value": "Old bits of bacon sit alone on the side of the plate.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Old bits of bacon sit alone on the side of the plate."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [
+									"There is slightly less bacon now.",
+									"Almost no bacon is left on the plate.",
+									"It is an empty plate."
+								], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [ {
+									"id": "V_String",
+									"params": ["There is slightly less bacon now."]
+								}, {
+									"id": "V_String",
+									"params": ["Almost no bacon is left on the plate."]
+								}, {
+									"id": "V_String",
+									"params": ["It is an empty plate."]
+								} ] }
 							]
 						},
 						{
@@ -15697,7 +15796,8 @@
 								{ "__identifier": "Description", "__value": "A lamp that has no bulb in it.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["A lamp that has no bulb in it."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -16220,7 +16320,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -16235,7 +16335,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -16289,7 +16389,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16317,7 +16417,8 @@
 									"id": "V_String",
 									"params": ["rubber"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -16341,7 +16442,8 @@
 								{ "__identifier": "Description", "__value": "Grandpa's storybook. He reads stories from it frequently.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Grandpa's storybook. He reads stories from it frequently."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -16365,7 +16467,8 @@
 								{ "__identifier": "Description", "__value": "An empty plate waiting for the next meal.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["An empty plate waiting for the next meal."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -16389,7 +16492,8 @@
 								{ "__identifier": "Description", "__value": "I don't know that these tools ever actually get used. They look brand new.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["I don't know that these tools ever actually get used. They look brand new."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -16409,7 +16513,7 @@
 									"entityIid": "1a495c90-5110-11ed-804c-17bfce3ba94d",
 									"layerIid": "bac4ffe2-5110-11ed-804c-b5aaf9550008",
 									"levelIid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1a495c90-5110-11ed-804c-17bfce3ba94d"]
@@ -16458,7 +16562,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16497,7 +16601,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -16974,7 +17078,8 @@
 									"params": ["AlarmClock"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -16994,7 +17099,7 @@
 									"entityIid": "2ad3acf0-5110-11ed-804c-4d84ecd76836",
 									"layerIid": "bac4ffe2-5110-11ed-804c-b5aaf9550008",
 									"levelIid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2ad3acf0-5110-11ed-804c-4d84ecd76836"]
@@ -17435,7 +17540,7 @@
 									"entityIid": "31b610d0-5110-11ed-804c-a349493c8bc8",
 									"layerIid": "bac4ffe2-5110-11ed-804c-b5aaf9550008",
 									"levelIid": "bac4ffe0-5110-11ed-804c-c5b32a6da097",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["31b610d0-5110-11ed-804c-a349493c8bc8"]
@@ -17473,7 +17578,8 @@
 								{ "__identifier": "Description", "__value": "Grandpa always was drawn to pottery.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Grandpa always was drawn to pottery."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -18003,7 +18109,7 @@
 									"entityIid": "88dd6b60-5110-11ed-b865-33f1c1e64239",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["88dd6b60-5110-11ed-b865-33f1c1e64239"]
@@ -18044,7 +18150,8 @@
 									"id": "V_String",
 									"params": ["compass"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -18068,7 +18175,8 @@
 								{ "__identifier": "Description", "__value": "This hammer is very heavy.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["This hammer is very heavy."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -18092,7 +18200,8 @@
 								{ "__identifier": "Description", "__value": "There is a dust circle here. Something recently left this table.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["There is a dust circle here. Something recently left this table."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -18112,7 +18221,7 @@
 									"entityIid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d74202b0-5110-11ed-b1a5-37d6bd9facae"]
@@ -18150,10 +18259,11 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "Looks like Cludd also has a rubber pot.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "Looks like Cludd has a rubber pot also.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Looks like Cludd has a rubber pot also."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -18174,7 +18284,8 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -18821,7 +18932,7 @@
 									"entityIid": "8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f"]
@@ -18861,7 +18972,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -18895,7 +19006,7 @@
 									"entityIid": "2033f150-5110-11ed-b865-ed9ae1676e1c",
 									"layerIid": "1dfe2010-5110-11ed-885d-e1f61e5a040e",
 									"levelIid": "1dfdf900-5110-11ed-885d-f121c4250586",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2033f150-5110-11ed-b865-ed9ae1676e1c"]
@@ -18932,7 +19043,7 @@
 									"entityIid": "458e2b00-5110-11ed-b865-fb521ddf4cbc",
 									"layerIid": "3af9e2b1-5110-11ed-b865-c7aef6c68607",
 									"levelIid": "3af9bba0-5110-11ed-b865-978c47b7b6e0",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["458e2b00-5110-11ed-b865-fb521ddf4cbc"]
@@ -18970,7 +19081,8 @@
 								{ "__identifier": "Description", "__value": "A table set for one.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["A table set for one."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -18996,7 +19108,8 @@
 									"params": [
 										"The fireplace is surprisingly clean, possibly even less dusty than some of the other stuff in this house."
 									]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -19020,7 +19133,8 @@
 								{ "__identifier": "Description", "__value": "There are random useless knickknacks in the drawer.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["There are random useless knickknacks in the drawer."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -19665,7 +19779,7 @@
 									"entityIid": "4359e5e0-5110-11ed-b865-95bc081880a4",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4359e5e0-5110-11ed-b865-95bc081880a4"]
@@ -19700,7 +19814,8 @@
 									"params": ["Chest"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -19721,10 +19836,11 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "Its just a random book.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "Its just a random book", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Its just a random book"]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -20174,7 +20290,7 @@
 									"entityIid": "d44517d0-5110-11ed-804c-7dc85d364c77",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "e8073e30-5110-11ed-8275-cd78a2c0d25b"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d44517d0-5110-11ed-804c-7dc85d364c77"]
@@ -20208,7 +20324,7 @@
 									"entityIid": "6cfc2090-5110-11ed-804c-f98c75d4a23e",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "e8073e30-5110-11ed-8275-cd78a2c0d25b"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["6cfc2090-5110-11ed-804c-f98c75d4a23e"]
@@ -20245,7 +20361,7 @@
 									"entityIid": "8c655b40-5110-11ed-804c-39441f64fbec",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "e8073e30-5110-11ed-8275-cd78a2c0d25b"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8c655b40-5110-11ed-804c-39441f64fbec"]
@@ -20286,7 +20402,8 @@
 								{ "__identifier": "Description", "__value": "Just a pot, nothing fancy.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Just a pot, nothing fancy."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -20310,7 +20427,8 @@
 								{ "__identifier": "Description", "__value": "Better to eat on the job than to go hungry.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Better to eat on the job than to go hungry."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -20334,7 +20452,8 @@
 								{ "__identifier": "Description", "__value": "It's probably closed for a reason.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["It's probably closed for a reason."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -20862,7 +20981,7 @@
 									"entityIid": "7796ac90-5110-11ed-804c-cbf8105101de",
 									"layerIid": "8f8b7202-5110-11ed-804c-2dd6ed8d69aa",
 									"levelIid": "8f8b7200-5110-11ed-804c-31acc0c751fd",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["7796ac90-5110-11ed-804c-cbf8105101de"]
@@ -20896,7 +21015,7 @@
 									"entityIid": "49154d00-5110-11ed-804c-27f1817d8aeb",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["49154d00-5110-11ed-804c-27f1817d8aeb"]
@@ -20934,7 +21053,8 @@
 									"id": "V_String",
 									"params": ["gb_blockerpot"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] }
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -20958,7 +21078,8 @@
 								{ "__identifier": "Description", "__value": "Its an old Gameboy.. The cartridge in it says \"Not part of GameOff 2022\"", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Its an old Gameboy.. The cartridge in it says \"Not part of GameOff 2022\""]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -21333,7 +21454,7 @@
 									"entityIid": "71c45920-5110-11ed-804c-11782dc9ae59",
 									"layerIid": "90e7cdb2-5110-11ed-804c-7bc13c778a21",
 									"levelIid": "90e7cdb0-5110-11ed-804c-ad843d842332",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["71c45920-5110-11ed-804c-11782dc9ae59"]
@@ -21367,7 +21488,7 @@
 									"entityIid": "7a4ccbe0-5110-11ed-804c-69ca9eae913e",
 									"layerIid": "8c075451-5110-11ed-804c-df6c917ea293",
 									"levelIid": "8c072d40-5110-11ed-804c-93debfdb8e26",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["7a4ccbe0-5110-11ed-804c-69ca9eae913e"]
@@ -21401,7 +21522,7 @@
 									"entityIid": "2281f710-5110-11ed-804c-ff8536962bae",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2281f710-5110-11ed-804c-ff8536962bae"]
@@ -21439,7 +21560,8 @@
 								{ "__identifier": "Description", "__value": "I'm not sure what you are expecting...", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["I'm not sure what you are expecting..."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -21463,7 +21585,8 @@
 								{ "__identifier": "Description", "__value": "So fresh and so clean clean!", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["So fresh and so clean clean!"]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -21487,7 +21610,8 @@
 								{ "__identifier": "Description", "__value": "The faucet has a slow drip.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["The faucet has a slow drip."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -21840,7 +21964,7 @@
 									"entityIid": "75830ed0-5110-11ed-804c-85687158a58e",
 									"layerIid": "8f8b7202-5110-11ed-804c-2dd6ed8d69aa",
 									"levelIid": "8f8b7200-5110-11ed-804c-31acc0c751fd",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["75830ed0-5110-11ed-804c-85687158a58e"]
@@ -21881,7 +22005,8 @@
 								{ "__identifier": "Description", "__value": "Its a framed map, just laying against the wall.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Its a framed map, just laying against the wall."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -21901,7 +22026,7 @@
 									"entityIid": "3b71a1d0-5110-11ed-804c-1905f897a51e",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["3b71a1d0-5110-11ed-804c-1905f897a51e"]
@@ -21939,7 +22064,8 @@
 								{ "__identifier": "Description", "__value": "He has a register in his room... Maybe its a backup?", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["He has a register in his room... Maybe its a backup?"]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -22355,7 +22481,7 @@
 									"entityIid": "1ebba040-5110-11ed-804c-0d02f54f9da1",
 									"layerIid": "8f8b7202-5110-11ed-804c-2dd6ed8d69aa",
 									"levelIid": "8f8b7200-5110-11ed-804c-31acc0c751fd",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1ebba040-5110-11ed-804c-0d02f54f9da1"]
@@ -22389,7 +22515,7 @@
 									"entityIid": "3e466cb0-5110-11ed-804c-57eaf17bdad6",
 									"layerIid": "90e7cdb2-5110-11ed-804c-7bc13c778a21",
 									"levelIid": "90e7cdb0-5110-11ed-804c-ad843d842332",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["3e466cb0-5110-11ed-804c-57eaf17bdad6"]
@@ -22423,7 +22549,7 @@
 									"entityIid": "4aeb93a0-5110-11ed-804c-c9dc000e1d5b",
 									"layerIid": "8c075451-5110-11ed-804c-df6c917ea293",
 									"levelIid": "8c072d40-5110-11ed-804c-93debfdb8e26",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4aeb93a0-5110-11ed-804c-c9dc000e1d5b"]
@@ -22457,7 +22583,7 @@
 									"entityIid": "7df3b1b0-5110-11ed-804c-77591d2417f2",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["7df3b1b0-5110-11ed-804c-77591d2417f2"]
@@ -22491,7 +22617,7 @@
 									"entityIid": "8686abc0-5110-11ed-804c-0bc6469458ce",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "742ed140-5110-11ed-8394-ade3b10403d1"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8686abc0-5110-11ed-804c-0bc6469458ce"]
@@ -22529,7 +22655,8 @@
 								{ "__identifier": "Description", "__value": "Who leaves this much junk in the middle of a hallway?", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Who leaves this much junk in the middle of a hallway?"]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						},
 						{
@@ -22553,7 +22680,8 @@
 								{ "__identifier": "Description", "__value": "Not sure how he even got this thing here in the first place.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Not sure how he even got this thing here in the first place."]
-								}] }
+								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
 					]
@@ -22949,7 +23077,7 @@
 									"entityIid": "1409c860-5110-11ed-804c-6336c1e08cad",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1409c860-5110-11ed-804c-6336c1e08cad"]
@@ -22989,7 +23117,7 @@
 									"entityIid": "2c2aff90-5110-11ed-804c-77d927432ce2",
 									"layerIid": "0230f6b0-5110-11ed-8080-1993689af92b",
 									"levelIid": "0230cfa0-5110-11ed-8080-e7a297986923",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2c2aff90-5110-11ed-804c-77d927432ce2"]
@@ -23023,7 +23151,7 @@
 									"entityIid": "34398760-5110-11ed-804c-f31fe8c3008c",
 									"layerIid": "fcd02fb1-5110-11ed-9c25-59c17a37e470",
 									"levelIid": "fcd02fb0-5110-11ed-9c25-c161d5a1d5d7",
-									"worldIid": "ddd6a320-5110-11ed-9d19-179c48d7d235"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["34398760-5110-11ed-804c-f31fe8c3008c"]
@@ -23342,7 +23470,7 @@
 									"entityIid": "0aaabe20-5110-11ed-849f-2d1ecacaa49b",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "937d2220-5110-11ed-8f3b-411ce44f04ae"
+									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0aaabe20-5110-11ed-849f-2d1ecacaa49b"]
