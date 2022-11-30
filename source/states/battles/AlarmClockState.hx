@@ -180,10 +180,12 @@ class AlarmClockState extends EncounterBaseState {
 			return;
 		}
 
+		#if speedy_debug
 		if(FlxG.keys.justPressed.P){
 			success = true;
 			transitionOut();
 		}
+		#end
 
 		if (!handSwiping) {
 			if (SimpleController.just_pressed(A)) {

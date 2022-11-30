@@ -1,5 +1,6 @@
 package entities;
 
+import flixel.FlxObject;
 import entities.interact.Interactable;
 import quest.GlobalQuestState;
 import flixel.util.FlxStringUtil;
@@ -80,14 +81,18 @@ class Door extends Interactable {
 			case N:
 				flipY = true;
 				offset.set(8, 3);
+				allowCollisions = FlxObject.UP;
 			case S:
 				offset.set(8, 13);
+				allowCollisions = FlxObject.DOWN;
 			case E:
 				flipX = true;
 				// x -= 10;
 				offset.set(13, 7);
+				allowCollisions = FlxObject.RIGHT;
 			case W:
 				offset.set(3, 7);
+				allowCollisions = FlxObject.LEFT;
 			default:
 		}
 
