@@ -84,6 +84,9 @@ class FinalTransition extends FlxSubState {
 		});
 
 		FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);
+		// new FlxTimer().start(2, (t) -> {
+		// 	FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh3);
+		// });
 		FlxTween.tween(eyes, { alpha: 1 }, duration * 3, {
 			onComplete: (t) -> {
 				// FlxTween.tween(eyes, {y: eyes.y + 2}, 0.5, {

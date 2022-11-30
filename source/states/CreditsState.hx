@@ -1,5 +1,6 @@
 package states;
 
+import flixel.util.FlxTimer;
 import flixel.text.FlxText.FlxTextAlign;
 import flixel.text.FlxBitmapText;
 import config.Configure;
@@ -49,6 +50,10 @@ class CreditsState extends FlxUIState {
 		super.create();
 		bgColor = backgroundColor;
 		camera.pixelPerfectRender = true;
+
+		new FlxTimer().start(3, (t) -> {
+			FmodManager.PlaySong(FmodSongs.AwakenLullabyEnding);
+		});
 
 		// Credits
 
