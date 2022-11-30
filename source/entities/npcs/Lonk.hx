@@ -89,6 +89,9 @@ class Lonk extends NPC {
 			if (tag.parsedOptions.val == "goToSchool") {
 				GlobalQuestState.subQuest++;
 			}
+			if (tag.parsedOptions.val == "bumpSubQuest") {
+				GlobalQuestState.subQuest++;
+			}
 		}
 		// // TODO: We will need to add more checks around this so we make sure we are only advancing the correct quest
 		// //   Could we do this via values inside the callback? such as `complete_intro` instead of a generic `questDone`
