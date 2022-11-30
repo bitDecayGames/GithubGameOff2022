@@ -293,8 +293,23 @@ class PotBattleState extends EncounterBaseState {
 
 	function checkSuccess():Bool {
 		var success = true;
+		// use this loop if we notice it feeling bad.
+		// weakPointsGroup.forEach((weakness) -> {
+		// 	if (!FlxG.overlap(weakness, attackGroup)) {
+		// 		success = false;
+		// 	}
+		// });
+
+		// this new loop uses pixel perfect, which should be more accurate to the circles
 		weakPointsGroup.forEach((weakness) -> {
-			if (!FlxG.overlap(weakness, attackGroup)) {
+			var atLeastOneHit = false;
+			for (attack in attackGroup) {
+				if (FlxG.pixelPerfectOverlap(weakness, attack)) {
+					atLeastOneHit = true;
+					break;
+				}
+			}
+			if (!atLeastOneHit) {
 				success = false;
 			}
 		});
@@ -308,9 +323,20 @@ class PotBattleState extends EncounterBaseState {
 		var delay = 0.0;
 		attackGroup.forEach((a) -> {
 			var hits = new Array<FlxSprite>();
-			var overlap = FlxG.overlap(a, weakPointsGroup, (attack, point) -> {
-				hits.push(point);
-			});
+			// if this starts rendering weird, just use this loop instead
+			// var overlap = FlxG.overlap(a, weakPointsGroup, (attack, point) -> {
+			// 	hits.push(point);
+			// });
+
+			// this is the new loop that uses pixel perfect
+			var overlap = false;
+			for (point in weakPointsGroup) {
+				if (FlxG.pixelPerfectOverlap(a, point)) {
+					hits.push(point);
+					overlap = true;
+				}
+			}
+
 			if (overlap) {
 				var localDelay = delay;
 				delay += .35;
