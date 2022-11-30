@@ -422,7 +422,7 @@ class PlayState extends FlxTransitionableState {
 				player.worldClip = null;
 				player.persistentDirectionInfluence.set();
 				startDoor.animation.play('close');
-				if (!startDoor.isStairs){
+				if (!startDoor.isStairs && !startDoor.data.f_Cave){
 					FmodManager.PlaySoundOneShot(FmodSFX.DoorClose);
 				}
 				startDoor.animation.finishCallback = (n) -> {
@@ -670,9 +670,9 @@ class PlayState extends FlxTransitionableState {
 
 			// make the player face the door
 			p.setIdleAnimation(d.accessDir.opposite());
-			if (!d.isStairs){
-				FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
-			} else {
+			if (d.data.f_Cave){
+				// nothing to do here, caves have no doors
+			} else if (d.isStairs) {
 				p.speedModifier = 0.3;
 				new FlxTimer().start(0.85, (t) -> {
 					if (d.isDownStairs){
@@ -681,6 +681,8 @@ class PlayState extends FlxTransitionableState {
 						FmodManager.PlaySoundOneShot(FmodSFX.StairsUp);
 					}
 				});
+			} else {
+				FmodManager.PlaySoundOneShot(FmodSFX.DoorOpen);
 			}
 			transitionSignal.dispatch(d.destinationLevel);
 			playerInTransition = true;
