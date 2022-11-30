@@ -198,9 +198,9 @@ class ChestBattle extends EncounterBaseState {
 			if (Math.abs(latch.getMidpoint().x - hand.getMidpoint().x) > requiredAccuracyPixels) {
 				return;
 			}
-			if (Math.abs(hand.y - (latch.y + latch.height)) > requiredAccuracyPixels * heightAccuracyScalar) {
-				return;
-			}
+			// if (Math.abs(hand.y - (latch.y + latch.height)) > requiredAccuracyPixels * heightAccuracyScalar) {
+			// 	return;
+			// }
 			fightOver = true;
 
 			acceptInput = false;
@@ -245,7 +245,11 @@ class ChestBattle extends EncounterBaseState {
 						dialog.revive();
 						switch dialog.characterIndex {
 							case LONK:
-								dialog.loadDialogLine("This<pause/> isn't<pause/> possible<slower>...</slower>");
+								if (isFinalBattle){
+									dialog.loadDialogLine("UUGUGHHHHH");
+								} else {
+									dialog.loadDialogLine("This<pause/> isn't<pause/> possible<slower>...</slower>");
+								}
 							default:
 								dialog.loadDialogLine("UUGUGHHHHH");
 						}

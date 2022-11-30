@@ -28,7 +28,7 @@ class AlarmClockState extends EncounterBaseState {
 	private static var requiredAccuracyPixels = 21;
 	private static var restSeconds = 0.655;
 	private static var handHoverY = 30;
-	private static var handXAccel = 80;
+	private var handXAccel = 80;
 
 	private var finishYOffset = 11;
 
@@ -73,6 +73,7 @@ class AlarmClockState extends EncounterBaseState {
 			FmodManager.PlaySong(FmodSongs.Lonk);
 			firstSwipe = false;
 			secondSwipe = false;
+			handXAccel = 160;
 		} else {
 			new FlxTimer().start(1.75, (t) -> {
 				FmodManager.PlaySong(FmodSongs.BattleWithAlarm);
@@ -257,7 +258,11 @@ class AlarmClockState extends EncounterBaseState {
 				dialog.revive();
 				switch dialog.characterIndex {
 					case LONK:
-						dialog.loadDialogLine("<cb val=mad /><shake>HOW?!</shake>");
+						if (!isFinalPhase){
+							dialog.loadDialogLine("<cb val=mad /><shake>HOW?!</shake>");
+						} else {
+							dialog.loadDialogLine("<cb val=mad /><shake>...</shake>");
+						}
 					default:
 						dialog.loadDialogLine("<cb val=sad />....You win this time...<page/>I will see you tomorrow...");
 				}
