@@ -217,6 +217,10 @@ class PotBattleState extends EncounterBaseState {
 
 		FmodManager.Update();
 
+		// remove these two lines if we don't like this change
+		var scale = (attackLimit - attackGroup.length) / attackLimit;
+		cursor.scale.set(scale, scale);
+
 		cursorAngle += spinSpeed * elapsed;
 		cursorAngle = cursorAngle % 360;
 		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
