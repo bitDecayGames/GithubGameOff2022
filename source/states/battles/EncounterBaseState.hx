@@ -78,10 +78,11 @@ class EncounterBaseState extends FlxSubState {
 		battleGroup.active = false;
 
 		// we do two separate tweens
+		FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 0}, duration);
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
-				
+
 				if (GlobalQuestState.currentQuest == Enum_QuestName.End_game){
 					battleGroup.active = true;
 					FlxTween.tween(transition, { alpha: 0}, 1, {
@@ -148,6 +149,7 @@ class EncounterBaseState extends FlxSubState {
 			onComplete: (t) -> {
 				battleGroup.visible = false;
 				battleGroup.active = false;
+				FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 1}, duration);
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						close();

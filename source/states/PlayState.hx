@@ -97,7 +97,7 @@ class PlayState extends FlxTransitionableState {
 	public var playerInTransition:Bool = false;
 
 	public var transitionSignal = new FlxTypedSignal<String->Void>();
-	var dialogCamera:FlxCamera;
+	public var dialogCamera:FlxCamera;
 
 	// handle events for the current level. Cleared out on level load
 	public var eventSignal = new FlxTypedSignal<String->Void>();
