@@ -9,6 +9,7 @@ class FmodSongs {
     public static inline var Awaken:String = "event:/Music/Awaken";
     public static inline var AwakenDanger:String = "event:/Music/AwakenDanger";
     public static inline var AwakenLullaby:String = "event:/Music/AwakenLullaby";
+    public static inline var AwakenLullabyEnding:String = "event:/Music/AwakenLullabyEnding";
     public static inline var AwakenSofterC:String = "event:/Music/AwakenSofterC";
     public static inline var Battle:String = "event:/Music/Battle";
     public static inline var BattleWithAlarm:String = "event:/Music/BattleWithAlarm";
