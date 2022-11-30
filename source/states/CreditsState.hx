@@ -22,6 +22,7 @@ class CreditsState extends FlxUIState {
 
 	var _txtCreditsTitle:FlxBitmapText;
 	var _txtThankYou:FlxBitmapText;
+	var forPlaying:FlxBitmapText;
 	var _txtRole:Array<FlxBitmapText>;
 	var _txtCreator:Array<FlxBitmapText>;
 
@@ -53,7 +54,7 @@ class CreditsState extends FlxUIState {
 
 		_allCreditElements = new Array<FlxSprite>();
 
-		_txtCreditsTitle = FlxTextFactory.make("Credits", FlxG.width / 4, FlxG.height / 2, 40, FlxTextAlign.CENTER);
+		_txtCreditsTitle = FlxTextFactory.make("Green Fleece", FlxG.width / 4, FlxG.height / 2, 40, FlxTextAlign.CENTER);
 		center(_txtCreditsTitle);
 		add(_txtCreditsTitle);
 
@@ -98,11 +99,18 @@ class CreditsState extends FlxUIState {
 			_allCreditElements.push(display);
 		}
 
-		_txtThankYou = FlxTextFactory.make("Thank you!", FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2, 24, FlxTextAlign.CENTER);
+		_txtThankYou = FlxTextFactory.make("Thank you", FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2, 24, FlxTextAlign.CENTER);
 		_txtThankYou.alignment = FlxTextAlign.CENTER;
 		center(_txtThankYou);
 		add(_txtThankYou);
 		_allCreditElements.push(_txtThankYou);
+		creditsVerticalOffset += Math.ceil(_txtThankYou.height) + 2;
+
+		forPlaying = FlxTextFactory.make("for playing!", FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2, 24, FlxTextAlign.CENTER);
+		forPlaying.alignment = FlxTextAlign.CENTER;
+		center(forPlaying);
+		add(forPlaying);
+		_allCreditElements.push(forPlaying);
 
 		// we want them to start off the bottom and come onto the screen
 		for (e in _allCreditElements) {
@@ -144,7 +152,7 @@ class CreditsState extends FlxUIState {
 		}
 
 		// Stop scrolling when "Thank You" text is in the center of the screen
-		if (_txtThankYou.y + _txtThankYou.height / 2 < FlxG.height / 2) {
+		if (forPlaying.y < FlxG.height / 2) {
 			return;
 		}
 

@@ -51,7 +51,12 @@ class QuestNameExt {
 						buildFlavorText("Return the map");
 				}
 			case Enum_QuestName.End_game:
-				buildFlavorText("Survive");
+				switch(GlobalQuestState.subQuest) {
+					case 0:
+						return "";
+					default:
+						buildFlavorText("Survive");
+				}
 			case Enum_QuestName.Final_morning:
 				// XXX: Final morning has no hint text
 				return "";

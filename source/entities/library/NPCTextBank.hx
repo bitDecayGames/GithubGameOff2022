@@ -44,7 +44,7 @@ class NPCTextBank {
 			],
 			'${Enum_QuestName.Return_map}' => [
 				#if speedy_debug
-				"TIME TO DIE<cb val=startEndgame/><cb val=triggerEnding/>"
+				"<cb val=startEndgame/>TIME TO DIE<cb val=triggerEnding/><cb val=bumpSubQuest/>"
 				#else
 				"<cb val=startEndgame/>I'm guessing Brindle wasn't at his shop? I'm surprised you were able to get the <color id=keyItem>map</color> so quickly!<page/>" +
 				"Now that you've collected everything I need, I'll be taking it and going on my own adventure!<cb val=stopMusic/><pause t=2/> <page/>
@@ -55,7 +55,7 @@ class NPCTextBank {
 				<cb val=neutral/>Now give everything to me before I get impatient<speed mod=.05>...</speed><page/>
 				No?<page/>
 				<cb val=happy/>Ok then<page/>
-				<cb val=mad/><bigger><shake>I will take it!</shake></bigger> <cb val=triggerEnding/>"
+				<cb val=mad/><bigger><shake>I will take it!</shake></bigger> <cb val=triggerEnding/><cb val=bumpSubQuest/>"
 				#end
 			],
 			'${Enum_QuestName.End_game}_0' => [
@@ -80,7 +80,9 @@ class NPCTextBank {
 				"I'm just hanging out. I love talking with people. Feel free to chat with me if you have questions."
 			],
 			'${Enum_QuestName.Intro}_5' => [
-				"Cludd? He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? Cludd has had the only one in this town for decades. I'm sure he'd be happy to show it to you."
+				"I'm just hanging out. I love talking with people. Feel free to chat with me if you have questions.<page/>Cludd?" +
+				"He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>?" +
+				"Cludd has had the only one in this town for decades. I'm sure he'd be happy to show it to you."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
 				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened.<page/>" +
