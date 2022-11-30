@@ -227,10 +227,12 @@ class PotBattleState extends EncounterBaseState {
 		cursor.setPositionMidpoint(point.x, point.y);
 		point.put();
 
+		#if speedy_debug
 		if(FlxG.keys.justPressed.P){
 			success = true;
 			transitionOut();
 		}
+		#end
 
 		if (!acceptInput) {
 			return;

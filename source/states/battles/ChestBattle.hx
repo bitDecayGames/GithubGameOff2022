@@ -184,10 +184,12 @@ class ChestBattle extends EncounterBaseState {
 		#end
 
 
+		#if speedy_debug
 		if(FlxG.keys.justPressed.P){
 			success = true;
 			transitionOut();
 		}
+		#end
 
 
 		if (!acceptInput) {

@@ -961,8 +961,8 @@
 			"enumTags": [
 				{ "enumValueId": "Wood", "tileIds": [] },
 				{ "enumValueId": "Cobble", "tileIds": [8,48,49,50,51,52,53,54,55,59] },
-				{ "enumValueId": "Grass", "tileIds": [5,6,7,13,14,15,17,22,23,25,26,27,28,32,33,34,35,36,40,41,42,43,44] },
-				{ "enumValueId": "Dirt", "tileIds": [1,2,3,4,9,10,11,12,18,19,20,29,30,31,37,38,39,46,47] },
+				{ "enumValueId": "Grass", "tileIds": [5,6,7,13,14,15,17,22,23,25,26,27,28,32,33,34,35,36,40,41,42,43,44,256,257,258,259,264,265,266,267,271,272,273] },
+				{ "enumValueId": "Dirt", "tileIds": [1,2,3,4,9,10,11,12,18,19,20,29,30,31,37,38,39,46,47,200,201,202,203,204,208,209,210,211,212,216,217,218,268,269,270] },
 				{ "enumValueId": "Carpet", "tileIds": [] }
 			],
 			"customData": [],
@@ -1265,7 +1265,7 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,
 						0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3598,6 +3598,8 @@
 						{ "px": [776,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3751] },
 						{ "px": [784,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3752] },
 						{ "px": [792,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3753] },
+						{ "px": [1064,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3787] },
+						{ "px": [1072,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3788] },
 						{ "px": [1088,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3790] },
 						{ "px": [1096,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3791] },
 						{ "px": [1104,168], "src": [0,0], "f": 0, "t": 0, "d": [121,3792] },
@@ -7735,7 +7737,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 131, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -7769,7 +7771,7 @@
 									"entityIid": "ba9a1700-5110-11ed-8080-e35a0b4401dd",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["ba9a1700-5110-11ed-8080-e35a0b4401dd"]
@@ -7805,7 +7807,7 @@
 									"entityIid": "4edb4150-5110-11ed-849f-192d5d5d6de1",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 128, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4edb4150-5110-11ed-849f-192d5d5d6de1"]
@@ -7829,7 +7831,7 @@
 									"entityIid": "abbeb5d0-5110-11ed-b865-49b30dc5cf98",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["abbeb5d0-5110-11ed-b865-49b30dc5cf98"]
@@ -7870,7 +7872,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -7898,7 +7900,7 @@
 									"entityIid": "d74202b0-5110-11ed-b1a5-37d6bd9facae",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d74202b0-5110-11ed-b1a5-37d6bd9facae"]
@@ -7922,7 +7924,7 @@
 									"entityIid": "dec22d30-5110-11ed-b1a5-db7037541591",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["dec22d30-5110-11ed-b1a5-db7037541591"]
@@ -7966,7 +7968,7 @@
 									"entityIid": "23391d50-5110-11ed-b1a5-81e88835f98d",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["23391d50-5110-11ed-b1a5-81e88835f98d"]
@@ -7990,7 +7992,7 @@
 									"entityIid": "be6576e0-5110-11ed-8080-7bfbedbdfb37",
 									"layerIid": "3568ccc0-5110-11ed-8080-b5d4cf320201",
 									"levelIid": "3568a5b0-5110-11ed-8080-d319ca7cd75a",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["be6576e0-5110-11ed-8080-7bfbedbdfb37"]
@@ -8053,7 +8055,7 @@
 									"entityIid": "d44517d0-5110-11ed-804c-7dc85d364c77",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}], "__type": "Array<EntityRef>", "__tile": null, "defUid": 115, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["d44517d0-5110-11ed-804c-7dc85d364c77"]
@@ -8077,7 +8079,7 @@
 									"entityIid": "db728e70-5110-11ed-804c-27612179b6d9",
 									"layerIid": "d45b5462-5110-11ed-804c-47389c61436c",
 									"levelIid": "d45b5460-5110-11ed-804c-d384230213dc",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["db728e70-5110-11ed-804c-27612179b6d9"]
@@ -9245,7 +9247,7 @@
 									"entityIid": "0db231c0-5110-11ed-849f-f1782bfd56c0",
 									"layerIid": "27e097b1-5110-11ed-849f-4dce6e6436c3",
 									"levelIid": "27e070a0-5110-11ed-849f-11e374012409",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["0db231c0-5110-11ed-849f-f1782bfd56c0"]
@@ -9445,6 +9447,28 @@
 									"id": "V_String",
 									"params": ["The rubble has completely blocked the doorway"]
 								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [67,10],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 97, "x": 128, "y": 160, "w": 16, "h": 16 },
+							"__smartColor": "#E20F0F",
+							"iid": "9a7d2da0-5110-11ed-8ca7-25ab916a3598",
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [1072,160],
+							"fieldInstances": [
+								{ "__identifier": "Type", "__value": "Boulder", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 128, "y": 160, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Boulder"]
+								}] },
+								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
 								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
 						}
@@ -18932,7 +18956,7 @@
 									"entityIid": "8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f",
 									"layerIid": "9cdc0250-5110-11ed-a2cf-edb78db4761f",
 									"levelIid": "9cdbdb40-5110-11ed-a2cf-173cf781cb99",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["8c7ca7a0-5110-11ed-a2cf-218ab3d0ee5f"]
@@ -18972,7 +18996,7 @@
 									"entityIid": "af7db9a0-5110-11ed-b865-8d2cba2d96ef",
 									"layerIid": "95d954d0-5110-11ed-885d-8798641c33ff",
 									"levelIid": "e77edea0-5110-11ed-885d-6f7b06aa6135",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["af7db9a0-5110-11ed-b865-8d2cba2d96ef"]
@@ -19006,7 +19030,7 @@
 									"entityIid": "2033f150-5110-11ed-b865-ed9ae1676e1c",
 									"layerIid": "1dfe2010-5110-11ed-885d-e1f61e5a040e",
 									"levelIid": "1dfdf900-5110-11ed-885d-f121c4250586",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["2033f150-5110-11ed-b865-ed9ae1676e1c"]
@@ -19043,7 +19067,7 @@
 									"entityIid": "458e2b00-5110-11ed-b865-fb521ddf4cbc",
 									"layerIid": "3af9e2b1-5110-11ed-b865-c7aef6c68607",
 									"levelIid": "3af9bba0-5110-11ed-b865-978c47b7b6e0",
-									"worldIid": "21d75620-5110-11ed-8799-efcaaa0441cf"
+									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["458e2b00-5110-11ed-b865-fb521ddf4cbc"]
@@ -19103,11 +19127,9 @@
 									"params": ["Fire"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "The fireplace is surprisingly clean, possibly even less dusty than some of the other stuff in this house.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "Not sure who's been keeping this fire alive. It's nice and warm.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": [
-										"The fireplace is surprisingly clean, possibly even less dusty than some of the other stuff in this house."
-									]
+									"params": ["Not sure who's been keeping this fire alive. It's nice and warm."]
 								}] },
 								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] }
 							]
@@ -19201,9 +19223,6 @@
 						{ "px": [128,64], "src": [96,16], "f": 0, "t": 14, "d": [96] },
 						{ "px": [128,64], "src": [96,32], "f": 0, "t": 22, "d": [96] },
 						{ "px": [144,64], "src": [112,16], "f": 0, "t": 15, "d": [97] },
-						{ "px": [48,80], "src": [0,80], "f": 0, "t": 40, "d": [113] },
-						{ "px": [64,80], "src": [16,80], "f": 0, "t": 41, "d": [114] },
-						{ "px": [80,80], "src": [32,80], "f": 0, "t": 42, "d": [115] },
 						{ "px": [96,80], "src": [32,16], "f": 0, "t": 10, "d": [116] }
 					],
 					"entityInstances": []
@@ -19232,6 +19251,9 @@
 					"overrideTilesetUid": null,
 					"gridTiles": [
 						{ "px": [64,64], "src": [0,0], "f": 0, "t": 0, "d": [92] },
+						{ "px": [48,80], "src": [0,80], "f": 0, "t": 40, "d": [113] },
+						{ "px": [64,80], "src": [16,80], "f": 0, "t": 41, "d": [114] },
+						{ "px": [80,80], "src": [32,80], "f": 0, "t": 42, "d": [115] },
 						{ "px": [128,80], "src": [64,16], "f": 0, "t": 12, "d": [118] }
 					],
 					"entityInstances": []
