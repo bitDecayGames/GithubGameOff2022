@@ -39,6 +39,8 @@ class ChestBattle extends EncounterBaseState {
 	var handTween:FlxTween = null;
 	var handTweenX:FlxTween = null;
 
+	var handSwipeTimeToEdgeToEdge:Float = 1.0;
+
 	// var dialog:CharacterDialog;
 	var fightGroup:FlxGroup;
 
@@ -126,11 +128,11 @@ class ChestBattle extends EncounterBaseState {
 			// TODO: move speed? Do we want random? Do we want pauses?
 			// start by moving over to the side
 			if (!isEndingSequence){
-				handTweenX = FlxTween.tween(hand, {x: FlxG.width - hand.width}, 0.5, {
+				handTweenX = FlxTween.tween(hand, {x: FlxG.width - hand.width}, handSwipeTimeToEdgeToEdge / 2, {
 					ease: FlxEase.sineOut,
 					onComplete: (t) -> {
 						// then just slide back and forth
-						handTweenX = FlxTween.tween(hand, {x: 0}, {
+						handTweenX = FlxTween.tween(hand, {x: 0}, handSwipeTimeToEdgeToEdge, {
 							type: FlxTweenType.PINGPONG,
 							ease: FlxEase.sineInOut,
 						});
