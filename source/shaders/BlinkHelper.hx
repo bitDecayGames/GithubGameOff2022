@@ -29,9 +29,9 @@ class BlinkHelper {
 				}
 			}
 			blinkShader.isShaderActive.value = [isShaderActive];
-			if (blinkCount == realBlinkCount-1 && existingShader != null) {
-				sprite.shader = existingShader;
-			}
+			// if (blinkCount == realBlinkCount-1 && existingShader != null) {
+			// 	sprite.shader = existingShader;
+			// }
 		}, realBlinkCount);
     }
 }

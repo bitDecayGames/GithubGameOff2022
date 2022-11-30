@@ -244,7 +244,9 @@ class AlarmClockState extends EncounterBaseState {
 				dialog.revive();
 				switch dialog.characterIndex {
 					case LONK:
-						dialog.loadDialogLine("<cb val=mad /><shake>HOW?!</shake>");
+						if (!isFinalPhase){
+							dialog.loadDialogLine("<cb val=mad /><shake>HOW?!</shake>");
+						}
 					default:
 						dialog.loadDialogLine("<cb val=sad />....You win this time...<page/>I will see you tomorrow...");
 				}

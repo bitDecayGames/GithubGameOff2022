@@ -92,13 +92,13 @@ class LonkFinalFightState extends FlxState {
 				battleDialog.loadDialogLine("I'm getting <bigger>angry!</bigger>");
 				openBattle(new PotBattleState(battleDialog, true, true));
 			case 5:
-				battleDialog.loadDialogLine("Give up!");
+				battleDialog.loadDialogLine("Give up.....");
 				openBattle(new AlarmClockState(battleDialog, true, true));
 			case 6:
 				battleDialog.loadDialogLine("I...");
 				openBattle(new ChestBattle(battleDialog, true, true));
 			case 7:
-				battleDialog.loadDialogLine(".....");
+				battleDialog.loadDialogLine("........");
 				openBattle(new PotBattleState(battleDialog, true, true, true));
 			case 8:
 				FmodManager.StopSong();

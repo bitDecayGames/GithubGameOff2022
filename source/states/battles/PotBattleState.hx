@@ -106,7 +106,7 @@ class PotBattleState extends EncounterBaseState {
 				potSprite.animation.add('bad', [1]);
 		}
 
-		if (isFinalPhase) {
+		if (isFinalPhase && !isFinalPhaseHarder) {
 			var reddenShader = new Redden();
 			potSprite.shader = reddenShader;
 		}
@@ -381,10 +381,9 @@ class PotBattleState extends EncounterBaseState {
 				switch dialog.characterIndex {
 					case LONK:
 						if (!isFinalPhase) {
-							dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger><page/>
-							Is that the best you can do?');
+							dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger>');
 						} else {
-							dialog.loadDialogLine('<cb val=mad />Give up!');
+							dialog.loadDialogLine('<cb val=mad /><bigger><fade>Gahhhhh...</fade></bigger>');
 						}
 					default:
 						dialog.loadDialogLine('<cb val=sad/>I have shattered into countless pieces. It would be impossible to put me back together.');
