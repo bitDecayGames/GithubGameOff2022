@@ -1,5 +1,6 @@
 package states.battles;
 
+import flixel.util.FlxStringUtil;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
 import flixel.math.FlxMath;
@@ -118,7 +119,7 @@ class AlarmClockState extends EncounterBaseState {
 		// make sure hand is over the clock
 		fightGroup.add(clock);
 		fightGroup.add(hand);
-		
+
 		if (!finalBattle) {
 			fightGroup.add(helperArrowLeft);
 			fightGroup.add(helperArrowRight);
@@ -127,15 +128,23 @@ class AlarmClockState extends EncounterBaseState {
 		battleGroup.add(fightGroup);
 		battleGroup.add(dialog);
 
-		dialog.textGroup.finishCallback = () -> {
-			dialog.kill();
-
-			new FlxTimer().start(.05, (t) -> {
-				acceptInput = true;
-			});
-		};
+		if (FlxStringUtil.isNullOrEmpty(dialog.textGroup.rawText)) {
+			begin();
+		} else {
+			dialog.textGroup.finishCallback = () -> {
+				begin();
+			};
+		}
 
 		dialog.textGroup.tagCallback = handleTagCallback;
+	}
+
+	function begin() {
+		dialog.kill();
+
+		new FlxTimer().start(.05, (t) -> {
+			acceptInput = true;
+		});
 	}
 
 	function handleTagCallback(tag:TagLocation) {

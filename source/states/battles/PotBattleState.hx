@@ -1,5 +1,6 @@
 package states.battles;
 
+import flixel.util.FlxStringUtil;
 import quest.GlobalQuestState;
 import shaders.BlinkHelper;
 import encounters.CharacterIndex;
@@ -120,8 +121,17 @@ class PotBattleState extends EncounterBaseState {
 		fightGroup.active = false;
 		battleGroup.add(dialog);
 
-		dialog.textGroup.finishCallback = () -> {
-			dialog.kill();
+		if (FlxStringUtil.isNullOrEmpty(dialog.textGroup.rawText)) {
+			begin();
+		} else {
+			dialog.textGroup.finishCallback = () -> {
+				begin();
+			};
+		}
+	}
+
+	function begin() {
+		dialog.kill();
 			fightGroup.active = true;
 
 			new FlxTimer().start(0.5, (t) -> {
@@ -150,7 +160,6 @@ class PotBattleState extends EncounterBaseState {
 					}
 				});
 			});
-		};
 	}
 
 	var placed:Array<Int> = [];
@@ -321,7 +330,7 @@ class PotBattleState extends EncounterBaseState {
 					ease: FlxEase.bounceOut,
 				});
 				FmodManager.PlaySoundOneShot(FmodSFX.PotRebound3);
-			} else {			
+			} else {
 				// only handle the emotions we know we support
 				if (['happy', 'mad', 'neutral', 'sad'].contains(tag.parsedOptions.val)) {
 					dialog.setExpression(tag.parsedOptions.val);

@@ -1,5 +1,6 @@
 package states.battles;
 
+import flixel.util.FlxStringUtil;
 import flixel.FlxBasic.FlxType;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
@@ -118,28 +119,35 @@ class ChestBattle extends EncounterBaseState {
 		battleGroup.add(fightGroup);
 		battleGroup.add(dialog);
 
-		dialog.textGroup.finishCallback = () -> {
-			dialog.kill();
+		if (FlxStringUtil.isNullOrEmpty(dialog.textGroup.rawText)) {
+			begin();
+		} else {
+			dialog.textGroup.finishCallback = () -> {
+				begin();
+			};
+		}
+	}
 
-			new FlxTimer().start(.05, (t) -> {
-				acceptInput = true;
+	function begin() {
+		dialog.kill();
+		new FlxTimer().start(.05, (t) -> {
+			acceptInput = true;
+		});
+
+		// TODO: move speed? Do we want random? Do we want pauses?
+		// start by moving over to the side
+		if (!isEndingSequence){
+			handTweenX = FlxTween.tween(hand, {x: FlxG.width - hand.width}, handSwipeTimeToEdgeToEdge / 2, {
+				ease: FlxEase.sineOut,
+				onComplete: (t) -> {
+					// then just slide back and forth
+					handTweenX = FlxTween.tween(hand, {x: 0}, handSwipeTimeToEdgeToEdge, {
+						type: FlxTweenType.PINGPONG,
+						ease: FlxEase.sineInOut,
+					});
+				}
 			});
-
-			// TODO: move speed? Do we want random? Do we want pauses?
-			// start by moving over to the side
-			if (!isEndingSequence){
-				handTweenX = FlxTween.tween(hand, {x: FlxG.width - hand.width}, handSwipeTimeToEdgeToEdge / 2, {
-					ease: FlxEase.sineOut,
-					onComplete: (t) -> {
-						// then just slide back and forth
-						handTweenX = FlxTween.tween(hand, {x: 0}, handSwipeTimeToEdgeToEdge, {
-							type: FlxTweenType.PINGPONG,
-							ease: FlxEase.sineInOut,
-						});
-					}
-				});
-			}
-		};
+		}
 	}
 
 	override function update(elapsed:Float) {
