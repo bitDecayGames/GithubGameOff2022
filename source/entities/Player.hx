@@ -1,5 +1,6 @@
 package entities;
 
+import shaders.Redden;
 import shaders.BlinkHelper;
 import entities.interact.PotNormal;
 import entities.particles.ItemIndex;

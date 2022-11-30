@@ -1,5 +1,6 @@
 package states.battles;
 
+import shaders.Redden;
 import flixel.FlxBasic.FlxType;
 import com.bitdecay.lucidtext.parse.TagLocation;
 import quest.GlobalQuestState;
@@ -43,12 +44,14 @@ class ChestBattle extends EncounterBaseState {
 
 	var flashOverlay:FlxSprite;
 	var isFinalBattle = false;
+	var isFinalPhase:Bool;
 	var isEndingSequence = false;
 
-	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?endingSequence:Bool) {
+	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false, ?endingSequence:Bool = false) {
 		super();
 		dialog = foe;
 		isFinalBattle = finalBattle;
+		isFinalPhase = finalPhase;
 		isEndingSequence = endingSequence;
 	}
 
@@ -92,6 +95,11 @@ class ChestBattle extends EncounterBaseState {
 		latch.y = 50;
 		latch.setSize(30, 30);
 		latch.centerOffsets(true);
+		
+		if (isFinalPhase) {
+			var reddenShader = new Redden();
+			latch.shader = reddenShader;
+		}
 
 		hand = new FlxSprite();
 		hand.scrollFactor.set();
@@ -149,6 +157,13 @@ class ChestBattle extends EncounterBaseState {
 		DebugDraw.ME.drawCameraLine(latchMid.x, latchMid.y - 10, latchMid.x, latchMid.y + 10);
 		#end
 
+
+		if(FlxG.keys.justPressed.P){
+			success = true;
+			transitionOut();
+		}
+
+		
 		if (!acceptInput) {
 			return;
 		}
