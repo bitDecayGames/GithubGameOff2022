@@ -393,7 +393,7 @@ class PotBattleState extends EncounterBaseState {
 			new FlxTimer().start(3, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
 				potSprite.animation.play('bad');
-				if (isFinalPhase){
+				if (isFinalPhaseHarder){
 					FmodManager.StopSongImmediately();
 				}
 			});
