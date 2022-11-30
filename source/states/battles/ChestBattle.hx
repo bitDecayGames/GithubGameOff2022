@@ -31,6 +31,7 @@ class ChestBattle extends EncounterBaseState {
 	private static var handHoverY = 175;
 
 	var latch:FlxSprite;
+	var latchTween:FlxTween;
 	// the 'hinge' is 19px tall for the default image
 	var openLatchOffset = 19;
 
@@ -156,6 +157,20 @@ class ChestBattle extends EncounterBaseState {
 				}
 			});
 		}
+
+		if (isFinalBattle && isFinalPhase) {
+			// give it a weird multiple to try to keep it from aligning
+			latchTween = FlxTween.tween(latch, {x: FlxG.width - latch.width * 3}, (1.37 * handSwipeTimeToEdgeToEdge) / 2, {
+				ease: FlxEase.sineOut,
+				onComplete: (t) -> {
+					// then just slide back and forth
+					latchTween = FlxTween.tween(latch, {x: latch.width * 2}, 1.37 * handSwipeTimeToEdgeToEdge, {
+						type: FlxTweenType.PINGPONG,
+						ease: FlxEase.sineInOut,
+					});
+				}
+			});
+		}
 	}
 
 	override function update(elapsed:Float) {
@@ -204,6 +219,12 @@ class ChestBattle extends EncounterBaseState {
 			fightOver = true;
 
 			acceptInput = false;
+			if (latchTween != null) {
+				if (!latchTween.finished) {
+					latchTween.cancel();
+				}
+				latchTween = null;
+			}
 			if (handTween != null) {
 				if (!handTween.finished) {
 					handTween.cancel();
