@@ -28,17 +28,22 @@ class Lonk extends NPC {
 			facing = FlxObject.RIGHT;
 		}
 		PlayState.ME.eventSignal.add(handleEvent);
+	}
 
-		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+	override function interact() {
+		super.interact();
+	}
+
+	override function UpdateOwnership() {
+		super.UpdateOwnership();
+
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game && PlayState.ME.player.fromSpawnData) {
+			// Only do this if the player spawned in front of us (i.e. the just lost a battle with Lonk)
 			new FlxTimer().start(1, (t) -> {
 				dialogBox.loadDialogLine("<cb val=happy />Don't fall back too far!<page/>I<cb val=mad /> am just getting started");
 				PlayState.ME.openDialog(dialogBox);
 			});
 		}
-	}
-
-	override function interact() {
-		super.interact();
 	}
 
 	override public function handleTagCallback(tag:TagLocation) {

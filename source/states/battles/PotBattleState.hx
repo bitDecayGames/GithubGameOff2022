@@ -48,7 +48,7 @@ class PotBattleState extends EncounterBaseState {
 	var isFinalPhaseHarder:Bool;
 
 	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false, ?finalPhaseHarder:Bool = false) {
-		super();
+		super(finalBattle);
 		dialog = foe;
 		dialog.textGroup.tagCallback = potTagHandle;
 		isFinalBattle = finalBattle;

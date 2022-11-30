@@ -354,17 +354,13 @@ class PlayState extends FlxTransitionableState {
 			throw('level ${level.identifier} has multiple spawns');
 		}
 
-		for (npc in npcs) {
-			npc.UpdateOwnership();
-		}
-
 		profiler.checkpoint("Update NPC ownership");
 
 		var playerStart = FlxVector.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
 			if (spawnData != null){
-				player = new Player(spawnData.pixelX, spawnData.pixelY);
+				player = new Player(spawnData.pixelX, spawnData.pixelY, true);
 				switch(spawnData.f_Direction) {
 					case UP:
 						player.facing = FlxObject.UP;
@@ -478,6 +474,10 @@ class PlayState extends FlxTransitionableState {
 		}
 		entities.add(player);
 		sortingLayer.add(player);
+
+		for (npc in npcs) {
+			npc.UpdateOwnership();
+		}
 
 		profiler.checkpoint("setup player movement out of the last door");
 

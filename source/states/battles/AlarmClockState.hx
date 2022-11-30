@@ -60,7 +60,7 @@ class AlarmClockState extends EncounterBaseState {
 	var isFinalPhase:Bool;
 
 	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false) {
-		super();
+		super(finalBattle);
 		dialog = foe;
 		this.finalBattle = finalBattle;
 		isFinalPhase = finalPhase;

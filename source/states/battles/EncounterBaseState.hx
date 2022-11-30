@@ -33,8 +33,11 @@ class EncounterBaseState extends FlxSubState {
 	public var onTransInDone:()->Void;
 	public var onTransOutDone:()->Void;
 
-	public function new() {
+	var ignoreDialogFade:Bool = false;
+
+	public function new(ignoreDialogCameraFade:Bool = false) {
 		super();
+		ignoreDialogFade = ignoreDialogCameraFade;
 	}
 
 	override function create() {
@@ -78,7 +81,9 @@ class EncounterBaseState extends FlxSubState {
 		battleGroup.active = false;
 
 		// we do two separate tweens
-		FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 0}, duration);
+		if (!ignoreDialogFade) {
+			FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 0}, duration);
+		}
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
@@ -149,7 +154,9 @@ class EncounterBaseState extends FlxSubState {
 			onComplete: (t) -> {
 				battleGroup.visible = false;
 				battleGroup.active = false;
-				FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 1}, duration);
+				if (!ignoreDialogFade) {
+					FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 1}, duration);
+				}
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						close();

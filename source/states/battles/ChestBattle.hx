@@ -52,7 +52,7 @@ class ChestBattle extends EncounterBaseState {
 	var isEndingSequence = false;
 
 	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false, ?endingSequence:Bool = false) {
-		super();
+		super(finalBattle);
 		dialog = foe;
 		isFinalBattle = finalBattle;
 		isFinalPhase = finalPhase;
