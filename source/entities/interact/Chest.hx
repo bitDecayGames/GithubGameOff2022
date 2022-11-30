@@ -60,7 +60,7 @@ class Chest extends Interactable {
 	function doOpenLogic() {
 		switch contentKey {
 			case "compass":
-				dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It slipped...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken.");
+				dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It slipped...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken. Maybe he won't notice.");
 				PlayState.ME.openDialog(dialogBox);
 				InteractableFactory.collected.set(contentKey, true);
 				GlobalQuestState.HAS_COMPASS = true;

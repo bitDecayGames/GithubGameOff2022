@@ -20386,7 +20386,7 @@
 							"__grid": [12,2],
 							"__pivot": [0,0],
 							"__tags": [],
-							"__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 },
+							"__tile": { "tilesetUid": 97, "x": 0, "y": 272, "w": 16, "h": 16 },
 							"__smartColor": "#E20F0F",
 							"iid": "038453d0-5110-11ed-aafd-8f3f7e9afa70",
 							"width": 16,
@@ -20394,11 +20394,14 @@
 							"defUid": 34,
 							"px": [192,32],
 							"fieldInstances": [
-								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
+								{ "__identifier": "Type", "__value": "Pot_normal", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 272, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["LoadTile"]
+									"params": ["Pot_normal"]
 								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Key", "__value": "brindle_pot", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["brindle_pot"]
+								}] },
 								{ "__identifier": "Description", "__value": "Just a pot, nothing fancy.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Just a pot, nothing fancy."]
@@ -20514,7 +20517,6 @@
 						{ "px": [128,32], "src": [64,112], "f": 0, "t": 60, "d": [38] },
 						{ "px": [128,32], "src": [96,32], "f": 0, "t": 22, "d": [38] },
 						{ "px": [192,32], "src": [80,96], "f": 0, "t": 53, "d": [42] },
-						{ "px": [192,32], "src": [48,0], "f": 0, "t": 3, "d": [42] },
 						{ "px": [80,48], "src": [48,96], "f": 0, "t": 51, "d": [50] },
 						{ "px": [96,48], "src": [112,96], "f": 0, "t": 55, "d": [51] },
 						{ "px": [192,48], "src": [48,96], "f": 0, "t": 51, "d": [57] },

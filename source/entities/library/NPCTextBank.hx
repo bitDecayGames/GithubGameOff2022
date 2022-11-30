@@ -36,7 +36,7 @@ class NPCTextBank {
 				"Conveniently, I moved all of our stuff here before the 'accident' occurred. Anyways<speed mod=0.1>...</speed><page/>" +
 				"Oh <cb val=happy/>yeah, the <color id=keyItem>compass</color>! You actually managed to stea... I mean FIND it!<page/>Good<cb val=neutral/>, good. Next, we need to get the <color id=keyItem>map</color> for the adventure.<page/>" +
 				"Go to Brindle's shop near the middle of town. <page/>" +
-				"Here's a <color id=keyItem>key</color> to get inside.<pause t=1/> <cb val=keyCollected/><page/>" +
+				"Here's a <color id=keyItem>key</color> to get inside.<pause t=1/> <cb val=keyCollected/> <pause/> <page/>" +
 				"You<cb val=restoreControl/><cb val=faceme/> will find the <color id=keyItem>map</color> in there somewhere.<cb val=findMap/>"
 			],
 			'${Enum_QuestName.Get_map}' => [
