@@ -40,8 +40,7 @@ class AlarmClock extends Interactable {
 
 	override function interact() {
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
-			// TODO SFX: Click off noise
-			FmodManager.PlaySoundOneShot(FmodSFX.MenuSelect);
+			FmodManager.PlaySoundOneShot(FmodSFX.AlarmClick);
 			GlobalQuestState.FINAL_MORNING_TURNED_OFF_ALARM = true;
 			GlobalQuestState.subQuest = 2;
 			animation.play('steady');

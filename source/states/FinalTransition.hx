@@ -78,6 +78,12 @@ class FinalTransition extends FlxSubState {
 				});
 			}
 		});
+
+		new FlxTimer().start(0, (t) -> {
+			lonk.animation.play('becomeEvil');
+		});
+
+		FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);
 		FlxTween.tween(eyes, { alpha: 1 }, duration * 3, {
 			onComplete: (t) -> {
 				// FlxTween.tween(eyes, {y: eyes.y + 2}, 0.5, {
@@ -86,5 +92,11 @@ class FinalTransition extends FlxSubState {
 				// });
 			}
 		});
+	}
+
+	override function update(elapsed:Float) {
+		super.update(elapsed);
+
+		lonk.update(elapsed);
 	}
 }

@@ -20,6 +20,10 @@ class Lonk extends NPC {
 
 	public function new(data:Entity_NPC) {
 		super(data);
+
+		animation.add('smile', [24, 25, 26, 27], 10, false);
+		animation.add('becomeEvil', [28, 29, 30, 31], 5, false);
+
 		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			facing = FlxObject.RIGHT;
 		}
@@ -165,6 +169,8 @@ class Lonk extends NPC {
 			if (GlobalQuestState.subQuest == 0) {
 				dialogBox.loadDialogLine("At least come say hello to me!");
 			} else {
+				manualAnimations = true;
+				animation.play('smile');
 				dialogBox.loadDialogLine("Have a good day!");
 				// updateFacing(PlayState.ME.player);
 				PlayState.ME.triggerFinalFade = true;
