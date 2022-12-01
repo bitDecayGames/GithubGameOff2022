@@ -34,7 +34,13 @@ class QuestNameExt {
 					case 2:
 						buildFlavorText("Explore West");
 					case 3:
-						buildFlavorText("Find Cludd's lock combo");
+						if (!GlobalQuestState.foundLockCombo) {
+							buildFlavorText("Find Cludd's lock combo");
+						} else if (!GlobalQuestState.hasGateBeenOpened) {
+							buildFlavorText("Open the gate");
+						} else {
+							buildFlavorText("Check the house");
+						}
 					default:
 						buildFlavorText("Unknown subquest");
 				}

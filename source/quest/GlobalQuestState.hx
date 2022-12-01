@@ -31,6 +31,8 @@ class GlobalQuestState {
 	// misc flags to help us know when to transition quests
 	public static var leftHouseFirstTime = false;
 	public static var hasCompass = false;
+	public static var foundLockCombo = false;
+	public static var hasGateBeenOpened = false;
 
 	static function set_currentQuest(value:Enum_QuestName):Enum_QuestName {
 		if (currentQuest != value) {
