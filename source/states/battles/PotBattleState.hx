@@ -200,7 +200,7 @@ class PotBattleState extends EncounterBaseState {
 			var point = ring.getGraphicMidpoint().place_on_circumference(placement * 20, ring.width/2);
 			var aim = new FlxSprite();
 			aim.scrollFactor.set();
-			aim.makeGraphic(10, 10, FlxColor.TRANSPARENT);
+			aim.makeGraphic(10, 10, FlxColor.TRANSPARENT, true);
 			FlxSpriteUtil.drawCircle(aim, -1, -1, -1, (isFinalBattle ? FlxColor.WHITE : FlxColor.PINK));
 
 			aim.setPositionMidpoint(point.x, point.y);
@@ -218,8 +218,8 @@ class PotBattleState extends EncounterBaseState {
 		FmodManager.Update();
 
 		// remove these two lines if we don't like this change
-		var scale = (attackLimit - attackGroup.length) / attackLimit;
-		cursor.scale.set(scale, scale);
+		// var scale = (attackLimit - attackGroup.length) / attackLimit;
+		// cursor.scale.set(scale, scale);
 
 		cursorAngle += spinSpeed * elapsed;
 		cursorAngle = cursorAngle % 360;
@@ -310,9 +310,12 @@ class PotBattleState extends EncounterBaseState {
 
 		// this new loop uses pixel perfect, which should be more accurate to the circles
 		weakPointsGroup.forEach((weakness) -> {
+			weakness.color = FlxColor.WHITE;
 			var atLeastOneHit = false;
 			for (attack in attackGroup) {
-				if (FlxG.pixelPerfectOverlap(weakness, attack)) {
+				if (FlxG.overlap(weakness, attack) &&
+					weakness.getGraphicMidpoint().distanceTo(attack.getGraphicMidpoint()) < weakness.width + 2) {
+					weakness.color = FlxColor.GRAY;
 					atLeastOneHit = true;
 					break;
 				}
@@ -339,7 +342,9 @@ class PotBattleState extends EncounterBaseState {
 			// this is the new loop that uses pixel perfect
 			var overlap = false;
 			for (point in weakPointsGroup) {
-				if (FlxG.pixelPerfectOverlap(a, point)) {
+				if (FlxG.overlap(point, a) &&
+					point.getGraphicMidpoint().distanceTo(a.getGraphicMidpoint()) < point.width + 2) {
+				// if (FlxG.pixelPerfectOverlap(a, point)) {
 					hits.push(point);
 					overlap = true;
 				}

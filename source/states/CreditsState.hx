@@ -1,5 +1,7 @@
 package states;
 
+import helpers.Analytics;
+import com.bitdecay.analytics.Bitlytics;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText.FlxTextAlign;
 import flixel.text.FlxBitmapText;
@@ -50,6 +52,8 @@ class CreditsState extends FlxUIState {
 		super.create();
 		bgColor = backgroundColor;
 		camera.pixelPerfectRender = true;
+
+		Analytics.reportWin();
 
 		new FlxTimer().start(3, (t) -> {
 			FmodManager.PlaySong(FmodSongs.AwakenLullabyEnding);
