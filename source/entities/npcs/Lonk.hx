@@ -96,7 +96,7 @@ class Lonk extends NPC {
 			if (tag.parsedOptions.val == "battleTime") {
 			}
 			if (tag.parsedOptions.val == "goToSchool") {
-				GlobalQuestState.subQuest++;
+				GlobalQuestState.subQuest = 3;
 			}
 			if (tag.parsedOptions.val == "bumpSubQuest") {
 				GlobalQuestState.subQuest++;
