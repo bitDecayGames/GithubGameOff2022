@@ -39,8 +39,8 @@ class SimpleController {
 		DOWN => [DPAD_DOWN],
 		LEFT => [DPAD_LEFT],
 		RIGHT => [DPAD_RIGHT],
-		A => [A, Y],
-		B => [B, X],
+		A => [A, Y, B, X],
+		B => [],
 		START => [START],
 		BACK => [BACK],
 	];
