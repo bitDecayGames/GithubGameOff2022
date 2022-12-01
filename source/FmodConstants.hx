@@ -23,6 +23,7 @@ class FmodSongs {
 class FmodSFX {
     public static inline var AlarmBreak:String = "event:/SFX/Alarm/AlarmBreak";
     public static inline var AlarmClick:String = "event:/SFX/Alarm/AlarmClick";
+    public static inline var AlarmClickFinal:String = "event:/SFX/Alarm/AlarmClickFinal";
     public static inline var AlarmClock:String = "event:/SFX/Alarm/AlarmClock";
     public static inline var AlarmClockHit:String = "event:/SFX/Alarm/AlarmClockHit";
     public static inline var AlarmSwing:String = "event:/SFX/Alarm/AlarmSwing";
@@ -56,6 +57,8 @@ class FmodSFX {
     public static inline var LonkLaugh3:String = "event:/SFX/Lonk/LonkLaugh3";
     public static inline var Undertone:String = "event:/SFX/Lonk/Undertone";
     public static inline var LonkHouseCollapse:String = "event:/SFX/LonkHouse/LonkHouseCollapse";
+    public static inline var MapFingers:String = "event:/SFX/Map/MapFingers";
+    public static inline var MapPullPin:String = "event:/SFX/Map/MapPullPin";
     public static inline var MenuHover:String = "event:/SFX/Menu/MenuHover";
     public static inline var MenuSelect:String = "event:/SFX/Menu/MenuSelect";
     public static inline var PadlockDown:String = "event:/SFX/Padlock/PadlockDown";
