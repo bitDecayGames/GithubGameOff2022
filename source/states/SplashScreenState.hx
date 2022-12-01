@@ -20,8 +20,8 @@ class SplashScreenState extends FlxState {
 	var splashImages:Array<FlxSprite> = [];
 
 	var timer = 0.0;
-	var tweenTime = 1.5;
-	var splashDuration = 2.0;
+	var tweenTime = 1.4;
+	var splashDuration = 2.5;
 
 	var currentTween:FlxTween = null;
 	var splashesOver:Bool = false;

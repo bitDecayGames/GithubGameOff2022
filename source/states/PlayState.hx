@@ -646,7 +646,7 @@ class PlayState extends FlxTransitionableState {
 			if (!GlobalQuestState.SPEEDY_DEBUG) {
 				player.lockControls = true;
 				player.animation.play(Player.SLEEP);
-				new FlxTimer().start(6.2, (t) -> {
+				new FlxTimer().start(5, (t) -> {
 					eventSignal.dispatch('alarmStart');
 					FmodManager.PlaySong(FmodSFX.AlarmClock);
 					player.animation.play(Player.STARTLED);
