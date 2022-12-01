@@ -94,7 +94,7 @@ class NPCTextBank {
 				"<cb val=neutral/>Honestly, why is that compass pointing <color id=hint>West</color>?"
 			],
 			'${Enum_QuestName.Find_lonk}_3' => [
-				"<cb val=neutral/>A locked gate? If Cludd knows anything, he probably took <color id=hint>notes</color>. That man can't remember to get out of bed half of the time."
+				"<cb val=neutral/>A locked gate? If <color id=hint>Cludd</color> knows anything, he probably took <color id=hint>notes</color>. That man can't remember to get out of bed half of the time."
 			],
 			'${Enum_QuestName.Get_map}' => [
 				"A <color id=keyItem>map</color>? Brindle keeps one in his shop somewhere, but it's mostly so he knows where he needs to mail things for his long distance customers.",
