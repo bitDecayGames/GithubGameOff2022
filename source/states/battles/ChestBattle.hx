@@ -101,6 +101,10 @@ class ChestBattle extends EncounterBaseState {
 		latch.setSize(30, 30);
 		latch.centerOffsets(true);
 
+		if (isEndingSequence) {
+			latch.y -= 50;
+		}
+
 		if (isFinalPhase) {
 			var reddenShader = new Redden();
 			latch.shader = reddenShader;
@@ -308,14 +312,15 @@ class ChestBattle extends EncounterBaseState {
 			});
 		} else {
 			handSwiping = true;
+			FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerAttemptStrike);
 			FmodManager.PlaySoundOneShot(FmodSFX.LonkFinalHit);
 			handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
-				ease: FlxEase.quintIn
+				ease: (t) -> Math.pow(t, 7)
 			});
 
 			new FlxTimer().start(1.5, (t) -> {
 				FlxTween.tween(flashOverlay, {alpha: 1}, 0.475, {
-					ease: FlxEase.quadIn
+					ease: FlxEase.quintIn
 				});
 			});
 		}

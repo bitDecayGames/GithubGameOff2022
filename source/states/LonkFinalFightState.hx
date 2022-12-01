@@ -82,6 +82,7 @@ class LonkFinalFightState extends FlxState {
 		battleDialog.revive();
 
 		phaseIndex++;
+		phaseIndex = 8;
 		switch phaseIndex {
 			case 1:
 				battleDialog.loadDialogLine("Give me the <color id=keyItem>map</color> and the <color id=keyItem>compass</color>.");
@@ -120,16 +121,8 @@ class LonkFinalFightState extends FlxState {
 				openBattle(new PotBattleState(battleDialog, true, true, true));
 			case 8:
 				FmodManager.StopSong();
-				battleDialog.loadDialogLine("<speed mod=0.2>You win...</speed><page/>Go ahead, give me everything you've got<speed mod=0.2>...</speed>");
+				battleDialog.loadDialogLine("<cb val=sad /><speed mod=0.2>You win...</speed><page/>Go ahead, give it everything you've got<speed mod=0.2>...</speed>");
 				openBattle(new ChestBattle(battleDialog, true, false, true));
-			case 5:
-				// fightEnded = true;
-				// dialog.revive();
-				// dialog.loadDialogLine("I can't believe this 'yatta yatta'. I am slain.");
-
-				// Put in the chest game
-				// GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
-				// FlxG.switchState(new PlayState('House_Lonk_room_boy'));
 			default:
 		}
 	}
