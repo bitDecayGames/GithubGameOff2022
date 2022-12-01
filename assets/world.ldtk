@@ -15759,7 +15759,7 @@
 									"entityIid": "1d2f15c0-5110-11ed-b865-cb3f18a680ee",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
+									"worldIid": "8ecc9580-5110-11ed-9a4a-75f268a800e3"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["1d2f15c0-5110-11ed-b865-cb3f18a680ee"]
@@ -15850,7 +15850,10 @@
 									"id": "V_String",
 									"params": ["LoadTile"]
 								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Key", "__value": "baconPlate", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["baconPlate"]
+								}] },
 								{ "__identifier": "Description", "__value": "Old bits of bacon sit alone on the side of the plate.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Old bits of bacon sit alone on the side of the plate."]
@@ -19918,7 +19921,7 @@
 									"entityIid": "4359e5e0-5110-11ed-b865-95bc081880a4",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "9128fbe0-5110-11ed-8ca7-8fafaecf832c"
+									"worldIid": "dad6dc40-5110-11ed-9b56-238ec12a0fbe"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4359e5e0-5110-11ed-b865-95bc081880a4"]
@@ -19952,7 +19955,10 @@
 									"id": "V_String",
 									"params": ["Chest"]
 								}] },
-								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
+								{ "__identifier": "Key", "__value": "bait_chest", "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["bait_chest"]
+								}] },
 								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
 								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] },
 								{ "__identifier": "hideInFinalMorning", "__value": false, "__type": "Bool", "__tile": null, "defUid": 146, "realEditorValues": [] }

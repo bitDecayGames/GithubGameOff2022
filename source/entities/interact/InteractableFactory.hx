@@ -9,6 +9,7 @@ import entities.misc.Tree;
 class InteractableFactory {
 	public static var defeated = new Map<String, Bool>();
 	public static var collected = new Map<String, Bool>();
+	public static var multiTextIndex = new Map<String, Int>();
 
 	public static function make(data:Entity_Interactable):Interactable {
 		var index:InteractIndex = data.f_Type.getIndex();
