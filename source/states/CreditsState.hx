@@ -1,5 +1,9 @@
 package states;
 
+import shaders.Greyen;
+import entities.particles.ItemParticle;
+import entities.interact.InteractableFactory;
+import quest.GlobalQuestState;
 import helpers.Analytics;
 import com.bitdecay.analytics.Bitlytics;
 import flixel.util.FlxTimer;
@@ -26,6 +30,7 @@ class CreditsState extends FlxUIState {
 	var _txtCreditsTitle:FlxBitmapText;
 	var _txtThankYou:FlxBitmapText;
 	var forPlaying:FlxBitmapText;
+	var collectables:FlxBitmapText;
 	var _txtRole:Array<FlxBitmapText>;
 	var _txtCreator:Array<FlxBitmapText>;
 
@@ -120,6 +125,51 @@ class CreditsState extends FlxUIState {
 		center(forPlaying);
 		add(forPlaying);
 		_allCreditElements.push(forPlaying);
+
+		var collectablesFound = 0;
+		var donutFound = false;
+		var gameboyFound = false;
+		var coughdropFound = false;
+
+		var donutImage = new ItemParticle(FlxG.width / 2 - 30, creditsVerticalOffset + FlxG.height / 2 + 60, DONUT);
+		if (InteractableFactory.collected.exists("donut")){
+			collectablesFound++;
+			donutFound = true;
+		} else {
+			var greyShader = new Greyen();
+			donutImage.shader = greyShader;
+		}
+		_allCreditElements.push(donutImage);
+		add(donutImage);
+
+		var gameboyImage = new ItemParticle(FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2 + 60, GAMEBOY);
+		if (InteractableFactory.collected.exists("gameboy_console")){
+			collectablesFound++;
+			gameboyFound = true;
+		} else {
+			var greyShader = new Greyen();
+			gameboyImage.shader = greyShader;
+		}
+		_allCreditElements.push(gameboyImage);
+		add(gameboyImage);
+		
+		var coughdropImage = new ItemParticle(FlxG.width / 2 + 30, creditsVerticalOffset + FlxG.height / 2 + 60, COUGH_DROP);
+		if (InteractableFactory.collected.exists("coughdrop")){
+			collectablesFound++;
+			coughdropFound = true;
+		} else {
+			var greyShader = new Greyen();
+			coughdropImage.shader = greyShader;
+		}
+		_allCreditElements.push(coughdropImage);
+		add(coughdropImage);
+		
+
+		collectables = FlxTextFactory.make("Collectables found: " + collectablesFound + "/3", FlxG.width / 2, creditsVerticalOffset + FlxG.height / 2 + 40, 10, FlxTextAlign.CENTER);
+		collectables.alignment = FlxTextAlign.CENTER;
+		center(collectables);
+		add(collectables);
+		_allCreditElements.push(collectables);
 
 		// we want them to start off the bottom and come onto the screen
 		for (e in _allCreditElements) {

@@ -97,6 +97,7 @@ class Chest extends Interactable {
 
 			if (tag.parsedOptions.val == "coughdropGet") {
 				PlayState.ME.eventSignal.dispatch('coughdropCollected');
+				InteractableFactory.collected.set("coughdrop", true);
 			}
 
 			if (tag.parsedOptions.val == "restoreControl") {
