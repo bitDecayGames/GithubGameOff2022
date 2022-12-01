@@ -36,7 +36,15 @@ class Chest extends Interactable {
 
 	override function interact() {
 		if (!opened) {
-			var substate = new ChestBattle(new CharacterDialog(CharacterIndex.CHEST, "Only Cludd may open me. Who are you?"));
+			var dialog:CharacterDialog = null;
+			if (FlxStringUtil.isNullOrEmpty(contentKey)) {
+				// empty chest upstairs
+				dialog = new CharacterDialog(CharacterIndex.CHEST, "My cavernous insides... wasted. <pause/>Why am I here?");
+			} else {
+				// compass chest in the basement
+				dialog = new CharacterDialog(CharacterIndex.CHEST, "Nobody has visited me in ages!");
+			}
+			var substate = new ChestBattle(dialog);
 			FmodManager.StopSongImmediately();
 			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 			PlayState.ME.startEncounter(substate);
