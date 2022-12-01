@@ -273,7 +273,7 @@ class ChestBattle extends EncounterBaseState {
 						switch dialog.characterIndex {
 							case LONK:
 								if (isFinalBattle){
-									dialog.loadDialogLine("UUGUGHHHHH");
+									dialog.loadDialogLine("NOOOOOOOOOOOOOOOO");
 								} else {
 									dialog.loadDialogLine("This<pause/> isn't<pause/> possible<slower>...</slower>");
 								}
@@ -319,7 +319,7 @@ class ChestBattle extends EncounterBaseState {
 				handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
 					ease: (t) -> Math.pow(t, 7)
 				});
-	
+
 				new FlxTimer().start(1.5, (t) -> {
 					FlxTween.tween(flashOverlay, {alpha: 1}, 0.475, {
 						ease: FlxEase.quintIn
