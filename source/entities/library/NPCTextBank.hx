@@ -82,7 +82,8 @@ class NPCTextBank {
 			'${Enum_QuestName.Intro}_5' => [
 				"I'm just hanging out. I love talking with people. Feel free to chat with me if you have questions.<page/>Cludd? " +
 				"He lives up <color id=hint>North</color>.<page/>Why do you want to go to his house? I always found it a little creepy.<page/>A <color id=keyItem>compass</color>? " +
-				"Cludd has had the only one in this town for decades. I'm sure he'd be happy to show it to you."
+				"Cludd has had the only one in this town for decades. I'm sure he'd be happy to show it to you.",
+				"Cludd lives on the <color id=hint>North</color> side of town."
 			],
 			'${Enum_QuestName.Find_lonk}' => [
 				"<cb val=sad/>I heard the crash and came out here to find this mess. <cb val=panToLonkHouse/><pause t=3/>Hard<cb val=panToPlayer/> to say what happened.<page/>" +
