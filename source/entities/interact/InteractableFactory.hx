@@ -50,6 +50,8 @@ class InteractableFactory {
 					return null;
 				}
 				return new ClockPile(data);
+			case DONUT:
+				return new Donut(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';

@@ -198,7 +198,9 @@ class PotBattleState extends EncounterBaseState {
 			var placement = FlxG.random.int(0, 17, placed);
 			placed.push(placement);
 			var point = ring.getGraphicMidpoint().place_on_circumference(placement * 20, ring.width/2);
-			var aim = new FlxSprite(AssetPaths.weakPoint__png);
+			var aim = new FlxSprite();
+			aim.loadGraphic(AssetPaths.weakPoint__png, false, 0, 0, true);
+
 			aim.scrollFactor.set();
 			// aim.makeGraphic(10, 10, FlxColor.TRANSPARENT, true);
 			// FlxSpriteUtil.drawCircle(aim, -1, -1, -1, (isFinalBattle ? FlxColor.WHITE : FlxColor.PINK));
@@ -285,7 +287,8 @@ class PotBattleState extends EncounterBaseState {
 		FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerAttemptStrike);
 		FlxG.camera.shake(0.02, 0.1);
 		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
-		var attack = new FlxSprite(AssetPaths.attackPoint__png);
+		var attack = new FlxSprite();
+		attack.loadGraphic(AssetPaths.attackPoint__png, false, 0, 0, true);
 		attack.scrollFactor.set();
 		// Different size to keep a unique image
 		// attack.makeGraphic(11, 11, FlxColor.TRANSPARENT);

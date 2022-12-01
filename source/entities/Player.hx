@@ -118,6 +118,12 @@ class Player extends FlxSprite {
 				getItemSequence(COMPASS);
 			case "keyCollected":
 				getItemSequence(KEY);
+			case "gameboyCollected":
+				getItemSequence(GAMEBOY);
+			case "donutCollected":
+				getItemSequence(DONUT);
+			case "coughdropCollected":
+				getItemSequence(COUGH_DROP);
 			case "compassDropped":
 				lockControls = true;
 				animation.play(STARTLED);
