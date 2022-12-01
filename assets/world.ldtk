@@ -19920,7 +19920,7 @@
 									"entityIid": "4359e5e0-5110-11ed-b865-95bc081880a4",
 									"layerIid": "6b624511-5110-11ed-b865-03c7e803aa94",
 									"levelIid": "6b621e00-5110-11ed-b865-d126fe92abdf",
-									"worldIid": "8ecc9580-5110-11ed-9a4a-75f268a800e3"
+									"worldIid": "722eeec0-5110-11ed-b009-95135b1a4228"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["4359e5e0-5110-11ed-b865-95bc081880a4"]
@@ -19981,9 +19981,9 @@
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "Its just a random book.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "It's just a random book.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Its just a random book."]
+									"params": ["It's just a random book."]
 								}] },
 								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] },
 								{ "__identifier": "hideInFinalMorning", "__value": false, "__type": "Bool", "__tile": null, "defUid": 146, "realEditorValues": [] }
