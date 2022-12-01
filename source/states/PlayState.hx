@@ -130,6 +130,8 @@ class PlayState extends FlxTransitionableState {
 		mosaicFilter = new ShaderFilter(mosaicShaderManager.shader);
 
 		dialogCamera = new FlxCamera();
+		// it seems like DCE removes alpha if we don't set this here? Not sure what's going on
+		dialogCamera.alpha = 1;
 		dialogCamera.bgColor = FlxColor.TRANSPARENT;
 		FlxG.cameras.add(dialogCamera, false);
 
@@ -259,7 +261,6 @@ class PlayState extends FlxTransitionableState {
 		var boundsWidth = Math.max(FlxG.width, collisionLayer.cWid * collisionLayer.gridSize);
 		var boundsHeight = Math.max(FlxG.height, collisionLayer.cHei * collisionLayer.gridSize);
 		FlxG.worldBounds.set(0, 0, boundsWidth, boundsHeight);
-		trace(FlxG.worldBounds);
 		addCollisionsToWorld(collisionLayer);
 
 		profiler.checkpoint("loaded collisions");
@@ -521,7 +522,7 @@ class PlayState extends FlxTransitionableState {
 			focusText.cameras = [dialogCamera];
 			focusText.visible = false;
 			uiHelpers.add(focusText);
-			
+
 			focusTextBackdrop = new FlxSprite();
 			focusTextBackdrop.setPosition(FlxG.width/2-130, FlxG.height/2-69);
 			focusTextBackdrop.makeGraphic(200, 15, FlxColor.WHITE);
@@ -556,9 +557,6 @@ class PlayState extends FlxTransitionableState {
 			camera.deadzone.height = FlxG.height - 2;
 			camera.scroll.y = -(FlxG.height - level.pxHei) / 2;
 		}
-
-		trace(level.pxWid);
-		trace(level.pxHei);
 
 		if (boundCamera) {
 			camera.setScrollBoundsRect(0, 0, level.pxWid, level.pxHei);
@@ -848,8 +846,6 @@ class PlayState extends FlxTransitionableState {
 			firstPass = true;
 		}
 
-		trace("first pass rendering ground layer: " + firstPass);
-
 		var cursorIndex = 0;
 		if (firstPass) {
 		for( cy in 0...ground.cHei )
@@ -880,8 +876,6 @@ class PlayState extends FlxTransitionableState {
 		if (cache.length == 0){
 			firstPass = true;
 		}
-
-		trace("first pass rendering collisions layer: " + firstPass);
 
 		var cursorIndex = 0;
 
