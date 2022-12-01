@@ -451,7 +451,7 @@ class PotBattleState extends EncounterBaseState {
 						if (!isFinalPhase) {
 							dialog.loadDialogLine('<cb val=mad /><bigger><fade>OOF...</fade></bigger>');
 						} else {
-							dialog.loadDialogLine('<cb val=mad />......');
+							dialog.loadDialogLine('<cb val=sad />......');
 						}
 					default:
 						dialog.loadDialogLine('<cb val=sad/>I have shattered into countless pieces. It would be impossible to put me back together.');

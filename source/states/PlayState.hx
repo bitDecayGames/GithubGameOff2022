@@ -70,7 +70,7 @@ class PlayState extends FlxTransitionableState {
 	public var flavorTextBackdrop:FlxSprite;
 	public var focusText:FlxBitmapText;
 	public var focusTextBackdrop:FlxSprite;
-	public var timeSinceGameStarted:Float;
+	public var timeSinceGameStarted:Float = 0.0;
 
 	// the sorting layer will hold anything we want sorted by it's positional y-value
 	public var sortingLayer:FlxTypedGroup<FlxSprite>;
@@ -592,15 +592,13 @@ class PlayState extends FlxTransitionableState {
 			if (!player.lockControls && (FlxG.keys.justPressed.A || FlxG.keys.justPressed.LEFT)) {
 				hasLeftBed = true;
 			}
-			if (focusText != null && timeSinceGameStarted > 15.0) {
+			if (focusText != null && timeSinceGameStarted > 10.0) {
 				focusText.visible = true;
 				focusTextBackdrop.visible = true;
 			}
 		} else {
 			if (focusText != null && focusText.alive) {
-				focusText.visible = false;
 				focusText.kill();
-				focusTextBackdrop.visible = false;
 				focusTextBackdrop.kill();
 			}
 		}
@@ -650,9 +648,9 @@ class PlayState extends FlxTransitionableState {
 					eventSignal.dispatch('alarmStart');
 					FmodManager.PlaySong(FmodSFX.AlarmClock);
 					player.animation.play(Player.STARTLED);
+					player.lockControls = false;
 					new FlxTimer().start(2.5, (t) -> {
 						player.animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
-						player.lockControls = false;
 					});
 				});
 			}
