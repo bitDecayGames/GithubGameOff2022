@@ -60,6 +60,7 @@ class PlayState extends FlxTransitionableState {
 	var startLevelOverride:String = null;
 
 	private static var firstLoad = true;
+	private static var hasLeftBed = false;
 
 	private static var LEVEL_ARRAY = ["House_Lonk_room_boy", "Town_main", "House_Cludd_Main", "House_Cludd_Upstairs", "House_Cludd_Basement"];
 	private var levelSelectionCursor = 0;
@@ -67,6 +68,9 @@ class PlayState extends FlxTransitionableState {
 	public var player:Player;
 	public var flavorText:FlxBitmapText;
 	public var flavorTextBackdrop:FlxSprite;
+	public var focusText:FlxBitmapText;
+	public var focusTextBackdrop:FlxSprite;
+	public var timeSinceGameStarted:Float;
 
 	// the sorting layer will hold anything we want sorted by it's positional y-value
 	public var sortingLayer:FlxTypedGroup<FlxSprite>;
@@ -496,7 +500,6 @@ class PlayState extends FlxTransitionableState {
 
 		profiler.checkpoint("set camera");
 
-		// TODO: give this thing a nice little background thing
 		flavorText = new FlxBitmapText();
 		flavorText.setPosition(5, 5);
 		flavorText.scrollFactor.set();
@@ -506,9 +509,27 @@ class PlayState extends FlxTransitionableState {
 		flavorTextBackdrop.visible = false;
 		flavorTextBackdrop.scrollFactor.set();
 
+		uiHelpers.add(flavorTextBackdrop);
+
 		profiler.checkpoint("Setup flavor text for quests");
 
-		uiHelpers.add(flavorTextBackdrop);
+		if (level.identifier == "House_Lonk_room_boy"){
+			focusText = new FlxBitmapText();
+			focusText.color = FlxColor.RED;
+			focusText.text = "Click on this screen to give the game focus";
+			focusText.setPosition(FlxG.width/2 - 80, FlxG.height/2 - 14);
+			focusText.cameras = [dialogCamera];
+			focusText.visible = false;
+			uiHelpers.add(focusText);
+			
+			focusTextBackdrop = new FlxSprite();
+			focusTextBackdrop.setPosition(FlxG.width/2-130, FlxG.height/2-69);
+			focusTextBackdrop.makeGraphic(200, 15, FlxColor.WHITE);
+			focusTextBackdrop.visible = false;
+			uiHelpers.add(focusTextBackdrop);
+		}
+
+
 		uiHelpers.add(flavorText);
 
 		levelState = LevelState.LoadLevelState(level);
@@ -566,6 +587,24 @@ class PlayState extends FlxTransitionableState {
 		} else if (FlxG.keys.justPressed.RBRACKET) {
 			levelSelectionCursor = FlxMath.wrap(levelSelectionCursor+1, 0, LEVEL_ARRAY.length-1);
 			loadLevel(LEVEL_ARRAY[levelSelectionCursor]);
+		}
+
+		if (!hasLeftBed) {
+			timeSinceGameStarted += elapsed;
+			if (!player.lockControls && (FlxG.keys.justPressed.A || FlxG.keys.justPressed.LEFT)) {
+				hasLeftBed = true;
+			}
+			if (focusText != null && timeSinceGameStarted > 15.0) {
+				focusText.visible = true;
+				focusTextBackdrop.visible = true;
+			}
+		} else {
+			if (focusText != null && focusText.alive) {
+				focusText.visible = false;
+				focusText.kill();
+				focusTextBackdrop.visible = false;
+				focusTextBackdrop.kill();
+			}
 		}
 
 		#if cam_debug
