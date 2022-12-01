@@ -174,20 +174,20 @@ class Lonk extends NPC {
 			if (GlobalQuestState.subQuest == 3) {
 				manualAnimations = true;
 				animation.play('smile');
-				dialogBox.loadDialogLine("Have a good day!");
+				dialogBox.loadDialogLine("<cb val=happy/>Have a good day!");
 				// updateFacing(PlayState.ME.player);
 				PlayState.ME.triggerFinalFade = true;
 				PlayState.ME.lonk = this;
 			} else if (GlobalQuestState.subQuest == 1) {
-				dialogBox.loadDialogLine("Seriously, go turn of your alarm.");
+				dialogBox.loadDialogLine("<cb val=neutral/>Seriously, go turn of your alarm.");
 			} else {
-				dialogBox.loadDialogLine("At least come say hello to me!");
+				dialogBox.loadDialogLine("<cb val=neutral/>At least come say hello to me!");
 			}
 
 		} else if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
-			dialogBox.loadDialogLine("We have unfinished business. Come here and finish what you started.");
+			dialogBox.loadDialogLine("<cb val=mad/>We have unfinished business. Come here and finish what you started.");
 		} else {
-			dialogBox.loadDialogLine("Hold on there little buddy");
+			dialogBox.loadDialogLine("<cb val=neutral/>Hold on there little buddy");
 		}
 		PlayState.ME.openDialog(dialogBox);
 		return "";

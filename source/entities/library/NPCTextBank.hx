@@ -124,10 +124,12 @@ class NPCTextBank {
 			'${Enum_QuestName.Wake_up}' => ["Hi"],
 			'${Enum_QuestName.Intro}' => ["Hi"],
 			'${Enum_QuestName.Get_map}' => [
-				"How'd you get in here? Who gave you that key?"
+				"<cb val=neutral/>How'd you get in here? Who gave you that key?",
+				"<cb val=neutral/>I'm very busy, can you please leave me alone?"
 			],
 			'${Enum_QuestName.Return_map}' => [
-				"Can I help you? I would appreciate it if you left."
+				"<cb val=neutral/>Did your grandfather send you here to harass me?",
+				"<cb val=neutral/>Can I help you? I would appreciate it if you left."
 			],
 		]
 	];

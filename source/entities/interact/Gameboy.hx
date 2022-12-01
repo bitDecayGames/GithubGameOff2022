@@ -12,13 +12,13 @@ class Gameboy extends GenericInteractable {
 		super(data);
 	}
 
-	override function interact() {
-		if (interactedWith) {
-			// take them to the link!
-			openfl.Lib.getURL(new URLRequest("https://bitdecaygames.itch.io/odd-verdure"));
-			return;
-		}
-		super.interact();
-		interactedWith = true;
-	}
+	// override function interact() {
+	// 	if (interactedWith) {
+	// 		// take them to the link!
+	// 		openfl.Lib.getURL(new URLRequest("https://bitdecaygames.itch.io/odd-verdure"));
+	// 		return;
+	// 	}
+	// 	super.interact();
+	// 	interactedWith = true;
+	// }
 }
