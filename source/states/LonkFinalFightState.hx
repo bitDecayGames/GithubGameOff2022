@@ -82,7 +82,6 @@ class LonkFinalFightState extends FlxState {
 		battleDialog.revive();
 
 		phaseIndex++;
-		phaseIndex = 8;
 		switch phaseIndex {
 			case 1:
 				battleDialog.loadDialogLine("Give me the <color id=keyItem>map</color> and the <color id=keyItem>compass</color>.");
