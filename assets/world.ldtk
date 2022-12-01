@@ -19801,7 +19801,7 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,
 						1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,
 						1,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,
-						1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,1,0,0,
+						1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,
 						0,0,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0
@@ -19858,8 +19858,6 @@
 						{ "px": [8,80], "src": [0,0], "f": 0, "t": 0, "d": [121,161] },
 						{ "px": [16,80], "src": [0,0], "f": 0, "t": 0, "d": [121,162] },
 						{ "px": [24,80], "src": [0,0], "f": 0, "t": 0, "d": [121,163] },
-						{ "px": [48,80], "src": [0,0], "f": 0, "t": 0, "d": [121,166] },
-						{ "px": [56,80], "src": [0,0], "f": 0, "t": 0, "d": [121,167] },
 						{ "px": [96,80], "src": [0,0], "f": 0, "t": 0, "d": [121,172] },
 						{ "px": [24,88], "src": [0,0], "f": 0, "t": 0, "d": [121,179] },
 						{ "px": [48,88], "src": [0,0], "f": 0, "t": 0, "d": [121,182] },
@@ -19976,16 +19974,16 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 34,
-							"px": [48,80],
+							"px": [48,88],
 							"fieldInstances": [
 								{ "__identifier": "Type", "__value": "LoadTile", "__type": "LocalEnum.Interactables", "__tile": { "tilesetUid": 97, "x": 0, "y": 0, "w": 16, "h": 16 }, "defUid": 98, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["LoadTile"]
 								}] },
 								{ "__identifier": "Key", "__value": null, "__type": "String", "__tile": null, "defUid": 99, "realEditorValues": [] },
-								{ "__identifier": "Description", "__value": "Its just a random book", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "Its just a random book.", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Its just a random book"]
+									"params": ["Its just a random book."]
 								}] },
 								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] },
 								{ "__identifier": "hideInFinalMorning", "__value": false, "__type": "Bool", "__tile": null, "defUid": 146, "realEditorValues": [] }

@@ -75,7 +75,7 @@ class Chest extends Interactable {
 				GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 				GlobalQuestState.subQuest = 0;
 			case "bait_chest":
-				dialogBox.loadDialogLine("Nice, A piece of candy! <cb val=coughdropGet/> <pause t=2/> <cb val=restoreControl/>");
+				dialogBox.loadDialogLine("Nice, A piece of candy! <cb val=coughdropGet/> <pause t=2/> <cb val=restoreControl/><page/><shake>Bleh</shake><pause/> <page/>It's a cough drop...");
 				PlayState.ME.openDialog(dialogBox);
 				InteractableFactory.collected.set(contentKey, true);
 			default:
