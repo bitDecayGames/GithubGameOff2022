@@ -12,6 +12,9 @@ import flixel.util.FlxColor;
 import flixel.FlxSubState;
 
 class EncounterBaseState extends FlxSubState {
+
+	public static var TRANSITION_COLOR:FlxColor = FlxColor.BLACK;
+
 	// just a helper to toggle if player input should be accepted or not
 	var acceptInput = false;
 
@@ -44,7 +47,8 @@ class EncounterBaseState extends FlxSubState {
 		super.create();
 
 		var bgImg = new FlxSprite();
-		bgImg.makeGraphic(1,1, FlxColor.BLACK);
+		bgImg.makeGraphic(1,1, FlxColor.WHITE);
+		bgImg.color = FlxColor.BLACK;
 		bgImg.scrollFactor.set();
 		// oversize this a bit to allow for camera shake without artifacts at the edges
 		bgImg.scale.set(FlxG.width * 1.25, FlxG.height * 1.25);
@@ -52,8 +56,13 @@ class EncounterBaseState extends FlxSubState {
 		bgImg.screenCenter();
 		battleGroup.add(bgImg);
 
+		if (ignoreDialogFade) {
+			bgImg.alpha = 0;
+		}
+
 		transition = new FlxSprite();
-		transition.makeGraphic(1,1, FlxColor.BLACK);
+		transition.makeGraphic(1,1, FlxColor.WHITE, true);
+		transition.color = TRANSITION_COLOR;
 		transition.alpha = 0;
 		transition.scrollFactor.set();
 		transition.scale.set(FlxG.width, FlxG.height);
@@ -195,6 +204,8 @@ class EncounterBaseState extends FlxSubState {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+
+		transition.color = TRANSITION_COLOR;
 	}
 
 	override function destroy() {
