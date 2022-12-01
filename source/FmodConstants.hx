@@ -57,6 +57,7 @@ class FmodSFX {
     public static inline var LonkLaugh:String = "event:/SFX/Lonk/LonkLaugh";
     public static inline var LonkLaugh2:String = "event:/SFX/Lonk/LonkLaugh2";
     public static inline var LonkLaugh3:String = "event:/SFX/Lonk/LonkLaugh3";
+    public static inline var LonkLaugh4:String = "event:/SFX/Lonk/LonkLaugh4";
     public static inline var Undertone:String = "event:/SFX/Lonk/Undertone";
     public static inline var LonkHouseCollapse:String = "event:/SFX/LonkHouse/LonkHouseCollapse";
     public static inline var MapFall:String = "event:/SFX/Map/MapFall";

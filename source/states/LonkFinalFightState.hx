@@ -73,6 +73,7 @@ class LonkFinalFightState extends FlxState {
 					nextPhase();
 				});
 			} else {
+				EncounterBaseState.TRANSITION_COLOR = FlxColor.BLACK;
 				FlxG.switchState(new PlayState("House_Lonk_1"));
 			}
 		};
@@ -116,11 +117,11 @@ class LonkFinalFightState extends FlxState {
 				colorTween.onComplete = (t) -> {
 					EncounterBaseState.TRANSITION_COLOR = FlxColor.BLACK;
 				};
-				battleDialog.loadDialogLine("<speed mod=0.2>...you....can't...beat...me...</speed>");
+				battleDialog.loadDialogLine("<cb val=sad /><speed mod=0.2>...you....can't...beat...me...</speed>");
 				openBattle(new PotBattleState(battleDialog, true, true, true));
 			case 8:
 				FmodManager.StopSong();
-				battleDialog.loadDialogLine("<cb val=sad /><speed mod=0.2>You win...</speed><page/>Go ahead, give it everything you've got<speed mod=0.2>...</speed>");
+				battleDialog.loadDialogLine("<cb val=neutral /><speed mod=0.2>You win...</speed><page/>Go ahead, give it everything you've got<speed mod=0.2>...</speed>");
 				openBattle(new ChestBattle(battleDialog, true, false, true));
 			default:
 		}

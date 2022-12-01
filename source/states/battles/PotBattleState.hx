@@ -269,7 +269,7 @@ class PotBattleState extends EncounterBaseState {
 								case RUBBERPOT:
 									dialog.loadDialogLine('Your puny arms are <bigger>too weak</bigger> to defeat me.');
 								case LONK:
-									dialog.loadDialogLine('<cb val=mad/>Pathetic');
+									dialog.loadDialogLine('<cb val=mad/>That\'s the best you can do?!');
 								default:
 									dialog.loadDialogLine('The pot seems unscathed');
 							}

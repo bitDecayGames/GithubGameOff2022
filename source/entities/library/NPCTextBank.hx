@@ -59,7 +59,7 @@ class NPCTextBank {
 				#end
 			],
 			'${Enum_QuestName.End_game}' => [
-				"<cb val=mad/>MORE<cb val=triggerEnding/><cb val=mad/>"
+				"<cb val=mad/><bigger><shake>More</bigger></shake><cb val=triggerEnding/><cb val=mad/>"
 			],
 			'${Enum_QuestName.Final_morning}_0' => [
 				"Are you going to leave that alarm clock beeping all day?<cb val=turn_off_clock />"

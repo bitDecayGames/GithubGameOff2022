@@ -40,7 +40,7 @@ class Lonk extends NPC {
 		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game && PlayState.ME.player.fromSpawnData) {
 			// Only do this if the player spawned in front of us (i.e. the just lost a battle with Lonk)
 			new FlxTimer().start(1, (t) -> {
-				dialogBox.loadDialogLine("<cb val=happy />Don't fall back too far!<page/>I<cb val=mad /> am just getting started");
+				dialogBox.loadDialogLine("<cb val=happy />Don't fall back too far!<page/>I<cb val=mad /> am just getting started.");
 				PlayState.ME.openDialog(dialogBox);
 			});
 		}
@@ -126,7 +126,7 @@ class Lonk extends NPC {
 
 		if (triggerEnding) {
 			FmodManager.StopSongImmediately();
-			FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh3);
+			FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh4);
 			PlayState.ME.playerInTransition = true;
 			new FlxTimer().start(0.01, (t) -> {
 				var transition = new EncounterBaseState();
