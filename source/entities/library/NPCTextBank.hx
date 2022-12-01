@@ -54,7 +54,7 @@ class NPCTextBank {
 				<cb val=neutral/>You were never fit for adventure.<pause t=0.5/> You are too small.<pause t=0.25/> Too weak.<page/>
 				<cb val=neutral/>Now give everything to me before I get impatient<speed mod=.05>...</speed><page/>
 				No?<page/>
-				<cb val=happy/>Ok then<page/>
+				<cb val=happy/>Ok then.<page/>
 				<cb val=mad/><bigger><shake>I will take it!</shake></bigger> <cb val=triggerEnding/><cb val=bumpSubQuest/>"
 				#end
 			],
