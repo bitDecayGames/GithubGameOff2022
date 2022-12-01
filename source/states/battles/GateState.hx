@@ -190,6 +190,8 @@ class GateState extends EncounterBaseState {
 
 	function doSuccess() {
 		success = true;
+		GlobalQuestState.foundLockCombo = true;
+		GlobalQuestState.hasGateBeenOpened = true;
 		FmodManager.PlaySoundOneShot(FmodSFX.PadlockSuccessMetal3);
 		FlxTween.tween(lockLatch, {y: lockLatch.y+5}, 0.05, {
 			onComplete: (t) -> {
