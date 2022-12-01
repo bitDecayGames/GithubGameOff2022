@@ -129,11 +129,11 @@ class PotBattleState extends EncounterBaseState {
 		potY = potSprite.y;
 		battleGroup.add(potSprite);
 
-		cursor = new FlxSprite();
+		cursor = new FlxSprite(AssetPaths.cursor__png);
 		cursor.scrollFactor.set();
-		cursor.makeGraphic(15, 15, FlxColor.TRANSPARENT);
+		// cursor.makeGraphic(15, 15, FlxColor.TRANSPARENT);
 		// can't figure out how to just draw a circle outline... so just draw a black circle on top of the white circle
-		FlxSpriteUtil.drawCircle(cursor, -1, -1, -1, FlxColor.RED);
+		// FlxSpriteUtil.drawCircle(cursor, -1, -1, -1, FlxColor.RED);
 		cursor.alpha = 0;
 
 		cursorAngle = FlxG.random.float(0, 279);
@@ -198,10 +198,10 @@ class PotBattleState extends EncounterBaseState {
 			var placement = FlxG.random.int(0, 17, placed);
 			placed.push(placement);
 			var point = ring.getGraphicMidpoint().place_on_circumference(placement * 20, ring.width/2);
-			var aim = new FlxSprite();
+			var aim = new FlxSprite(AssetPaths.weakPoint__png);
 			aim.scrollFactor.set();
-			aim.makeGraphic(10, 10, FlxColor.TRANSPARENT, true);
-			FlxSpriteUtil.drawCircle(aim, -1, -1, -1, (isFinalBattle ? FlxColor.WHITE : FlxColor.PINK));
+			// aim.makeGraphic(10, 10, FlxColor.TRANSPARENT, true);
+			// FlxSpriteUtil.drawCircle(aim, -1, -1, -1, (isFinalBattle ? FlxColor.WHITE : FlxColor.PINK));
 
 			aim.setPositionMidpoint(point.x, point.y);
 			point.put();
@@ -285,11 +285,11 @@ class PotBattleState extends EncounterBaseState {
 		FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerAttemptStrike);
 		FlxG.camera.shake(0.02, 0.1);
 		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
-		var attack = new FlxSprite();
+		var attack = new FlxSprite(AssetPaths.attackPoint__png);
 		attack.scrollFactor.set();
 		// Different size to keep a unique image
-		attack.makeGraphic(11, 11, FlxColor.TRANSPARENT);
-		FlxSpriteUtil.drawCircle(attack, -1, -1, -1, FlxColor.BLUE);
+		// attack.makeGraphic(11, 11, FlxColor.TRANSPARENT);
+		// FlxSpriteUtil.drawCircle(attack, -1, -1, -1, FlxColor.BLUE);
 
 		attack.setPositionMidpoint(point.x, point.y);
 		// copy our position into our last so that collisions work nicely on first frame of existence
