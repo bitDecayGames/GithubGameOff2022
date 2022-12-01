@@ -1,5 +1,7 @@
 package entities.interact;
 
+import quest.GlobalQuestState;
+import entities.misc.ClockPile;
 import flixel.util.FlxStringUtil;
 import entities.misc.Boulder;
 import entities.misc.Tree;
@@ -42,6 +44,11 @@ class InteractableFactory {
 				return new Journal(data);
 			case OWNABLE_TRIGGER:
 				return new OwnableTrigger(data);
+			case CLOCK_PILE:
+				if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
+					return null;
+				}
+				return new ClockPile(data);
 			default:
 				return new Chest(data);
 				// throw 'unknown interactable entity ${data.f_Type.getName()}';

@@ -14,4 +14,5 @@ enum abstract InteractIndex(Int) to Int from Int {
 	var FIRE = 10;
 	var JOURNAL = 11;
 	var OWNABLE_TRIGGER = 12;
+	var CLOCK_PILE = 13;
 }
