@@ -26,6 +26,7 @@ class Donut extends GenericInteractable {
 
 		if (alive) {
 			InteractableFactory.collected.set(data.f_Key, true);
+			InteractableFactory.defeated.set(data.f_Key, true);
 			dialogBox.loadDialogLine("Free energy! <cb val=donutGet/><pause t=2/> <cb val=restoreControl/>");
 			PlayState.ME.openDialog(dialogBox);
 		}

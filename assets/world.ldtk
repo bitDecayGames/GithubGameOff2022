@@ -1003,13 +1003,13 @@
 		},
 		{
 			"__cWid": 4,
-			"__cHei": 10,
+			"__cHei": 11,
 			"identifier": "NPCexpressions",
 			"uid": 91,
 			"relPath": "images/NPCs/NPCexpressions.png",
 			"embedAtlas": null,
 			"pxWid": 200,
-			"pxHei": 500,
+			"pxHei": 550,
 			"tileGridSize": 50,
 			"spacing": 0,
 			"padding": 0,
@@ -1019,8 +1019,8 @@
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
-				"opaqueTiles": "1111111111111011111111111111111111111111",
-				"averageColors": "fc97fc98fc98fc98f787f788f787f688f897f897f897f897fa99fa99fa99fa99f343f555f453f454fca9fca9fca9fca9f953f953f953f953fa98fa98fa98fa98f554f554f554f554f787f788f787f688"
+				"opaqueTiles": "11111111111110111111111111111111111111111111",
+				"averageColors": "fc97fc98fc98fc98f787f788f787f688f897f897f897f897fa99fa99fa99fa99f343f555f453f454fca9fca9fca9fca9f953f953f953f953fa98fa98fa98fa98f554f554f554f554f787f788f787f688fcb8fcb8fcb8fcb8"
 			}
 		},
 		{
@@ -23764,7 +23764,10 @@
 									"id": "V_String",
 									"params": ["donut"]
 								}] },
-								{ "__identifier": "Description", "__value": null, "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [] },
+								{ "__identifier": "Description", "__value": "Not sure who would leave such a delicious thing behind...", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Not sure who would leave such a delicious thing behind..."]
+								}] },
 								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] },
 								{ "__identifier": "hideInFinalMorning", "__value": false, "__type": "Bool", "__tile": null, "defUid": 146, "realEditorValues": [] }
 							]
