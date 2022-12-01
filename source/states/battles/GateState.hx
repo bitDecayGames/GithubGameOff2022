@@ -153,6 +153,7 @@ class GateState extends EncounterBaseState {
 	}
 
 	var failCount = 0;
+	var failLimit = 1;
 
 	function doFail() {
 		failCount++;
@@ -172,7 +173,7 @@ class GateState extends EncounterBaseState {
 					if (t.executions == 6) {
 						t.cancel();
 
-						if (failCount >= 3) {
+						if (failCount >= failLimit) {
 							dialog.loadDialogLine('Only <color id=hint>Cludd</color> has the genius to unlock me! However, he is a forgetful man.');
 							dialog.textGroup.finishCallback = () -> {
 								transitionOut();

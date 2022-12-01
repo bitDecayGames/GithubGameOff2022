@@ -1,11 +1,13 @@
 package quest;
 
+import helpers.Analytics;
+
 class GlobalQuestState {
 	public static var SPEEDY_DEBUG = #if speedy_debug true #else false #end;
 
 	// Top level quest tracker
 	public static var currentQuest(default, set):Enum_QuestName = Enum_QuestName.Wake_up;
-	public static var subQuest:Int = 0;
+	public static var subQuest(default, set):Int = 0;
 
 	// FLAGS OUT THE WAZOO
 	public static var DEFEATED_ALARM_CLOCK = false;
@@ -17,6 +19,7 @@ class GlobalQuestState {
 	public static var HAS_KEY_TO_HANDYMAN = false;
 	public static var HAS_MAP = false;
 	public static var HAS_INTERACTED_WITH_GATE = false;
+	public static var HAS_USED_CLUDDS_DOOR = false;
 
 	public static var FINAL_MORNING_TURNED_OFF_ALARM = false;
 
@@ -34,5 +37,10 @@ class GlobalQuestState {
 			subQuest = 0;
 		}
 		return currentQuest = value;
+	}
+
+	static function set_subQuest(value:Int):Int {
+		Analytics.reportQuestCheckpoint(currentQuest.getIndex(), value);
+		return subQuest = value;
 	}
 }

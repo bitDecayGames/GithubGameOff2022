@@ -65,35 +65,34 @@ class FinalTransition extends FlxSubState {
 	public function transitionIn() {
 		var duration = 1.0;
 
-		// we do two separate tweens
-		FlxTween.tween(transition, { alpha: 1 }, duration, {
-			onComplete: (t) -> {
-				new FlxTimer().start(4, (t) -> {
-					// TODO: Play eye animation for anime-esque disappearance, then when done, go to credits
-					FlxTween.tween(eyes, { alpha: 0 }, 0.1, {
-						onComplete: (t) -> {
-							FlxG.switchState(new CreditsState());
-						}
+		new FlxTimer().start(.75, (t) -> {
+			FlxTween.tween(transition, { alpha: 1 }, duration, {
+				onComplete: (t) -> {
+					new FlxTimer().start(4, (t) -> {
+						// TODO: Play eye animation for anime-esque disappearance, then when done, go to credits
+						FlxTween.tween(eyes, { alpha: 0 }, 0.1, {
+							onComplete: (t) -> {
+								FlxG.switchState(new CreditsState());
+							}
+						});
 					});
-				});
-			}
+				}
+			});
+
+			FlxTween.tween(eyes, { alpha: 1 }, duration * 3, {
+				onComplete: (t) -> {
+					// FlxTween.tween(eyes, {y: eyes.y + 2}, 0.5, {
+					// 	type: FlxTweenType.PINGPONG,
+					// 	ease: FlxEase.sineInOut,
+					// });
+				}
+			});
+
+			FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);
 		});
 
 		new FlxTimer().start(0, (t) -> {
 			lonk.animation.play('becomeEvil');
-		});
-
-		FmodManager.PlaySoundOneShot(FmodSFX.PotRingSpawn);
-		// new FlxTimer().start(2, (t) -> {
-		// 	FmodManager.PlaySoundOneShot(FmodSFX.LonkLaugh3);
-		// });
-		FlxTween.tween(eyes, { alpha: 1 }, duration * 3, {
-			onComplete: (t) -> {
-				// FlxTween.tween(eyes, {y: eyes.y + 2}, 0.5, {
-				// 	type: FlxTweenType.PINGPONG,
-				// 	ease: FlxEase.sineInOut,
-				// });
-			}
 		});
 	}
 

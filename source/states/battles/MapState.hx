@@ -189,10 +189,12 @@ class MapState extends EncounterBaseState {
 		new FlxTimer().start(0.1, (t) -> {
 			hand.animation.frameIndex = 0;
 		});
+		var foundPin = false;
 		for (i in 0...pins.length) {
 			var pin = pins[i];
 			if (pin.alive && FlxG.overlap(hand, pin)) {
-				// TODO SFX: Plucked a pin
+				foundPin = true;
+				FmodManager.PlaySoundOneShot(FmodSFX.MapPullPin);
 				pin.velocity.set(30 * (pin.flipX ? 1 : -1), -60);
 				pin.acceleration.set(0, 500);
 				switch(i) {
@@ -205,9 +207,10 @@ class MapState extends EncounterBaseState {
 					case 3:
 						mapPaper.points[mapClothWidth * mapClothHeight - 1].pinned = false;
 				}
-			} else {
-				// TODO SFX: Plucked nothing
-			}
+			} 
+		}
+		if (!foundPin){
+			FmodManager.PlaySoundOneShot(FmodSFX.MapFingers);
 		}
 	}
 

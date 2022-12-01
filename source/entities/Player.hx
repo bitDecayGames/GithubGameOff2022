@@ -54,8 +54,9 @@ class Player extends FlxSprite {
 
 	var heldItem:FlxSprite;
 
-	public function new(X:Float, Y:Float) {
+	public var fromSpawnData:Bool;
 
+	public function new(X:Float, Y:Float, fromSpawnData:Bool = false) {
 		if (GlobalQuestState.SPEEDY_DEBUG){
 			speed = 120;
 		}
@@ -68,6 +69,7 @@ class Player extends FlxSprite {
 		setSize(12, 14);
 		offset.set(8, 14);
 
+		this.fromSpawnData = fromSpawnData;
 
 		addAnimation(Characters.IDLE_ANIM, [ 0 ], 8);
 		addAnimation(Characters.RUN_ANIM, [ for (i in 1...7) i ], 8);
@@ -79,7 +81,9 @@ class Player extends FlxSprite {
 
 		// give us a starting point
 		animation.play('${Characters.IDLE_ANIM}_${Characters.DOWN}');
-		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game && fromSpawnData) {
+			// only do this knockback in this hacky way (end_game quest, and we spawned from a spawn point)
+			// This only happens when you lose to Lonk
 			animation.play('${Characters.IDLE_ANIM}_${Characters.LEFT}');
 			BlinkHelper.Blink(this, .2, 5);
 			var tweenDuration = 1.0;

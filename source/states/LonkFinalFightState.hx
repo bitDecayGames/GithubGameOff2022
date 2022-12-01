@@ -1,5 +1,7 @@
 package states;
 
+import flixel.tweens.misc.ColorTween;
+import flixel.tweens.FlxTween;
 import quest.GlobalQuestState;
 import flixel.FlxG;
 import states.battles.ChestBattle;
@@ -22,6 +24,8 @@ class LonkFinalFightState extends FlxState {
 	var fightEnded = false;
 
 	var hitpoints = 6;
+
+	var angerColor = FlxColor.RED.getDarkened(0.8);
 
 	override function create() {
 		super.create();
@@ -89,6 +93,13 @@ class LonkFinalFightState extends FlxState {
 				battleDialog.loadDialogLine("This is <shake>MY ADVENTURE</shake>.");
 				openBattle(new ChestBattle(battleDialog, true));
 			case 4:
+				var colorTween = FlxTween.color(3, FlxColor.BLACK, angerColor);
+				colorTween.onUpdate = (t) -> {
+					camera.bgColor = colorTween.color;
+				};
+				colorTween.onComplete = (t) -> {
+					EncounterBaseState.TRANSITION_COLOR = angerColor;
+				};
 				battleDialog.loadDialogLine("I'm getting <bigger>angry!</bigger>");
 				openBattle(new PotBattleState(battleDialog, true, true));
 			case 5:
@@ -98,20 +109,19 @@ class LonkFinalFightState extends FlxState {
 				battleDialog.loadDialogLine("I...");
 				openBattle(new ChestBattle(battleDialog, true, true));
 			case 7:
+				var colorTween = FlxTween.color(3, angerColor, FlxColor.BLACK);
+				colorTween.onUpdate = (t) -> {
+					camera.bgColor = colorTween.color;
+				};
+				colorTween.onComplete = (t) -> {
+					EncounterBaseState.TRANSITION_COLOR = FlxColor.BLACK;
+				};
 				battleDialog.loadDialogLine("<speed mod=0.2>...you....can't...beat...me...</speed>");
 				openBattle(new PotBattleState(battleDialog, true, true, true));
 			case 8:
 				FmodManager.StopSong();
-				battleDialog.loadDialogLine("<speed mod=0.2>You win...</speed><page/>Go ahead, give me everything you've got<speed mod=0.2>...</speed>");
+				battleDialog.loadDialogLine("<cb val=sad /><speed mod=0.2>You win...</speed><page/>Go ahead, give it everything you've got<speed mod=0.2>...</speed>");
 				openBattle(new ChestBattle(battleDialog, true, false, true));
-			case 5:
-				// fightEnded = true;
-				// dialog.revive();
-				// dialog.loadDialogLine("I can't believe this 'yatta yatta'. I am slain.");
-				
-				// Put in the chest game
-				// GlobalQuestState.currentQuest = Enum_QuestName.Final_morning;
-				// FlxG.switchState(new PlayState('House_Lonk_room_boy'));
 			default:
 		}
 	}

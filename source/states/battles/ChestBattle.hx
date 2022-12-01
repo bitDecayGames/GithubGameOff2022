@@ -31,6 +31,7 @@ class ChestBattle extends EncounterBaseState {
 	private static var handHoverY = 175;
 
 	var latch:FlxSprite;
+	var latchTween:FlxTween;
 	// the 'hinge' is 19px tall for the default image
 	var openLatchOffset = 19;
 
@@ -52,7 +53,7 @@ class ChestBattle extends EncounterBaseState {
 	var isEndingSequence = false;
 
 	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false, ?endingSequence:Bool = false) {
-		super();
+		super(finalBattle);
 		dialog = foe;
 		isFinalBattle = finalBattle;
 		isFinalPhase = finalPhase;
@@ -99,6 +100,10 @@ class ChestBattle extends EncounterBaseState {
 		latch.y = 50;
 		latch.setSize(30, 30);
 		latch.centerOffsets(true);
+
+		if (isEndingSequence) {
+			latch.y -= 50;
+		}
 
 		if (isFinalPhase) {
 			var reddenShader = new Redden();
@@ -156,6 +161,20 @@ class ChestBattle extends EncounterBaseState {
 				}
 			});
 		}
+
+		if (isFinalBattle && isFinalPhase) {
+			// give it a weird multiple to try to keep it from aligning
+			latchTween = FlxTween.tween(latch, {x: FlxG.width - latch.width * 3}, (1.37 * handSwipeTimeToEdgeToEdge) / 2, {
+				ease: FlxEase.sineOut,
+				onComplete: (t) -> {
+					// then just slide back and forth
+					latchTween = FlxTween.tween(latch, {x: latch.width * 2}, 1.37 * handSwipeTimeToEdgeToEdge, {
+						type: FlxTweenType.PINGPONG,
+						ease: FlxEase.sineInOut,
+					});
+				}
+			});
+		}
 	}
 
 	override function update(elapsed:Float) {
@@ -169,10 +188,12 @@ class ChestBattle extends EncounterBaseState {
 		#end
 
 
+		#if speedy_debug
 		if(FlxG.keys.justPressed.P){
 			success = true;
 			transitionOut();
 		}
+		#end
 
 
 		if (!acceptInput) {
@@ -204,6 +225,12 @@ class ChestBattle extends EncounterBaseState {
 			fightOver = true;
 
 			acceptInput = false;
+			if (latchTween != null) {
+				if (!latchTween.finished) {
+					latchTween.cancel();
+				}
+				latchTween = null;
+			}
 			if (handTween != null) {
 				if (!handTween.finished) {
 					handTween.cancel();
@@ -285,14 +312,18 @@ class ChestBattle extends EncounterBaseState {
 			});
 		} else {
 			handSwiping = true;
-			FmodManager.PlaySoundOneShot(FmodSFX.LonkFinalHit);
-			handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
-				ease: FlxEase.quintIn
-			});
+			FmodManager.PlaySoundOneShot(FmodSFX.LonkFinalPunch);
 
-			new FlxTimer().start(1.5, (t) -> {
-				FlxTween.tween(flashOverlay, {alpha: 1}, 0.475, {
-					ease: FlxEase.quadIn
+			new FlxTimer().start(0.75, (t) -> {
+				FmodManager.PlaySoundOneShot(FmodSFX.LonkFinalHit);
+				handTween = FlxTween.tween(hand, {y: latch.y+latch.height-1}, 2, {
+					ease: (t) -> Math.pow(t, 7)
+				});
+	
+				new FlxTimer().start(1.5, (t) -> {
+					FlxTween.tween(flashOverlay, {alpha: 1}, 0.475, {
+						ease: FlxEase.quintIn
+					});
 				});
 			});
 		}

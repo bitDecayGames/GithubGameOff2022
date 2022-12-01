@@ -10,5 +10,9 @@ class GenericInteractable extends Interactable {
 		// these are just interaction boxes and don't need to render anything. The art is part of the level
 		visible = false;
 		immovable = true;
+
+		for (desc in data.f_MultiDescript) {
+			text.push(desc);
+		}
 	}
 }

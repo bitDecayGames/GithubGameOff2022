@@ -47,8 +47,10 @@ class PotBattleState extends EncounterBaseState {
 	var isFinalPhase:Bool;
 	var isFinalPhaseHarder:Bool;
 
+	var attackAnimateDelay = 0.0;
+
 	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false, ?finalPhaseHarder:Bool = false) {
-		super();
+		super(finalBattle);
 		dialog = foe;
 		dialog.textGroup.tagCallback = potTagHandle;
 		isFinalBattle = finalBattle;
@@ -198,7 +200,7 @@ class PotBattleState extends EncounterBaseState {
 			var point = ring.getGraphicMidpoint().place_on_circumference(placement * 20, ring.width/2);
 			var aim = new FlxSprite();
 			aim.scrollFactor.set();
-			aim.makeGraphic(10, 10, FlxColor.TRANSPARENT);
+			aim.makeGraphic(10, 10, FlxColor.TRANSPARENT, true);
 			FlxSpriteUtil.drawCircle(aim, -1, -1, -1, (isFinalBattle ? FlxColor.WHITE : FlxColor.PINK));
 
 			aim.setPositionMidpoint(point.x, point.y);
@@ -215,16 +217,22 @@ class PotBattleState extends EncounterBaseState {
 
 		FmodManager.Update();
 
+		// remove these two lines if we don't like this change
+		// var scale = (attackLimit - attackGroup.length) / attackLimit;
+		// cursor.scale.set(scale, scale);
+
 		cursorAngle += spinSpeed * elapsed;
 		cursorAngle = cursorAngle % 360;
 		var point = ring.getGraphicMidpoint().place_on_circumference(cursorAngle, ring.width/2);
 		cursor.setPositionMidpoint(point.x, point.y);
 		point.put();
 
+		#if speedy_debug
 		if(FlxG.keys.justPressed.P){
 			success = true;
 			transitionOut();
 		}
+		#end
 
 		if (!acceptInput) {
 			return;
@@ -293,8 +301,26 @@ class PotBattleState extends EncounterBaseState {
 
 	function checkSuccess():Bool {
 		var success = true;
+		// use this loop if we notice it feeling bad.
+		// weakPointsGroup.forEach((weakness) -> {
+		// 	if (!FlxG.overlap(weakness, attackGroup)) {
+		// 		success = false;
+		// 	}
+		// });
+
+		// this new loop uses pixel perfect, which should be more accurate to the circles
 		weakPointsGroup.forEach((weakness) -> {
-			if (!FlxG.overlap(weakness, attackGroup)) {
+			weakness.color = FlxColor.WHITE;
+			var atLeastOneHit = false;
+			for (attack in attackGroup) {
+				if (FlxG.overlap(weakness, attack) &&
+					weakness.getGraphicMidpoint().distanceTo(attack.getGraphicMidpoint()) < weakness.width + 2) {
+					weakness.color = FlxColor.GRAY;
+					atLeastOneHit = true;
+					break;
+				}
+			}
+			if (!atLeastOneHit) {
 				success = false;
 			}
 		});
@@ -305,15 +331,28 @@ class PotBattleState extends EncounterBaseState {
 	function animateAttacks() {
 		var attackTweens = new Array<()->Void>();
 
-		var delay = 0.0;
+		attackAnimateDelay = 0.0;
 		attackGroup.forEach((a) -> {
 			var hits = new Array<FlxSprite>();
-			var overlap = FlxG.overlap(a, weakPointsGroup, (attack, point) -> {
-				hits.push(point);
-			});
+			// if this starts rendering weird, just use this loop instead
+			// var overlap = FlxG.overlap(a, weakPointsGroup, (attack, point) -> {
+			// 	hits.push(point);
+			// });
+
+			// this is the new loop that uses pixel perfect
+			var overlap = false;
+			for (point in weakPointsGroup) {
+				if (FlxG.overlap(point, a) &&
+					point.getGraphicMidpoint().distanceTo(a.getGraphicMidpoint()) < point.width + 2) {
+				// if (FlxG.pixelPerfectOverlap(a, point)) {
+					hits.push(point);
+					overlap = true;
+				}
+			}
+
 			if (overlap) {
-				var localDelay = delay;
-				delay += .35;
+				var localDelay = attackAnimateDelay;
+				attackAnimateDelay += .35;
 				attackTweens.push(() -> {
 					var t = new FlxTimer().start(localDelay, (t) -> {
 						FmodManager.PlaySoundOneShot(FmodSFX.PotPlayerStrikeFinal);
@@ -344,6 +383,9 @@ class PotBattleState extends EncounterBaseState {
 		});
 		FlxTween.tween(ring, {alpha: 0}, 1);
 		FlxTween.tween(cursor, {alpha: 0}, 1);
+
+		// account for our ring stopping before we start animating them
+		attackAnimateDelay += 1;
 		FlxTween.tween(this, { spinSpeed: 0 }, 1,
 		{
 			ease: FlxEase.sineOut,
@@ -374,7 +416,7 @@ class PotBattleState extends EncounterBaseState {
 
 	function finishFight() {
 		if (dialog.characterIndex == RUBBERPOT) {
-			new FlxTimer().start(3, (t) -> {
+			new FlxTimer().start(attackAnimateDelay, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
 
 				FlxTween.tween(potSprite, { y: potY + 20 }, 1);
@@ -382,7 +424,7 @@ class PotBattleState extends EncounterBaseState {
 					ease: FlxEase.bounceInOut,
 				});
 			});
-			new FlxTimer().start(4.5, (t) -> {
+			new FlxTimer().start(attackAnimateDelay + 1.5, (t) -> {
 				dialog.loadDialogLine('<speed mod=0.3>I....    I.....<page/></speed>I<cb val=repair/> am ok, actually. I am made of rubber after all!');
 				dialog.textGroup.finishCallback = () -> {
 					transitionOut();
@@ -390,14 +432,16 @@ class PotBattleState extends EncounterBaseState {
 				dialog.revive();
 			});
 		} else {
-			new FlxTimer().start(3, (t) -> {
+			new FlxTimer().start(attackAnimateDelay, (t) -> {
 				FmodManager.PlaySoundOneShot(FmodSFX.PotDestroy);
+				FlxG.camera.flash(FlxColor.WHITE, 0.2);
+				FlxG.camera.shake(0.02, 0.1);
 				potSprite.animation.play('bad');
 				if (isFinalPhaseHarder){
 					FmodManager.StopSongImmediately();
 				}
 			});
-			new FlxTimer().start(4.5, (t) -> {
+			new FlxTimer().start(attackAnimateDelay + 1.5, (t) -> {
 				// TODO: This should be gotten from somewhere else.
 				switch dialog.characterIndex {
 					case LONK:

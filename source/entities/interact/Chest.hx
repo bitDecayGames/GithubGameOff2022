@@ -36,7 +36,15 @@ class Chest extends Interactable {
 
 	override function interact() {
 		if (!opened) {
-			var substate = new ChestBattle(new CharacterDialog(CharacterIndex.CHEST, "Only Cludd may open me. Who are you?"));
+			var dialog:CharacterDialog = null;
+			if (FlxStringUtil.isNullOrEmpty(contentKey)) {
+				// empty chest upstairs
+				dialog = new CharacterDialog(CharacterIndex.CHEST, "My cavernous insides... wasted. <pause/>Why am I here?");
+			} else {
+				// compass chest in the basement
+				dialog = new CharacterDialog(CharacterIndex.CHEST, "Nobody has visited me in ages!");
+			}
+			var substate = new ChestBattle(dialog);
 			FmodManager.StopSongImmediately();
 			FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 			PlayState.ME.startEncounter(substate);
@@ -60,7 +68,7 @@ class Chest extends Interactable {
 	function doOpenLogic() {
 		switch contentKey {
 			case "compass":
-				dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It slipped...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken.");
+				dialogBox.loadDialogLine("A <color id=keyItem>compass</color> sits alone inside the chest.<page/> <cb val=compassGet/><pause t=2.5/>It is glorious!<page/> <cb val=compassDrop/><pause t=2/>Oops.<pause t=1/> It slipped...<pause t=1/><page/>It is probably fine.<page/>...<page/>No, it's broken.<page/>Maybe he won't notice.");
 				PlayState.ME.openDialog(dialogBox);
 				InteractableFactory.collected.set(contentKey, true);
 				GlobalQuestState.HAS_COMPASS = true;

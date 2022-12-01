@@ -14,7 +14,7 @@ class Redden extends FlxShader
         {
             vec4 pixel = texture2D(bitmap, openfl_TextureCoordv);
             if (pixel.a != 0.0) {
-                pixel.r *= 2.5;
+                pixel.r *= 1.5;
                 // pixel.rgb *= vec3(1.0, 0.6, 0.6);
                 // pixel.rgb *= 1.5;
                 gl_FragColor = pixel;

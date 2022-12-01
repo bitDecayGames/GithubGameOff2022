@@ -22,23 +22,28 @@ class Lonk extends NPC {
 		super(data);
 
 		animation.add('smile', [24, 25, 26, 27], 10, false);
-		animation.add('becomeEvil', [28, 29, 30, 31], 5, false);
+		animation.add('becomeEvil', [28, 29, 30, 31, 32, 33, 34, 35], 5, false);
 
 		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
 			facing = FlxObject.RIGHT;
 		}
 		PlayState.ME.eventSignal.add(handleEvent);
+	}
 
-		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
+	override function interact() {
+		super.interact();
+	}
+
+	override function UpdateOwnership() {
+		super.UpdateOwnership();
+
+		if (GlobalQuestState.currentQuest == Enum_QuestName.End_game && PlayState.ME.player.fromSpawnData) {
+			// Only do this if the player spawned in front of us (i.e. the just lost a battle with Lonk)
 			new FlxTimer().start(1, (t) -> {
 				dialogBox.loadDialogLine("<cb val=happy />Don't fall back too far!<page/>I<cb val=mad /> am just getting started");
 				PlayState.ME.openDialog(dialogBox);
 			});
 		}
-	}
-
-	override function interact() {
-		super.interact();
 	}
 
 	override public function handleTagCallback(tag:TagLocation) {
@@ -166,21 +171,23 @@ class Lonk extends NPC {
 	override function Why():String {
 		updateFacing(PlayState.ME.player);
 		if (GlobalQuestState.currentQuest == Enum_QuestName.Final_morning) {
-			if (GlobalQuestState.subQuest == 0) {
-				dialogBox.loadDialogLine("At least come say hello to me!");
-			} else {
+			if (GlobalQuestState.subQuest == 3) {
 				manualAnimations = true;
 				animation.play('smile');
-				dialogBox.loadDialogLine("Have a good day!");
+				dialogBox.loadDialogLine("<cb val=happy/>Have a good day!");
 				// updateFacing(PlayState.ME.player);
 				PlayState.ME.triggerFinalFade = true;
 				PlayState.ME.lonk = this;
+			} else if (GlobalQuestState.subQuest == 1) {
+				dialogBox.loadDialogLine("<cb val=neutral/>Seriously, go turn of your alarm.");
+			} else {
+				dialogBox.loadDialogLine("<cb val=neutral/>At least come say hello to me!");
 			}
 
 		} else if (GlobalQuestState.currentQuest == Enum_QuestName.End_game) {
-			dialogBox.loadDialogLine("We have unfinished business. Come here and finish what you started.");
+			dialogBox.loadDialogLine("<cb val=mad/>We have unfinished business. Come here and finish what you started.");
 		} else {
-			dialogBox.loadDialogLine("Hold on there little buddy");
+			dialogBox.loadDialogLine("<cb val=neutral/>Hold on there little buddy");
 		}
 		PlayState.ME.openDialog(dialogBox);
 		return "";

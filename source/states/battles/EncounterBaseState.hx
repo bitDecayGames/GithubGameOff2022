@@ -12,6 +12,9 @@ import flixel.util.FlxColor;
 import flixel.FlxSubState;
 
 class EncounterBaseState extends FlxSubState {
+
+	public static var TRANSITION_COLOR:FlxColor = FlxColor.BLACK;
+
 	// just a helper to toggle if player input should be accepted or not
 	var acceptInput = false;
 
@@ -33,15 +36,19 @@ class EncounterBaseState extends FlxSubState {
 	public var onTransInDone:()->Void;
 	public var onTransOutDone:()->Void;
 
-	public function new() {
+	var ignoreDialogFade:Bool = false;
+
+	public function new(ignoreDialogCameraFade:Bool = false) {
 		super();
+		ignoreDialogFade = ignoreDialogCameraFade;
 	}
 
 	override function create() {
 		super.create();
 
 		var bgImg = new FlxSprite();
-		bgImg.makeGraphic(1,1, FlxColor.BLACK);
+		bgImg.makeGraphic(1,1, FlxColor.WHITE);
+		bgImg.color = FlxColor.BLACK;
 		bgImg.scrollFactor.set();
 		// oversize this a bit to allow for camera shake without artifacts at the edges
 		bgImg.scale.set(FlxG.width * 1.25, FlxG.height * 1.25);
@@ -49,8 +56,13 @@ class EncounterBaseState extends FlxSubState {
 		bgImg.screenCenter();
 		battleGroup.add(bgImg);
 
+		if (ignoreDialogFade) {
+			bgImg.alpha = 0;
+		}
+
 		transition = new FlxSprite();
-		transition.makeGraphic(1,1, FlxColor.BLACK);
+		transition.makeGraphic(1,1, FlxColor.WHITE, true);
+		transition.color = TRANSITION_COLOR;
 		transition.alpha = 0;
 		transition.scrollFactor.set();
 		transition.scale.set(FlxG.width, FlxG.height);
@@ -78,10 +90,13 @@ class EncounterBaseState extends FlxSubState {
 		battleGroup.active = false;
 
 		// we do two separate tweens
+		if (!ignoreDialogFade) {
+			FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 0}, duration);
+		}
 		FlxTween.tween(transition, { alpha: 1 }, duration, {
 			onComplete: (t) -> {
 				battleGroup.visible = true;
-				
+
 				if (GlobalQuestState.currentQuest == Enum_QuestName.End_game){
 					battleGroup.active = true;
 					FlxTween.tween(transition, { alpha: 0}, 1, {
@@ -148,6 +163,9 @@ class EncounterBaseState extends FlxSubState {
 			onComplete: (t) -> {
 				battleGroup.visible = false;
 				battleGroup.active = false;
+				if (!ignoreDialogFade) {
+					FlxTween.tween(PlayState.ME.dialogCamera, {alpha: 1}, duration);
+				}
 				FlxTween.tween(transition, { alpha: 0}, duration, {
 					onComplete: (t) -> {
 						close();
@@ -186,6 +204,8 @@ class EncounterBaseState extends FlxSubState {
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+
+		transition.color = TRANSITION_COLOR;
 	}
 
 	override function destroy() {

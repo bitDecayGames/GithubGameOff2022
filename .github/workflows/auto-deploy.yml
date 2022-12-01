@@ -33,6 +33,6 @@ jobs:
         with:
           dir: export/html5.zip
           itchUserName: bitdecaygames
-          itchGameName: gameoff2022
+          itchGameName: green-fleece
           itchChannel: web-dev
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}

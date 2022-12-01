@@ -97,7 +97,7 @@ class PlayState extends FlxTransitionableState {
 	public var playerInTransition:Bool = false;
 
 	public var transitionSignal = new FlxTypedSignal<String->Void>();
-	var dialogCamera:FlxCamera;
+	public var dialogCamera:FlxCamera;
 
 	// handle events for the current level. Cleared out on level load
 	public var eventSignal = new FlxTypedSignal<String->Void>();
@@ -354,17 +354,13 @@ class PlayState extends FlxTransitionableState {
 			throw('level ${level.identifier} has multiple spawns');
 		}
 
-		for (npc in npcs) {
-			npc.UpdateOwnership();
-		}
-
 		profiler.checkpoint("Update NPC ownership");
 
 		var playerStart = FlxVector.get();
 		if (FlxStringUtil.isNullOrEmpty(doorID)) {
 			var spawnData = level.l_Entities.all_PlayerSpawn[0];
 			if (spawnData != null){
-				player = new Player(spawnData.pixelX, spawnData.pixelY);
+				player = new Player(spawnData.pixelX, spawnData.pixelY, true);
 				switch(spawnData.f_Direction) {
 					case UP:
 						player.facing = FlxObject.UP;
@@ -385,6 +381,12 @@ class PlayState extends FlxTransitionableState {
 			}
 			var startDoor = matches[0];
 			startDoor.animation.play('opened');
+
+			if (startDoor.data.f_Keys.contains(Enum_Keys.Cludd_frontdoor)) {
+				// once they come OUT of cludd's house, it is unlocked
+				GlobalQuestState.HAS_USED_CLUDDS_DOOR = true;
+			}
+
 			playerStart.set(startDoor.x, startDoor.y);
 			var transitionStart = startDoor.accessDir.opposite().asVector().scale(17);
 			var transitionEnd = startDoor.getPosition().addPoint(startDoor.accessDir.asVector().scale(17));
@@ -472,6 +474,10 @@ class PlayState extends FlxTransitionableState {
 		}
 		entities.add(player);
 		sortingLayer.add(player);
+
+		for (npc in npcs) {
+			npc.UpdateOwnership();
+		}
 
 		profiler.checkpoint("setup player movement out of the last door");
 
@@ -603,7 +609,7 @@ class PlayState extends FlxTransitionableState {
 			if (!GlobalQuestState.SPEEDY_DEBUG) {
 				player.lockControls = true;
 				player.animation.play(Player.SLEEP);
-				new FlxTimer().start(5.95, (t) -> {
+				new FlxTimer().start(6.2, (t) -> {
 					eventSignal.dispatch('alarmStart');
 					FmodManager.PlaySong(FmodSFX.AlarmClock);
 					player.animation.play(Player.STARTLED);

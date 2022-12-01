@@ -60,7 +60,7 @@ class AlarmClockState extends EncounterBaseState {
 	var isFinalPhase:Bool;
 
 	public function new(foe:CharacterDialog, ?finalBattle:Bool = false, ?finalPhase:Bool = false) {
-		super();
+		super(finalBattle);
 		dialog = foe;
 		this.finalBattle = finalBattle;
 		isFinalPhase = finalPhase;
@@ -180,10 +180,12 @@ class AlarmClockState extends EncounterBaseState {
 			return;
 		}
 
+		#if speedy_debug
 		if(FlxG.keys.justPressed.P){
 			success = true;
 			transitionOut();
 		}
+		#end
 
 		if (!handSwiping) {
 			if (SimpleController.just_pressed(A)) {
