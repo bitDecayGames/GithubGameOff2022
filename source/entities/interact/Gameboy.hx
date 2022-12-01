@@ -33,7 +33,7 @@ class Gameboy extends GenericInteractable {
 		if (alive) {
 			InteractableFactory.defeated.set(data.f_Key, true);
 			InteractableFactory.collected.set(data.f_Key, true);
-			dialogBox.loadDialogLine("I'll just take this with me and find some batteries. <cb val=gameboyGet/><pause t=2/> <cb val=restoreControl/>");
+			dialogBox.loadDialogLine("Oh well, I will take it anyway! <cb val=gameboyGet/><pause t=2/> <cb val=restoreControl/>");
 			PlayState.ME.openDialog(dialogBox);
 		}
 	}

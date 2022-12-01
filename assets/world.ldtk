@@ -21006,7 +21006,7 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,
 						1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,
 						1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,
-						0,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,
+						0,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,
 						0,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,
 						1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,
 						1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,
@@ -21043,6 +21043,7 @@
 						{ "px": [128,56], "src": [0,0], "f": 0, "t": 0, "d": [121,156] },
 						{ "px": [24,64], "src": [0,0], "f": 0, "t": 0, "d": [121,163] },
 						{ "px": [64,64], "src": [0,0], "f": 0, "t": 0, "d": [121,168] },
+						{ "px": [72,64], "src": [0,0], "f": 0, "t": 0, "d": [121,169] },
 						{ "px": [88,64], "src": [0,0], "f": 0, "t": 0, "d": [121,171] },
 						{ "px": [128,64], "src": [0,0], "f": 0, "t": 0, "d": [121,176] },
 						{ "px": [24,72], "src": [0,0], "f": 0, "t": 0, "d": [121,183] },
@@ -21132,7 +21133,7 @@
 									"entityIid": "7796ac90-5110-11ed-804c-cbf8105101de",
 									"layerIid": "8f8b7202-5110-11ed-804c-2dd6ed8d69aa",
 									"levelIid": "8f8b7200-5110-11ed-804c-31acc0c751fd",
-									"worldIid": "8ecc9580-5110-11ed-9a4a-75f268a800e3"
+									"worldIid": "28649b70-5110-11ed-89a4-016892cf0565"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["7796ac90-5110-11ed-804c-cbf8105101de"]
@@ -21166,7 +21167,7 @@
 									"entityIid": "49154d00-5110-11ed-804c-27f1817d8aeb",
 									"layerIid": "95581e01-5110-11ed-804c-ad12033350b0",
 									"levelIid": "9557f6f0-5110-11ed-804c-3f33e4b2e4cb",
-									"worldIid": "8ecc9580-5110-11ed-9a4a-75f268a800e3"
+									"worldIid": "28649b70-5110-11ed-89a4-016892cf0565"
 								}, "__type": "EntityRef", "__tile": null, "defUid": 29, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["49154d00-5110-11ed-804c-27f1817d8aeb"]
@@ -21230,14 +21231,13 @@
 									"id": "V_String",
 									"params": ["gameboy_console"]
 								}] },
-								{ "__identifier": "Description", "__value": "It's an old Gameboy.. The cartridge in it says \"Not part of GameOff 2022\"", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
+								{ "__identifier": "Description", "__value": "It's an old Gameboy. The cartridge in it says \"Not part of GameOff 2022\"<page/>It also looks to be completely broken...", "__type": "String", "__tile": null, "defUid": 125, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["It's an old Gameboy.. The cartridge in it says \"Not part of GameOff 2022\""]
+									"params": [
+										"It's an old Gameboy. The cartridge in it says \"Not part of GameOff 2022\"<page/>It also looks to be completely broken..."
+									]
 								}] },
-								{ "__identifier": "MultiDescript", "__value": ["It doesn't turn on."], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["It doesn't turn on."]
-								}] },
+								{ "__identifier": "MultiDescript", "__value": [], "__type": "Array<String>", "__tile": null, "defUid": 145, "realEditorValues": [] },
 								{ "__identifier": "hideInFinalMorning", "__value": false, "__type": "Bool", "__tile": null, "defUid": 146, "realEditorValues": [] }
 							]
 						}
