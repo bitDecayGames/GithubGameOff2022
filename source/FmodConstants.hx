@@ -51,6 +51,7 @@ class FmodSFX {
     public static inline var PotRingSpawn:String = "event:/SFX/Enemies/Pot/PotRingSpawn";
     public static inline var PotTargetSpawn:String = "event:/SFX/Enemies/Pot/PotTargetSpawn";
     public static inline var GateOpen:String = "event:/SFX/Gate/GateOpen";
+    public static inline var LonkFinalCutaway:String = "event:/SFX/Lonk/LonkFinalCutaway";
     public static inline var LonkFinalHit:String = "event:/SFX/Lonk/LonkFinalHit";
     public static inline var LonkFinalPunch:String = "event:/SFX/Lonk/LonkFinalPunch";
     public static inline var LonkLaugh:String = "event:/SFX/Lonk/LonkLaugh";

@@ -68,6 +68,7 @@ class FinalTransition extends FlxSubState {
 		new FlxTimer().start(.75, (t) -> {
 			FlxTween.tween(transition, { alpha: 1 }, duration, {
 				onComplete: (t) -> {
+					FmodManager.PlaySoundOneShot(FmodSFX.LonkFinalCutaway);
 					new FlxTimer().start(4, (t) -> {
 						// TODO: Play eye animation for anime-esque disappearance, then when done, go to credits
 						FlxTween.tween(eyes, { alpha: 0 }, 0.1, {
