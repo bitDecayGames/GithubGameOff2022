@@ -35,10 +35,14 @@ class GlobalQuestState {
 	public static var hasGateBeenOpened = false;
 
 	static function set_currentQuest(value:Enum_QuestName):Enum_QuestName {
-		if (currentQuest != value) {
+		var resetSubQuest = currentQuest != value;
+		currentQuest = value;
+		if (resetSubQuest) {
+			// do this after updating current quest so that we properly report the metrics
 			subQuest = 0;
 		}
-		return currentQuest = value;
+
+		return value;
 	}
 
 	static function set_subQuest(value:Int):Int {
