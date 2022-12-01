@@ -180,7 +180,9 @@ class LevelState {
 			}
         } else if (StringTools.startsWith(levelId, "House_Cludd")) {
 			FmodManager.PlaySong(FmodSongs.Haunted);
-		} else {
+		} else if (GlobalQuestState.currentQuest == Enum_QuestName.Find_lonk && GlobalQuestState.subQuest == 1) {
+			FmodManager.PlaySong(FmodSongs.AwakenDanger);
+        } else {
 			FmodManager.PlaySong(FmodSongs.AwakenSofterC);
 		}
 	}
