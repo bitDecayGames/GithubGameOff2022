@@ -7,23 +7,17 @@ import flixel.FlxSprite;
 import quest.GlobalQuestState;
 import states.PlayState;
 
-class Gameboy extends GenericInteractable {
+class Donut extends GenericInteractable {
 	static var interactedWith = false;
 
 	public function new(data:Entity_Interactable) {
 		super(data);
 		visible = true;
-		loadGraphic(AssetPaths.interiorDecorations__png, true, 16, 16);
-		animation.frameIndex = 19;
+		loadGraphic(AssetPaths.items__png, true, 16, 16);
+		animation.frameIndex = ItemIndex.DONUT;
 	}
 
 	override function interact() {
-		// if (interactedWith) {
-		// 	// take them to the link!
-		// 	openfl.Lib.getURL(new URLRequest("https://bitdecaygames.itch.io/odd-verdure"));
-		// 	return;
-		// }
-		// interactedWith = true;
 		super.interact();
 	}
 
@@ -31,9 +25,9 @@ class Gameboy extends GenericInteractable {
 		super.dialogFinished();
 
 		if (alive) {
-			InteractableFactory.defeated.set(data.f_Key, true);
 			InteractableFactory.collected.set(data.f_Key, true);
-			dialogBox.loadDialogLine("I'll just take this with me and find some batteries. <cb val=gameboyGet/><pause t=2/> <cb val=restoreControl/>");
+			InteractableFactory.defeated.set(data.f_Key, true);
+			dialogBox.loadDialogLine("Free energy! <cb val=donutGet/><pause t=2/> <cb val=restoreControl/>");
 			PlayState.ME.openDialog(dialogBox);
 		}
 	}
@@ -41,8 +35,8 @@ class Gameboy extends GenericInteractable {
 	override public function handleTagCallback(tag:TagLocation) {
 		super.handleTagCallback(tag);
 		if (tag.tag == "cb") {
-			if (tag.parsedOptions.val == "gameboyGet") {
-				PlayState.ME.eventSignal.dispatch('gameboyCollected');
+			if (tag.parsedOptions.val == "donutGet") {
+				PlayState.ME.eventSignal.dispatch('donutCollected');
 				kill();
 			}
 

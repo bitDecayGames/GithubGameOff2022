@@ -9,8 +9,6 @@ class OwnableTrigger extends GenericInteractable {
 
 	public var owner:Interactable;
 
-	public var data:Entity_Interactable;
-
 	var triggerKey:String;
 
 	public function new(data:Entity_Interactable) {

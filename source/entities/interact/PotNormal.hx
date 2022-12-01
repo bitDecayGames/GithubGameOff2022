@@ -11,6 +11,8 @@ import states.PlayState;
 class PotNormal extends Interactable {
 	var data:Entity_Interactable;
 
+	var defeated = false;
+
 	public function new(data:Entity_Interactable) {
 		super(data.pixelX, data.pixelY, NONE);
 		this.data = data;
@@ -20,6 +22,10 @@ class PotNormal extends Interactable {
 	}
 
 	override function interact() {
+		if (defeated) {
+			return;
+		}
+
 		FmodManager.StopSongImmediately();
 		FmodManager.PlaySoundOneShot(FmodSFX.BattleStart);
 		var substate = new PotBattleState(new CharacterDialog(POT, "I am a pot."));
@@ -40,6 +46,7 @@ class PotNormal extends Interactable {
 	}
 
 	public function defeat() {
+		defeated = true;
 		InteractableFactory.defeated.set(data.f_Key, true);
 		var blinkTiming = 0.2;
 		var blinkCount = 5;
@@ -51,7 +58,7 @@ class PotNormal extends Interactable {
 			var explosion = new PotExplosion(x, y);
 			PlayState.ME.sortingLayer.add(explosion);
 			visible = false;
-			new FlxTimer().start(.75, (t) -> {
+			new FlxTimer().start(.5, (t) -> {
 				kill();
 			});
 		});

@@ -74,6 +74,10 @@ class Chest extends Interactable {
 				GlobalQuestState.HAS_COMPASS = true;
 				GlobalQuestState.currentQuest = Enum_QuestName.Find_lonk;
 				GlobalQuestState.subQuest = 0;
+			case "bait_chest":
+				dialogBox.loadDialogLine("Nice, A piece of candy! <cb val=coughdropGet/> <pause t=2/> <cb val=restoreControl/>");
+				PlayState.ME.openDialog(dialogBox);
+				InteractableFactory.collected.set(contentKey, true);
 			default:
 				dialogBox.loadDialogLine("<cb val=restoreControl/>It is empty, that's odd. Maybe it's a bait chest.");
 				PlayState.ME.openDialog(dialogBox);
@@ -89,6 +93,10 @@ class Chest extends Interactable {
 
 			if (tag.parsedOptions.val == "compassDrop") {
 				PlayState.ME.eventSignal.dispatch('compassDropped');
+			}
+
+			if (tag.parsedOptions.val == "coughdropGet") {
+				PlayState.ME.eventSignal.dispatch('coughdropCollected');
 			}
 
 			if (tag.parsedOptions.val == "restoreControl") {
