@@ -284,6 +284,8 @@ class Player extends FlxSprite {
 
 	}
 
+	var flxPointZero = new FlxPoint(0, 0);
+
 	override public function update(delta:Float) {
 		if (worldClip != null) {
 			clipRect = FlxRect.get(worldClip.x - x + offset.x, worldClip.y - y + offset.y, worldClip.width, worldClip.height);
@@ -321,6 +323,10 @@ class Player extends FlxSprite {
 			}
 		} else {
 			velocity.set();
+		}
+
+		if(animation.curAnim != null && animation.curAnim.name == STARTLED && !velocity.equals(flxPointZero)) {
+			updateAnimations(true);
 		}
 
 		// do the influence outside of the other check to allow us to do some sort of cutscenes and such
